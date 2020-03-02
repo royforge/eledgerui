@@ -1,0 +1,35 @@
+
+
+.logoColor{
+    height: 50px;
+    height: auto;    
+}
+
+.required {
+    color: red;   
+}
+
+.logo {
+    height: 95%;
+    width: 65px;
+}
+.icon {
+    background-color: #46afec;
+    color: white;
+    font-size: 24px;
+}
+
+.label {
+    font-size: 20px;
+    
+}
+  
+  /* If the screen size is 840px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 840px) {
+    .label {
+        font-size: 17px;   
+    }
+    .newCustomer{
+        font-size: 97%;
+    }
+  }
