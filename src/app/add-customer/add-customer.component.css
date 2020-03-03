@@ -23,6 +23,17 @@
     font-size: 20px;
     
 }
+
+
+/* Chrome, Safari, Edge, Opera 
+To remove the spnners/ arrows from input field type "number" */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
   
   /* If the screen size is 840px wide or less, set the font-size of <div> to 30px */
   @media screen and (max-width: 840px) {
