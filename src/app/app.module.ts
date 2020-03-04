@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,9 +12,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [EledgerApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
