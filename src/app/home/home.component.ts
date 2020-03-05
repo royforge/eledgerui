@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
-import { WalletData } from './classes/walletdata';
-import { MerchantListService } from './service/merchantlist.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 declare var require: any;
 @Component({
@@ -17,9 +16,10 @@ export class HomeComponent implements OnInit {
   merchantList: WalletData[];
   newBalance: number;
   customerCount=0;
-  constructor(private _merchantlistservice: MerchantListService) { 
+  constructor(private _merchantlistservice: MerchantListService, private route: ActivatedRoute) { 
   }
   ngOnInit(): void {
+    let lenderId = parseInt(this.route.snapshot.paramMap.get('lenderId'));
     this._merchantlistservice.getWalletByParameter().subscribe(
       data => {
         this.merchantList = data;
