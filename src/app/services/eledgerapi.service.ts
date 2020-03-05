@@ -2,19 +2,18 @@ import { WalletData } from './../model/walletdata';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { URL } from '../static/properties';
+import { url } from 'inspector';
 
 @Injectable()
 export class EledgerApiService {
 
     constructor(private httpclient: HttpClient) { }
 
-    get(customUrl: string): Observable<any> {
-        //let param1 = new  HttpParams().set('lenderId/',"mar1"); 
-        return this.httpclient.get(URL + customUrl);
+    get(url: string): Observable<any> {
+        return this.httpclient.get(url);
     }
 
-    post(walletData: WalletData): Observable<any> {
-        return this.httpclient.post(URL + '/wallet', walletData);
+    post(url: string, walletData: WalletData): Observable<any> {
+        return this.httpclient.post(url + '/wallet', walletData);
     }
 }    
