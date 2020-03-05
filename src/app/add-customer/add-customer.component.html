@@ -47,8 +47,39 @@
                         <p class="required d-inline"> *</p>
                     </div>
                     <div class="col-sm-6">
-                        <input class="rounded w-100 border border-primary" type="number" pattern="[+0-9]{10,15}" id="contact"
-                            placeholder="Mobile No." formControlName="mobile">
+                        <input class="rounded w-100 border border-primary" type="number" pattern="[+0-9]{10,13}"
+                            id="contact" placeholder="Mobile No." formControlName="mobile">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="contact" class="d-inline label"> Amount</label>
+                        <p class="required d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="rounded w-100 border border-primary" formControlName="name" type="text" id="name"
+                            placeholder="amount" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="contact" class="d-inline label"> Transaction Type</label>
+                        <p class="required d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Type <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Debit</a></li>
+              <li><a href="#">Credit action</a></li>
+
+            </ul>
                     </div>
                 </div>
                 <br><br><br>
@@ -56,7 +87,7 @@
                 <div class="row">
                     <div class="col-11 text-right">
                         <button type="submit" [disabled]="!customerForm.valid"
-                            class="btn confirmBtn border border-dark" routerLink="/home">Save</button>
+                            class="btn confirmBtn border border-dark nav-item nav-link-edit" [routerLink]="['/home']">Save</button>
                     </div>
                 </div>
             </form>

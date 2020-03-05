@@ -1,0 +1,36 @@
+<div class="text-center">
+  <p>Welcome to ELedger</p>
+</div>
+<nav>
+  <a routerLink="/addcustomer">Add new Customer</a>
+</nav>
+
+<button (click) = toggleDisplay()>Get Transactions</button>
+<div style="padding: 13px;"  *ngIf = "isShow">
+
+<table>
+  <thead>
+    <td>transactionId</td>
+    <td>walletId</td>
+    <td>lenderId</td>
+    <td>date</td>
+    <td>borrowerId</td>
+    <td>txnType</td>
+    <td>amount</td>
+    <td>comment</td>
+
+  </thead>
+  <tr *ngFor='let txn of txns'>
+    <td>{{txn.transactionId}}</td>
+    <td>{{txn.walletId}}</td>
+    <td>{{txn.lenderId}}</td>
+    <td>{{txn.date}}</td>
+    <td>{{txn.borrowerId}}</td>
+    <td>{{txn.txnType}}</td>
+    <td>{{txn.amount}}</td>
+    <td>{{txn.comment}}</td>
+
+  </tr>
+
+</table>
+</div>
