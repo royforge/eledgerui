@@ -19,7 +19,7 @@
                         <div class="col-sm-6">
                             <label class="logo" for="UserId">Mobile Number/Email:</label>
                             <div class="col-sm-6">
-                                <input [(ngModel)]="userID" [className]="isValid? 'form-control': 'form-control invalidInput'" type="text" placeholder="Enter User-Id" name="uname" required>
+                                <input [(ngModel)]="userID" [className]="isValid? 'form-control': 'form-control invalidInput'" type="text" name="uname" required>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <div class="col-sm-6 form-group">
                             <label class="logo" for="password">Password:</label>
                             <div class="col-sm-6 inputPass">
-                                <input [(ngModel)]="password" id="password" [className]="isValid? 'form-control': 'form-control invalidInput'" placeholder="Enter Password" type="password" name="password" required>
+                                <input [(ngModel)]="password" id="password" [className]="isValid? 'form-control': 'form-control invalidInput'" type="password" name="password" required>
                                 <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid input Id / Password !</span></div>
                             </div>
                         </div>

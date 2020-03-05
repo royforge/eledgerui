@@ -26,7 +26,6 @@ export class EledgerLoginComponent implements OnInit {
       let check = this.checkValidUser(userID,password);
 
         if(check){
-           alert("Logged In Successfully");
            window.location.href =("https://www.google.com/");
         }else{
           this.isValid = false;
