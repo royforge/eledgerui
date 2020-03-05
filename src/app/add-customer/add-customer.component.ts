@@ -9,13 +9,13 @@ import { WalletData } from '../walletdata';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-  
+
   wallet: WalletData;
   response: any;
 
   ngOnInit() {
 
-    
+
   }
 
 
@@ -32,14 +32,15 @@ export class AddCustomerComponent implements OnInit {
     console.warn(this.customerForm.value);
     this.eledgerService.addCustomer(this.wallet).subscribe(
       resp => {
-        console.log(this.response);
-resp : this.wallet =  {this.wallet.comment: "addCustomer",
-amount: 0,
-txnType: "DEBIT",
-lenderId: "m7"}
-        return this.response.push({
-          
+        this.response.push({
+          lenderId: "this.wallet.lenderId",
+          amount: 44,
+          txnType: "this.wallet.txnType",
+          comment: "this.wallet.comment"
         })
+        console.log(this.response);
+
+
       }
     );
   }
