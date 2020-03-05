@@ -1,6 +1,8 @@
-import { Observable } from 'rxjs';
+import { WALLET } from './../static/properties';
+import { EledgerApiService } from './../services/eledgerapi.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { WalletData } from '../model/walletdata';
 
 declare var require: any;
 @Component({
@@ -13,18 +15,23 @@ export class HomeComponent implements OnInit {
   public LOGO2 = require("./assets/logo2.png");
   public LOGO3 = require("./assets/logo3.png");
   public LOGO4 = require("./assets/logo4.png");
-  merchantList: WalletData[];
+  walletData: WalletData[];
   newBalance: number;
-  customerCount=0;
-  constructor(private _merchantlistservice: MerchantListService, private route: ActivatedRoute) { 
-  }
+  customerCount = 0;
+  lenderId: string;
+  url: string;
+
+  constructor(private _eledgerApiService: EledgerApiService, private route: ActivatedRoute) { }
+  
   ngOnInit(): void {
-    let lenderId = parseInt(this.route.snapshot.paramMap.get('lenderId'));
-    this._merchantlistservice.getWalletByParameter().subscribe(
+    this.lenderId = this.route.snapshot.paramMap.get("lenderId")
+    this.url = WALLET + "/lenderId/" + this.lenderId;
+
+    this._eledgerApiService.get(this.url).subscribe(
       data => {
-        this.merchantList = data;
-        this.newBalance = this.merchantList.reduce((sum, item) => sum + item.balance, 0);
-        this.customerCount = this.merchantList.reduce((sum, item) => sum+1, 0);
+        this.walletData = data["data"];
+        this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
+        this.customerCount = this.walletData.reduce((sum, item) => sum + 1, 0);
       })
   }
 }
