@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mock:api": "json-server --watch ./api/lender.js --routes ./api/routes.json"
+    "lender:api": "json-server --watch ./api/lender.js --routes ./api/routes.json",
+    "borrower:api": "json-server --watch ./api/borrower.js --routes ./api/routes.json",
+    "relation:api": "json-server --watch ./api/relations.js --routes ./api/routes.json"
   },
   "private": true,
   "dependencies": {
