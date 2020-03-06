@@ -23,27 +23,9 @@ export class AppComponent {
     lenderId: undefined
   };
   response: any;
-  constructor(private _eledgerapi: EledgerApi, private _eledgeruser: EledgerUser) { }
+  constructor() {}
 
   ngOnInit() {
-    this.url = WALLET+'/lenderId/m2'
-    this._eledgerapi.getEledgerApi(this.url).subscribe(
-      data => {
-        this.walletData = data['data'];
-      })
-    this._eledgeruser.getLenders().subscribe(
-      data => {
-        this.userData = data;
-      })
-      this.addUser.lenderId='m1';
-      this.addUser.name='Sahil';
-      this.addUser.phone=79796567;
-      this.addUser.shopName='Sahil enterprises'
-    this._eledgeruser.postLenders(this.addUser).subscribe(
-      resp => {
-        this.response.push(resp);
-      }
-    )
   }
 
 }
