@@ -1,0 +1,18 @@
+{
+  "lender": [
+    {
+      "name": "Arpit",
+      "phone": "9461422569",
+      "lenderId": "m2",
+      "shopName": "Arpit Selection",
+      "id": 1
+    },
+    {
+      "name": "Sahil",
+      "shopName": "Sahil enterprises",
+      "phone": 79796567,
+      "lenderId": "m1",
+      "id": 2
+    }
+  ]
+}

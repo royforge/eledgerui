@@ -1,3 +1,5 @@
+import { EledgerUser } from './classes/EledgerUser';
+import { EledgerApi } from './classes/EledgerApi';
 import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,7 +21,7 @@ import { LoaderInterceptorService } from './services/loaderinterceptor.service';
     HttpClientModule
   ],
   providers: [
-    EledgerApiService,
+    EledgerApiService, EledgerApi, EledgerUser,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
