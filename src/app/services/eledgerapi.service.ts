@@ -20,6 +20,18 @@ export class EledgerApiService {
   
     /** GET txns from the server */
     getTxn() {
-      return this.httpclient.get('http://localhost:8080/transaction/transactions')
+      return this.httpclient.get(URL+'/transaction/transactions')
+    }
+    /** POST: add a new hero to the database */
+    addCustomer(walletData: WalletData): Observable<any> {
+        let httpHeaders = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Cache-Control': 'no-cache'
+             });    
+             let options = {
+            headers: httpHeaders
+             };  
+      return this.httpclient.post('http://localhost:8080/wallet', walletData,
+      options);
     }
 }    

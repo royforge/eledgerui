@@ -30,15 +30,15 @@ export class AddCustomerComponent implements OnInit {
   customerForm = this.fb.group({
     name: ['', Validators.required],
     mobile: ['', Validators.required],
-    amount: ['', Validators.required],
-    type: ['', Validators.required]
+    amount: [NaN, Validators.required],
+    txnType: ['', Validators.required]
   });
 
+txn:string;
+balance: number;
   ngOnInit() {
-    this.wallet.lenderId = "m6",
-    this.wallet.amount = this.customerForm.value.amount,
-    this.wallet.txnType = this.customerForm.value.txnType,
-    this.wallet.comment = "Add New Customer"
+
+
   }
 
 
@@ -46,7 +46,12 @@ export class AddCustomerComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.log(this.customerForm.value);
-
+    this.txn = this.customerForm.value.txnType;
+    this.balance = this.customerForm.value.amount;
+    this.wallet.lenderId = "m8",
+    this.wallet.amount = this.balance,
+    this.wallet.txnType = this.txn,
+    this.wallet.comment = "Add New Customer"
     this.eledgerService
       .post(this.wallet)
       .subscribe(resp => {
