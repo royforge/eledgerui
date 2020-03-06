@@ -1,0 +1,9 @@
+{
+    "relation": [
+      {
+        "id": 1,
+        "lenderId": "m1",
+        "borrowerId": ""
+      }
+    ]
+  }
