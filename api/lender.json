@@ -1,36 +1,18 @@
 {
   "lender": [
     {
-      "id": 1,
-      "lenderId": "m1",
-      "name": "Krish",
-      "shopName": "Lee",
-      "phone": "8319831249",
-      "emailAddress": "krish.lee@learningcontainer.com"
-    },
-    {
-      "id": 2,
+      "name": "Arpit",
+      "phone": "9461422569",
       "lenderId": "m2",
-      "name": "racks",
-      "shopName": "jacson",
-      "phone": "12344156",
-      "emailAddress": "racks.jacson@learningcontainer.com"
+      "shopName": "Arpit Selection",
+      "id": 1
     },
     {
-      "id": 3,
-      "lenderId": "m3",
-      "name": "denial",
-      "shopName": "roast",
-      "phone": "33333333",
-      "emailAddress": "denial.roast@learningcontainer.com"
-    },
-    {
-      "id": 4,
-      "lenderId": "m4",
-      "name": "devid",
-      "shopName": "neo",
-      "phone": "222222222",
-      "emailAddress": "devid.neo@learningcontainer.com"
+      "name": "Sahil",
+      "shopName": "Sahil enterprises",
+      "phone": 79796567,
+      "lenderId": "m1",
+      "id": 2
     }
   ]
 }

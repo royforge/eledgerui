@@ -1,4 +1,3 @@
-import { getTestBed } from '@angular/core/testing';
 export class WalletData{
     walletId: number;
     lenderId:string;
