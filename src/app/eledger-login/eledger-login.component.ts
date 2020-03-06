@@ -1,3 +1,5 @@
+import { UserData } from './../model/UserData';
+import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
 import { USERDATA } from './userDataList';
 
@@ -8,42 +10,43 @@ import { USERDATA } from './userDataList';
 })
 export class EledgerLoginComponent implements OnInit {
 
-  constructor() { }
+  userData: UserData[];
+  user: UserData;
+  constructor(private _eledgerUser: EledgerUser) { }
 
   ngOnInit(): void {
     this.isValid = true;
+    this._eledgerUser.getLenders().subscribe(
+      data => {
+        this.userData = data;
+      })
   }
-    userID : string;
-    password : string;
-    userList = USERDATA;
-    isValid: boolean;
+  userID: string;
+  password: string;
+  userList = USERDATA;
+  isValid: boolean;
 
-    
-  login()
-    {
-      const userID= this.userID;
-      const password= this.password;
-      let check = this.checkValidUser(userID,password);
+  login() {
+    const userID = this.userID;
+    const password = this.password;
+    let check = this.checkValidUser(userID, password);
 
-        if(check){
-           window.location.href =("https://www.google.com/");
-        }else{
-          this.isValid = false;
-        }
-   
+    if (check) {
+      window.location.href = ("http://localhost:4200/home");
+    } else {
+      this.isValid = false;
     }
+  }
+  checkValidUser(userID, password): boolean {
 
-    checkValidUser(userID,password):boolean {
-
-      for(let user of this.userList){
-        if (user.userId == userID&& user.password == password){
-  
-          return true;
-        }
-  
-      } 
-      return false;
+    for (let user of this.userData) {
+      if (user.phone == userID && user.password == password) {
+        sessionStorage.setItem('lenderId',user.lenderId);
+        return true;
+      }
     }
+    return false;
+  }
 
 }
 

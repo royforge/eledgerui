@@ -12,20 +12,4 @@ import { UserData } from './model/UserData';
 })
 export class AppComponent {
   title = 'eledgerui';
-  url: string;
-  walletData: WalletData[];
-  userData: UserData[];
-  addUser: UserData = {
-    id: undefined,
-    name: undefined,
-    shopName: undefined,
-    phone: undefined,
-    lenderId: undefined
-  };
-  response: any;
-  constructor() {}
-
-  ngOnInit() {
-  }
-
 }

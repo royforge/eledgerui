@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 
 const routes: Routes = [
-  {path: 'login',component:EledgerLoginComponent}
+  { path: 'login',component:EledgerLoginComponent },
+  { path: '**', component:EledgerLoginComponent }
 ];
 
 @NgModule({
