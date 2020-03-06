@@ -3,6 +3,7 @@ import { EledgerApiService } from './../services/eledgerapi.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WalletData } from '../model/walletdata';
+import { EledgerApi } from '../classes/EledgerApi';
 
 declare var require: any;
 @Component({
@@ -21,13 +22,13 @@ export class HomeComponent implements OnInit {
   lenderId: string;
   url: string;
 
-  constructor(private _eledgerApiService: EledgerApiService, private route: ActivatedRoute) { }
+  constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
   
   ngOnInit(): void {
     this.lenderId = sessionStorage.getItem('lenderId');
     this.url = WALLET + "/lenderId/" + this.lenderId;
-
-    this._eledgerApiService.get(this.url).subscribe(
+    sessionStorage.setItem('lenderId',this.lenderId);
+    this._eledgerApi.getEledgerApi(this.url).subscribe(
       data => {
         this.walletData = data["data"];
         this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
