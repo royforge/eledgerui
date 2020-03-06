@@ -1,7 +1,7 @@
 import { WalletData } from './../model/walletdata';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { URL } from '../static/properties';
 
 @Injectable()
@@ -16,5 +16,10 @@ export class EledgerApiService {
 
     post(walletData: WalletData): Observable<any> {
         return this.httpclient.post(URL + '/wallet', walletData);
+    }
+  
+    /** GET txns from the server */
+    getTxn() {
+      return this.httpclient.get('http://localhost:8080/transaction/transactions')
     }
 }    

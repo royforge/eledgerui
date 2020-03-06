@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction } from '../transaction';
-import { EledgerService } from '../eledger.service';
+import { Transaction } from '../model/transaction';
+import { EledgerApiService } from '../services/eledgerapi.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { EledgerService } from '../eledger.service';
 })
 export class HomeComponent implements OnInit {
   txns: Transaction[];
-  constructor(private eledgerService: EledgerService) { }
+  constructor(private eledgerService: EledgerApiService) { }
 
   isShow = false;
 

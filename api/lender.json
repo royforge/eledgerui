@@ -1,5 +1,5 @@
 {
-  "users": [
+  "lender": [
     {
       "id": 1,
       "firstName": "Krish",
@@ -36,24 +36,10 @@
       "emailAddress": "jone.mac@learningcontainer.com"
     },
     {
-      "id": 6,
-      "firstName": "Sahil",
-      "lastName": "neo",
-      "phoneNumber": "22222252222",
-      "emailAddress": "devid.neo@learningcontainer.com"
-    },
-    {
-      "id": 7,
-      "firstName": "Sahil",
-      "lastName": "gj",
-      "phoneNumber": "22222252222",
-      "emailAddress": "devid.neo@learningcontainer.com"
-    },
-    {
-      "firstName": "Sahil",
-      "lastName": "gj",
-      "phoneNumber": "22222252222",
-      "id": 8
+      "name": "om2",
+      "shopName": "gfwej",
+      "sf": "rwe",
+      "id": 6
     }
   ]
 }

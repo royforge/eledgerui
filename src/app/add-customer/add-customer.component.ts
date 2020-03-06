@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { EledgerService } from '../eledger.service';
-import { WalletData } from '../walletdata';
+import { EledgerApiService } from '../services/eledgerapi.service';
+import { WalletData } from '../model/walletdata';
 
 @Component({
   selector: 'app-add-customer',
@@ -10,39 +10,50 @@ import { WalletData } from '../walletdata';
 })
 export class AddCustomerComponent implements OnInit {
 
-  wallet: WalletData;
+
+  wallet: WalletData = {
+    walletId: undefined,
+    lenderId: undefined,
+    borrowId: undefined,
+    amount: undefined,
+    txnType: undefined,
+    comment: undefined,
+    createdDate: undefined,
+    updatedDate: undefined
+  };
   response: any;
 
-  ngOnInit() {
 
-
-  }
-
+  constructor(private fb: FormBuilder,
+    private eledgerService: EledgerApiService) { }
 
   customerForm = this.fb.group({
     name: ['', Validators.required],
-    mobile: ['', Validators.required]
+    mobile: ['', Validators.required],
+    amount: ['', Validators.required],
+    type: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder,
-    private eledgerService: EledgerService) { }
+  ngOnInit() {
+    this.wallet.lenderId = "m6",
+    this.wallet.amount = this.customerForm.value.amount,
+    this.wallet.txnType = this.customerForm.value.txnType,
+    this.wallet.comment = "Add New Customer"
+  }
+
+
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.customerForm.value);
-    this.eledgerService.addCustomer(this.wallet).subscribe(
-      resp => {
-        this.response.push({
-          lenderId: "this.wallet.lenderId",
-          amount: 44,
-          txnType: "this.wallet.txnType",
-          comment: "this.wallet.comment"
-        })
-        console.log(this.response);
+    console.log(this.customerForm.value);
 
+    this.eledgerService
+      .post(this.wallet)
+      .subscribe(resp => {
+        console.log(resp)
+        this.response.push(resp);
+      });
 
-      }
-    );
   }
 
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EledgerService } from './eledger.service';
+import { EledgerApiService } from './eledgerapi.service';
 
 describe('EledgerService', () => {
-  let service: EledgerService;
+  let service: EledgerApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EledgerService);
+    service = TestBed.inject(EledgerApiService);
   });
 
   it('should be created', () => {
