@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private _eledgerApiService: EledgerApiService, private route: ActivatedRoute) { }
   
   ngOnInit(): void {
-    this.lenderId = this.route.snapshot.paramMap.get("lenderId")
+    this.lenderId = sessionStorage.getItem('lenderId');
     this.url = WALLET + "/lenderId/" + this.lenderId;
 
     this._eledgerApiService.get(this.url).subscribe(
@@ -33,5 +33,6 @@ export class HomeComponent implements OnInit {
         this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
         this.customerCount = this.walletData.reduce((sum, item) => sum + 1, 0);
       })
+      
   }
 }

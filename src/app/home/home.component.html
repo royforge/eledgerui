@@ -39,8 +39,8 @@
     <p class="id1" *ngIf="customerCount!=0">You have {{customerCount}} Customers</p>
     <p class="id1" *ngIf="customerCount==0">You have 0 Customers</p>
     <p class="id1" *ngIf="customerCount==0">Start adding new Customers</p>
-    <div class="col-sm" class="text-center"><button type="button"
-            class="btn confirmBtn border-dark rounded p-2"><i class='fa fa-plus'></i>
+    <div class="col-sm" class="text-center"><button type="button" class="btn confirmBtn border-dark rounded p-2"><i
+                class='fa fa-plus'></i>
             <strong> Add New Customer </strong></button>
     </div>
 
@@ -50,11 +50,18 @@
                 <div class="modal-body">
                     <p class="text-center">Do you want to Log Out ? <br /></p>
                     <div class="actionsBtns">
-                        <form action="#" method="post" class="col-sm">
-                            <input type="submit" class="btn btn-square confirmBtn border border-dark rounded p-2"
-                                data-dismiss="modal" value="Yes" />
-                            <button style="margin-left:130px;" class="btn btn-square confirmBtn border border-dark rounded p-2    "
-                                data-dismiss="modal"> No </button>
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="submit"
+                                        class="btn btn-square confirmBtn border border-dark rounded p-2"
+                                        data-dismiss="modal" value="Yes" />
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button class="btn btn-square confirmBtn border border-dark rounded p-2    "
+                                        data-dismiss="modal"> No </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
