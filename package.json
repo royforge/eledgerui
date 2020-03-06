@@ -8,9 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "lender:api": "json-server --watch ./api/lender.js --routes ./api/routes.json --port=3001",
-    "borrower:api": "json-server --watch ./api/borrower.js --routes ./api/routes.json --port=3002",
-    "relation:api": "json-server --watch ./api/relations.js --routes ./api/routes.json",
+    "lender:api": "json-server --watch ./api/lender.json --routes ./api/routes.json --port=3001",
+    "borrower:api": "json-server --watch ./api/borrower.json --routes ./api/routes.json --port=3002",
+    "relation:api": "json-server --watch ./api/relation.json --routes ./api/routes.json",
     "dev": "concurrently \"npm run start\" \"npm run lender:api\" \"npm run borrower:api\" \"npm run relation:api\""
   },
   "private": true,

@@ -63,7 +63,6 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "eledgerui:build",
-            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
