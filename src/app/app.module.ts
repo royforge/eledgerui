@@ -1,3 +1,5 @@
+import { EledgerUser } from './classes/EledgerUser';
+import { EledgerApi } from './classes/EledgerApi';
 import { HttpClientModule } from '@angular/common/http';
 import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +23,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule
 
   ],
-  providers: [EledgerApiService],
+  providers: [EledgerApiService,EledgerApi, EledgerUser],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
