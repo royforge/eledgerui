@@ -64,7 +64,7 @@ export class AddCustomerComponent implements OnInit {
     this.balance = this.customerForm.value.amount;
 
     //updating values for the Wallet data
-    this.wallet.lenderId = "m1"
+    this.wallet.lenderId = "m2"
     this.wallet.amount = this.balance
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"

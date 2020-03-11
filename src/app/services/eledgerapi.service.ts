@@ -2,7 +2,6 @@ import { UserData } from './../model/UserData';
 import { WalletData } from './../model/walletdata';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -20,6 +19,7 @@ export class EledgerApiService {
 
     postUser(url: string, any): Observable<any> {
         return this.httpclient.post(url, any);
+
     }
 
 
