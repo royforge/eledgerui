@@ -1,5 +1,3 @@
-import { AppComponent } from './../app.component';
-import { MerchantListService } from './service/merchantlist.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,6 +13,6 @@ import { HomeComponent } from './home.component';
     HomeRoutingModule,
     HttpClientModule
   ],
-  providers: [MerchantListService]
+  providers: []
 })
 export class HomeModule { }

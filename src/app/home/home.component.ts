@@ -1,9 +1,8 @@
-
 import { WALLET } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WalletData } from './classes/walletdata';
+import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 
 declare var require: any;
@@ -13,7 +12,6 @@ declare var require: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   public LOGO1 = require("./assets/logo1.png");
   public LOGO2 = require("./assets/logo2.png");
   public LOGO3 = require("./assets/logo3.png");
@@ -33,7 +31,7 @@ export class HomeComponent implements OnInit {
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       data => {
         this.walletData = data["data"];
-        this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
+        this.newBalance = this.walletData.reduce((sum, item) => sum + item.amount, 0);
         this.customerCount = this.walletData.reduce((sum, item) => sum + 1, 0);
       })
       
