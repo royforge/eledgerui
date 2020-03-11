@@ -17,7 +17,10 @@ export class EledgerApiService {
         return this.httpclient.post(url + '/wallet', walletData);
     }
 
-    postUser(url: string, userData: UserData): Observable<any> {
-        return this.httpclient.post(url, userData);
+    postUser(url: string, any): Observable<any> {
+        return this.httpclient.post(url, any);
+
     }
+
+
 }    
