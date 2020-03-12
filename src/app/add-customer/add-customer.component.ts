@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
@@ -21,7 +21,8 @@ export class AddCustomerComponent implements OnInit {
     txnType: undefined,
     comment: undefined,
     createdDate: undefined,
-    updatedDate: undefined
+    updatedDate: undefined,
+    balance: undefined
   };
   borrower: BorrowerData = {
     name: undefined,
@@ -64,7 +65,7 @@ export class AddCustomerComponent implements OnInit {
     this.balance = this.customerForm.value.amount;
 
     //updating values for the Wallet data
-    this.wallet.lenderId = "m2"
+    this.wallet.lenderId = sessionStorage.getItem('lenderId');
     this.wallet.amount = this.balance
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"
@@ -95,6 +96,6 @@ export class AddCustomerComponent implements OnInit {
           this.response = resp;
         });
     });
-
+    window.location.href = ("http://localhost:4200/home");
   }
 }
