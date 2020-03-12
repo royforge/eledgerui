@@ -15,7 +15,6 @@ import { CustomersComponent } from './customers/customers.component';
     HomeRoutingModule,
     HttpClientModule
   ],
-  exports: [],
   providers: []
 })
 export class HomeModule { }

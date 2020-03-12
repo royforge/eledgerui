@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
@@ -15,14 +17,18 @@ import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 
 @NgModule({
   declarations: [
-    AppComponent, EledgerLoginComponent, LoaderComponent
+    AppComponent,
+    EledgerLoginComponent,
+    LoaderComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     FormsModule,
-    HomeModule
+    HomeModule,
+    ReactiveFormsModule
   ],
   providers: [
     EledgerApiService, EledgerApi, EledgerUser,
