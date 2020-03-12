@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
@@ -69,6 +69,20 @@ export class AddCustomerComponent implements OnInit {
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"
 
+    //checking if mobile number is already present
+    this.eledgerUser.getBorrowers().subscribe(response => {
+      this.response = response
+      for (let customer of response) {
+        console.log(customer);
+        if (customer.phone == this.mobile) {
+
+        } else {
+
+        }
+      }
+    });
+
+
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
       console.log(resp.data);
@@ -95,6 +109,7 @@ export class AddCustomerComponent implements OnInit {
           this.response = resp;
         });
     });
+
 
   }
 }

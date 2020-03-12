@@ -11,6 +11,10 @@ export class EledgerUser extends EledgerApiService {
         return this.get(LENDERURL);
     }
 
+    getBorrowers(): Observable<any>  {
+        return this.get(CUSTOMERURL);
+    }
+
     postLenders(userData: UserData): Observable<any>  {
         return this.postUser(LENDERURL, userData);
     }

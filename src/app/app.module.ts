@@ -11,13 +11,15 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
+import { AddCreditComponent } from './add-credit/add-credit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddCustomerComponent,
     HomeComponent,
-    LoaderComponent
+    LoaderComponent,
+    AddCreditComponent
 
   ],
   imports: [
