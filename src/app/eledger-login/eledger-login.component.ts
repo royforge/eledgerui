@@ -42,6 +42,7 @@ export class EledgerLoginComponent implements OnInit {
     for (let user of this.userData) {
       if (user.phone == userID && user.password == password) {
         sessionStorage.setItem('lenderId',user.lenderId);
+        sessionStorage.setItem('shopName',user.shopName); 
         return true;
       }
     }

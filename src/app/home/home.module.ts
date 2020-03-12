@@ -1,20 +1,21 @@
-import { AppComponent } from './../app.component';
-import { MerchantListService } from './service/merchantlist.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { CustomersComponent } from './customers/customers.component';
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, HomepageComponent, CustomersComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
     HttpClientModule
   ],
-  providers: [MerchantListService]
+  exports: [],
+  providers: []
 })
 export class HomeModule { }

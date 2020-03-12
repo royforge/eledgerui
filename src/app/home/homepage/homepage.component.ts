@@ -1,28 +1,22 @@
-import { WALLET } from './../static/properties';
 import { Component, OnInit } from '@angular/core';
+import { EledgerApi } from 'src/app/classes/EledgerApi';
 import { ActivatedRoute } from '@angular/router';
-import { WalletData } from '../model/walletdata';
-import { EledgerApi } from '../classes/EledgerApi';
+import { WalletData } from 'src/app/model/walletdata';
+import { WALLET } from 'src/app/static/properties';
 
-declare var require: any;
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-homepage',
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.css']
 })
-export class HomeComponent implements OnInit {
-  public LOGO1 = require("./assets/logo1.png");
-  public LOGO2 = require("./assets/logo2.png");
-  public LOGO3 = require("./assets/logo3.png");
-  public LOGO4 = require("./assets/logo4.png");
+export class HomepageComponent implements OnInit {
+
   walletData: WalletData[];
   newBalance: number;
   customerCount = 0;
   lenderId: string;
   url: string;
   shopName: string;
-  isOn = true;
-
   constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

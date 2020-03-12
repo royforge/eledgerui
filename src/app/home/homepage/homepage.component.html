@@ -1,0 +1,15 @@
+<div class="container">
+    <br>
+    <div *ngIf="newBalance>=0" class="id1">
+        <p class="green">Balance: {{newBalance}}</p>
+    </div>
+    <div *ngIf="newBalance<=0" class="id1">
+        <p class='red'>Balance: {{newBalance}}</p>
+    </div>
+    <div *ngIf="newBalance==null" class="id1">
+        <p>Balance: 0</p>
+    </div>
+    <p class="id1" *ngIf="customerCount!=0">You have {{customerCount}} Customers</p>
+    <p class="id1" *ngIf="customerCount==0">You have 0 Customers</p>
+    <p class="id1" *ngIf="customerCount==0">Start adding new Customers</p>
+</div>

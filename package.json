@@ -8,7 +8,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-
     "lender:api": "json-server --watch ./api/lender.json --routes ./api/routes.json --port=3001",
     "borrower:api": "json-server --watch ./api/borrower.json --routes ./api/routes.json --port=3002",
     "relation:api": "json-server --watch ./api/relation.json --routes ./api/routes.json",
