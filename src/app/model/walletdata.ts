@@ -7,4 +7,5 @@ export class WalletData{
     txnType: string;
     comment: string;
     amount: number;
+    balance: number;
 }
