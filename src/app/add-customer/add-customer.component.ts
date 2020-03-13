@@ -70,9 +70,23 @@ export class AddCustomerComponent implements OnInit {
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"
 
+    //checking if mobile number is already present
+    this.eledgerUser.getBorrowers().subscribe(response => {
+      this.response = response
+      for (let customer of response) {
+        console.log(customer);
+        if (customer.phone == this.mobile) {
+
+        } else {
+
+        }
+      }
+    });
+
+
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
-      console.log(resp.data);
+      //console.log(resp.data);
       this.response = resp;
 
       //updating values for the borrower data
@@ -83,7 +97,7 @@ export class AddCustomerComponent implements OnInit {
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          console.log(resp)
+         // console.log(resp)
           this.response = resp;
         });
 
@@ -94,8 +108,10 @@ export class AddCustomerComponent implements OnInit {
       this.eledgerUser.postRelation(this.relation)
         .subscribe(resp => {
           this.response = resp;
+          window.location.href = ("http://localhost:4200/home");
         });
     });
-    window.location.href = ("http://localhost:4200/home");
+
   }
+  
 }

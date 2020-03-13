@@ -34,41 +34,6 @@
       "lenderId": "m2",
       "phone": 9999190000,
       "id": 5
-    },
-    {
-      "name": "Arpit Goyal",
-      "borrowId": "ed7ec1bb-f8b7-41ba-aa48-e3b3a5a4ebe1",
-      "lenderId": "m2",
-      "phone": 3434343434,
-      "id": 6
-    },
-    {
-      "name": "girish",
-      "borrowId": "9fcbeb8e-ab7b-4fea-9cdf-32829db1ebf8",
-      "lenderId": "m1",
-      "phone": 7364638659,
-      "id": 7
-    },
-    {
-      "name": "ratan",
-      "borrowId": "ac229b83-2b8e-48d1-ac39-43c4daf4e128",
-      "lenderId": "m1",
-      "phone": 34343242343,
-      "id": 8
-    },
-    {
-      "name": "prabha",
-      "borrowId": "bcb0e7b1-7c3a-4c4c-8504-f516f532d11c",
-      "lenderId": "m1",
-      "phone": 9765767667,
-      "id": 9
-    },
-    {
-      "name": "gim",
-      "borrowId": "ae43961d-4774-438d-9703-60e7e43ba87c",
-      "lenderId": "m1",
-      "phone": 9414315028,
-      "id": 10
     }
   ]
 }
