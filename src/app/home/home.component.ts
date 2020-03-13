@@ -1,8 +1,9 @@
-import { WALLET } from './../static/properties';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
+import { SessionModel } from '../model/sessionmodel';
+import { Keys } from '../model/key';
 
 declare var require: any;
 @Component({
@@ -19,12 +20,13 @@ export class HomeComponent implements OnInit {
   lenderId: string;
   shopName: string;
   isOn = true;
+  sessionModel = new SessionModel();
 
   constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.lenderId = sessionStorage.getItem('lenderId');
-    this.shopName = sessionStorage.getItem('shopName');
+    this.lenderId = this.sessionModel.getSession(Keys.lenderId);
+    this.shopName = this.sessionModel.getSession(Keys.shopName);
     sessionStorage.setItem('lenderId', this.lenderId);
   }
   clearData() {

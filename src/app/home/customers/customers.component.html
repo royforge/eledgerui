@@ -1,36 +1,22 @@
 <div class="container">
-    <div class="floatLeft">
-        <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr id="somerow" *ngFor='let borrower of borrowerData' >
-                    <td *ngIf='borrower.lenderId == lenderId'><a (click)="sendData(borrower)"  [routerLink]="['/credits']">{{borrower.name}}</a></td>
-                    <td *ngIf='borrower.lenderId == lenderId'>{{borrower.phone}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="floatRight">
-        <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Amount Pending</th>
-                    <th>Transaction Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor='let walletData of walletData'>
-                    <td>{{walletData.balance}}</td>
-                    <td>{{walletData.updatedDate | date:'medium' }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <th>Amount Pending</th>
+                <th>Transaction Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let customer of customers'>
+                <td><a (click)="sendData(customer)" [routerLink]="['/credits']">{{customer.name}}</a></td>
+                <td>{{customer.phone}}</td>
+                <td *ngIf='customer.amount<0'><p class="red">{{customer.amount}}</p></td>
+                <td *ngIf='customer.amount>0'><p class="green">{{customer.amount}}</p></td>
+                <td>{{customer.date | date:'medium' }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

@@ -1,74 +1,60 @@
 {
   "borrower": [
     {
-      "name": "gsa",
-      "borrowId": "576786bb-96ef-43e4-94fd-5f814d313a58",
-      "lenderId": "m4",
-      "phone": 9328569823569,
+      "name": "Rio Naidu",
+      "borrowId": "ef91fcf1-7641-4d22-9edd-8fbfb4ee7639",
+      "lenderId": "m1",
+      "phone": 8977673423,
       "id": 1
     },
     {
-      "name": "Sam",
-      "borrowId": "32da5275-92c4-442b-81ce-5931421f19cd",
+      "name": "Arpit Goyal",
+      "borrowId": "21023b67-dc64-446c-bbde-7bcfe22bed11",
       "lenderId": "m1",
-      "phone": 85868989868,
+      "phone": 9461422569,
       "id": 2
     },
     {
-      "name": "Nim",
-      "borrowId": "48239fa1-63ba-4977-a097-bdd1691c2a8b",
+      "name": "Girish",
+      "borrowId": "32d2b6e0-5e8e-4769-b036-bd0b49f4e075",
       "lenderId": "m1",
-      "phone": 8989898989,
+      "phone": 7873972323,
       "id": 3
     },
     {
-      "name": "Shree",
-      "borrowId": "586efede-fe1d-4cd4-af0c-7403fa574618",
+      "name": "prabha",
+      "borrowId": "db3c2a50-f4c7-4388-8b65-86ffa7985de0",
       "lenderId": "m2",
-      "phone": 9999190000,
+      "phone": 5675976384,
       "id": 4
     },
     {
-      "name": "Nath",
-      "borrowId": "fb80fdf8-2499-4d69-992a-5e91a7903125",
-      "lenderId": "m2",
-      "phone": 9999190000,
+      "name": "akon",
+      "borrowId": "70fbf48e-0427-4e83-8342-40edb0fecc47",
+      "lenderId": "m3",
+      "phone": 78967546324,
       "id": 5
     },
     {
-      "name": "Arpit Goyal",
-      "borrowId": "ed7ec1bb-f8b7-41ba-aa48-e3b3a5a4ebe1",
-      "lenderId": "m2",
-      "phone": 3434343434,
+      "name": "hero",
+      "borrowId": "d85759d7-7d62-4018-ab5e-752030e347c0",
+      "lenderId": "m3",
+      "phone": 8908624642,
       "id": 6
     },
     {
-      "name": "girish",
-      "borrowId": "9fcbeb8e-ab7b-4fea-9cdf-32829db1ebf8",
+      "name": "Ratan Upadhaya",
+      "borrowId": "6c086046-5386-4852-be66-dd7c3090996c",
       "lenderId": "m1",
-      "phone": 7364638659,
+      "phone": 9786563554,
       "id": 7
     },
     {
-      "name": "ratan",
-      "borrowId": "ac229b83-2b8e-48d1-ac39-43c4daf4e128",
-      "lenderId": "m1",
-      "phone": 34343242343,
+      "name": "biba",
+      "borrowId": "78966052-614e-4403-88cd-c3665a794982",
+      "lenderId": "m3",
+      "phone": 9675463434,
       "id": 8
-    },
-    {
-      "name": "prabha",
-      "borrowId": "bcb0e7b1-7c3a-4c4c-8504-f516f532d11c",
-      "lenderId": "m1",
-      "phone": 9765767667,
-      "id": 9
-    },
-    {
-      "name": "gim",
-      "borrowId": "ae43961d-4774-438d-9703-60e7e43ba87c",
-      "lenderId": "m1",
-      "phone": 9414315028,
-      "id": 10
     }
   ]
 }
