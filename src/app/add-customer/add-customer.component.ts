@@ -1,3 +1,4 @@
+import { Keys } from './../model/key';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
@@ -5,6 +6,7 @@ import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
 import { BorrowerData } from '../model/borrowerData';
 import { RelationData } from '../model/relationData';
+import { SessionModel } from '../model/sessionmodel';
 
 @Component({
   selector: 'app-add-customer',
@@ -56,6 +58,7 @@ export class AddCustomerComponent implements OnInit {
   txn: string;
   balance: number;
   walletData = [];
+  sessionModel = new SessionModel();
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
@@ -65,7 +68,7 @@ export class AddCustomerComponent implements OnInit {
     this.balance = this.customerForm.value.amount;
 
     //updating values for the Wallet data
-    this.wallet.lenderId = sessionStorage.getItem('lenderId');
+    this.wallet.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.wallet.amount = this.balance
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"

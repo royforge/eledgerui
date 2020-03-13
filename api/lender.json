@@ -13,6 +13,14 @@
       "phone": 79796567,
       "lenderId": "m1",
       "id": 2
+    },
+    {
+      "name": "Shashank",
+      "shopName": "Shashank Stores",
+      "phone": "9414315028",
+      "lenderId": "m3",
+      "password": "@Shashank123",
+      "id": 3
     }
   ]
 }
