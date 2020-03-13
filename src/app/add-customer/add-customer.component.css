@@ -17,6 +17,10 @@
     color: white;
     font-size: 24px;
 }
+.icon2 {
+    color: #46afec;
+    font-size: 24px;
+}
 
 .label {
     font-size: 20px;
@@ -36,11 +40,4 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     .label {
         font-size: 17px;
     }
-    .newCustomer {
-        font-size: 97%;
-    }
-}
-
-.hand {
-    cursor: pointer;
 }

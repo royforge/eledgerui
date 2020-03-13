@@ -11,7 +11,7 @@
                     <div class="col-1"></div>
 
                     <div class="col-2">
-                        <img class="logo hand"  [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
+                        <img class="logo hand" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                     </div>
 
                     <div class="col-8 text-center mt-2 rounded-circle">
@@ -20,7 +20,6 @@
                     </div>
                 </div>
                 <br><br><br>
-
 
                 <div class="row">
                     <div class="col-1 text-right">
@@ -51,7 +50,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right"></div>
+                    <div class="col-1 text-right"><i class='fas fa-rupee-sign icon2 rounded-circle'></i></div>
                     <div class="col-4">
                         <label for="amount" class="d-inline label"> Amount</label>
                         <p class="required d-inline"> *</p>
@@ -63,9 +62,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right">
-
-                    </div>
+                    <div class="col-1 text-right"><i class='fas fa-hand-holding-usd icon2 rounded-circle'></i></div>
                     <div class="col-4">
                         <label for="txnType" class="d-inline label"> Transaction Type</label>
                         <p class="required d-inline"> *</p>
@@ -77,12 +74,9 @@
                             <option value="DEBIT">Debit</option>
                             <option value="CREDIT">Credit</option>
                         </select>
-
-
                     </div>
                 </div>
                 <br><br><br>
-
                 <div class="row">
                     <div class="col-11 text-right">
                         <button type="submit" [disabled]="!customerForm.valid"
@@ -90,7 +84,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
         <div class="col-sm-2"></div>
     </div>
