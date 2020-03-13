@@ -13,14 +13,16 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
+import { AddCreditComponent } from './add-credit/add-credit.component';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AddCustomerComponent,
     EledgerLoginComponent,
     LoaderComponent,
-    AddCustomerComponent
+    AddCreditComponent
   ],
   imports: [
     BrowserModule,
