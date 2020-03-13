@@ -10,7 +10,7 @@
             </thead>
             <tbody>
                 <tr id="somerow" *ngFor='let borrower of borrowerData' >
-                    <td *ngIf='borrower.lenderId == lenderId'><a (click)="sendData(borrower)"  [routerLink]="['/credits']">{{borrower.name}}</a></td>
+                    <td *ngIf='borrower.lenderId == lenderId'><a (click)="sendData(borrower)"  [routerLink]="['/credit']">{{borrower.name}}</a></td>
                     <td *ngIf='borrower.lenderId == lenderId'>{{borrower.phone}}</td>
                 </tr>
             </tbody>

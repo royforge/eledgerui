@@ -3,7 +3,7 @@ import { EledgerUser } from './classes/EledgerUser';
 import { EledgerApi } from './classes/EledgerApi';
 import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
+
+export class MyErrorHandler implements ErrorHandler {
+  constructor() { }
+  handleError(error: Error) {
+    if (Error) {
+      console.log();
+    }
+    else console.log("hello");
+  }
+}
 
 @NgModule({
   declarations: [
@@ -36,7 +46,11 @@ import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
       multi: true
-    }
+    },
+    {
+      provide: ErrorHandler,
+      useClass: MyErrorHandler,
+    },
   ],
   bootstrap: [AppComponent]
 })
