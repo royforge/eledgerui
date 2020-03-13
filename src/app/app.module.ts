@@ -19,7 +19,7 @@ export class MyErrorHandler implements ErrorHandler {
   constructor() { }
   handleError(error: Error) {
     if (Error) {
-      console.log();
+      console.log("error caught");
     }
     else console.log("hello");
   }
