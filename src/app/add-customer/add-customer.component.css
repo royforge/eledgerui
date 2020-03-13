@@ -1,18 +1,17 @@
-
-
-.logoColor{
+.logoColor {
     height: 50px;
-    height: auto;    
+    height: auto;
 }
 
 .required {
-    color: red;   
+    color: red;
 }
 
 .logo {
     height: 95%;
     width: 65px;
 }
+
 .icon {
     background-color: #46afec;
     color: white;
@@ -21,26 +20,27 @@
 
 .label {
     font-size: 20px;
-    
 }
-
 
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
+/* If the screen size is 840px wide or less, set the font-size of <div> to 30px */
 
-  
-  /* If the screen size is 840px wide or less, set the font-size of <div> to 30px */
-  @media screen and (max-width: 840px) {
+@media screen and (max-width: 840px) {
     .label {
-        font-size: 17px;   
+        font-size: 17px;
     }
-    .newCustomer{
+    .newCustomer {
         font-size: 97%;
     }
-  }
+}
+
+.hand {
+    cursor: pointer;
+}

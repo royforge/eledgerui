@@ -7,23 +7,23 @@ import { BorrowerData } from '../model/borrowerData';
 
 @Injectable()
 export class EledgerUser extends EledgerApiService {
-    getLenders(): Observable<any>  {
+
+    getLenders(): Observable<any> {
         return this.get(LENDERURL);
     }
 
-    getBorrowers(): Observable<any>  {
-        return this.get(CUSTOMERURL);
-    }
-
-    postLenders(userData: UserData): Observable<any>  {
+    postLenders(userData: UserData): Observable<any> {
         return this.postUser(LENDERURL, userData);
     }
-    postBorrower(borrowerData: BorrowerData): Observable<any>  {
+    postBorrower(borrowerData: BorrowerData): Observable<any> {
         return this.postUser(CUSTOMERURL, borrowerData);
     }
 
-    postRelation(any): Observable<any>  {
+    postRelation(any): Observable<any> {
         return this.postUser(RELATIONSURL, any);
     }
 
+    getBorrowers(): Observable<any> {
+        return this.get(CUSTOMERURL);
+    }
 }

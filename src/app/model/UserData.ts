@@ -3,5 +3,6 @@ export class UserData{
     name: string;
     shopName: string;
     lenderId: string;
-    phone: number;
+    phone: string;
+    password: string;
 }

@@ -1,0 +1,16 @@
+.id1 {
+    text-align: center;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    font-weight: bold;
+}
+
+.red {
+    color: rgb(243, 71, 71);
+}
+
+.green {
+    color: green;
+}

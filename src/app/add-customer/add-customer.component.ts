@@ -21,7 +21,8 @@ export class AddCustomerComponent implements OnInit {
     txnType: undefined,
     comment: undefined,
     createdDate: undefined,
-    updatedDate: undefined
+    updatedDate: undefined,
+    balance: undefined
   };
   borrower: BorrowerData = {
     name: undefined,
@@ -64,7 +65,7 @@ export class AddCustomerComponent implements OnInit {
     this.balance = this.customerForm.value.amount;
 
     //updating values for the Wallet data
-    this.wallet.lenderId = "m2"
+    this.wallet.lenderId = sessionStorage.getItem('lenderId');
     this.wallet.amount = this.balance
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"
@@ -85,7 +86,7 @@ export class AddCustomerComponent implements OnInit {
 
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
-      console.log(resp.data);
+      //console.log(resp.data);
       this.response = resp;
 
       //updating values for the borrower data
@@ -96,7 +97,7 @@ export class AddCustomerComponent implements OnInit {
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          console.log(resp)
+         // console.log(resp)
           this.response = resp;
         });
 
@@ -107,9 +108,10 @@ export class AddCustomerComponent implements OnInit {
       this.eledgerUser.postRelation(this.relation)
         .subscribe(resp => {
           this.response = resp;
+          window.location.href = ("http://localhost:4200/home");
         });
     });
 
-
   }
+  
 }

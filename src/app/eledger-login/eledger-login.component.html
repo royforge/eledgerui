@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div style="height: 150px;"></div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-5 text-right">
+                    <h2 class="logo">
+                        <img src="../../assets/image1.png"> Login
+                    </h2>
+                </div>
+                <div class="col-7 text-right">
+                    <button class="btn confirmBtn border border-dark signUpButton"><a
+                            style="text-decoration: none; color: white;" href="https://www.google.com/">SignUp</a>
+                    </button>
+                </div>
+            </div>
+            <br>
+            <form ng-submit="login()">
+                <div class="row">
+                    <div class="col-sm-5">
+
+                        <label class="logo" for="UserId">Mobile Number/Email:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input class=" w-100" [(ngModel)]="userID" [className]="isValid? 'form-control': 'form-control invalidInput'"
+                            type="text" name="uname" required>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-sm-5 form-group">
+                        <label class="logo" for="password">Password:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input class=" w-100" [(ngModel)]="password" id="password"
+                            [className]="isValid? 'form-control': 'form-control invalidInput'" type="password"
+                            name="password" required>
+                        <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid
+                                input Id / Password !</span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <span class="logo"><a href="#">Forgot Password?</a></span>
+                    </div>
+                    <div class="col-sm-7 text-right">
+                        <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark loginButton"
+                            style="text-decoration: none; color: white;">
+                            Login
+                        </button>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

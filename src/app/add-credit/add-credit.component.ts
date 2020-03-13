@@ -23,7 +23,8 @@ export class AddCreditComponent implements OnInit {
     txnType: undefined,
     comment: undefined,
     createdDate: undefined,
-    updatedDate: undefined
+    updatedDate: undefined,
+    balance: undefined
   };
   response: any;
 
@@ -34,53 +35,49 @@ export class AddCreditComponent implements OnInit {
   });
   lenderId = "m1"
   borrowerId: string
-  walletId: string
+  walletId: number
   customers: BorrowerData[]
   walletData: WalletData
   borrowerName: string
   borrowerPhone: string
   balance: number
+  amount: number
 
   ngOnInit(): void {
 
-    this.borrowerName = "Girish";
-    this.borrowerPhone = "9461422569"
-    this.borrowerId = "32da5275-92c4-442b-81ce-5931421f19cd"
-
-    
-
-    this.eledgerUser.getBorrowers().subscribe(response => {
-      this.customers = response
-    });
-
+    this.borrowerName = sessionStorage.getItem('name');
+    this.borrowerPhone = sessionStorage.getItem('phone');
+    this.borrowerId = sessionStorage.getItem('borrowerId');
 
     //get wallet by lenderID and borrowerID
-    this.eledgerApi.getEledgerApi("/wallet/lenderId/" + this.lenderId + "/borrowId/" + this.borrowerId).subscribe(data => {
+    this.eledgerApi.getEledgerApi("/wallet/lenderId/" + this.lenderId).subscribe(data => {
       this.walletData = data["data"]
-      console.log(this.walletData.walletId,this.walletData.amount);
-
-     
+      console.log(this.walletData[0].walletId, this.walletData[0].balance, this.walletData[0].borrowId);
+      this.walletId = this.walletData[0].walletId
     });
-    //this.walletId = this.walletData.walletId;
-    //this.balance = this.walletData.amount;
-    
   }
 
-  
- // borrowerName: string = this.customers[0].name
-  //borrowerPhone: number = this.customers[0].phone
-amount: number
-txnType: string
+  giveCredit(event) {
+    var target = event.target || event.srcElement || event.currentTarget;
+    var value = target.attributes.value;
+    var id = target.attributes.id.nodeValue;
+    this.wallet.txnType = value.nodeValue;
+    document.getElementById("block").style.border = "2px solid red";
+  }
+  takeCash(event) {
+    var target = event.target || event.srcElement || event.currentTarget;
+    var value = target.attributes.value;
+    var id = target.attributes.id.nodeValue;
+    this.wallet.txnType = value.nodeValue;
+    document.getElementById("block").style.border = "2px solid green";
+  }
+
   onSubmit() {
-
     //values
-      this.amount = this.creditForm.value.amount
-
-      
-
     this.wallet.borrowId = this.borrowerId
-    this.wallet.amount = this.amount
+    this.wallet.amount = this.creditForm.value.amount
     this.wallet.lenderId = this.lenderId
+    this.wallet.walletId = this.walletId
 
     //updating the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
@@ -88,5 +85,4 @@ txnType: string
       this.response = resp;
     });
   }
-
 }
