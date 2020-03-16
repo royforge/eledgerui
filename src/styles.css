@@ -9,3 +9,7 @@
     background-color: #46afec;
     color: white;
 }
+
+.hand{
+    cursor: pointer;
+}

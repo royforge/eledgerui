@@ -1,5 +1,5 @@
 export class WalletData{
-    walletId: number;
+    walletId: string;
     lenderId:string;
     borrowId: string;
     createdDate: Date;

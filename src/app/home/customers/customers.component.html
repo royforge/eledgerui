@@ -14,7 +14,7 @@
                 <td><a (click)="sendData(customer)" [routerLink]="['/credit']">{{customer.name}}</a></td>
                 <td>{{customer.phone}}</td>
                 <td *ngIf='customer.amount<0'><p class="red">{{customer.amount}}</p></td>
-                <td *ngIf='customer.amount>0'><p class="green">{{customer.amount}}</p></td>
+                <td *ngIf='customer.amount>=0'><p class="green">{{customer.amount}}</p></td>
                 <td>{{customer.date | date:'medium' }}</td>
             </tr>
         </tbody>

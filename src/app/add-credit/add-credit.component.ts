@@ -15,17 +15,8 @@ export class AddCreditComponent implements OnInit {
   constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi) {
 
   }
-  wallet: WalletData = {
-    walletId: undefined,
-    lenderId: undefined,
-    borrowId: undefined,
-    amount: undefined,
-    txnType: undefined,
-    comment: undefined,
-    createdDate: undefined,
-    updatedDate: undefined,
-    balance: undefined
-  };
+  wallet = new WalletData();
+
   response: any;
 
   creditForm = this.fb.group({
@@ -33,14 +24,14 @@ export class AddCreditComponent implements OnInit {
     amount: [NaN, Validators.required],
     due: ['']
   });
-  lenderId = "m1"
+  lenderId = sessionStorage.getItem('lenderId');
   borrowerId: string
-  walletId: number
+  walletId: string
   customers: BorrowerData[]
   walletData: WalletData
   borrowerName: string
   borrowerPhone: string
-  balance: number
+  balance: string
   amount: number
 
   ngOnInit(): void {
@@ -48,13 +39,8 @@ export class AddCreditComponent implements OnInit {
     this.borrowerName = sessionStorage.getItem('name');
     this.borrowerPhone = sessionStorage.getItem('phone');
     this.borrowerId = sessionStorage.getItem('borrowerId');
-
-    //get wallet by lenderID and borrowerID
-    this.eledgerApi.getEledgerApi("/wallet/lenderId/" + this.lenderId).subscribe(data => {
-      this.walletData = data["data"]
-      console.log(this.walletData[0].walletId, this.walletData[0].balance, this.walletData[0].borrowId);
-      this.walletId = this.walletData[0].walletId
-    });
+    this.walletId = sessionStorage.getItem('walletId');
+    this.balance = sessionStorage.getItem('amount');
   }
 
   giveCredit(event) {
@@ -78,11 +64,13 @@ export class AddCreditComponent implements OnInit {
     this.wallet.amount = this.creditForm.value.amount
     this.wallet.lenderId = this.lenderId
     this.wallet.walletId = this.walletId
+    this.wallet.comment = "Updated Credit Value"
 
     //updating the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
       console.log(resp.data);
       this.response = resp;
+      window.location.href = ("http://localhost:4200/home");
     });
   }
 }
