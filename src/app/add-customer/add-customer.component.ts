@@ -86,7 +86,7 @@ export class AddCustomerComponent implements OnInit {
       this.eledgerUser.postRelation(this.relation)
         .subscribe(resp => {
           this.response = resp;
-          alert("Successfully added")
+         // alert("Successfully added")
           window.location.href = ("http://localhost:4200/home");
         });
     });
@@ -119,8 +119,6 @@ export class AddCustomerComponent implements OnInit {
         this.addCustomer();
       }
     });
-
-
   }
 
   //check the form validation

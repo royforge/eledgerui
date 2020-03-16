@@ -18,6 +18,10 @@
     font-size: 24px;
 }
 
+.selectField {
+background-color: #8dd5ff;
+color: white;
+}
 .label {
     font-size: 20px;
 }
