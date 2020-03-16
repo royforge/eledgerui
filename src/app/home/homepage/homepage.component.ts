@@ -24,8 +24,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
+
+    //Backend API to get data using lenderId 
     this._eledgerApi.getEledgerApi(this.url).subscribe(
-      data => {
+      data => { 
         this.walletData = data["data"];
         this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
         this.customerCount = this.walletData.reduce((sum, item) => sum + 1, 0);

@@ -19,6 +19,8 @@ export class EledgerLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isValid = true;
+
+    //Mock api to get data og lender
     this._eledgerUser.getLenders().subscribe(
       data => {
         this.userData = data;

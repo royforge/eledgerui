@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
     this.shopName = this.sessionModel.getSession(Keys.shopName);
     sessionStorage.setItem('lenderId', this.lenderId);
   }
+  
+  //clear the session when user click on yes during logout
   clearData() {
     sessionStorage.clear();
   }
