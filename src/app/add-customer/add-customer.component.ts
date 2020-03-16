@@ -1,6 +1,6 @@
 import { Keys } from './../model/key';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
@@ -42,6 +42,7 @@ export class AddCustomerComponent implements OnInit {
     private eledgerApi: EledgerApi,
     private eledgerUser: EledgerUser) { }
 
+  //validation the form
   customerForm = this.fb.group({
     name: ['', Validators.required],
     mobile: ['', Validators.required],
@@ -59,6 +60,37 @@ export class AddCustomerComponent implements OnInit {
   balance: number;
   walletData = [];
   sessionModel = new SessionModel();
+  isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
+
+  //Method to add customer details to all the required databases
+  addCustomer() {
+    //posting the Wallet's data to Wallet database
+    this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
+      this.response = resp;
+
+      //updating values for the borrower data
+      this.borrower.borrowId = resp.data.borrowId;
+      this.borrower.name = this.borrowerName
+      this.borrower.lenderId = this.wallet.lenderId
+      this.borrower.phone = this.mobile
+      //posting the borrower's data to borrower.json 
+      this.eledgerUser.postBorrower(this.borrower)
+        .subscribe(resp => {
+          this.response = resp;
+        });
+
+      //updating values for the relation data
+      this.relation.lenderId = this.wallet.lenderId
+      this.relation.borrowId = resp.data.borrowId
+      //posting the relation's data to relation.json 
+      this.eledgerUser.postRelation(this.relation)
+        .subscribe(resp => {
+          this.response = resp;
+          alert("Successfully added")
+          window.location.href = ("http://localhost:4200/home");
+        });
+    });
+  }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
@@ -77,44 +109,23 @@ export class AddCustomerComponent implements OnInit {
     this.eledgerUser.getBorrowers().subscribe(response => {
       this.response = response
       for (let customer of response) {
-        console.log(customer);
         if (customer.phone == this.mobile) {
-
-        } else {
-
+          this.isPresent = true;
+          break;
         }
+      }
+      if (!this.isPresent) {
+        //If mobile is not already present, then add the customer
+        this.addCustomer();
       }
     });
 
 
-    //posting the Wallet's data to Wallet database
-    this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
-      //console.log(resp.data);
-      this.response = resp;
-
-      //updating values for the borrower data
-      this.borrower.borrowId = resp.data.borrowId;
-      this.borrower.name = this.borrowerName
-      this.borrower.lenderId = this.wallet.lenderId
-      this.borrower.phone = this.mobile
-      //posting the borrower's data to borrower.json 
-      this.eledgerUser.postBorrower(this.borrower)
-        .subscribe(resp => {
-         // console.log(resp)
-          this.response = resp;
-        });
-
-      //updating values for the relation data
-      this.relation.lenderId = this.wallet.lenderId
-      this.relation.borrowId = resp.data.borrowId
-      //posting the relation's data to relation.json 
-      this.eledgerUser.postRelation(this.relation)
-        .subscribe(resp => {
-          this.response = resp;
-          window.location.href = ("http://localhost:4200/home");
-        });
-    });
-
   }
-  
+
+  //check the form validation
+  isValid(control) {
+    return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;
+  }
+
 }

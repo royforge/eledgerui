@@ -19,11 +19,13 @@ export class AddCreditComponent implements OnInit {
 
   response: any;
 
+  //form values and validation
   creditForm = this.fb.group({
     date: [''],
     amount: [NaN, Validators.required],
     due: ['']
   });
+  //set values we need to use
   lenderId = sessionStorage.getItem('lenderId');
   borrowerId: string
   walletId: string
@@ -34,8 +36,10 @@ export class AddCreditComponent implements OnInit {
   balance: string
   amount: number
 
-  ngOnInit(): void {
+  selectTxn = false
+  isNaN = false
 
+  ngOnInit(): void {
     this.borrowerName = sessionStorage.getItem('name');
     this.borrowerPhone = sessionStorage.getItem('phone');
     this.borrowerId = sessionStorage.getItem('borrowerId');
@@ -43,34 +47,55 @@ export class AddCreditComponent implements OnInit {
     this.balance = sessionStorage.getItem('amount');
   }
 
+  //click button to set TxnType = Credit
   giveCredit(event) {
     var target = event.target || event.srcElement || event.currentTarget;
     var value = target.attributes.value;
-    var id = target.attributes.id.nodeValue;
     this.wallet.txnType = value.nodeValue;
     document.getElementById("block").style.border = "2px solid red";
   }
+
+  //click button to set TxnType = Debit
   takeCash(event) {
     var target = event.target || event.srcElement || event.currentTarget;
     var value = target.attributes.value;
-    var id = target.attributes.id.nodeValue;
     this.wallet.txnType = value.nodeValue;
     document.getElementById("block").style.border = "2px solid green";
   }
 
+  //method on form submition
   onSubmit() {
     //values
+    this.selectTxn = false;
+    this.isNaN = false
+
+    //update values for wallet
     this.wallet.borrowId = this.borrowerId
     this.wallet.amount = this.creditForm.value.amount
     this.wallet.lenderId = this.lenderId
     this.wallet.walletId = this.walletId
     this.wallet.comment = "Updated Credit Value"
 
-    //updating the Wallet's data to Wallet database
-    this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
-      console.log(resp.data);
-      this.response = resp;
-      window.location.href = ("http://localhost:4200/home");
-    });
+    //check amount input is empty or not
+    if (isNaN(this.wallet.amount)) {
+      this.isNaN = true
+    }
+
+    //Save button works only if txntype has value
+    if (this.wallet.txnType == "DEBIT" || this.wallet.txnType == "CREDIT") {
+      //updating the Wallet's data to Wallet database
+      this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
+        this.response = resp;
+        window.location.href = ("http://localhost:4200/home");
+      });
+    } else {
+      this.selectTxn = true;
+    }
+
+  }
+
+  //Check if values are valid
+  isValid(control) {
+    return this.creditForm.controls[control].invalid && this.creditForm.controls[control].touched;
   }
 }

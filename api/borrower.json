@@ -48,7 +48,6 @@
       "lenderId": "m2",
       "phone": 6789898989,
       "id": 7
-<<<<<<< HEAD
     },
     {
       "name": "biba",
@@ -70,8 +69,13 @@
       "lenderId": "m1",
       "phone": 9378463874,
       "id": 10
-=======
->>>>>>> 13f820aebd66a65f53b60961c98d1d5edfc5d353
+    },
+    {
+      "name": "W4334",
+      "borrowId": "f427e5e2-8477-459d-b8f5-442309337e17",
+      "lenderId": "m1",
+      "phone": 34342343234,
+      "id": 11
     }
   ]
 }
