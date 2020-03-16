@@ -9,3 +9,16 @@
     background-color: #46afec;
     color: white;
 }
+
+.hand{
+    cursor: pointer;
+}
+
+.mandatory {
+    color: red;   
+}
+
+.feedback {
+    font-size: 12px;
+    color: red;
+}

@@ -13,24 +13,17 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
+import { AddCreditComponent } from './add-credit/add-credit.component';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
-
-export class MyErrorHandler implements ErrorHandler {
-  constructor() { }
-  handleError(error: Error) {
-    if (Error) {
-      console.log("error caught");
-    }
-    else console.log("hello");
-  }
-}
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AddCustomerComponent,
     EledgerLoginComponent,
     LoaderComponent,
-    AddCustomerComponent
+    AddCreditComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,8 +41,9 @@ export class MyErrorHandler implements ErrorHandler {
       multi: true
     },
     {
-      provide: ErrorHandler,
-      useClass: MyErrorHandler,
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]

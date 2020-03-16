@@ -11,3 +11,11 @@
 .container {
     overflow: hidden;
 }
+
+.red {
+    color: rgb(243, 71, 71);
+}
+
+.green {
+    color: green;
+}

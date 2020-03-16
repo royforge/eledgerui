@@ -1,9 +1,12 @@
+import { Customers } from './../../model/customers';
 import { BorrowerData } from './../../model/borrowerData';
 import { EledgerApi } from './../../classes/EledgerApi';
 import { EledgerUser } from './../../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
 import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
+import { SessionModel } from 'src/app/model/sessionmodel';
+import { Keys } from 'src/app/model/key';
 
 @Component({
   selector: 'app-customers',
@@ -15,27 +18,52 @@ export class CustomersComponent implements OnInit {
   borrowerData: BorrowerData[];
   url: string;
   lenderId: string;
+  customers: Customers[] = [];
+  customer = new Customers();
+  sessionModel = new SessionModel();
 
   constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
 
   ngOnInit(): void {
-    this.lenderId = sessionStorage.getItem('lenderId');
+    this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
 
+    //Mock API to get the borrower data
     this._eledgerUser.getBorrowers().subscribe(
-      data => {
-        this.borrowerData = data;
-      }),
+      resp => {
+        this.borrowerData = resp;
+        let count = 0;
+        this.borrowerData.map(borrower => {
 
-      this._eledgerApi.getEledgerApi(this.url).subscribe(
-        data => {
-          this.walletData = data["data"];
+          if (borrower.lenderId == this.lenderId) {
+
+            //Backend api to get data using lenderId and borrowerId
+            this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
+              respTrans => {
+                count++;
+                this.customer = new Customers();
+                this.customer.walletId = respTrans["data"].walletId;
+                this.customer.date = respTrans["data"].updatedDate;
+                this.customer.amount = respTrans["data"].balance;
+                this.customer.name = borrower.name;
+                this.customer.phone = borrower.phone;
+                this.customer.lenderId = borrower.lenderId;
+                this.customer.borrowerId = borrower.borrowId;
+                this.customers.push(this.customer);
+
+              })
+          }
         })
+      })
   }
-  sendData(borrowerData: BorrowerData) {
-    sessionStorage.setItem('lenderId', this.lenderId);
-    sessionStorage.setItem('name', borrowerData.name);
-    sessionStorage.setItem('phone', borrowerData.phone.toString());
-    sessionStorage.setItem('borrowerId', borrowerData.borrowId);
+
+  //set data using session when click on name of the customer
+  sendData(data: Customers) {
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.name, data.name);
+    this.sessionModel.setSession(Keys.phone, data.phone);
+    this.sessionModel.setSession(Keys.amount, data.amount);
+    this.sessionModel.setSession(Keys.walletId, data.walletId);
+    this.sessionModel.setSession(Keys.borrowerId, data.borrowerId);
   }
 }

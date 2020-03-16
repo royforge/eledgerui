@@ -1,3 +1,5 @@
+import { Keys } from './../model/key';
+import { SessionModel } from './../model/sessionmodel';
 import { UserData } from './../model/UserData';
 import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
@@ -12,10 +14,13 @@ export class EledgerLoginComponent implements OnInit {
 
   userData: UserData[];
   user: UserData;
+  sessionModel = new SessionModel();
   constructor(private _eledgerUser: EledgerUser) { }
 
   ngOnInit(): void {
     this.isValid = true;
+
+    //Mock api to get data og lender
     this._eledgerUser.getLenders().subscribe(
       data => {
         this.userData = data;
@@ -41,8 +46,8 @@ export class EledgerLoginComponent implements OnInit {
 
     for (let user of this.userData) {
       if (user.phone == userID && user.password == password) {
-        sessionStorage.setItem('lenderId',user.lenderId);
-        sessionStorage.setItem('shopName',user.shopName); 
+        this.sessionModel.setSession(Keys.lenderId, user.lenderId);
+        this.sessionModel.setSession(Keys.shopName, user.shopName);
         return true;
       }
     }

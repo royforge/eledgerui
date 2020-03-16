@@ -7,11 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'eledgerui';
-  normalError() {
-    const babies = "foo";
-  }
-  errorWithCatch() {
-   const babies = "foo";
-   }
-
 }

@@ -11,7 +11,7 @@
                     <div class="col-1"></div>
 
                     <div class="col-2">
-                        <img class="logo hand"  [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
+                        <img class="logo hand" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                     </div>
 
                     <div class="col-8 text-center mt-2 rounded-circle">
@@ -21,18 +21,20 @@
                 </div>
                 <br><br><br>
 
-
                 <div class="row">
                     <div class="col-1 text-right">
                         <i class='fa fa-user mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
                     <div class="col-4">
                         <label for="name" class="d-inline label">Customer Name</label>
-                        <p class="required d-inline"> *</p>
+                        <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6">
-                        <input class="rounded w-100 border border-primary" formControlName="name" type="text" id="name"
-                            placeholder="Name" required>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded w-100" [ngClass]="{'invalid' : isValid('name')}" formControlName="name"
+                            type="text" id="name" placeholder="Name" required>
+                        <div class="feedback" *ngIf="isValid('name')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -42,55 +44,78 @@
                     </div>
                     <div class="col-4">
                         <label for="contact" class="d-inline label"> Mobile Number</label>
-                        <p class="required d-inline"> *</p>
+                        <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6">
-                        <input class="rounded w-100 border border-primary" type="number" pattern="[+0-9]{10,13}"
-                            id="contact" placeholder="Mobile No." formControlName="mobile">
+                    <div class="col-6 inputDiv">
+                        <input class="rounded w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresent}"
+                            type="number" pattern="[+0-9]{10}" id="contact" placeholder="Mobile No."
+                            formControlName="mobile">
+                        <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
+                        </div>
+                        <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.mobile.errors.pattern">Enter Valid Mobile Number of 10
+                                digits!</span>
+                        </div>
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right"></div>
+                    <div class="col-1 text-right"><i class='fas fa-rupee-sign icon2 rounded-circle'></i></div>
                     <div class="col-4">
                         <label for="amount" class="d-inline label"> Amount</label>
-                        <p class="required d-inline"> *</p>
+                        <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6">
-                        <input class="rounded w-100 border border-primary" formControlName="amount" type="number"
-                            id="amount" placeholder="Amount" required>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded w-100" [ngClass]="{'invalid' : isValid('amount')}"
+                            formControlName="amount" minlength="1" type="number" id="amount" placeholder="Amount"
+                            required>
+                        <div class="feedback" *ngIf="isValid('amount')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Enter some money value!</span>
+                        </div>
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right">
-
-                    </div>
+                    <div class="col-1 text-right"><i class='fas fa-hand-holding-usd icon2 rounded-circle'></i></div>
                     <div class="col-4">
                         <label for="txnType" class="d-inline label"> Transaction Type</label>
-                        <p class="required d-inline"> *</p>
+                        <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-6">
                         <select href="#" id="txnType" formControlName="txnType"
-                            class="dropdown-toggle btn confirmBtn w-100" data-toggle="dropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false">Type <span class="caret"></span>
+                            class="dropdown-toggle selectField btn w-100" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false" required><span class="caret">Type</span>
+                            <option value="none" selected disabled> 
+                                Select an Option 
+                            </option> 
                             <option value="DEBIT">Debit</option>
                             <option value="CREDIT">Credit</option>
                         </select>
-
-
+                        <div class="feedback" *ngIf="isValid('txnType')">
+                            <span *ngIf="customerForm.controls.txnType.errors.required">Select a transaction type</span>
+                        </div>
                     </div>
                 </div>
                 <br><br><br>
-
                 <div class="row">
                     <div class="col-11 text-right">
                         <button type="submit" [disabled]="!customerForm.valid"
-                            class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                            class="btn confirmBtn border border-dark nav-item nav-link-edit" data-toggle="modal"
+                            data-target="#successModal">Save</button>
                     </div>
                 </div>
             </form>
-
+        </div>
+        <div class="modal centered" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-center">Successfully Added<br /></p>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-2"></div>
     </div>

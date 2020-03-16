@@ -3,10 +3,6 @@
     height: auto;
 }
 
-.required {
-    color: red;
-}
-
 .logo {
     height: 95%;
     width: 65px;
@@ -17,9 +13,30 @@
     color: white;
     font-size: 24px;
 }
+.icon2 {
+    color: #46afec;
+    font-size: 24px;
+}
 
+.selectField {
+background-color: #8dd5ff;
+color: white;
+}
 .label {
     font-size: 20px;
+}
+
+input{
+    border: 1px solid #46afec;
+}
+
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
+}
+
+.inputDiv{
+    height: 35px;
 }
 
 /* Chrome, Safari, Edge, Opera 
@@ -36,11 +53,4 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     .label {
         font-size: 17px;
     }
-    .newCustomer {
-        font-size: 97%;
-    }
-}
-
-.hand {
-    cursor: pointer;
 }
