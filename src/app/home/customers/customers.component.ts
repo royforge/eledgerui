@@ -1,4 +1,3 @@
-import { Data } from './../../model/data';
 import { Customers } from './../../model/customers';
 import { BorrowerData } from './../../model/borrowerData';
 import { EledgerApi } from './../../classes/EledgerApi';
@@ -6,7 +5,6 @@ import { EledgerUser } from './../../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
 import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
-import { map } from 'rxjs/operators';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Keys } from 'src/app/model/key';
 
@@ -30,11 +28,14 @@ export class CustomersComponent implements OnInit {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
 
+    //Mock API to get the borrower data
     this._eledgerUser.getBorrowers().subscribe(
       resp => {
         this.borrowerData = resp;
         let count = 0;
         this.borrowerData.map(borrower => {
+
+          //Backend api to get data using lenderId and borrowerId
           this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
             respTrans => {
               count++;
@@ -46,15 +47,13 @@ export class CustomersComponent implements OnInit {
               this.customer.phone = borrower.phone;
               this.customer.lenderId = borrower.lenderId;
               this.customer.borrowerId = borrower.borrowId;
-              // if (count === (this.borrowerData.length)) {
-              //   console.log('List: ', this.customers);
-              // }
               this.customers.push(this.customer);
             })
         })
       })
   }
 
+  //set data using session when click on name of the customer
   sendData(data: Customers) {
     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
     this.sessionModel.setSession(Keys.name, data.name);
