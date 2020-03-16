@@ -3,10 +3,6 @@
     height: auto;
 }
 
-.required {
-    color: red;
-}
-
 .logo {
     height: 95%;
     width: 65px;
@@ -24,6 +20,19 @@
 
 .label {
     font-size: 20px;
+}
+
+input{
+    border: 1px solid #46afec;
+}
+
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
+}
+
+.inputDiv{
+    height: 35px;
 }
 
 /* Chrome, Safari, Edge, Opera 

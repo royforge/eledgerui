@@ -8,8 +8,13 @@
     font-size: 20px;
 }
 
-.required {
-    color: red;   
+input{
+    border: 1px solid #46afec;
+}
+
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
 }
 
 /* Chrome, Safari, Edge, Opera 
