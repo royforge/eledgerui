@@ -7,7 +7,7 @@
 
             <div class="row mb-2">
                 <div class="col-2">
-                    <img class="logo" src="../../assets/image1.png" alt="logo">
+                    <img class="logo" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                 </div>
                 <div class="col-8 text-center rounded-circle">
                     <h5 class="logoColor border border-dark rounded p-2">
@@ -28,6 +28,8 @@
                             class="btn btn-danger border border-dark rounded creditType p-2">
                             Credit Given
                         </button>
+                        <div class="feedback" *ngIf="this.selectTxn">Select for Money Given
+                        </div>
                     </div>
                     <div class="col-2"></div>
 
@@ -36,7 +38,10 @@
                             class="btn btn-success border border-dark rounded creditType p-2">
                             Cash Received
                         </button>
+                        <div class="feedback" *ngIf="this.selectTxn">Select for Money Received
+                        </div>
                     </div>
+
                 </div>
                 <div id="block" style="margin-left: 10%; margin-right: 10%;">
                     <div class="row">
@@ -56,11 +61,15 @@
                         </div>
                         <div class="col-2 text-right">
                             <label for="amount" class="d-inline label"> Amount :</label>
-                            <p class="required d-inline">*</p>
+                            <p class="mandatory d-inline">*</p>
                         </div>
                         <div class="col-3">
-                            <input class="rounded w-100 border border-primary" formControlName="amount" type="number"
-                                id="amount" placeholder="Amount" required>
+                            <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100"
+                                formControlName="amount" type="number" id="amount" placeholder="Amount" required>
+                            <div class="feedback" *ngIf="this.isNaN">Enter amount
+                            </div>
+                            <div class="feedback" *ngIf="isValid('amount')">Enter some money value!
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -68,7 +77,6 @@
                         <div class="col-3"></div>
                         <div class="col-2 text-right">
                             <label for="due" class="d-inline label"> Due Date:</label>
-                            <p class="required d-inline">*</p>
                         </div>
                         <div class="col-3">
                             <input class="rounded w-100 border border-primary" type="date" id="due"
@@ -78,8 +86,14 @@
                     <br><br>
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button type="submit" [disabled]="!creditForm.valid"
+                            <button id="save" type="submit" [disabled]="!creditForm.valid"
                                 class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                            <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
+                            </div>
+                            <div class="feedback" *ngIf="this.isNaN">Enter amount
+                            </div>
+                            <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
+                            </div>
                         </div>
                     </div>
                 </div>
