@@ -49,18 +49,20 @@ export class AddCreditComponent implements OnInit {
 
   //click button to set TxnType = Credit
   giveCredit(event) {
+    document.getElementById("Credit").classList.remove("highlight");
     var target = event.target || event.srcElement || event.currentTarget;
     var value = target.attributes.value;
     this.wallet.txnType = value.nodeValue;
-    document.getElementById("block").style.border = "2px solid red";
+    document.getElementById("Debit").classList.add("highlight");
   }
 
   //click button to set TxnType = Debit
   takeCash(event) {
+    document.getElementById("Debit").classList.remove("highlight");
     var target = event.target || event.srcElement || event.currentTarget;
     var value = target.attributes.value;
     this.wallet.txnType = value.nodeValue;
-    document.getElementById("block").style.border = "2px solid green";
+    document.getElementById("Credit").classList.add("highlight");
   }
 
   //method on form submition

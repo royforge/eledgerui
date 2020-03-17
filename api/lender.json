@@ -11,7 +11,7 @@
     {
       "name": "Sahil",
       "shopName": "Sahil enterprises",
-      "phone": 7976347047,
+      "phone": "7976347047",
       "lenderId": "m1",
       "password": "@Sahil123",
       "id": 2
@@ -20,7 +20,7 @@
       "name": "Shashank",
       "shopName": "Shashank Stores",
       "phone": "9414315028",
-      "lenderId": "m3",
+      "lenderId": "m1",
       "password": "@Shashank123",
       "id": 3
     }

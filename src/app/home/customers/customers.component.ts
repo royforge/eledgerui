@@ -34,7 +34,8 @@ export class CustomersComponent implements OnInit {
         this.borrowerData = resp;
         let count = 0;
         this.borrowerData.map(borrower => {
-          if (this.lenderId == borrower.lenderId) {
+          if (borrower.lenderId == this.lenderId) {
+
             //Backend api to get data using lenderId and borrowerId
             this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
               respTrans => {
@@ -49,18 +50,18 @@ export class CustomersComponent implements OnInit {
                 this.customer.borrowerId = borrower.borrowId;
                 this.customers.push(this.customer);
               })
-            }
-          })
+          }
+        })
       })
-}
+  }
 
-//set data using session when click on name of the customer
-sendData(data: Customers) {
-  this.sessionModel.setSession(Keys.lenderId, this.lenderId);
-  this.sessionModel.setSession(Keys.name, data.name);
-  this.sessionModel.setSession(Keys.phone, data.phone);
-  this.sessionModel.setSession(Keys.amount, data.amount);
-  this.sessionModel.setSession(Keys.walletId, data.walletId);
-  this.sessionModel.setSession(Keys.borrowerId, data.borrowerId);
-}
+  //set data using session when click on name of the customer
+  sendData(data: Customers) {
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.name, data.name);
+    this.sessionModel.setSession(Keys.phone, data.phone);
+    this.sessionModel.setSession(Keys.amount, data.amount);
+    this.sessionModel.setSession(Keys.walletId, data.walletId);
+    this.sessionModel.setSession(Keys.borrowerId, data.borrowerId);
+  }
 }
