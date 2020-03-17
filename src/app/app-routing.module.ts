@@ -4,6 +4,7 @@ import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { HomeComponent } from './home/home.component';
 import { AddCreditComponent } from './add-credit/add-credit.component';
+import { ReportsComponent } from './home/reports/reports.component';
 
 const routes: Routes = [
   { path: 'login', component: EledgerLoginComponent },

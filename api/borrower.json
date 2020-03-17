@@ -1,81 +1,60 @@
 {
   "borrower": [
     {
-      "name": "Om",
-      "borrowId": "97265dc8-b0fb-417d-a826-b1dc4eea2fdb",
-      "lenderId": "m1",
-      "phone": 9898989898,
+      "name": "Danny",
+      "borrowId": "546525ee-5f41-4764-8262-9573e8ac8796",
+      "lenderId": "m2",
+      "phone": 9876543210,
       "id": 1
     },
     {
-      "name": "Raj",
-      "borrowId": "62e7c81b-955a-4059-bd37-057c25581079",
-      "lenderId": "m1",
-      "phone": 7878787878,
+      "name": "Babu Bhaiya",
+      "borrowId": "12ca7522-a398-4f97-9f83-d430f99eaa63",
+      "lenderId": "m2",
+      "phone": 9876543211,
       "id": 2
     },
     {
-      "name": "Ram",
-      "borrowId": "8f4480e5-017f-4a1e-934c-33b21f4e0117",
-      "lenderId": "m1",
-      "phone": 9999499399,
+      "name": "Gaurav",
+      "borrowId": "ce5db676-798c-4534-9dca-44f1f94984be",
+      "lenderId": "m2",
+      "phone": 83789847833,
       "id": 3
     },
     {
-      "name": "Nitesh",
-      "borrowId": "4aa7378e-fad7-47ac-87ac-818573e68dda",
-      "lenderId": "m1",
-      "phone": 78793790289,
+      "name": "Ronny",
+      "borrowId": "3e5e7b7d-65e5-40a7-8de6-f9e031351d2c",
+      "lenderId": "m2",
+      "phone": 8736498732,
       "id": 4
     },
     {
-      "name": "Hari",
-      "borrowId": "301b5f15-9bab-4a7a-9e6d-bca13b406f95",
+      "name": "Shashank",
+      "borrowId": "8844213d-b00a-44eb-9dbc-cdde728529ca",
       "lenderId": "m2",
-      "phone": 1424452456,
+      "phone": 9737436274,
       "id": 5
     },
     {
-      "name": "Romil",
-      "borrowId": "923f06e4-9497-47fc-962f-1bb76cbfdda2",
+      "name": "Bala",
+      "borrowId": "071b9d7f-2181-4878-9679-c0d73238cdc4",
       "lenderId": "m2",
-      "phone": 9048903949,
+      "phone": 9364876273,
       "id": 6
     },
     {
-      "name": "tim",
-      "borrowId": "7d191828-b6a6-49e7-b931-ba580306d6ee",
-      "lenderId": "m2",
-      "phone": 6789898989,
+      "name": "helo",
+      "borrowId": "cd0cbdee-47f2-4f2b-86e0-6806cc6aab01",
+      "lenderId": "m1",
+      "phone": 8647326462,
       "id": 7
     },
     {
-      "name": "biba",
-      "borrowId": "78966052-614e-4403-88cd-c3665a794982",
-      "lenderId": "m3",
-      "phone": 9675463434,
+      "name": "Bhavya",
+      "borrowId": "213e3f1f-a3d9-4460-8eff-e0f1f0a45e9b",
+      "lenderId": "m2",
+      "phone": 7364982987,
       "id": 8
-    },
-    {
-      "name": "messi",
-      "borrowId": "36cf9ae3-839d-4633-9f83-db1214481860",
-      "lenderId": "m1",
-      "phone": 8745627374,
-      "id": 9
-    },
-    {
-      "name": "java",
-      "borrowId": "5d8f3a5f-5f1d-4b29-ab2a-5ffaae323a18",
-      "lenderId": "m1",
-      "phone": 9378463874,
-      "id": 10
-    },
-    {
-      "name": "W4334",
-      "borrowId": "f427e5e2-8477-459d-b8f5-442309337e17",
-      "lenderId": "m1",
-      "phone": 34342343234,
-      "id": 11
     }
   ]
 }
