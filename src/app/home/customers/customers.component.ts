@@ -34,7 +34,6 @@ export class CustomersComponent implements OnInit {
         this.borrowerData = resp;
         let count = 0;
         this.borrowerData.map(borrower => {
-
           if (borrower.lenderId == this.lenderId) {
 
             //Backend api to get data using lenderId and borrowerId
@@ -50,7 +49,6 @@ export class CustomersComponent implements OnInit {
                 this.customer.lenderId = borrower.lenderId;
                 this.customer.borrowerId = borrower.borrowId;
                 this.customers.push(this.customer);
-
               })
           }
         })
