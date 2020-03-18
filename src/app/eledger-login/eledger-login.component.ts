@@ -48,6 +48,9 @@ export class EledgerLoginComponent implements OnInit {
       if (user.phone == userID && user.password == password) {
         this.sessionModel.setSession(Keys.lenderId, user.lenderId);
         this.sessionModel.setSession(Keys.shopName, user.shopName);
+        this.sessionModel.setSession(Keys.name, user.name);
+        this.sessionModel.setSession(Keys.phone, user.phone);
+
         return true;
       }
     }

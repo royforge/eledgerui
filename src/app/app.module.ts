@@ -15,6 +15,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
 import { AddCreditComponent } from './add-credit/add-credit.component';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
     AddCustomerComponent,
     EledgerLoginComponent,
     LoaderComponent,
-    AddCreditComponent
+    AddCreditComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,

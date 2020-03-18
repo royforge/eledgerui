@@ -1,0 +1,30 @@
+.logo {
+    height: 95%;
+    width: 65px;
+}
+
+.head {
+    position: relative;
+    text-align: center;
+}
+
+.block {
+    margin-top: 150px;
+    width: 800px;
+}
+
+.info {
+    font-weight: bold;
+    margin-top: 7px;
+    font-size: large;
+    margin-left: 250px;
+}
+
+.data {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.infoDetail {
+    margin-left: 120px;
+}
