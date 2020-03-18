@@ -6,21 +6,17 @@
                     <tr>
                         <th>Name</th>
                         <th>Mobile Number</th>
-                        <th>Amount Pending</th>
+                        <th>Amount</th>
+                        <th>Transaction Type</th>
                         <th>Transaction Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor='let customer of customers'>
-                        <td><a (click)="sendData(customer)" class='blue'
-                                [routerLink]="['/credit']">{{customer.name}}</a></td>
+                        <td>{{customer.name}}</td>
                         <td>{{customer.phone}}</td>
-                        <td *ngIf='customer.amount<0'>
-                            <p class="red">{{customer.amount}}</p>
-                        </td>
-                        <td *ngIf='customer.amount>=0'>
-                            <p class="green">{{customer.amount}}</p>
-                        </td>
+                        <td>{{customer.amount}}</td>
+                        <td>{{customer.txnType}}</td>
                         <td>{{customer.date | date:'medium' }}</td>
                     </tr>
                 </tbody>

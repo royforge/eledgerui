@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   shopName: string;
   isOn = true;
   sessionModel = new SessionModel();
+  isReports = false;
 
   constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 

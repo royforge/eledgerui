@@ -6,4 +6,5 @@ export class Customers{
     walletId: string;
     lenderId: string;
     borrowerId: string;
+    txnType: string;
 }

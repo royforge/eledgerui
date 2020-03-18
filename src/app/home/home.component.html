@@ -4,26 +4,31 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
             <div class="row">
-
                 <div class="col-sm-1 hand">
-                    <img (click)='isOn=true' [src]="LOGO1" />
+                    <img (click)='isOn=true; isReports=false' [src]="LOGO1" />
                 </div>
+
                 <div class="col-8 text-center mt-2 rounded-circle hand">
-                    <h5 class="logoColor border border-dark rounded p-2" (click)='isOn=true'>{{shopName}}</h5>
+                    <h5 class="logoColor border border-dark rounded p-2" (click)='isOn=true; isReports=false'>
+                        {{shopName}}</h5>
                 </div>
             </div>
         </div>
     </div>
     <br><br>
     <div class="row">
-        <div class="id2"><img [src]="LOGO2" /><a class="link" href="/home" (click)='isOn=false'>Customers</a></div>
-        <div class="id2"><img [src]="LOGO3" /><a class="link" href="/home">Reports</a></div>
+        <div class="id2"><img [src]="LOGO2" /><a class="link" href="/home"
+                (click)='isOn=false; isReports=false'>Customers</a></div>
+        <div class="id2"><img [src]="LOGO3" /><a class="link hand" (click)='isReports=true; isOn=null'>Reports</a></div>
         <div class="id2 dropdown"><img [src]="LOGO4" /><a class="link dropbtn" href="/home">Profile</a>
             <div class="dropdown-content">
                 <a href="http://localhost:4200/myaccount">My Account</a>
                 <a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
         </div>
+    </div>
+    <div *ngIf='isReports==true'>
+        <app-reports></app-reports>
     </div>
     <app-customers *ngIf="isOn == false"></app-customers>
     <app-homepage *ngIf="isOn == true"></app-homepage>
