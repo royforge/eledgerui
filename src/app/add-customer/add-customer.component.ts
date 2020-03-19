@@ -86,13 +86,13 @@ export class AddCustomerComponent implements OnInit {
       this.eledgerUser.postRelation(this.relation)
         .subscribe(resp => {
           this.response = resp;
-         // alert("Successfully added")
           window.location.href = ("http://localhost:4200/home");
         });
     });
   }
 
   onSubmit() {
+    this.isPresent = false;
     // TODO: Use EventEmitter with form value
     this.borrowerName = this.customerForm.value.name;
     this.mobile = this.customerForm.value.mobile;

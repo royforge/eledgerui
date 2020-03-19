@@ -88,23 +88,12 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <button id="save" type="submit" [disabled]="!creditForm.valid"
-                                class="btn confirmBtn border border-dark nav-item nav-link-edit" data-toggle="modal"
-                                data-target="#successModal">Save</button>
+                                class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
                             <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
                             </div>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
                             <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal centered" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <p class="text-center">Successful.<br /></p>
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>
