@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(public toastrService: ToastrService) { }
+  constructor(private notify: AlertService) { }
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
@@ -17,16 +17,16 @@ export class InterceptorService implements HttpInterceptor {
     return next.handle(req)
       .pipe(tap(event => {
         if (event instanceof HttpResponse && event.status === 201) {
-          this.toastrService.success("Updated changes" , "Successful", { positionClass: 'toast-top-right' });
+          this.notify.showSuccess("Updated changes" , "Successful");
         }
       }),
 
         catchError((err: any) => {
           if (err instanceof HttpErrorResponse) {
             try {
-              this.toastrService.error(err.error.message, err.status.toString() , { positionClass: 'toast-top-right' });
+              this.notify.showError(err.error.message, err.status.toString());
             } catch (e) {
-              this.toastrService.error('An error occurred', '', { positionClass: 'toast-top-right' });
+              this.notify.showError('An error occurred', '');
             }
             //log error 
           }
