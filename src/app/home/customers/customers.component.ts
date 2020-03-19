@@ -7,7 +7,8 @@ import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Keys } from 'src/app/model/key';
-
+import { AlertService } from 'src/app/services/alert.service'
+import { from } from 'rxjs';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -22,7 +23,7 @@ export class CustomersComponent implements OnInit {
   customer = new Customers();
   sessionModel = new SessionModel();
 
-  constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
+  constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);

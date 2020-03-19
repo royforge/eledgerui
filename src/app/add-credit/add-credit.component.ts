@@ -40,6 +40,7 @@ export class AddCreditComponent implements OnInit {
   isNaN = false
 
   ngOnInit(): void {
+    //update the values from the selected customer session.
     this.borrowerName = sessionStorage.getItem('name');
     this.borrowerPhone = sessionStorage.getItem('phone');
     this.borrowerId = sessionStorage.getItem('borrowerId');
@@ -93,7 +94,6 @@ export class AddCreditComponent implements OnInit {
     } else {
       this.selectTxn = true;
     }
-
   }
 
   //Check if values are valid

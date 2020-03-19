@@ -3,9 +3,10 @@ import { EledgerUser } from './classes/EledgerUser';
 import { EledgerApi } from './classes/EledgerApi';
 import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +34,12 @@ import { InterceptorService } from './services/interceptor.service';
     AppRoutingModule,
     FormsModule,
     HomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      positionClass: 'toast-top-right'
+    })
   ],
   providers: [
     EledgerApiService, EledgerApi, EledgerUser,
