@@ -12,6 +12,10 @@ input{
     border: 1px solid #46afec;
 }
 
+.icon {
+    font-size: 20px;
+}
+
 .highlight {
     border-radius: 50px;
     padding: 10px 15px;

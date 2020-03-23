@@ -12,8 +12,12 @@
                 <div class="col-8 text-center rounded-circle">
                     <h5 class="logoColor border border-dark rounded p-2">
                         {{borrowerName}}<br>
-                        {{borrowerPhone}}<br>
-                        {{balance}}
+                        <<<<<<< HEAD {{borrowerPhone}}<br>
+                            {{balance}}
+                            =======
+                            <i class="material-icons icon">phone</i> {{borrowerPhone}} <br>
+                            <i class='fas fa-rupee-sign icon'></i> {{balance}}
+                            >>>>>>> 382a49c376eaffa2cba88a942d45f5f8938f2280
                     </h5>
                 </div>
             </div>
@@ -102,23 +106,12 @@
 
                         <div class="col-4 text-center">
                             <button id="save" type="submit" [disabled]="!creditForm.valid"
-                                class="btn confirmBtn border border-dark nav-item nav-link-edit" data-toggle="modal"
-                                data-target="#successModal">Save</button>
+                                class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
                             <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
                             </div>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
                             <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal centered" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <p class="text-center">Successful.<br /></p>
-
-                                </div>
                             </div>
                         </div>
                     </div>

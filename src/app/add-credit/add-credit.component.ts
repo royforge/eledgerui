@@ -51,7 +51,7 @@ export class AddCreditComponent implements OnInit {
     this.balance = this.sessionModel.getSession(Keys.amount);
     this.id = this.sessionModel.getSession(Keys.id);
 
-    
+
     this.sessionModel.setSession(Keys.name, this.borrowerName);
     this.sessionModel.setSession(Keys.phone, this.borrowerPhone);
     this.sessionModel.setSession(Keys.borrowerId, this.borrowerId);
@@ -105,7 +105,6 @@ export class AddCreditComponent implements OnInit {
     } else {
       this.selectTxn = true;
     }
-
   }
 
   //Check if values are valid
