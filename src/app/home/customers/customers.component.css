@@ -1,3 +1,5 @@
+
+
 .red {
     color: rgb(243, 71, 71);
 }
@@ -10,28 +12,69 @@ tr:nth-child(even) {
     background-color: #f0ebeb;
 }
 
+.inp{
+height: 35px;
+border: 1px solid #46afec;
+border-radius: 	10px;
+background-color : #f1faff;
+}
+
+btn {
+	height: 30px;
+}
+
 td, th {
     padding: 4px;
-  }
-
-#table-wrapper {
-    position: relative;
 }
 
-#table-scroll {
-    height: 350px;
+input[type="text"] {
+transition: background-color 0.1s;
+font-size: 17px;
+background-color : #f1faff;
+font-weight: 100;
+letter-spacing: 0.01em;
+box-shadow: none;
+}
+
+input:focus {
+  outline: none;
+  background-color: white;
+  box-shadow: 1px 1px 2px 3px #8ec7e9;
+}
+
+table {
+	max-width:980px;
+	table-layout:fixed;
+	margin:auto;
+}
+
+tbody {
+	display: block;
+	height: 350px;
     overflow: auto;
-    margin-top: 20px;
+	width: 100%;
+	word-wrap:break-word;  
+}
+tbody tr {
+	display:table;
+	width:100%;
+	table-layout:fixed;
+	word-wrap:break-word;  
+}
+thead {
+    display: table;
+	overflow: auto;
+	width: 100%
 }
 
-#table-wrapper table {
-    width: 100%;
+.name {
+    width: 28%;
 }
 
-#table-wrapper table thead th .text {
-    position: absolute;
-    z-index: 2;
-    height: 50px;
-    width: 55%;
-    border: 1px solid;
+.phone {
+    width: 35%;
+}
+
+.txn {
+    width: 15%;
 }

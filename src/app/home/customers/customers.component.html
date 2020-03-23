@@ -1,30 +1,58 @@
 <div class="container">
     <div id="table-wrapper">
-        <div id="table-scroll">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Mobile Number</th>
-                        <th>Amount Pending</th>
-                        <th>Transaction Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor='let customer of customers'>
-                        <td><a (click)="sendData(customer)" class='blue'
-                                [routerLink]="['/credit']">{{customer.name}}</a></td>
-                        <td>{{customer.phone}}</td>
-                        <td *ngIf='customer.amount<0'>
-                            <p class="red">{{customer.amount}}</p>
-                        </td>
-                        <td *ngIf='customer.amount>=0'>
-                            <p class="green">{{customer.amount}}</p>
-                        </td>
-                        <td>{{customer.date | date:'medium' }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table id="tbl" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="name">
+                        <div class="input-group">
+                            <input matInput class="w-100 inp" id="name" type="text" placeholder="  Name Search"
+                                aria-label="Search" autofocus>
+                        </div>
+                    </th>
+                    <th class="phone">
+                        <div class="input-group">
+                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search"
+                                aria-label="Search">
+                        </div>
+                    </th>
+                    <th class="txn"><select id="txn" class="dropdown-toggle inp selectField btn w-100"
+                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <option value="" disabled selected>
+                                Select an Option
+                            </option>
+                            <option value="Credit">Credit</option>
+                            <option value="Due">Due</option>
+                        </select>
+                    </th>
+                    <th class="text-center">
+                        <button type="submit"
+                            class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
+                            (click)="onSubmit()">Search</button>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Amount Pending</th>
+                    <th>Transaction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="tbody" *ngFor='let customer of customers'>
+                    <td class="name"><a (click)="sendData(customer)" class="blue  "
+                            [routerLink]="['/credit']">{{customer.name}}</a></td>
+                    <td class="phone">{{customer.phone}}</td>
+                    <td class="txn" *ngIf='customer.amount<0'>
+                        <p class="red">{{customer.amount}}</p>
+                    </td>
+                    <td class="txn" *ngIf='customer.amount>=0'>
+                        <p class="green  ">{{customer.amount}}</p>
+                    </td>
+                    <td class=" ">{{customer.date | date:'medium' }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <br>
 </div>
