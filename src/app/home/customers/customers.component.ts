@@ -73,7 +73,7 @@ export class CustomersComponent implements OnInit {
         this.borrowerData = resp;
         let count = 0;
         this.borrowerData.map(borrower => {
-          if ((borrower.name == byName && borrower.lenderId == this.lenderId) || (borrower.phone.toString() == byPhone && borrower.lenderId == this.lenderId)) {
+          if ((borrower.name.toLowerCase() == byName.toLowerCase() && borrower.lenderId == this.lenderId) || (borrower.phone.toString() == byPhone && borrower.lenderId == this.lenderId)) {
             //Clear the list of customers first
             this.customers = [];
             //Backend api to get data using lenderId and borrowerId
