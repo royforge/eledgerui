@@ -3,8 +3,9 @@ import { EledgerUser } from './classes/EledgerUser';
 import { EledgerApi } from './classes/EledgerApi';
 import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { LoaderInterceptorService } from './services/loaderinterceptor.service';
 import { AddCreditComponent } from './add-credit/add-credit.component';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 import { InterceptorService } from './services/interceptor.service';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { InterceptorService } from './services/interceptor.service';
     EledgerLoginComponent,
     LoaderComponent,
     AddCreditComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { InterceptorService } from './services/interceptor.service';
     AppRoutingModule,
     FormsModule,
     HomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     EledgerApiService, EledgerApi, EledgerUser,

@@ -1,26 +1,73 @@
 <div class="container">
-    <div id="table-wrapper">
-        <div id="table-scroll">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Mobile Number</th>
-                        <th>Amount</th>
-                        <th>Transaction Type</th>
-                        <th>Transaction Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor='let customer of customers'>
-                        <td>{{customer.name}}</td>
-                        <td>{{customer.phone}}</td>
-                        <td>{{customer.amount}}</td>
-                        <td>{{customer.txnType}}</td>
-                        <td>{{customer.date | date:'medium' }}</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="row">
+        <div class="btn-left">
+            <button class="btn confirmBtn border border-dark nav-item nav-link-edit">Filters >></button>
         </div>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th width="15%"><input class="rounded w-100" type="text" id="name" name="name"
+                            placeholder="CustomerName" [(ngModel)]="customerName">
+                    </th>
+                    <th width="15%"><input class="rounded w-100" type="text" id="phone" name="phone"
+                            placeholder="Mobile Number" [(ngModel)]="customerPhone">
+                    </th>
+                    <th width="15%"></th>
+                    <th width="15%">
+                        <div class="dropdown">
+                            <select [(ngModel)]="txnType">
+                                <option value="none" selected disabled>
+                                    Select Txn Type
+                                </option>
+                                <option value="DEBIT">DEBIT</option>
+                                <option value="CREDIT">CREDIT</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th width="40%">
+                        <input type="date" id="startDate" name="startDate" value="2012-10-08" class="date"
+                            [(ngModel)]="startDate" />to<input type="date" id="endDate" name="endDate"
+                            value="2012-10-08" class="date" [(ngModel)]="endDate" />
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <div class="btn-right">
+            <button (click)='search()' type="submit"
+                class="btn confirmBtn border border-dark nav-item nav-link-edit">Go</button>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th width="15%">Name</th>
+                <th width="15%">Mobile Number</th>
+                <th width="15%">Amount</th>
+                <th width="15%">Transaction Type</th>
+                <th width="40%">Transaction Date</th>
+            </tr>
+        </thead>
+        <tbody *ngIf='isSearch==false'>
+            <tr *ngFor='let customer of customers | paginate: { itemsPerPage: 5, currentPage: p }'>
+                <td>{{customer.name}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.amount}}</td>
+                <td>{{customer.txnType}}</td>
+                <td>{{customer.date | date:'medium' }}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf='isSearch==true'>
+            <tr *ngFor='let customer of searchedCustomers'>
+                <td>{{customer.name}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.amount}}</td>
+                <td>{{customer.txnType}}</td>
+                <td>{{customer.date | date:'medium' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-12 text-center" style="color: #46afec;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>

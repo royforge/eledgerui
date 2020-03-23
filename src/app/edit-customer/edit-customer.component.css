@@ -1,0 +1,23 @@
+.logoColor {
+    height: 50px;
+    height: auto;
+}
+
+.logo {
+    height: 95%;
+    width: 65px;
+}
+
+.icon {
+    background-color: #46afec;
+    color: white;
+    font-size: 24px;
+}
+.icon2 {
+    color: #46afec;
+    font-size: 24px;
+}
+
+input{
+    border: 1px solid #46afec;
+}

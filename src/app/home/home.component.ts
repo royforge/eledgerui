@@ -22,9 +22,10 @@ export class HomeComponent implements OnInit {
   isOn = true;
   sessionModel = new SessionModel();
   isReports = false;
+  isBack = false;
 
   constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
-
+  
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.shopName = this.sessionModel.getSession(Keys.shopName);

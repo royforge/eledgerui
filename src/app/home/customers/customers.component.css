@@ -19,7 +19,7 @@ td, th {
 }
 
 #table-scroll {
-    height: 350px;
+    height: 370px;
     overflow: auto;
     margin-top: 20px;
 }
