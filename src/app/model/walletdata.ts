@@ -2,8 +2,8 @@ export class WalletData{
     walletId: string;
     lenderId:string;
     borrowId: string;
-    createdDate: Date;
-    updatedDate: Date;
+    createdDate: string;
+    updatedDate: string;
     txnType: string;
     comment: string;
     amount: number;

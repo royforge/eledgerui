@@ -1,9 +1,12 @@
+import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
 import { EledgerUser } from '../classes/EledgerUser';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
+import { Keys } from '../model/key';
+import { Key } from 'protractor';
 
 @Component({
   selector: 'app-add-credit',
@@ -35,17 +38,25 @@ export class AddCreditComponent implements OnInit {
   borrowerPhone: string
   balance: string
   amount: number
-
+  id: string
   selectTxn = false
   isNaN = false
+  sessionModel = new SessionModel();
 
   ngOnInit(): void {
-    //update the values from the selected customer session.
-    this.borrowerName = sessionStorage.getItem('name');
-    this.borrowerPhone = sessionStorage.getItem('phone');
-    this.borrowerId = sessionStorage.getItem('borrowerId');
-    this.walletId = sessionStorage.getItem('walletId');
-    this.balance = sessionStorage.getItem('amount');
+    this.borrowerName = this.sessionModel.getSession(Keys.name);
+    this.borrowerPhone = this.sessionModel.getSession(Keys.phone);
+    this.borrowerId = this.sessionModel.getSession(Keys.borrowerId);
+    this.walletId = this.sessionModel.getSession(Keys.walletId);
+    this.balance = this.sessionModel.getSession(Keys.amount);
+    this.id = this.sessionModel.getSession(Keys.id);
+
+
+    this.sessionModel.setSession(Keys.name, this.borrowerName);
+    this.sessionModel.setSession(Keys.phone, this.borrowerPhone);
+    this.sessionModel.setSession(Keys.borrowerId, this.borrowerId);
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.id, this.id);
   }
 
   // //click button to set TxnType = Credit

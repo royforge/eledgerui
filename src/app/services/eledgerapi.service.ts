@@ -21,4 +21,9 @@ export class EledgerApiService {
         return this.httpclient.post(url, any);
 
     }
+
+    putUser(url: string, any): Observable<any> {
+        return this.httpclient.put(url, any);
+
+    }
 }    

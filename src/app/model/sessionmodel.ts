@@ -27,6 +27,9 @@ export class SessionModel {
             case Keys.walletId:
                 sessionStorage.setItem(key, value);
                 break;
+            case Keys.id:
+                sessionStorage.setItem(key, value);
+                break;
         }
     }
 }

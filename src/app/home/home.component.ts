@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   isOn = true;
   sessionModel = new SessionModel();
   isReports = false;
+  isBack = false;
 
   constructor(private _location: Location, private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 

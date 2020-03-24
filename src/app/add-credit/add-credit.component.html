@@ -17,6 +17,13 @@
                     </h5>
                 </div>
             </div>
+            <div class="col-7">
+                <div style="position: absolute; right: 20px; width: 80px; text-align:center;">
+                    <a [routerLink]="['/editcustomer']" class="btn logoColor border-dark">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                </div>
+            </div>
             <br><br><br>
 
             <form [formGroup]='creditForm' (ngSubmit)="onSubmit()">
@@ -48,7 +55,8 @@
                         <div class="col-3">
                         </div>
                         <div class="col-2 text-right">
-                            <label for="name" class="d-inline label">Date :</label>
+                            <label for="name" class="d-inline label">Credit 
+                                type :</label>
                         </div>
                         <div class="col-3">
                             <select href="#" id="txnType" class="dropdown-toggle inp selectField btn w-100"
@@ -105,7 +113,13 @@
                     </div>
                     <br><br>
                     <div class="row">
-                        <div class="col-12 text-center">
+
+                        <div class="col-4 text-left">
+                            <button type="button" class="btn confirmBtn border-dark rounded"
+                                [routerLink]="['/home']">Back</button>
+                        </div>
+
+                        <div class="col-4 text-center">
                             <button id="save" type="submit" [disabled]="!creditForm.valid"
                                 class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
                             <div class="feedback" *ngIf="this.selectTxn">Select one transaction type

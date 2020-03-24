@@ -54,6 +54,7 @@ export class CustomersComponent implements OnInit {
                 this.customer.phone = borrower.phone;
                 this.customer.lenderId = borrower.lenderId;
                 this.customer.borrowerId = borrower.borrowId;
+                this.customer.id = borrower.id;
                 this.customers.push(this.customer);
               })
           }
@@ -88,6 +89,7 @@ export class CustomersComponent implements OnInit {
                 this.customer.phone = borrower.phone;
                 this.customer.lenderId = borrower.lenderId;
                 this.customer.borrowerId = borrower.borrowId;
+                this.customer.id = borrower.id;
 
                 this.customers.push(this.customer);
               })
@@ -107,6 +109,7 @@ export class CustomersComponent implements OnInit {
                   this.customer.phone = borrower.phone;
                   this.customer.lenderId = borrower.lenderId;
                   this.customer.borrowerId = borrower.borrowId;
+                  this.customer.id = borrower.id;
                   this.customers.push(this.customer);
                 }
               })
@@ -126,6 +129,7 @@ export class CustomersComponent implements OnInit {
                   this.customer.phone = borrower.phone;
                   this.customer.lenderId = borrower.lenderId;
                   this.customer.borrowerId = borrower.borrowId;
+                  this.customer.id = borrower.id;
                   this.customers.push(this.customer);
                 }
               })
@@ -136,6 +140,7 @@ export class CustomersComponent implements OnInit {
 
   //set data using session when click on name of the customer
   sendData(data: Customers) {
+    this.sessionModel.setSession(Keys.id, data.id);
     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
     this.sessionModel.setSession(Keys.name, data.name);
     this.sessionModel.setSession(Keys.phone, data.phone);

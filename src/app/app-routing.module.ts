@@ -1,3 +1,4 @@
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'myaccount', component: MyAccountComponent },
   { path: 'addcustomer', component: AddCustomerComponent },
   { path: 'credit', component: AddCreditComponent },
+  { path: 'editcustomer', component: EditCustomerComponent},
   { path: '**', component: EledgerLoginComponent }
 ];
 

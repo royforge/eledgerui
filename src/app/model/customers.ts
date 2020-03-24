@@ -1,8 +1,9 @@
 export class Customers{
+    id: string;
     name: string;
-    phone: number;
+    phone: string;
     amount: number;
-    date: Date;
+    date: string;
     walletId: string;
     lenderId: string;
     borrowerId: string;
