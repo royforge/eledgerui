@@ -29,7 +29,7 @@ export class ReportsComponent implements OnInit {
   startDate: string;
   endDate: string;
   isSearch = false;
-  p: number = 1;  
+  p: number = 1;
 
   constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
 
@@ -70,19 +70,28 @@ export class ReportsComponent implements OnInit {
 
   search() {
     this.searchedCustomers = [];
-    console.log(this.customerName);
-    console.log(this.customerPhone);
-    console.log(this.txnType);
-    console.log(this.startDate);
+    this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
 
     for (let customer of this.customers) {
-      if (this.customerName == customer.name || this.customerPhone == customer.phone || this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate)) {
+      if (this.customerName.toLowerCase() == customer.name.toLowerCase() || this.customerPhone == customer.phone || this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate)) {
         if (this.customerName == customer.name || (customer.date >= this.startDate && customer.date <= this.endDate)) {
           this.searchedCustomerData(customer);
         }
         else {
           this.searchedCustomerData(customer);
         }
+      }
+    }
+    this.isSearch = true;
+  }
+
+  searchByDate() {
+    this.searchedCustomers = [];
+    this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
+
+    for (let customer of this.customers) {
+      if (customer.date >= this.startDate && customer.date <= this.endDate) {
+        this.searchedCustomerData(customer);
       }
     }
     this.isSearch = true;
@@ -97,4 +106,5 @@ export class ReportsComponent implements OnInit {
     this.customer.date = customer.date;
     this.searchedCustomers.push(this.customer);
   }
+
 }

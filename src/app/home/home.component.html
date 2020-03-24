@@ -1,15 +1,19 @@
 <div class="container">
-    <div style="height: 70px;"></div>
+    <div *ngIf="isBack == false" style="height: 70px;"></div>
+    <div *ngIf="isBack == true" style="height: 40px;"></div>
+    <div (click)='isOn=true; isReports=false; isBack=false;' *ngIf="isBack == true" class="col-4 text-left">
+        <button type="button" class="btn confirmBtn border-dark rounded" [routerLink]="['/home']"> <<Back </button>
+    </div>
     <div class=" row">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
             <div class="row">
                 <div class="col-sm-1 hand">
-                    <img (click)='isOn=true; isReports=false' [src]="LOGO1" />
+                    <img (click)="isOn=true; isReports=false; isBack = false " [src]="LOGO1" />
                 </div>
 
                 <div class="col-8 text-center mt-2 rounded-circle hand">
-                    <h5 class="logoColor border border-dark rounded p-2" (click)='isOn=true; isReports=false'>
+                    <h5 class="logoColor border border-dark rounded p-2" (click)='isOn=true; isBack = false;  isReports=false'>
                         {{shopName}}</h5>
                 </div>
             </div>
@@ -34,18 +38,7 @@
     <app-customers *ngIf="isOn == false"></app-customers>
     <app-homepage *ngIf="isOn == true"></app-homepage>
     <div class="row">
-        <div (click)='isOn=true; isReports=false; isBack=false;' *ngIf="isBack == true" class="col-4 text-left">
-            <button type="button" class="btn confirmBtn border-dark rounded" [routerLink]="['/home']">Back</button>
-        </div>
-
-        <div *ngIf="isBack == true" class="col-4 text-center"><button type="button"
-                class="btn confirmBtn border-dark rounded p-2" [routerLink]="['/addcustomer']"><i
-                    class='fa fa-plus'></i>
-                <strong> Add New Customer </strong></button>
-        </div>
-    </div>
-
-    <div *ngIf="isBack == false" class="col-sm text-center"><button type="button"
+    <div class="col-sm text-center"><button type="button"
             class="btn confirmBtn border-dark rounded p-2" [routerLink]="['/addcustomer']"><i class='fa fa-plus'></i>
             <strong> Add New Customer </strong></button>
     </div>

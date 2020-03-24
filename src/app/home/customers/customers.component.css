@@ -10,12 +10,6 @@ tr:nth-child(even) {
 	background-color: #f0ebeb;
 }
 
-.inp {
-	height: 35px;
-	border: 1px solid #46afec;
-	border-radius: 10px;
-	background-color: #f1faff;
-}
 
 btn {
 	height: 30px;

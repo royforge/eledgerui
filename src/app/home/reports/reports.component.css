@@ -1,31 +1,43 @@
 tr:nth-child(even) {
-    background-color: #f0ebeb;
+	background-color: #f0ebeb;
 }
 
-.btn-right {
-    position: absolute;
-    right: 15px;
-    margin-right: 60px;
-    margin-top: 5px;
+btn {
+	height: 30px;
 }
 
-.btn-left {
-    position: absolute;
-    left: 5px;
-    margin-left: 20px;
-    margin-top: 5px;
+td, th {
+	padding: 4px;
 }
 
-select {
-    width: 140px;
-    height: 28px;
-    border: 1px solid #46afec;
+input[type="text"] {
+	transition: background-color 0.1s;
+	font-size: 17px;
+	background-color: #f1faff;
+	font-weight: 100;
+	letter-spacing: 0.01em;
+	box-shadow: none;
 }
 
-input {
-    border: 1px solid #46afec;
+input:focus {
+	outline: none;
+	background-color: white;
+	box-shadow: 1px 1px 2px 3px #8ec7e9;
 }
 
 table {
-    padding: 0%;
+	max-width: 1000px;
+	table-layout: fixed;
+	margin: auto;
+}
+
+.btn-right {
+	position: absolute;
+	right: 15px;
+	margin-right: 60px;
+	margin-top: 5px;
+}
+
+.centered{ 
+    top: calc(35%);
 }

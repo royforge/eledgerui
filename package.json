@@ -25,6 +25,8 @@
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
+    "@vaadin/vaadin": "^15.0.2",
+    "@vaadin/vaadin-date-picker": "^4.0.8",
     "bootstrap": "^4.4.1",
     "gijgo-angular-wrappers": "^1.9.13",
     "jquery": "^3.4.1",
@@ -50,6 +52,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "concurrently": "^5.1.0",
+    "html-webpack-plugin": "^4.0.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.3.0",
@@ -60,6 +63,9 @@
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }

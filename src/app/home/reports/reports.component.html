@@ -1,73 +1,101 @@
 <div class="container">
     <div class="row">
-        <div class="btn-left">
-            <button class="btn confirmBtn border border-dark nav-item nav-link-edit">Filters >></button>
-        </div>
-        <table class="table table-borderless">
+        <table id="tbl" class="table table-bordered">
             <thead>
                 <tr>
-                    <th width="15%"><input class="rounded w-100" type="text" id="name" name="name"
-                            placeholder="CustomerName" [(ngModel)]="customerName">
-                    </th>
-                    <th width="15%"><input class="rounded w-100" type="text" id="phone" name="phone"
-                            placeholder="Mobile Number" [(ngModel)]="customerPhone">
-                    </th>
-                    <th width="15%"></th>
-                    <th width="15%">
-                        <div class="dropdown">
-                            <select [(ngModel)]="txnType">
-                                <option value="none" selected disabled>
-                                    Select Txn Type
-                                </option>
-                                <option value="DEBIT">DEBIT</option>
-                                <option value="CREDIT">CREDIT</option>
-                            </select>
+                    <th>
+                        <div class="input-group">
+                            <input matInput class="w-100 inp" id="name" type="text" placeholder="  Name Search"
+                                [(ngModel)]="customerName" aria-label="Search" autofocus>
                         </div>
                     </th>
-                    <th width="40%">
-                        <input type="date" id="startDate" name="startDate" value="2012-10-08" class="date"
-                            [(ngModel)]="startDate" />to<input type="date" id="endDate" name="endDate"
-                            value="2012-10-08" class="date" [(ngModel)]="endDate" />
+                    <th>
+                        <div class="input-group">
+                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search"
+                                [(ngModel)]="customerPhone" aria-label="Search" autofocus>
+                        </div>
+                    </th>
+                    <th width="15%"></th>
+                    <th><select id="txnType" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <option value="" selected>
+                                Select an Option
+                            </option>
+                            <option value="CREDIT">Credit</option>
+                            <option value="DEBIT">Debit </option>
+                        </select>
+                    </th>
+                    <th width="30%" class="text-center">
+                        <button type="submit"
+                            class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
+                            data-toggle="modal" data-target="#logoutModal">Select
+                            Date</button>
                     </th>
                 </tr>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Amount</th>
+                    <th>Transaction Type</th>
+                    <th>Transaction Date</th>
+                </tr>
             </thead>
+            <tbody *ngIf='isSearch==false'>
+                <tr *ngFor='let customer of customers | paginate: { itemsPerPage: 8, currentPage: p }'>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.amount}}</td>
+                    <td>{{customer.txnType}}</td>
+                    <td>{{customer.date | date:'medium' }}</td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='isSearch==true'>
+                <tr *ngFor='let customer of searchedCustomers | paginate: { itemsPerPage: 8, currentPage: p }'>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.amount}}</td>
+                    <td>{{customer.txnType}}</td>
+                    <td>{{customer.date | date:'medium' }}</td>
+                </tr>
+            </tbody>
         </table>
         <div class="btn-right">
             <button (click)='search()' type="submit"
-                class="btn confirmBtn border border-dark nav-item nav-link-edit">Go</button>
+                class="btn confirmBtn border border-dark nav-item nav-link-edit">Search</button>
         </div>
     </div>
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th width="15%">Name</th>
-                <th width="15%">Mobile Number</th>
-                <th width="15%">Amount</th>
-                <th width="15%">Transaction Type</th>
-                <th width="40%">Transaction Date</th>
-            </tr>
-        </thead>
-        <tbody *ngIf='isSearch==false'>
-            <tr *ngFor='let customer of customers | paginate: { itemsPerPage: 5, currentPage: p }'>
-                <td>{{customer.name}}</td>
-                <td>{{customer.phone}}</td>
-                <td>{{customer.amount}}</td>
-                <td>{{customer.txnType}}</td>
-                <td>{{customer.date | date:'medium' }}</td>
-            </tr>
-        </tbody>
-        <tbody *ngIf='isSearch==true'>
-            <tr *ngFor='let customer of searchedCustomers'>
-                <td>{{customer.name}}</td>
-                <td>{{customer.phone}}</td>
-                <td>{{customer.amount}}</td>
-                <td>{{customer.txnType}}</td>
-                <td>{{customer.date | date:'medium' }}</td>
-            </tr>
-        </tbody>
-    </table>
     <div class="col-12 text-center" style="color: #46afec;">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+    <div class="modal centered" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm-12">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="text-center"><strong>Select Start Date and End Date</strong><br /></p>
+                    <div class="actionsBtns text-center">
+                        <div class="col-12 text-center">
+                            <input type="date" id="startDate" name="startDate" value="2012-10-08" class="date inp"
+                                [(ngModel)]="startDate" aria-label="Search" autofocus /> to <input type="date"
+                                id="endDate" name="endDate" value="2012-10-08" class="date inp" [(ngModel)]="endDate"
+                                aria-label="Search" autofocus />
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-square confirmBtn border border-dark rounded p-2    "
+                                    data-dismiss="modal"> Cancel </button>
+                            </div>
+                            <div class="col-6 text-center">
+                                <input (click)='searchByDate()' type="submit"
+                                    class="btn btn-square confirmBtn border border-dark rounded p-2"
+                                    data-dismiss="modal" value="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
