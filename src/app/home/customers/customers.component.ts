@@ -8,7 +8,6 @@ import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Keys } from 'src/app/model/key';
 import { AlertService } from 'src/app/services/alert.service'
-import { from } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { UserData } from 'src/app/model/UserData';
 @Component({
@@ -26,6 +25,7 @@ export class CustomersComponent implements OnInit {
   public customer = new Customers();
   sessionModel = new SessionModel();
 
+  goBack(){};
 
   constructor(private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
 
