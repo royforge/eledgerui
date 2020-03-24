@@ -19,9 +19,18 @@ export class ReportsComponent implements OnInit {
   lenderId: string;
   transactions: Transaction[];
   customers: Customers[] = [];
+  searchedCustomers: Customers[];
   customer = new Customers();
   borrowerData: BorrowerData[];
   sessionModel = new SessionModel();
+  customerName: string;
+  customerPhone: string;
+  txnType: string;
+  startDate: string;
+  endDate: string;
+  isSearch = false;
+  p: number = 1;
+
   constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
 
   ngOnInit(): void {
@@ -32,25 +41,70 @@ export class ReportsComponent implements OnInit {
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
         this.transactions = respTrans["data"];
-        this.transactions.map(transaction => {
+      })
 
-          //Mock api to get data from borrorer
-          this._eledgerUser.getBorrowers().subscribe(
-            respCustomer => {
-              this.borrowerData = respCustomer;
-              this.customer = new Customers();
-              for (let borrower of this.borrowerData) {
-                if (transaction.borrowerId == borrower.borrowId) {
-                  this.customer.name = borrower.name;
-                  this.customer.phone = borrower.phone;
-                }
-              }
-              this.customer.amount = transaction.amount;
-              this.customer.txnType = transaction.txnType;
-              this.customer.date = transaction.date;
-              this.customers.push(this.customer);
-            })
+    //Mock api to get data from borrorer
+    this._eledgerUser.getBorrowers().subscribe(
+      respCustomer => {
+        this.borrowerData = respCustomer;
+
+        this.transactions.map(transaction => {
+          this.customerData(transaction);
         })
       })
   }
+
+  customerData(transaction: Transaction) {
+    this.customer = new Customers();
+    for (let borrower of this.borrowerData) {
+      if (transaction.borrowerId == borrower.borrowId) {
+        this.customer.name = borrower.name;
+        this.customer.phone = borrower.phone;
+      }
+    }
+    this.customer.amount = transaction.amount;
+    this.customer.txnType = transaction.txnType;
+    this.customer.date = transaction.date;
+    this.customers.push(this.customer);
+  }
+
+  search() {
+    this.searchedCustomers = [];
+    this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
+
+    for (let customer of this.customers) {
+      if (this.customerName.toLowerCase() == customer.name.toLowerCase() || this.customerPhone == customer.phone || this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate)) {
+        if (this.customerName == customer.name || (customer.date >= this.startDate && customer.date <= this.endDate)) {
+          this.searchedCustomerData(customer);
+        }
+        else {
+          this.searchedCustomerData(customer);
+        }
+      }
+    }
+    this.isSearch = true;
+  }
+
+  searchByDate() {
+    this.searchedCustomers = [];
+    this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
+
+    for (let customer of this.customers) {
+      if (customer.date >= this.startDate && customer.date <= this.endDate) {
+        this.searchedCustomerData(customer);
+      }
+    }
+    this.isSearch = true;
+  }
+
+  searchedCustomerData(customer: Customers) {
+    this.customer = new Customers();
+    this.customer.name = customer.name;
+    this.customer.phone = customer.phone;
+    this.customer.amount = customer.amount;
+    this.customer.txnType = customer.txnType;
+    this.customer.date = customer.date;
+    this.searchedCustomers.push(this.customer);
+  }
+
 }

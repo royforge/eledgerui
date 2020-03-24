@@ -27,6 +27,7 @@ export class AddCustomerComponent implements OnInit {
     balance: undefined
   };
   borrower: BorrowerData = {
+    id: undefined,
     name: undefined,
     borrowId: undefined,
     lenderId: undefined,
@@ -72,7 +73,7 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.borrowId = resp.data.borrowId;
       this.borrower.name = this.borrowerName
       this.borrower.lenderId = this.wallet.lenderId
-      this.borrower.phone = this.mobile
+      this.borrower.phone = this.mobile.toString()
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
