@@ -23,12 +23,13 @@ export class ReportsComponent implements OnInit {
   customer = new Customers();
   borrowerData: BorrowerData[];
   sessionModel = new SessionModel();
-  customerName: string;
-  customerPhone: string;
-  txnType: string;
-  startDate: string;
-  endDate: string;
+  customerName: string = "";
+  customerPhone: string = "";
+  txnType: string = "";
+  startDate: string = "";
+  endDate: string = "";
   isSearch = false;
+  isReset = false;
   p: number = 1;
 
   constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
@@ -36,6 +37,11 @@ export class ReportsComponent implements OnInit {
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = TRANSACTION + "/lenderId/" + this.lenderId;
+    this.getListAtStart();
+  }
+
+  getListAtStart() {
+    this.customers = [];
 
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
@@ -52,6 +58,7 @@ export class ReportsComponent implements OnInit {
           this.customerData(transaction);
         })
       })
+    this.isReset = false;
   }
 
   customerData(transaction: Transaction) {
@@ -73,24 +80,25 @@ export class ReportsComponent implements OnInit {
     this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
 
     for (let customer of this.customers) {
-      if (this.customerName.toLowerCase() == customer.name.toLowerCase() || this.customerPhone == customer.phone || this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate)) {
-        if (this.customerName == customer.name || (customer.date >= this.startDate && customer.date <= this.endDate)) {
-          this.searchedCustomerData(customer);
-        }
-        else {
-          this.searchedCustomerData(customer);
-        }
+      if (customer.name.toLowerCase() == this.customerName.toLowerCase() && (this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate))) {
+        this.searchedCustomerData(customer);
       }
-    }
-    this.isSearch = true;
-  }
-
-  searchByDate() {
-    this.searchedCustomers = [];
-    this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
-
-    for (let customer of this.customers) {
-      if (customer.date >= this.startDate && customer.date <= this.endDate) {
+      else if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate))) {
+        this.searchedCustomerData(customer);
+      }
+      else if (customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) {
+        this.searchedCustomerData(customer);
+      }
+      else if (customer.name.toLowerCase() == this.customerName.toLowerCase()) {
+        this.searchedCustomerData(customer);
+      }
+      else if (this.customerPhone == customer.phone) {
+        this.searchedCustomerData(customer);
+      }
+      else if (this.txnType == customer.txnType) {
+        this.searchedCustomerData(customer);
+      }
+      else if (customer.date >= this.startDate && customer.date <= this.endDate) {
         this.searchedCustomerData(customer);
       }
     }

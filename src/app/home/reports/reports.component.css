@@ -33,11 +33,27 @@ table {
 
 .btn-right {
 	position: absolute;
-	right: 15px;
-	margin-right: 60px;
+	right: 20px;
+	margin-right: 90px;
 	margin-top: 5px;
 }
 
+.btn-reset {
+	position: absolute;
+	right: 15px;
+	margin-right: 95px;
+	margin-top: 50px;
+	float: left;
+	color: #46afec;
+	cursor: pointer;
+}
+
 .centered{ 
-    top: calc(35%);
+    top: calc(30%);
+}
+
+.cancel-icon{
+	float:right; 
+	size: 10px;
+    cursor:pointer;
 }

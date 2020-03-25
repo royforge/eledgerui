@@ -36,7 +36,7 @@ input:focus {
 }
 
 table {
-	max-width: 980px;
+	max-width: 1000px;
 	table-layout: fixed;
 	margin: auto;
 }
