@@ -10,7 +10,7 @@ td, th {
 	padding: 4px;
 }
 
-input[type="text"] {
+input {
 	transition: background-color 0.1s;
 	font-size: 17px;
 	background-color: #f1faff;
@@ -55,5 +55,8 @@ table {
 .cancel-icon{
 	float:right; 
 	size: 10px;
-    cursor:pointer;
+	cursor:pointer;
+	margin-top: 0px;
 }
+
+

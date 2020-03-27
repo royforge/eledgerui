@@ -12,6 +12,7 @@
       "name": "Sahil",
       "shopName": "Sahil enterprises",
       "phone": "7976347047",
+      "email": "arpitgoyal437@gmail.com",
       "lenderId": "m1",
       "password": "@Sahil123",
       "id": 2
@@ -23,6 +24,60 @@
       "lenderId": "m3",
       "password": "@Shashank123",
       "id": 3
+    },
+    {
+      "name": "Arjun",
+      "lenderId": "Arj9787873343",
+      "phone": 9787873343,
+      "email": "arjun437@gmail.com",
+      "shopName": "Arpit Selection",
+      "password": "@Aj123",
+      "id": 4
+    },
+    {
+      "name": "",
+      "lenderId": "",
+      "phone": "",
+      "email": "",
+      "shopName": "",
+      "password": "",
+      "id": 5
+    },
+    {
+      "name": "Mahek",
+      "lenderId": "Mah9967368763",
+      "phone": 9967368763,
+      "email": "mahek@gmail.com",
+      "shopName": "Protien+ Supplements",
+      "password": "@Arpit123",
+      "id": 6
+    },
+    {
+      "name": "Sahil",
+      "lenderId": "Sah9414345028",
+      "phone": 9414345028,
+      "email": "sahil@gmail.com",
+      "shopName": "Protien+ Supplements",
+      "password": "@Arpit123",
+      "id": 7
+    },
+    {
+      "name": "Arpit Goyal",
+      "lenderId": "Arp9768767867",
+      "phone": 9768767867,
+      "email": "ghjfuhjv@gmail.com",
+      "shopName": "Arpit Selection",
+      "password": "@Arpit123",
+      "id": 8
+    },
+    {
+      "name": "Arpit Goyal",
+      "lenderId": "Arp9749563273",
+      "phone": 9749563273,
+      "email": "453454@gmail.com",
+      "shopName": "wew",
+      "password": "@Arpit123",
+      "id": 9
     }
   ]
 }
