@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { NgModule } from '@angular/core';
@@ -8,13 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { AddCreditComponent } from './add-credit/add-credit.component';
 
 const routes: Routes = [
+  { path: 'sign-up', component: SignupComponent },
   { path: 'login', component: EledgerLoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'myaccount', component: MyAccountComponent },
   { path: 'addcustomer', component: AddCustomerComponent },
   { path: 'credit', component: AddCreditComponent },
   { path: 'editcustomer', component: EditCustomerComponent},
-  { path: '**', component: EledgerLoginComponent }
+  { path: '**', component: SignupComponent }
 ];
 
 @NgModule({

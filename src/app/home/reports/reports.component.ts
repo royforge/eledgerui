@@ -79,27 +79,29 @@ export class ReportsComponent implements OnInit {
     this.searchedCustomers = [];
     this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
 
-    for (let customer of this.customers) {
-      if (customer.name.toLowerCase() == this.customerName.toLowerCase() && (this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate))) {
-        this.searchedCustomerData(customer);
+    if (this.txnType != undefined && this.customerName != undefined && this.customerPhone == undefined && this.startDate == undefined && this.endDate == undefined) {
+      for (let customer of this.customers) {
+        if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate))) {
+          this.searchedCustomerData(customer);
+        }
       }
-      else if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate))) {
-        this.searchedCustomerData(customer);
-      }
-      else if (customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) {
-        this.searchedCustomerData(customer);
-      }
-      else if (customer.name.toLowerCase() == this.customerName.toLowerCase()) {
-        this.searchedCustomerData(customer);
-      }
-      else if (this.customerPhone == customer.phone) {
-        this.searchedCustomerData(customer);
-      }
-      else if (this.txnType == customer.txnType) {
-        this.searchedCustomerData(customer);
-      }
-      else if (customer.date >= this.startDate && customer.date <= this.endDate) {
-        this.searchedCustomerData(customer);
+    } else {
+      for (let customer of this.customers) {
+        if (customer.name.toLowerCase() == this.customerName.toLowerCase()) {
+          this.searchedCustomerData(customer);
+        }
+        else if (this.customerPhone == customer.phone) {
+          this.searchedCustomerData(customer);
+        }
+        else if (this.txnType == customer.txnType) {
+          this.searchedCustomerData(customer);
+        }
+        else if (customer.date >= this.startDate && customer.date <= this.endDate) {
+          this.searchedCustomerData(customer);
+        }
+        else if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == customer.txnType || (customer.date >= this.startDate && customer.date <= this.endDate))) {
+          this.searchedCustomerData(customer);
+        }
       }
     }
     this.isSearch = true;
