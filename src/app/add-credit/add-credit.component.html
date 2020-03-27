@@ -93,22 +93,14 @@
                         </div>
                     </div>
                     <br><br>
-                    <div class="row">
-
-                        <div class="col-4 text-left">
-                            <button type="button" class="btn confirmBtn border-dark rounded"
-                                [routerLink]="['/home']">Back</button>
+                    <div class="col-12 text-center">
+                        <button id="save" type="submit" [disabled]="!creditForm.valid"
+                            class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                        <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
                         </div>
-
-                        <div class="col-4 text-center">
-                            <button id="save" type="submit" [disabled]="!creditForm.valid"
-                                class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
-                            <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
-                            </div>
-                            <div class="feedback" *ngIf="this.isNaN">Enter amount
-                            </div>
-                            <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
-                            </div>
+                        <div class="feedback" *ngIf="this.isNaN">Enter amount
+                        </div>
+                        <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
                         </div>
                     </div>
                 </div>

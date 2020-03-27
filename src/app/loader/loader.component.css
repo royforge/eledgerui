@@ -25,7 +25,7 @@
     width: 200px;
     height: 4px;
     background-color: #46afec;
-    animation: loading 2s linear infinite;
+    animation: loading 2s linear 2;
 }
 
 @keyframes loading {

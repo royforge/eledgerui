@@ -21,6 +21,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { InterceptorService } from './services/interceptor.service';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoaderComponent } from './loader/loader.component';
     LoaderComponent,
     AddCreditComponent,
     EditCustomerComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
