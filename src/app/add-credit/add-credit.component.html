@@ -9,12 +9,21 @@
                 <div class="col-2">
                     <img class="logo" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                 </div>
-                <div class="col-8 text-center rounded-circle">
-                    <h5 class="logoColor border border-dark rounded p-2">
-                        {{borrowerName}}<br>
-                        <i class="material-icons icon">phone</i> {{borrowerPhone}} <br>
-                        <i class='fas fa-rupee-sign icon'></i> {{balance}}
-                    </h5>
+                <div class="col-8 row logoColor border border-dark rounded mb-2">
+                    <div class="col-3 text-right">
+                        <h5 class="p-1 pt-2">
+                            <i class='fa fa-user mt-1 mr-1' style="font-size: 21px;"></i>
+                            {{borrowerName}}
+                        </h5>
+                    </div>
+                    <div class="col-8 text-right">
+                        <h5 class="">
+                            <span> <i class="material-icons icon mt-1">phone</i> {{borrowerPhone}} <br>
+                                <i class='fas fa-rupee-sign icon'></i> {{balance}}</span>
+                        </h5>
+                    </div>
+
+
                 </div>
             </div>
             <div class="col-7">
@@ -27,36 +36,14 @@
             <br><br><br>
 
             <form [formGroup]='creditForm' (ngSubmit)="onSubmit()">
-                <!-- <div class="row">
-                    <div class="col-1"></div>
-
-                    <div class="col-4 text-center">
-                        <button type="button" id="Debit" value="DEBIT" (click)="giveCredit($event)"
-                            class="btn btn-danger rounded creditType p-2">
-                            Credit Given
-                        </button>
-                        <div class="feedback" *ngIf="this.selectTxn">Select for Money Given
-                        </div>
-                    </div>
-                    <div class="col-2"></div>
-
-                    <div class="col-4 text-center rounded-circle">
-                        <button type="button" id="Credit" value="CREDIT" (click)="takeCash($event)"
-                            class="btn btn-success rounded creditType p-2">
-                            Cash Received
-                        </button>
-                        <div class="feedback" *ngIf="this.selectTxn">Select for Money Received
-                        </div>
-                    </div>
-
-                </div> -->
-                <div id="block" style="margin-left: 10%; margin-right: 10%;">
+                <div style="margin-left: 10%; margin-right: 10%;">
                     <div class="row">
                         <div class="col-3">
                         </div>
                         <div class="col-2 text-right">
-                            <label for="name" class="d-inline label">Credit 
-                                type :</label>
+                            <label for="name" class="d-inline label">Credit
+                                type <p class="mandatory d-inline"> *</p>
+                                :</label>
                         </div>
                         <div class="col-3">
                             <select href="#" id="txnType" class="dropdown-toggle inp selectField btn w-100"
@@ -86,8 +73,9 @@
                         <div class="col-3">
                         </div>
                         <div class="col-2 text-right">
-                            <label for="amount" class="d-inline label"> Amount :</label>
-                            <p class="mandatory d-inline">*</p>
+                            <label for="amount" class="d-inline label"> Amount <p class="mandatory d-inline">*</p>
+                                :</label>
+
                         </div>
                         <div class="col-3">
                             <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100"
@@ -96,7 +84,8 @@
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
                             <div class="feedback" *ngIf="isValid('amount')">
-                                <span *ngIf="creditForm.controls.name.errors.required">Enter some money value!</span>
+                                <span *ngIf="creditForm.controls.name.errors.required">Enter some money
+                                    value!</span>
                             </div>
                         </div>
                     </div>
@@ -115,8 +104,8 @@
                     <div class="row">
 
                         <div class="col-4 text-left">
-                            <button type="button" class="btn confirmBtn border-dark rounded"
-                                [routerLink]="['/home']">Back</button>
+                            <a class="link"
+                                [routerLink]="['/home/customers']">Back</a>
                         </div>
 
                         <div class="col-4 text-center">
@@ -126,7 +115,8 @@
                             </div>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
-                            <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
+                            <div class="feedback" *ngIf="isValid('amount')">Input all required values before
+                                submitting
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ import { EledgerUser } from 'src/app/classes/EledgerUser';
 import { EledgerApi } from 'src/app/classes/EledgerApi';
 import { Keys } from 'src/app/model/key';
 import { BorrowerData } from 'src/app/model/borrowerData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reports',
@@ -32,7 +33,7 @@ export class ReportsComponent implements OnInit {
   isReset = false;
   p: number = 1;
 
-  constructor(private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
+  constructor(public router: Router, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
 
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
@@ -47,7 +48,7 @@ export class ReportsComponent implements OnInit {
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
         this.transactions = respTrans["data"];
-      })
+      
 
     //Mock api to get data from borrorer
     this._eledgerUser.getBorrowers().subscribe(
@@ -58,6 +59,7 @@ export class ReportsComponent implements OnInit {
           this.customerData(transaction);
         })
       })
+    })
     this.isReset = false;
   }
 

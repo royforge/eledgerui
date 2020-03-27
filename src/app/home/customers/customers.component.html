@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div *ngIf="router.url === '/home/customers'" class="container mt-3">
     <div id="table-wrapper">
         <table id="tbl" class="table table-bordered">
             <thead>
@@ -32,26 +32,43 @@
                 </tr>
 
                 <tr>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                    <th>Amount Pending</th>
-                    <th>Transaction Date</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Mobile Number</th>
+                    <th class="text-center">Amount Pending</th>
+                    <th class="text-center">Transaction Date</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr id="tbody" *ngFor='let customer of customers'>
-                    <td class="name"><a (click)="sendData(customer)" class="blue  "
+            <tbody  *ngIf='isSearch==false'>
+                <tr id="tbody" *ngFor='let customer of customers | paginate: { itemsPerPage: 7, currentPage: p }'>
+                    <td class="text-center name"><a (click)="sendData(customer)" class="blue  "
                             [routerLink]="['/credit']">{{customer.name}}</a></td>
-                    <td class="phone">{{customer.phone}}</td>
-                    <td class="txn" *ngIf='customer.amount<0'>
+                    <td class="text-center phone">{{customer.phone}}</td>
+                    <td class="text-center txn" *ngIf='customer.amount<0'>
                         <p class="red">{{customer.amount}}</p>
                     </td>
-                    <td class="txn" *ngIf='customer.amount>=0'>
+                    <td class="text-center txn" *ngIf='customer.amount>=0'>
                         <p class="green  ">{{customer.amount}}</p>
                     </td>
-                    <td class=" ">{{customer.date | date:'medium' }}</td>
+                    <td class="text-center">{{customer.date | date:'medium' }}</td>
+                </tr>
+            </tbody>
+            <tbody  *ngIf='isSearch==true'>
+                <tr id="tbody" *ngFor='let customer of customers | paginate: { itemsPerPage: 7, currentPage: p }'>
+                    <td class="text-center name"><a (click)="sendData(customer)" class="blue  "
+                            [routerLink]="['/credit']">{{customer.name}}</a></td>
+                    <td class="text-center phone">{{customer.phone}}</td>
+                    <td class="text-center txn" *ngIf='customer.amount<0'>
+                        <p class="red">{{customer.amount}}</p>
+                    </td>
+                    <td class="text-center txn" *ngIf='customer.amount>=0'>
+                        <p class="green  ">{{customer.amount}}</p>
+                    </td>
+                    <td class="text-center">{{customer.date | date:'medium' }}</td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="col-12 text-center" style="color: #46afec;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>

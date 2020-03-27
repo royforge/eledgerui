@@ -1,11 +1,15 @@
 .logo {
-    height: 95%;
-    width: 90px;
+    height: 98%;
+    width: 88px;
 }
 
 .creditType {
     width: 120px;
     font-size: 20px;
+}
+
+.link {
+    color: #46afec;
 }
 
 input{
@@ -14,17 +18,6 @@ input{
 
 .icon {
     font-size: 20px;
-}
-
-.highlight {
-    border-radius: 50px;
-    padding: 10px 15px;
-    width: 140px;
-    font-size: 25px;
-border: 1px solid gray;
-    box-shadow: 0 5px #718788;
-    transform: translateY(4px);
-
 }
 
 .invalid {

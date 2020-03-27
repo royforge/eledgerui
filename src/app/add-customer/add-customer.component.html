@@ -3,7 +3,11 @@
     <div style="height: 150px;"></div>
 
     <div class=" row">
-        <div class="col-sm-2"></div>
+        <div class="col-sm-2 text-center">
+            <button type="button" class="btn btn-size confirmBtn border-dark rounded" (click)="goBack()">
+                <strong>
+                    < Back</strong></button>
+        </div>
         <div class="col-sm-8">
             <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
 
@@ -30,8 +34,8 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}" formControlName="name"
-                            type="text" id="name" placeholder="Name" required>
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}"
+                            formControlName="name" type="text" id="name" placeholder="Name" required>
                         <div class="feedback" *ngIf="isValid('name')">
                             <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
                         </div>

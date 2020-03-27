@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="router.url === '/home'"  class="container">
     <br>
     <div *ngIf="newBalance>=0" class="id1">
         <p class="green">Balance: {{newBalance}}</p>

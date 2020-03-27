@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EledgerApi } from 'src/app/classes/EledgerApi';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
@@ -19,7 +19,7 @@ export class HomepageComponent implements OnInit {
   lenderId: string;
   url: string;
   sessionModel = new SessionModel();
-  constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
+  constructor(public router: Router, private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);

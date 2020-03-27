@@ -20,10 +20,7 @@ export class HomeComponent implements OnInit {
   walletData: WalletData[];
   lenderId: string;
   shopName: string;
-  isOn = true;
   sessionModel = new SessionModel();
-  isReports = false;
-  isBack = false;
 
   constructor(private _location: Location, private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 

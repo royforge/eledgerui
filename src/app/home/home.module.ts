@@ -25,6 +25,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     Ng2SearchPipeModule,
     NgxPaginationModule
   ],
+  exports: [
+    HomeComponent
+  ],
   providers: []
 })
 export class HomeModule { }
