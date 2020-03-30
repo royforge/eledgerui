@@ -48,18 +48,18 @@ export class ReportsComponent implements OnInit {
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
         this.transactions = respTrans["data"];
-      
 
-    //Mock api to get data from borrorer
-    this._eledgerUser.getBorrowers().subscribe(
-      respCustomer => {
-        this.borrowerData = respCustomer;
 
-        this.transactions.map(transaction => {
-          this.customerData(transaction);
-        })
+        //Mock api to get data from borrorer
+        this._eledgerUser.getBorrowers().subscribe(
+          respCustomer => {
+            this.borrowerData = respCustomer;
+
+            this.transactions.map(transaction => {
+              this.customerData(transaction);
+            })
+          })
       })
-    })
     this.isReset = false;
   }
 

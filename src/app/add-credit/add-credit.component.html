@@ -9,17 +9,23 @@
                 <div class="col-2">
                     <img class="logo" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                 </div>
-                <div class="col-8 row logoColor border border-dark rounded mb-2">
-                    <div class="col-3 text-right">
-                        <h5 class="p-1 pt-2">
-                            <i class='fa fa-user mt-1 mr-1' style="font-size: 21px;"></i>
-                            {{borrowerName}}
+                <div class="col-9 row logoColor border border-dark rounded">
+                    <div class="col-4 text-center">
+                        <h5 class="p-1 pt-3">
+                            <i class='fa fa-user mt-1 mr-1 val'></i>
+                            <span class="val"> {{borrowerName}}</span>
                         </h5>
                     </div>
-                    <div class="col-8 text-right">
+                    <div class="col-4 text-right mt-2">
                         <h5 class="">
-                            <span> <i class="material-icons icon mt-1">phone</i> {{borrowerPhone}} <br>
-                                <i class='fas fa-rupee-sign icon'></i> {{balance}}</span>
+                            <span class="val"> <i class="material-icons icon">phone</i><br>
+                                <i class='fas fa-rupee-sign icon'></i> </span>
+                        </h5>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <h5>
+                            <span class="val"> {{borrowerPhone}} <br>
+                                {{balance}}</span>
                         </h5>
                     </div>
 

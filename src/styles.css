@@ -24,6 +24,7 @@
 
 input {
     font-family: Arial, Helvetica, sans-serif; 
+    color: rgb(71, 71, 71);
     transition: background-color 0.1s;
     font-size: 17px;
     background-color : #f1faff;
@@ -67,7 +68,7 @@ input:focus {
     color: red;
 }
 
-.blue {
+.blue .link {
     color: #46afec;
 }
 

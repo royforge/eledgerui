@@ -4,9 +4,8 @@
 
     <div class=" row">
         <div class="col-sm-2 text-center">
-            <button type="button" class="btn btn-size confirmBtn border-dark rounded" (click)="goBack()">
-                <strong>
-                    < Back</strong></button>
+            <a class="link hand" (click)="goBack()">
+                < Back</a>
         </div>
         <div class="col-sm-8">
             <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
