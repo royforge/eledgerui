@@ -1,6 +1,9 @@
+import { EledgerApiService } from './../services/eledgerapi.service';
+import { UserData } from './../model/UserData';
 import { SessionModel } from './../model/sessionmodel';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Keys } from '../model/key';
+import { EledgerUser } from '../classes/EledgerUser';
 
 @Component({
   selector: 'app-my-account',
@@ -8,17 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-account.component.css']
 })
 export class MyAccountComponent implements OnInit {
-
-  constructor() { }
+  title = "Your Account";
+  response: any;
+  lenderID:string;
+  lenderId: string;
+  shopName: string;
+  phone: string;
+  name: string;
+  id: string;
+  sessionModel = new SessionModel();
+  constructor(private eledgerUser: EledgerUser,private service:EledgerApiService) { }
 
   ngOnInit(): void {
+    this.service.emitHeaderChangeEvent(this.title);
+    this.id = this.sessionModel.getSession(Keys.id);
+    this.sessionModel.setSession(Keys.id,this.id);
+    this.lenderID = this.sessionModel.getSession(Keys.lenderId);
+    this.eledgerUser.getLenders().subscribe(response => {
+      this.response = response
+      for (let lender of response) {
+        if (lender.lenderId == this.lenderID) {
+          this.shopName = lender.shopName;
+          this.phone = lender.phone;
+          this.name = lender.name;
+          this.lenderId= lender.lenderId;
+          break;
+        }
+      }
+    });
   }
-
-  lenderId = sessionStorage.getItem('lenderId');
-  shopName = sessionStorage.getItem('shopName');
-  phone = sessionStorage.getItem('phone');
-  name = sessionStorage.getItem('name');
-
-
-
 }
+  

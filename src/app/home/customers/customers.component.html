@@ -5,18 +5,15 @@
                 <tr>
                     <th class="name">
                         <div class="input-group">
-                            <input class="w-100 inp" id="name" type="text" placeholder="  Name Search"
-                                aria-label="Search">
+                            <input class="w-100 inp" id="name" type="text" placeholder="  Name Search" aria-label="Search">
                         </div>
                     </th>
                     <th class="phone">
                         <div class="input-group">
-                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search"
-                                aria-label="Search">
+                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search" aria-label="Search">
                         </div>
                     </th>
-                    <th class="txn"><select id="txn" class="dropdown-toggle inp selectField btn w-100"
-                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <th class="txn"><select id="txn" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <option value="" selected>
                                 Select an Option
                             </option>
@@ -25,11 +22,9 @@
                         </select>
                     </th>
                     <th class="text-center">
-                        <button type="submit"
-                            class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
-                            (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button>
-                            &nbsp;<a *ngIf='isReset==true' href=""
-                            (click)='getListAtStart(); isSearch=false'>Reset</a>
+                        <button type="submit" class="btn text-center confirmBtn border border-dark nav-item nav-link-edit" (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button> &nbsp;
+                        <a *ngIf='isReset==true' class="btn-reset" href="" (click)='getListAtStart(); isSearch=false'>Reset</a>
+
                     </th>
                 </tr>
 
@@ -42,8 +37,7 @@
             </thead>
             <tbody>
                 <tr id="tbody" class="" *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
-                    <td class="text-center name pt-2"><a (click)="sendData(customer)" class="blue  "
-                            [routerLink]="['/credit']">{{customer.name}}</a></td>
+                    <td class="text-center name pt-2"><a (click)="sendData(customer)" class="blue  " [routerLink]="['/credit']">{{customer.name}}</a></td>
                     <td class="text-center phone pt-2">{{customer.phone}}</td>
                     <td class="text-center txn pt-2" *ngIf='customer.amount<0'>
                         <p class="red">{{customer.amount}}</p>

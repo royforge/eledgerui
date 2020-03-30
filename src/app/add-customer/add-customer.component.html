@@ -5,12 +5,12 @@
     <div class=" row">
         <div class="col-sm-2 text-center">
             <a class="link hand" (click)="goBack()">
-                < Back</a>
+                 Back</a>
         </div>
         <div class="col-sm-8">
             <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-1"></div>
 
                     <div class="col-2">
@@ -18,10 +18,9 @@
                     </div>
 
                     <div class="col-8 text-center mt-2 rounded-circle">
-                        <h5 class="logoColor border border-dark rounded p-2"> <i class='fas fa-plus'
-                                style='color:white'></i> Add New Customer</h5>
+                        <h5 class="logoColor border border-dark rounded p-2"> <i class='fas fa-plus' style='color:white'></i> Add New Customer</h5>
                     </div>
-                </div>
+                </div> -->
                 <br><br><br>
 
                 <div class="row">
@@ -33,8 +32,7 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}"
-                            formControlName="name" type="text" id="name" placeholder="Name" required>
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}" formControlName="name" type="text" id="name" placeholder="Name" required>
                         <div class="feedback" *ngIf="isValid('name')">
                             <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
                         </div>
@@ -50,9 +48,7 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresent}"
-                            type="number" pattern="[+0-9]{10}" id="contact" placeholder="Mobile No."
-                            formControlName="mobile">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresent}" type="number" pattern="[+0-9]{10}" id="contact" placeholder="Mobile No." formControlName="mobile">
                         <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
                         </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
@@ -70,9 +66,7 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('amount')}"
-                            formControlName="amount" minlength="1" type="number" id="amount" placeholder="Amount"
-                            required>
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('amount')}" formControlName="amount" minlength="1" type="number" id="amount" placeholder="Amount" required>
                         <div class="feedback" *ngIf="isValid('amount')">
                             <span *ngIf="customerForm.controls.name.errors.required">Enter some money value!</span>
                         </div>
@@ -86,9 +80,7 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-6">
-                        <select href="#" id="txnType" formControlName="txnType"
-                            class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false" required>
+                        <select href="#" id="txnType" formControlName="txnType" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" required>
                             <option value="" disabled selected>
                                 Select an Option
                             </option>
@@ -103,8 +95,7 @@
                 <br><br><br>
                 <div class="row">
                     <div class="col-11 text-right">
-                        <button type="submit" [disabled]="!customerForm.valid"
-                            class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                        <button type="submit" [disabled]="!customerForm.valid" class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
                     </div>
                 </div>
             </form>

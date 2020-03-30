@@ -1,39 +1,5 @@
 {
   "borrower": [
-    {
-      "name": "Sahu",
-      "borrowId": "489bbbfb-9ef3-4ac3-bda4-dc8189c5642d",
-      "lenderId": "m2",
-      "phone": "7689326483",
-      "id": 1
-    },
-    {
-      "name": "Renu",
-      "borrowId": "f620c60d-5f5a-464d-b102-eca4a5ab5376",
-      "lenderId": "m2",
-      "phone": "9784632842",
-      "id": 2
-    },
-    {
-      "name": "Reddy ",
-      "borrowId": "077a2a3e-805d-40da-9d8f-5b5cf1a11dcc",
-      "lenderId": "m2",
-      "phone": "9809786877",
-      "id": 3
-    },
-    {
-      "name": "Bhavya",
-      "borrowId": "dcbbf185-50f7-4a0c-ac77-998c2078dd4c",
-      "lenderId": "m2",
-      "phone": "8679988969",
-      "id": 4
-    },
-    {
-      "name": "Rao singh",
-      "borrowId": "7e67c7c7-487c-434f-90cd-b16adcef038d",
-      "lenderId": "m2",
-      "phone": "9858676665",
-      "id": 5
-    }
+
   ]
 }

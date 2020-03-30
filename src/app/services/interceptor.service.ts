@@ -3,7 +3,6 @@ import { HttpInterceptor, HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent
 import { throwError, Observable, from, of } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { AlertService } from './alert.service';
-import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })

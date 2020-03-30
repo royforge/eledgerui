@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { AddCreditComponent } from './add-credit/add-credit.component';
+import { HeaderComponent } from './header/header.component';
+import { EditmyAccountComponent } from './editmy-account/editmy-account.component';
 
 const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'addcustomer', component: AddCustomerComponent },
   { path: 'credit', component: AddCreditComponent },
   { path: 'editcustomer', component: EditCustomerComponent},
+  { path: 'header', component:HeaderComponent },
+  { path: 'editAccount', component: EditmyAccountComponent },
   { path: '**', component: SignupComponent }
 ];
 

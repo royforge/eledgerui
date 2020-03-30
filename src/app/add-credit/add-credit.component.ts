@@ -1,3 +1,4 @@
+import { EledgerApiService } from './../services/eledgerapi.service';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
 import { EledgerUser } from '../classes/EledgerUser';
@@ -14,8 +15,9 @@ import { Key } from 'protractor';
   styleUrls: ['./add-credit.component.css']
 })
 export class AddCreditComponent implements OnInit {
+  title: string;
 
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi) {
+  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service:EledgerApiService) {
 
   }
   wallet = new WalletData();
@@ -57,6 +59,11 @@ export class AddCreditComponent implements OnInit {
     this.sessionModel.setSession(Keys.borrowerId, this.borrowerId);
     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
     this.sessionModel.setSession(Keys.id, this.id);
+
+    this.title = sessionStorage.getItem('name')+
+    sessionStorage.getItem('phone')+
+    sessionStorage.getItem('amount');
+    this.service.emitHeaderChangeEvent(this.title);
   }
 
   // //click button to set TxnType = Credit

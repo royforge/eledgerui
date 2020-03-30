@@ -3,8 +3,8 @@ import { UserData } from './../model/UserData';
 import { LENDERURL, CUSTOMERURL, RELATIONSURL } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-
+import { Injectable } from '@angular/core'
+import { LenderData } from '../model/lenderData';
 @Injectable()
 export class EledgerUser extends EledgerApiService {
 
@@ -31,4 +31,9 @@ export class EledgerUser extends EledgerApiService {
     getBorrowers(): Observable<any> {
         return this.get(CUSTOMERURL);
     }
+
+    putLenders(lenderData: LenderData):Observable<any>{
+    return this.putUser(LENDERURL+"/"+lenderData.id,lenderData);
+    }
+    
 }
