@@ -1,12 +1,13 @@
 import { Keys } from './../model/key';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
 import { BorrowerData } from '../model/borrowerData';
 import { RelationData } from '../model/relationData';
 import { SessionModel } from '../model/sessionmodel';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-customer',
@@ -41,7 +42,8 @@ export class AddCustomerComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private eledgerApi: EledgerApi,
-    private eledgerUser: EledgerUser) { }
+    private eledgerUser: EledgerUser,
+    private _location: Location) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -74,7 +76,6 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.name = this.borrowerName
       this.borrower.lenderId = this.wallet.lenderId
       this.borrower.phone = this.mobile.toString()
-     
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
@@ -123,6 +124,9 @@ export class AddCustomerComponent implements OnInit {
     });
   }
 
+  goBack(){
+    this._location.back();
+  }
   //check the form validation
   isValid(control) {
     return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;

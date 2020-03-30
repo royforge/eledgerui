@@ -4,6 +4,7 @@ import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
+import {Location} from '@angular/common';
 
 declare var require: any;
 @Component({
@@ -19,13 +20,10 @@ export class HomeComponent implements OnInit {
   walletData: WalletData[];
   lenderId: string;
   shopName: string;
-  isOn = true;
   sessionModel = new SessionModel();
-  isReports = false;
-  isBack = false;
 
-  constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
-  
+  constructor(private _location: Location, private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
@@ -36,4 +34,9 @@ export class HomeComponent implements OnInit {
   clearData() {
     sessionStorage.clear();
   }
+
+  goBack(){
+    this._location.back();
+  }
+
 }

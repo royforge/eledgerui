@@ -4,13 +4,9 @@
 }
 
 .logo {
-    height: 95%;
-    width: 65px;
+    width: 80px;
 }
 
-.inp {
-    height: 32px;
-}
 .icon {
     background-color: #46afec;
     color: white;
@@ -21,11 +17,6 @@
     font-size: 24px;
 }
 
-.selectField {
-border: 1px solid #46afec;
-color: rgb(82, 81, 81);
-background-color: white;
-}
 .label {
     font-size: 20px;
 }

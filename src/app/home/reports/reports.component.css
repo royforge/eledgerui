@@ -8,9 +8,10 @@ btn {
 
 td, th {
 	padding: 4px;
+	text-align: center;
 }
 
-input[type="text"] {
+input {
 	transition: background-color 0.1s;
 	font-size: 17px;
 	background-color: #f1faff;

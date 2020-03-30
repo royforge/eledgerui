@@ -1,12 +1,12 @@
-<div class="container">
+<div *ngIf="router.url === '/home/customers'" class="container mt-2">
     <div id="table-wrapper">
         <table id="tbl" class="table table-bordered">
             <thead>
                 <tr>
                     <th class="name">
                         <div class="input-group">
-                            <input matInput class="w-100 inp" id="name" type="text" placeholder="  Name Search"
-                                aria-label="Search" autofocus>
+                            <input class="w-100 inp" id="name" type="text" placeholder="  Name Search"
+                                aria-label="Search">
                         </div>
                     </th>
                     <th class="phone">
@@ -17,7 +17,7 @@
                     </th>
                     <th class="txn"><select id="txn" class="dropdown-toggle inp selectField btn w-100"
                             data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <option value="" disabled selected>
+                            <option value="" selected>
                                 Select an Option
                             </option>
                             <option value="Credit">Credit</option>
@@ -27,32 +27,36 @@
                     <th class="text-center">
                         <button type="submit"
                             class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
-                            (click)="onSubmit()">Search</button>
+                            (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            &nbsp;<a *ngIf='isReset==true' class="btn-reset" href=""
+                            (click)='getListAtStart(); isSearch=false'>Reset</a>
                     </th>
                 </tr>
 
                 <tr>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                    <th>Amount Pending</th>
-                    <th>Transaction Date</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Mobile Number</th>
+                    <th class="text-center">Amount Pending</th>
+                    <th class="text-center">Transaction Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr id="tbody" *ngFor='let customer of customers'>
-                    <td class="name"><a (click)="sendData(customer)" class="blue  "
+                <tr id="tbody" class="" *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
+                    <td class="text-center name pt-2"><a (click)="sendData(customer)" class="blue  "
                             [routerLink]="['/credit']">{{customer.name}}</a></td>
-                    <td class="phone">{{customer.phone}}</td>
-                    <td class="txn" *ngIf='customer.amount<0'>
+                    <td class="text-center phone pt-2">{{customer.phone}}</td>
+                    <td class="text-center txn pt-2" *ngIf='customer.amount<0'>
                         <p class="red">{{customer.amount}}</p>
                     </td>
-                    <td class="txn" *ngIf='customer.amount>=0'>
+                    <td class="text-center txn pt-2" *ngIf='customer.amount>=0'>
                         <p class="green  ">{{customer.amount}}</p>
                     </td>
-                    <td class=" ">{{customer.date | date:'medium' }}</td>
+                    <td class="text-center pt-2">{{customer.date | date:'medium' }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <br>
+    <div class="col-12 text-center" style="color: #46afec;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
 </div>

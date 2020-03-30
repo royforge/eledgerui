@@ -59,23 +59,23 @@ export class AddCreditComponent implements OnInit {
     this.sessionModel.setSession(Keys.id, this.id);
   }
 
-  //click button to set TxnType = Credit
-  giveCredit(event) {
-    document.getElementById("Credit").classList.remove("highlight");
-    var target = event.target || event.srcElement || event.currentTarget;
-    var value = target.attributes.value;
-    this.wallet.txnType = value.nodeValue;
-    document.getElementById("Debit").classList.add("highlight");
-  }
+  // //click button to set TxnType = Credit
+  // giveCredit(event) {
+  //   document.getElementById("Credit").classList.remove("highlight");
+  //   var target = event.target || event.srcElement || event.currentTarget;
+  //   var value = target.attributes.value;
+  //   this.wallet.txnType = value.nodeValue;
+  //   document.getElementById("Debit").classList.add("highlight");
+  // }
 
-  //click button to set TxnType = Debit
-  takeCash(event) {
-    document.getElementById("Debit").classList.remove("highlight");
-    var target = event.target || event.srcElement || event.currentTarget;
-    var value = target.attributes.value;
-    this.wallet.txnType = value.nodeValue;
-    document.getElementById("Credit").classList.add("highlight");
-  }
+  // //click button to set TxnType = Debit
+  // takeCash(event) {
+  //   document.getElementById("Debit").classList.remove("highlight");
+  //   var target = event.target || event.srcElement || event.currentTarget;
+  //   var value = target.attributes.value;
+  //   this.wallet.txnType = value.nodeValue;
+  //   document.getElementById("Credit").classList.add("highlight");
+  // }
 
   //method on form submition
   onSubmit() {
@@ -84,6 +84,7 @@ export class AddCreditComponent implements OnInit {
     this.isNaN = false
 
     //update values for wallet
+    this.wallet.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
     this.wallet.borrowId = this.borrowerId
     this.wallet.amount = this.creditForm.value.amount
     this.wallet.lenderId = this.lenderId

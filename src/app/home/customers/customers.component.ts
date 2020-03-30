@@ -8,9 +8,9 @@ import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Keys } from 'src/app/model/key';
 import { AlertService } from 'src/app/services/alert.service'
-import { from } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { UserData } from 'src/app/model/UserData';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -18,125 +18,109 @@ import { UserData } from 'src/app/model/UserData';
 })
 export class CustomersComponent implements OnInit {
   walletData: WalletData[];
-  borrowerData: BorrowerData[];
+  borrowerList: BorrowerData[];
   userData: UserData[];
   url: string;
   lenderId: string;
   customers: Customers[] = [];
   public customer = new Customers();
   sessionModel = new SessionModel();
+  p: number = 1;
+  isSearch = false;
+  isReset = false;
 
 
-  constructor(private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
+  constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
 
   ngOnInit(): void {
     //this.myFunction();
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
+    this.getListAtStart();
 
-    //Mock API to get the borrower data
-    this._eledgerUser.getBorrowers().subscribe(
-      resp => {
-        this.borrowerData = resp;
-        let count = 0;
-        this.borrowerData.map(borrower => {
-          if (borrower.lenderId == this.lenderId) {
+  }
 
-            //Backend api to get data using lenderId and borrowerId
-            this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
-              respData => {
-                count++;
-                this.customer = new Customers();
-                this.customer.walletId = respData["data"].walletId;
-                this.customer.date = respData["data"].updatedDate;
-                this.customer.amount = respData["data"].balance;
-                this.customer.name = borrower.name;
-                this.customer.phone = borrower.phone;
-                this.customer.lenderId = borrower.lenderId;
-                this.customer.borrowerId = borrower.borrowId;
-                this.customer.id = borrower.id;
-                this.customers.push(this.customer);
-              })
-          }
-        })
+  getListAtStart() {
+    this.customers = [];
+
+    //Backend api to get data using lenderId and borrowerId
+    this._eledgerApi.getEledgerApi(this.url).subscribe(
+      respTrans => {
+        this.walletData = respTrans["data"];
+
+        //Mock API to get the borrower data
+        this._eledgerUser.getBorrowers().subscribe(
+          respBorrower => {
+            this.borrowerList = respBorrower;
+
+            this.walletData.map(wallet => {
+              for (let borrorowerData of this.borrowerList) {
+                if (borrorowerData.borrowId == wallet.borrowId) {
+                  this.newMethod_1(wallet, borrorowerData);
+                }
+              }
+            })
+          })
       })
+    this.isReset = false;
+
+  }
+
+  private newMethod_1(wallet: WalletData, borrorowerData: BorrowerData) {
+    this.customer = new Customers();
+    this.customer.walletId = wallet.walletId;
+    this.customer.date = wallet.updatedDate;
+    this.customer.amount = wallet.balance;
+    this.customer.name = borrorowerData.name;
+    this.customer.phone = borrorowerData.phone;
+    this.customer.lenderId = borrorowerData.lenderId;
+    this.customer.borrowerId = borrorowerData.borrowId;
+    this.customer.id = borrorowerData.id;
+    this.customers.push(this.customer);
   }
 
   onSubmit() {
+    //Clear the list of customers first
+    this.customers = []
     var byName = (<HTMLInputElement>document.getElementById("name")).value;
     var byPhone = (<HTMLInputElement>document.getElementById("phone")).value;
     var byDebt = (<HTMLInputElement>document.getElementById("txn")).value;
 
-    //  document.getElementById("tbody").innerHTML = " ";
-
-    this._eledgerUser.getBorrowers().subscribe(
+    this._eledgerApi.getEledgerApi(this.url).subscribe(
       resp => {
-        this.borrowerData = resp;
-        let count = 0;
-        this.borrowerData.map(borrower => {
-          if ((borrower.name.toLowerCase() == byName.toLowerCase() && borrower.lenderId == this.lenderId) || (borrower.phone.toString() == byPhone && borrower.lenderId == this.lenderId)) {
-            //Clear the list of customers first
-            this.customers = [];
-            //Backend api to get data using lenderId and borrowerId
-            this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
-              respData => {
-                count++;
-                this.customer = new Customers();
-                this.customer.walletId = respData["data"].walletId;
-                this.customer.date = respData["data"].updatedDate;
-                this.customer.amount = respData["data"].balance;
-                this.customer.name = borrower.name;
-                this.customer.phone = borrower.phone;
-                this.customer.lenderId = borrower.lenderId;
-                this.customer.borrowerId = borrower.borrowId;
-                this.customer.id = borrower.id;
+        this.walletData = resp["data"];
+        //Mock API to get the borrower data
+        this._eledgerUser.getBorrowers().subscribe(
+          respBorrower => {
+            this.borrowerList = respBorrower;
+            this.walletData.map(wallet => {
 
-                this.customers.push(this.customer);
-              })
-          }
-          //Fetch all the customers with positive value/credit
-          if (byDebt === "Credit" && borrower.lenderId == this.lenderId) {
-            this.customers = [];                  //Clear the list of customers first
-            this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
-              respData => {
-                if (respData["data"].balance >= 0) {
-                  count++;
-                  this.customer = new Customers();
-                  this.customer.walletId = respData["data"].walletId;
-                  this.customer.date = respData["data"].updatedDate;
-                  this.customer.amount = respData["data"].balance;
-                  this.customer.name = borrower.name;
-                  this.customer.phone = borrower.phone;
-                  this.customer.lenderId = borrower.lenderId;
-                  this.customer.borrowerId = borrower.borrowId;
-                  this.customer.id = borrower.id;
-                  this.customers.push(this.customer);
+              for (let borrorowerData of this.borrowerList) {
+                if (wallet.borrowId == borrorowerData.borrowId) {
+
+                  if ((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
+                    || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) {
+                    this.newMethod_1(wallet, borrorowerData);
+                  }
+
+                  //Fetch all the customers with positive value/credit
+                  if (byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) {
+                    this.newMethod_1(wallet, borrorowerData);
+                  }
+                  //Fetch all the customers with due value/debt
+                  if (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0) {
+                    this.newMethod_1(wallet, borrorowerData);
+                  }
                 }
-              })
-          }
-          //Fetch all the customers with Debt
-          if (byDebt === "Due" && borrower.lenderId == this.lenderId) {
-            this.customers = [];            //Clear the list of customers first
-            this._eledgerApi.getEledgerApi(this.url + '/borrowId/' + borrower.borrowId).subscribe(
-              respData => {
-                if (respData["data"].balance < 0) {
-                  count++;
-                  this.customer = new Customers();
-                  this.customer.walletId = respData["data"].walletId;
-                  this.customer.date = respData["data"].updatedDate;
-                  this.customer.amount = respData["data"].balance;
-                  this.customer.name = borrower.name;
-                  this.customer.phone = borrower.phone;
-                  this.customer.lenderId = borrower.lenderId;
-                  this.customer.borrowerId = borrower.borrowId;
-                  this.customer.id = borrower.id;
-                  this.customers.push(this.customer);
-                }
-              })
-          }
-        })
+              }
+            })
+          })
+         this.isSearch = true;
       })
   }
+
+
+
 
   //set data using session when click on name of the customer
   sendData(data: Customers) {

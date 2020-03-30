@@ -109,6 +109,7 @@
                             id="password" placeholder=" Enter Password" formControlName="password" required>
                         <div class="feedback" *ngIf="isValid('password')">
                             <span *ngIf="customerForm.controls.password.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.password.errors.pattern">Min 6 digit Password with atleast one digit, small and capital letter & special character</span>
                         </div>
                     </div>
                 </div>
