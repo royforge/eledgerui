@@ -4,6 +4,7 @@ export class UserData{
     shopName: string;
     lenderId: string;
     phone: string;
+    email: string;
     password: string;
     static id: number;
 }

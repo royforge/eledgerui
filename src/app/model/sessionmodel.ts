@@ -31,6 +31,7 @@ export class SessionModel {
             case Keys.id:
                 sessionStorage.setItem(key,value);
                 break;  
+
         }
     }
 }

@@ -5,42 +5,63 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
 
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-1.5">
+            <div class="row mb-2">
+                <div class="col-2">
                     <img class="logo" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                 </div>
-                <div class="col-7 text-center rounded-circle">
-                    <h5 class="logoColor border border-dark rounded p-2">
-                        {{borrowerName}}<br> {{borrowerPhone}} <br> {{balance}}
-                    </h5>
+                <div class="col-9 row logoColor border border-dark rounded">
+                    <div class="col-4 text-center">
+                        <h5 class="p-1 pt-3">
+                            <i class='fa fa-user mt-1 mr-1 val'></i>
+                            <span class="val"> {{borrowerName}}</span>
+                        </h5>
+                    </div>
+                    <div class="col-4 text-right mt-2">
+                        <h5 class="">
+                            <span class="val"> <i class="material-icons icon">phone</i><br>
+                                <i class='fas fa-rupee-sign icon'></i> </span>
+                        </h5>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <h5>
+                            <span class="val"> {{borrowerPhone}} <br>
+                                {{balance}}</span>
+                        </h5>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-7">
+                <div style="position: absolute; right: 20px; width: 80px; text-align:center;">
+                    <a [routerLink]="['/editcustomer']" class="btn logoColor border-dark">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
                 </div>
             </div>
             <br><br><br>
 
             <form [formGroup]='creditForm' (ngSubmit)="onSubmit()">
-                <div class="row">
-                    <div class="col-1"></div>
-
-                    <div class="col-4 text-center">
-                        <button type="button" id="Debit" value="DEBIT" (click)="giveCredit($event)" class="btn btn-danger rounded creditType p-2">
-                            Credit Given
-                        </button>
-                        <div class="feedback" *ngIf="this.selectTxn">Select for Money Given
+                <div style="margin-left: 10%; margin-right: 10%;">
+                    <div class="row">
+                        <div class="col-3">
+                        </div>
+                        <div class="col-2 text-right">
+                            <label for="name" class="d-inline label">Credit
+                                type <p class="mandatory d-inline"> *</p>
+                                :</label>
+                        </div>
+                        <div class="col-3">
+                            <select href="#" id="txnType" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button" required>
+                                <option value="" disabled selected>
+                                    Select an Option
+                                </option>
+                                <option value="DEBIT">Credit Given</option>
+                                <option value="CREDIT">Cash Received</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-2"></div>
-
-                    <div class="col-4 text-center rounded-circle">
-                        <button type="button" id="Credit" value="CREDIT" (click)="takeCash($event)" class="btn btn-success rounded creditType p-2">
-                            Cash Received
-                        </button>
-                        <div class="feedback" *ngIf="this.selectTxn">Select for Money Received
-                        </div>
-                    </div>
-
-                </div>
-                <div id="block" style="margin-left: 10%; margin-right: 10%;">
+                    <br>
                     <div class="row">
                         <div class="col-3">
                         </div>
@@ -56,15 +77,17 @@
                         <div class="col-3">
                         </div>
                         <div class="col-2 text-right">
-                            <label for="amount" class="d-inline label"> Amount :</label>
-                            <p class="mandatory d-inline">*</p>
+                            <label for="amount" class="d-inline label"> Amount <p class="mandatory d-inline">*</p>
+                                :</label>
+
                         </div>
                         <div class="col-3">
                             <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100" formControlName="amount" min="0" type="number" id="amount" placeholder="Amount" required>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
                             <div class="feedback" *ngIf="isValid('amount')">
-                                <span *ngIf="creditForm.controls.name.errors.required">Enter some money value!</span>
+                                <span *ngIf="creditForm.controls.name.errors.required">Enter some money
+                                    value!</span>
                             </div>
                         </div>
                     </div>
@@ -80,23 +103,17 @@
                     </div>
                     <br><br>
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <button id="save" type="submit" [disabled]="!creditForm.valid" class="btn confirmBtn border border-dark nav-item nav-link-edit" data-toggle="modal" data-target="#successModal">Save</button>
+
+                        <div class="col-4 text-left">
+                            <a class="link" [routerLink]="['/home/customers']">Back</a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <button id="save" type="submit" [disabled]="!creditForm.valid" class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
                             <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
                             </div>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
                             <div class="feedback" *ngIf="isValid('amount')">Input all required values before submitting
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal centered" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <p class="text-center">Successful.<br /></p>
-
-                                </div>
                             </div>
                         </div>
                     </div>

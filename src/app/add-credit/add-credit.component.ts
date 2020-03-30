@@ -1,10 +1,13 @@
+import { EledgerApiService } from './../services/eledgerapi.service';
+import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
 import { EledgerUser } from '../classes/EledgerUser';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
-import { EledgerApiService } from '../services/eledgerapi.service';
+import { Keys } from '../model/key';
+import { Key } from 'protractor';
 
 @Component({
   selector: 'app-add-credit',
@@ -14,9 +17,7 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 export class AddCreditComponent implements OnInit {
   title: string;
 
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, 
-    private eledgerApi: EledgerApi,
-    private service:EledgerApiService,) {
+  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service:EledgerApiService) {
 
   }
   wallet = new WalletData();
@@ -39,16 +40,25 @@ export class AddCreditComponent implements OnInit {
   borrowerPhone: string
   balance: string
   amount: number
-
+  id: string
   selectTxn = false
   isNaN = false
+  sessionModel = new SessionModel();
 
   ngOnInit(): void {
-    this.borrowerName = sessionStorage.getItem('name');
-    this.borrowerPhone = sessionStorage.getItem('phone');
-    this.borrowerId = sessionStorage.getItem('borrowerId');
-    this.walletId = sessionStorage.getItem('walletId');
-    this.balance = sessionStorage.getItem('amount');
+    this.borrowerName = this.sessionModel.getSession(Keys.name);
+    this.borrowerPhone = this.sessionModel.getSession(Keys.phone);
+    this.borrowerId = this.sessionModel.getSession(Keys.borrowerId);
+    this.walletId = this.sessionModel.getSession(Keys.walletId);
+    this.balance = this.sessionModel.getSession(Keys.amount);
+    this.id = this.sessionModel.getSession(Keys.id);
+
+
+    this.sessionModel.setSession(Keys.name, this.borrowerName);
+    this.sessionModel.setSession(Keys.phone, this.borrowerPhone);
+    this.sessionModel.setSession(Keys.borrowerId, this.borrowerId);
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.id, this.id);
 
     this.title = sessionStorage.getItem('name')+
     sessionStorage.getItem('phone')+
@@ -56,23 +66,23 @@ export class AddCreditComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.title);
   }
 
-  //click button to set TxnType = Credit
-  giveCredit(event) {
-    document.getElementById("Credit").classList.remove("highlight");
-    var target = event.target || event.srcElement || event.currentTarget;
-    var value = target.attributes.value;
-    this.wallet.txnType = value.nodeValue;
-    document.getElementById("Debit").classList.add("highlight");
-  }
+  // //click button to set TxnType = Credit
+  // giveCredit(event) {
+  //   document.getElementById("Credit").classList.remove("highlight");
+  //   var target = event.target || event.srcElement || event.currentTarget;
+  //   var value = target.attributes.value;
+  //   this.wallet.txnType = value.nodeValue;
+  //   document.getElementById("Debit").classList.add("highlight");
+  // }
 
-  //click button to set TxnType = Debit
-  takeCash(event) {
-    document.getElementById("Debit").classList.remove("highlight");
-    var target = event.target || event.srcElement || event.currentTarget;
-    var value = target.attributes.value;
-    this.wallet.txnType = value.nodeValue;
-    document.getElementById("Credit").classList.add("highlight");
-  }
+  // //click button to set TxnType = Debit
+  // takeCash(event) {
+  //   document.getElementById("Debit").classList.remove("highlight");
+  //   var target = event.target || event.srcElement || event.currentTarget;
+  //   var value = target.attributes.value;
+  //   this.wallet.txnType = value.nodeValue;
+  //   document.getElementById("Credit").classList.add("highlight");
+  // }
 
   //method on form submition
   onSubmit() {
@@ -81,6 +91,7 @@ export class AddCreditComponent implements OnInit {
     this.isNaN = false
 
     //update values for wallet
+    this.wallet.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
     this.wallet.borrowId = this.borrowerId
     this.wallet.amount = this.creditForm.value.amount
     this.wallet.lenderId = this.lenderId
@@ -102,7 +113,6 @@ export class AddCreditComponent implements OnInit {
     } else {
       this.selectTxn = true;
     }
-
   }
 
   //Check if values are valid

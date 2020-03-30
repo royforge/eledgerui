@@ -1,26 +1,63 @@
 tr:nth-child(even) {
-    background-color: #f0ebeb;
+	background-color: #f0ebeb;
 }
 
-#table-wrapper {
-    position: relative;
+btn {
+	height: 30px;
 }
 
-#table-scroll {
-    height: 350px;
-    overflow: auto;
-    margin-top: 20px;
+td, th {
+	padding: 4px;
+	text-align: center;
 }
 
-#table-wrapper table {
-    width: 100%;
+input {
+	transition: background-color 0.1s;
+	font-size: 17px;
+	background-color: #f1faff;
+	font-weight: 100;
+	letter-spacing: 0.01em;
+	box-shadow: none;
 }
 
-#table-wrapper table thead th .text {
-    position: absolute;
-    top: -20px;
-    z-index: 2;
-    height: 50px;
-    width: 55%;
-    border: 1px solid red;
+input:focus {
+	outline: none;
+	background-color: white;
+	box-shadow: 1px 1px 2px 3px #8ec7e9;
 }
+
+table {
+	max-width: 1000px;
+	table-layout: fixed;
+	margin: auto;
+}
+
+.btn-right {
+	position: absolute;
+	right: 20px;
+	margin-right: 90px;
+	margin-top: 5px;
+}
+
+.btn-reset {
+	position: absolute;
+	right: 15px;
+	margin-right: 95px;
+	margin-top: 50px;
+	float: left;
+	color: #46afec;
+	cursor: pointer;
+}
+
+.centered{ 
+    top: calc(30%);
+}
+
+.cancel-icon{
+	float:right; 
+	size: 10px;
+	cursor:pointer;
+	margin-top: 0px;
+}
+
+

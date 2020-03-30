@@ -3,20 +3,25 @@ import { EledgerUser } from './classes/EledgerUser';
 import { EledgerApi } from './classes/EledgerApi';
 import { EledgerApiService } from './services/eledgerapi.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loaderinterceptor.service';
 import { AddCreditComponent } from './add-credit/add-credit.component';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { InterceptorService } from './services/interceptor.service';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { LoaderComponent } from './loader/loader.component';
+import { SignupComponent } from './signup/signup.component';
 import { EditmyAccountComponent } from './editmy-account/editmy-account.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -27,6 +32,9 @@ import { HeaderComponent } from './header/header.component';
     EledgerLoginComponent,
     LoaderComponent,
     AddCreditComponent,
+    EditCustomerComponent,
+    MyAccountComponent,
+    SignupComponent,
     MyAccountComponent,
     EditmyAccountComponent,
     HeaderComponent
@@ -37,7 +45,13 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     FormsModule,
     HomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      positionClass: 'toast-top-right'
+    })
   ],
   providers: [
     EledgerApiService, EledgerApi, EledgerUser,

@@ -1,44 +1,65 @@
 <div class="container">
-    <div style="height: 80px;"></div>
-    <br><br>
+    <div style="height: 50px;"></div>
+    <div class=" row">
+        <div class="col-sm-2 text-center">
+            <a (click)="goBack()">
+                <strong class="btn-size hand">
+                    < Back</strong></a>
+        </div>
+        <!-- <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-1 hand">
+                    <img class="logo" [routerLink]='["/home"]' [src]="LOGO1" />
+                </div>
+
+                <div class="col-8 text-center mt-2 rounded-circle hand">
+                    <h5 class="logoColor border border-dark rounded p-2" [routerLink]='["/home"]'>
+                        {{shopName}}</h5>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <br>
     <div class="row">
-        <div class="id2"><img [src]="LOGO2" /><a class="link" href="/home" (click)='isOn=false; isReports=false'>Customers</a></div>
-        <div class="id2"><img [src]="LOGO3" /><a class="link hand" (click)='isReports=true; isOn=null'>Reports</a></div>
-        <div class="id2 dropdown"><img [src]="LOGO4" /><a class="link dropbtn" href="/home">Profile</a>
+        <div class="id2"><img [src]="LOGO2" /><a class="link" [routerLink]='["/home/customers"]'>Customers</a></div>
+        <div class="id2 hand"><img [src]="LOGO3" /><a class="link" [routerLink]='["/home/reports"]'>Reports</a></div>
+        <div class="id2 dropdown"><img [src]="LOGO4" /><a class="link dropbtn" href="/home/profile" [routerLink]='["/home"]'>Profile</a>
             <div class="dropdown-content">
                 <a href="http://localhost:4200/myaccount">My Account</a>
                 <a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
         </div>
     </div>
-    <div *ngIf='isReports==true'>
-        <app-reports></app-reports>
-    </div>
-    <app-customers *ngIf="isOn == false"></app-customers>
-    <app-homepage *ngIf="isOn == true"></app-homepage>
-    <div class="col-sm" class="text-center"><button type="button" class="btn confirmBtn border-dark rounded p-2" [routerLink]="['/addcustomer']"><i class='fa fa-plus'></i>
-            <strong> Add New Customer </strong></button>
+    <div class="row">
+        <div class="col-12 text-center"><button type="button" class="btn confirmBtn border-dark rounded p-2 mt-2" [routerLink]="['/addcustomer']"><i class='fa fa-plus'></i>
+                <strong> Add New Customer </strong></button>
+        </div>
     </div>
 
-    <div class="modal centered" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p class="text-center">Do you want to Log Out ? <br /></p>
-                    <div class="actionsBtns">
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="submit" class="btn btn-square confirmBtn border border-dark rounded p-2" (click)='clearData()' [routerLink]="['/login']" data-dismiss="modal" value="Yes" />
+    <app-reports></app-reports>
+    <app-customers></app-customers>
+    <app-homepage></app-homepage>
+
+    <div class="row">
+        <div class="modal centered" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-center">Do you want to Log Out ? <br /></p>
+                        <div class="actionsBtns">
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="submit" class="btn btn-square confirmBtn border border-dark rounded p-2" (click)='clearData()' [routerLink]="['/login']" data-dismiss="modal" value="Yes" />
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-square confirmBtn border border-dark rounded p-2    " data-dismiss="modal"> No </button>
+                                    </div>
                                 </div>
-                                <div class="col-6 text-right">
-                                    <button class="btn btn-square confirmBtn border border-dark rounded p-2    " data-dismiss="modal"> No </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -4,6 +4,7 @@ import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
+import {Location} from '@angular/common';
 import { EledgerApiService } from '../services/eledgerapi.service';
 
 declare var require: any;
@@ -20,27 +21,27 @@ export class HomeComponent implements OnInit {
   walletData: WalletData[];
   lenderId: string;
   shopName: string;
-  id:string;
-  isOn = true;
   sessionModel = new SessionModel();
-  isReports = false;
-  title : string;
+  title: string;
 
-  constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute,private service:EledgerApiService) { }
+  constructor(private _location: Location, private _eledgerApi: EledgerApi, private route: ActivatedRoute,private service:EledgerApiService) { }
 
   ngOnInit(): void {
-    
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
-    this.id = this.sessionModel.getSession(Keys.id);
     sessionStorage.setItem('lenderId', this.lenderId);
+
     this.title =this.sessionModel.getSession(Keys.shopName);
     this.service.emitHeaderChangeEvent(this.title);
   }
- 
   
   //clear the session when user click on yes during logout
   clearData() {
     sessionStorage.clear();
   }
+
+  goBack(){
+    this._location.back();
+  }
+
 }

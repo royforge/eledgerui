@@ -23,10 +23,6 @@
     color: #46afec;
 }
 
-.link {
-    color: #46afec;
-}
-
 .btn:hover {
     background-color: #227baf;
     color: #f1f1f1;
@@ -69,4 +65,10 @@
 .btn-square {
     height: 40px;
     width: 50px;
+}
+
+.btn-size {
+    position: relative;
+    margin-top: 5px;
+    color: #46afec;
 }

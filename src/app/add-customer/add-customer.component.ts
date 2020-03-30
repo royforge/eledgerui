@@ -1,12 +1,13 @@
 import { Keys } from './../model/key';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
 import { BorrowerData } from '../model/borrowerData';
 import { RelationData } from '../model/relationData';
 import { SessionModel } from '../model/sessionmodel';
+import {Location} from '@angular/common';
 import { EledgerApiService } from '../services/eledgerapi.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class AddCustomerComponent implements OnInit {
     balance: undefined
   };
   borrower: BorrowerData = {
+    id: undefined,
     name: undefined,
     borrowId: undefined,
     lenderId: undefined,
@@ -38,11 +40,12 @@ export class AddCustomerComponent implements OnInit {
     lenderId: undefined,
   }
   response: any;
-  title = "Add New Customer";
+  title="Add New Customer";
 
   constructor(private fb: FormBuilder,
     private eledgerApi: EledgerApi,
     private eledgerUser: EledgerUser,
+    private _location: Location,
     private service:EledgerApiService) { }
 
   //validation the form
@@ -76,7 +79,7 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.borrowId = resp.data.borrowId;
       this.borrower.name = this.borrowerName
       this.borrower.lenderId = this.wallet.lenderId
-      this.borrower.phone = this.mobile
+      this.borrower.phone = this.mobile.toString()
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
@@ -90,13 +93,13 @@ export class AddCustomerComponent implements OnInit {
       this.eledgerUser.postRelation(this.relation)
         .subscribe(resp => {
           this.response = resp;
-         // alert("Successfully added")
           window.location.href = ("http://localhost:4200/home");
         });
     });
   }
 
   onSubmit() {
+    this.isPresent = false;
     // TODO: Use EventEmitter with form value
     this.borrowerName = this.customerForm.value.name;
     this.mobile = this.customerForm.value.mobile;
@@ -125,6 +128,9 @@ export class AddCustomerComponent implements OnInit {
     });
   }
 
+  goBack(){
+    this._location.back();
+  }
   //check the form validation
   isValid(control) {
     return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;

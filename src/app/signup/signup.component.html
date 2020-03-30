@@ -1,0 +1,149 @@
+<div class="container-fluid">
+    <div style="height: 60px;"></div>
+    <div class=" row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4">
+                    <h2><img class="logo" src="../../assets/image1.png" alt="logo"> Registration</h2>
+                </div>
+                <div class="col-6 text-right mt-2 rounded-circle">
+                    <button class="btn confirmBtn border border-dark signUpButton"><a
+                            style="text-decoration: none; color: white;" [routerLink]="['/login']">Login</a>
+                    </button>
+                </div>
+            </div>
+            <br><br>
+            <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-1 text-right">
+                        <i class='fa fa-user mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    </div>
+                    <div class="col-4">
+                        <label for="name" class="d-inline label">Your Name</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}"
+                            formControlName="name" type="text" id="name" placeholder=" Enter Full Name" required>
+                        <div class="feedback" *ngIf="isValid('name')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+                        <i class='fa fa-phone-square mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    </div>
+                    <div class="col-4">
+                        <label for="contact" class="d-inline label"> Mobile Number</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresentPhone}"
+                            type="number" pattern="[+0-9]{10}" id="contact" placeholder=" Enter Mobile Number"
+                            formControlName="mobile">
+                        <div *ngIf="isPresentPhone" class="feedback">Number Already Exists!!! Please use different
+                            number
+                        </div>
+                        <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.mobile.errors.pattern">Enter Valid Mobile Number of 10
+                                digits!</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+                        <i class='fa fa-envelope mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    </div>
+                    <div class="col-4">
+                        <label for="email" class="d-inline label"> Email ID</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('email') || isPresentEmail}"
+                            type="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" id="email"
+                            placeholder=" Enter Email ID" formControlName="email">
+                        <div *ngIf="isPresentEmail" class="feedback">Email ID Already Exists!!! Please use different
+                            Email ID
+                        </div>
+                        <div class="feedback emailFeedback" *ngIf="isValid('email')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.email.errors.pattern">Enter a Valid Email ID</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+                        <i class='fa fa-briefcase mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    </div>
+                    <div class="col-4">
+                        <label for="shopName" class="d-inline label">Business Name</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('shopName')}" type="text"
+                            id="shopName" placeholder=" Enter Business Name" formControlName="shopName" required>
+                        <div class="feedback" *ngIf="isValid('shopName')">
+                            <span *ngIf="customerForm.controls.shopName.errors.required">Field cannot be Empty!!!</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+                        <i class='fa fa-key mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    </div>
+                    <div class="col-4">
+                        <label for="password" class="d-inline label">Password</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('password') }" type="password"
+                            pattern="(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
+                            id="password" placeholder=" Enter Password" formControlName="password" required>
+                        <div class="feedback" *ngIf="isValid('password')">
+                            <span *ngIf="customerForm.controls.password.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.password.errors.pattern">Min 6 digit Password with atleast one digit, small and capital letter & special character</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1 text-right">
+
+                    </div>
+                    <div class="col-4">
+                        <label for="confirm_password" class="d-inline label">Confirm Password</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-6 inputDiv">
+                        <input class="rounded inp w-100"
+                            [ngClass]="{'invalid' : isValid('confirm_password') || isMatch}" type="password"
+                            pattern="(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
+                            id="confirm_password" placeholder=" Confirm Password" formControlName="confirm_password"
+                            required>
+                        <div *ngIf="isMatch" class="feedback">Please Enter The Same Password as Above !!</div>
+                        <div class="feedback" *ngIf="isValid('confirm_password')">
+                            <span *ngIf="customerForm.controls.confirm_password.errors.required">Field cannot be
+                                Empty!!!</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-11 text-right">
+                        <button type="submit" [disabled]="!customerForm.valid"
+                            class="btn confirmBtn border border-dark nav-item nav-link-edit">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
