@@ -1,67 +1,39 @@
 {
   "borrower": [
     {
-      "name": "Danny",
-      "borrowId": "546525ee-5f41-4764-8262-9573e8ac8796",
+      "name": "Sahu",
+      "borrowId": "489bbbfb-9ef3-4ac3-bda4-dc8189c5642d",
       "lenderId": "m2",
-      "phone": 9876543210,
+      "phone": "7689326483",
       "id": 1
     },
     {
-      "name": "Babu Bhaiya",
-      "borrowId": "12ca7522-a398-4f97-9f83-d430f99eaa63",
+      "name": "Renu",
+      "borrowId": "f620c60d-5f5a-464d-b102-eca4a5ab5376",
       "lenderId": "m2",
-      "phone": 9876543211,
+      "phone": "9784632842",
       "id": 2
     },
     {
-      "name": "Gaurav",
-      "borrowId": "ce5db676-798c-4534-9dca-44f1f94984be",
+      "name": "Reddy ",
+      "borrowId": "077a2a3e-805d-40da-9d8f-5b5cf1a11dcc",
       "lenderId": "m2",
-      "phone": 83789847833,
+      "phone": "9809786877",
       "id": 3
     },
     {
-      "name": "Ronny",
-      "borrowId": "3e5e7b7d-65e5-40a7-8de6-f9e031351d2c",
+      "name": "Bhavya",
+      "borrowId": "dcbbf185-50f7-4a0c-ac77-998c2078dd4c",
       "lenderId": "m2",
-      "phone": 8736498732,
+      "phone": "8679988969",
       "id": 4
     },
     {
-      "name": "Shashank",
-      "borrowId": "8844213d-b00a-44eb-9dbc-cdde728529ca",
+      "name": "Rao singh",
+      "borrowId": "7e67c7c7-487c-434f-90cd-b16adcef038d",
       "lenderId": "m2",
-      "phone": 9737436274,
+      "phone": "9858676665",
       "id": 5
-    },
-    {
-      "name": "Bala",
-      "borrowId": "071b9d7f-2181-4878-9679-c0d73238cdc4",
-      "lenderId": "m2",
-      "phone": 9364876273,
-      "id": 6
-    },
-    {
-      "name": "helo",
-      "borrowId": "cd0cbdee-47f2-4f2b-86e0-6806cc6aab01",
-      "lenderId": "m1",
-      "phone": 8647326462,
-      "id": 7
-    },
-    {
-      "name": "Bhavya",
-      "borrowId": "213e3f1f-a3d9-4460-8eff-e0f1f0a45e9b",
-      "lenderId": "m2",
-      "phone": 7364982987,
-      "id": 8
-    },
-    {
-      "name": "Rahul",
-      "borrowId": "f36a86d9-4556-4978-b318-b1f5a956bea9",
-      "lenderId": "m2",
-      "phone": 7346277732,
-      "id": 9
     }
   ]
 }
