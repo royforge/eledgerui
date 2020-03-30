@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
+import { EledgerApiService } from '../services/eledgerapi.service';
 
 @Component({
   selector: 'app-add-credit',
@@ -11,8 +12,11 @@ import { WalletData } from '../model/walletdata';
   styleUrls: ['./add-credit.component.css']
 })
 export class AddCreditComponent implements OnInit {
+  title: string;
 
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi) {
+  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, 
+    private eledgerApi: EledgerApi,
+    private service:EledgerApiService,) {
 
   }
   wallet = new WalletData();
@@ -45,6 +49,11 @@ export class AddCreditComponent implements OnInit {
     this.borrowerId = sessionStorage.getItem('borrowerId');
     this.walletId = sessionStorage.getItem('walletId');
     this.balance = sessionStorage.getItem('amount');
+
+    this.title = sessionStorage.getItem('name')+
+    sessionStorage.getItem('phone')+
+    sessionStorage.getItem('amount');
+    this.service.emitHeaderChangeEvent(this.title);
   }
 
   //click button to set TxnType = Credit

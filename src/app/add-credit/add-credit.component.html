@@ -5,15 +5,14 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
 
-            <div class="row mb-2">
-                <div class="col-2">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-1.5">
                     <img class="logo" [routerLink]="['/home']" src="../../assets/image1.png" alt="logo">
                 </div>
-                <div class="col-8 text-center rounded-circle">
+                <div class="col-7 text-center rounded-circle">
                     <h5 class="logoColor border border-dark rounded p-2">
-                        {{borrowerName}}<br>
-                        {{borrowerPhone}} <br>
-                        {{balance}}
+                        {{borrowerName}}<br> {{borrowerPhone}} <br> {{balance}}
                     </h5>
                 </div>
             </div>
@@ -24,8 +23,7 @@
                     <div class="col-1"></div>
 
                     <div class="col-4 text-center">
-                        <button type="button" id="Debit" value="DEBIT" (click)="giveCredit($event)"
-                            class="btn btn-danger rounded creditType p-2">
+                        <button type="button" id="Debit" value="DEBIT" (click)="giveCredit($event)" class="btn btn-danger rounded creditType p-2">
                             Credit Given
                         </button>
                         <div class="feedback" *ngIf="this.selectTxn">Select for Money Given
@@ -34,8 +32,7 @@
                     <div class="col-2"></div>
 
                     <div class="col-4 text-center rounded-circle">
-                        <button type="button" id="Credit" value="CREDIT" (click)="takeCash($event)"
-                            class="btn btn-success rounded creditType p-2">
+                        <button type="button" id="Credit" value="CREDIT" (click)="takeCash($event)" class="btn btn-success rounded creditType p-2">
                             Cash Received
                         </button>
                         <div class="feedback" *ngIf="this.selectTxn">Select for Money Received
@@ -51,8 +48,7 @@
                             <label for="name" class="d-inline label">Date :</label>
                         </div>
                         <div class="col-3">
-                            <input class="rounded w-100 border border-primary" formControlName="date" type="date"
-                                id="date" disabled>
+                            <input class="rounded w-100 border border-primary" formControlName="date" type="date" id="date" disabled>
                         </div>
                     </div>
                     <br>
@@ -64,8 +60,7 @@
                             <p class="mandatory d-inline">*</p>
                         </div>
                         <div class="col-3">
-                            <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100"
-                                formControlName="amount" min="0" type="number" id="amount" placeholder="Amount" required>
+                            <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100" formControlName="amount" min="0" type="number" id="amount" placeholder="Amount" required>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
                             </div>
                             <div class="feedback" *ngIf="isValid('amount')">
@@ -80,16 +75,13 @@
                             <label for="due" class="d-inline label"> Due Date:</label>
                         </div>
                         <div class="col-3">
-                            <input class="rounded w-100 border border-primary" type="date" id="due"
-                                formControlName="due" disabled>
+                            <input class="rounded w-100 border border-primary" type="date" id="due" formControlName="due" disabled>
                         </div>
                     </div>
                     <br><br>
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button id="save" type="submit" [disabled]="!creditForm.valid"
-                                class="btn confirmBtn border border-dark nav-item nav-link-edit" data-toggle="modal"
-                                data-target="#successModal">Save</button>
+                            <button id="save" type="submit" [disabled]="!creditForm.valid" class="btn confirmBtn border border-dark nav-item nav-link-edit" data-toggle="modal" data-target="#successModal">Save</button>
                             <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
                             </div>
                             <div class="feedback" *ngIf="this.isNaN">Enter amount
@@ -103,7 +95,7 @@
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <p class="text-center">Successful.<br /></p>
-                                    
+
                                 </div>
                             </div>
                         </div>

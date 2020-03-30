@@ -8,7 +8,7 @@
     font-size: 20px;
 }
 
-input{
+input {
     border: 1px solid #46afec;
 }
 
@@ -17,22 +17,22 @@ input{
     padding: 10px 15px;
     width: 140px;
     font-size: 25px;
-border: 1px solid gray;
+    border: 1px solid gray;
     box-shadow: 0 5px #718788;
     transform: translateY(4px);
-
 }
 
 .invalid {
     background-color: #fff0ff;
     border: 1px solid red;
-    
 }
+
 
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }

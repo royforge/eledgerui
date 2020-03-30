@@ -12,8 +12,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let customer of customers'>
-                        <td><a (click)="sendData(customer)" class='blue'
-                                [routerLink]="['/credit']">{{customer.name}}</a></td>
+                        <td><a (click)="sendData(customer)" class='blue' [routerLink]="['/credit']">{{customer.name}}</a></td>
                         <td>{{customer.phone}}</td>
                         <td *ngIf='customer.amount<0'>
                             <p class="red">{{customer.amount}}</p>

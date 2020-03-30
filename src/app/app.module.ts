@@ -17,6 +17,8 @@ import { AddCreditComponent } from './add-credit/add-credit.component';
 import { EledgerLoginComponent } from './eledger-login/eledger-login.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { InterceptorService } from './services/interceptor.service';
+import { EditmyAccountComponent } from './editmy-account/editmy-account.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { InterceptorService } from './services/interceptor.service';
     EledgerLoginComponent,
     LoaderComponent,
     AddCreditComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    EditmyAccountComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

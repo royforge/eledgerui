@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid block">
     <div style="height: 150px;"></div>
     <div class="row">
         <div class="col-3"></div>
@@ -15,6 +15,8 @@
                     </button>
                 </div>
             </div>
+            <div>
+            </div>
             <br>
             <form ng-submit="login()">
                 <div class="row">
@@ -23,8 +25,7 @@
                         <label class="logo" for="UserId">Mobile Number/Email:</label>
                     </div>
                     <div class="col-sm-6">
-                        <input class=" w-100" [(ngModel)]="userID" [className]="isValid? 'form-control': 'form-control invalidInput'"
-                            type="text" name="uname" required>
+                        <input class=" w-100" [(ngModel)]="userID" [className]="isValid? 'form-control': 'form-control invalidInput'" type="text" name="uname" required>
                     </div>
                 </div>
                 <div class="row ">
@@ -32,9 +33,7 @@
                         <label class="logo" for="password">Password:</label>
                     </div>
                     <div class="col-sm-6">
-                        <input class=" w-100" [(ngModel)]="password" id="password"
-                            [className]="isValid? 'form-control': 'form-control invalidInput'" type="password"
-                            name="password" required>
+                        <input class=" w-100" [(ngModel)]="password" id="password" [className]="isValid? 'form-control': 'form-control invalidInput'" type="password" name="password" required>
                         <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid
                                 input Id / Password !</span></div>
                     </div>
@@ -44,8 +43,7 @@
                         <span class="logo"><a href="#">Forgot Password?</a></span>
                     </div>
                     <div class="col-sm-7 text-right">
-                        <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark loginButton"
-                            style="text-decoration: none; color: white;">
+                        <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark loginButton" style="text-decoration: none; color: white;">
                             Login
                         </button>
                     </div>

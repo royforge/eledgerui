@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { EledgerApi } from 'src/app/classes/EledgerApi';
 import { ActivatedRoute } from '@angular/router';
 import { WalletData } from 'src/app/model/walletdata';
@@ -17,6 +17,7 @@ export class HomepageComponent implements OnInit {
   newBalance: number;
   customerCount = 0;
   lenderId: string;
+  shopName:string;
   url: string;
   sessionModel = new SessionModel();
   constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
@@ -24,7 +25,6 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
-
     //Backend API to get data using lenderId 
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       data => { 
