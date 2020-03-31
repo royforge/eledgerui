@@ -8,8 +8,7 @@
     font-size: 20px;
 }
 
-
-input{
+input {
     border: 1px solid #46afec;
 }
 
@@ -20,18 +19,15 @@ input{
 .invalid {
     background-color: #fff0ff;
     border: 1px solid red;
-    
 }
 
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
-
-
 
 @media screen and (max-width: 840px) {
     .val {

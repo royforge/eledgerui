@@ -1,12 +1,16 @@
-.container {
+/* .container {
     width: 600px;
     margin: auto;
-    margin-top: 100px;
 }
+
+.block {
+    margin-top: 5px;
+    ;
+} */
 
 img {
     height: 50px;
-    width: 50px;
+    width: 60px;
 }
 
 .item {
@@ -15,4 +19,9 @@ img {
 
 .img {
     text-align: right;
+}
+
+.btn-size {
+    margin-top: 20px;
+    color: #46afec;
 }

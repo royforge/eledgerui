@@ -1,0 +1,45 @@
+.block {
+    margin: auto;
+    width: 800px;
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
+.logo {
+    height: 95%;
+    width: 65px;
+}
+
+.info {
+    font-weight: bold;
+    margin-top: 7px;
+    font-size: large;
+    margin-left: 200px;
+}
+
+.data {
+    margin-top: 25px;
+    text-align: left;
+}
+
+input {
+    width: 300px;
+    border: 1px solid #46afec;
+}
+
+.EditButton {
+    margin-top: 10px;
+}
+
+.cancel {
+    color: #46afec;
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.cancel:hover {
+    background-color: rgb(155, 40, 40);
+    color: white;
+    text-decoration: underline;
+}

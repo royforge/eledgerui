@@ -1,0 +1,52 @@
+<div class="container-fluid block">
+    <div class="row">
+        <div class="col-sm-6 data">
+            <label for=name class="info">Name :</label>
+        </div>
+        <div class="col-sm-6 data">
+            <input class="infoDetail" id="name" [(ngModel)]="newlenderName">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 data">
+            <label for=shopName class="info">Shop-Name :</label>
+        </div>
+        <div class="col-sm-6 data">
+            <input class="infoDetail" id="shopName" [(ngModel)]="newlenderShopName">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 data">
+            <label for=phone class="info">Phone-No :</label>
+        </div>
+        <div class="col-sm-6 data">
+            <input class="infoDetail" id="phone" [(ngModel)]="newlenderPhone">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 data">
+            <label for=lenderid class="info">Lender-Id :</label>
+        </div>
+        <div class="col-sm-6 data">
+            <input disabled class="infoDetail" id="lenderid" [(ngModel)]="newlenderId">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 data">
+            <label for=lenderid class="info">Password :</label>
+        </div>
+        <div class="col-sm-6 data">
+            <input disabled type="password" class="infoDetail" id="lenderid" [(ngModel)]="newpassword">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 data" style="text-align: right; margin-left: -100px; margin-top: 45px;">
+            <a class="cancel" href="http://localhost:4200/myaccount">
+                 Cancel </a>
+        </div>
+        <div class="col-sm-6 data" style="text-align: right; margin-left: 30px;">
+            <button (click)="update()" class="btn confirmBtn border border-dark EditButton"><a
+                style="text-decoration: none; color: white;"> Update </a></button>
+        </div>
+    </div>
+</div>

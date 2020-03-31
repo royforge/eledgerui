@@ -18,12 +18,19 @@
       "id": 2
     },
     {
-      "name": "Shashank",
-      "shopName": "Shashank Stores",
-      "phone": "9414315028",
+      "name": "Ankit",
+      "shopName": "Ankit enterprises",
+      "phone": "8888877777",
+      "lenderId": "m4",
+      "password": "@Ankit123",
+      "id": 4
+    },
+    {
+      "id": 3,
+      "name": "Shashank kharya",
+      "shopName": " Shashank Store",
       "lenderId": "m3",
-      "password": "@Shashank123",
-      "id": 3
+      "phone": "9414315028"
     },
     {
       "name": "ghzfg",
