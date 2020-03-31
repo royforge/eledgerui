@@ -33,6 +33,10 @@ input {
     box-shadow: none;
     border: 1px solid #46afec;
     padding: 2px 10px 2px 15px;
+    height: 35px;
+    border: 1px solid #46afec;
+    border-radius: 	10px;
+    background-color : #f1faff;
 }
 
 input:focus {
@@ -45,14 +49,17 @@ input:focus {
     font-family: Arial, Helvetica, sans-serif; 
     border: 1px solid #46afec;
     color: rgb(82, 81, 81);
-    background-color: white;
+    background-color: white;    
+    height: 35px;
 }
 
-.inp{
-    height: 35px;
-    border: 1px solid #46afec;
-    border-radius: 	10px;
-    background-color : #f1faff;
+.back {
+    cursor: pointer;
+    color: #46afec;
+}
+
+.back:hover {
+    text-decoration: underline;
 }
 
 .hand {
@@ -70,11 +77,4 @@ input:focus {
 
 .blue .link {
     color: #46afec;
-}
-
-.inp {
-	height: 35px;
-	border: 1px solid #46afec;
-	border-radius: 10px;
-	background-color: #f1faff;
 }

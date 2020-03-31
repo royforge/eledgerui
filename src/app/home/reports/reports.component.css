@@ -11,25 +11,12 @@ td, th {
 	text-align: center;
 }
 
-input {
-	transition: background-color 0.1s;
-	font-size: 17px;
-	background-color: #f1faff;
-	font-weight: 100;
-	letter-spacing: 0.01em;
-	box-shadow: none;
-}
-
-input:focus {
-	outline: none;
-	background-color: white;
-	box-shadow: 1px 1px 2px 3px #8ec7e9;
-}
 
 table {
 	max-width: 1000px;
 	table-layout: fixed;
 	margin: auto;
+	word-wrap: break-word;
 }
 
 .btn-right {

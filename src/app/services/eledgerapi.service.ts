@@ -1,8 +1,8 @@
 import { HeaderData } from './../model/headerData';
 import { WalletData } from './../model/walletdata';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()

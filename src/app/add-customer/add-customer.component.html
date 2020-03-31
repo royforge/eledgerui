@@ -6,15 +6,16 @@
                 <br><br><br>
 
                 <div class="row">
-                    <div class="col-1 text-right">
+                    <div class="col-2 text-right">
                         <i class='fa fa-user mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
                     <div class="col-4">
                         <label for="name" class="d-inline label">Customer Name</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}" formControlName="name" type="text" id="name" placeholder="Name" required>
+                    <div class="col-5 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}"
+                            formControlName="name" type="text" id="name" placeholder="Name" required>
                         <div class="feedback" *ngIf="isValid('name')">
                             <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
                         </div>
@@ -22,15 +23,17 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right">
+                    <div class="col-2 text-right">
                         <i class="material-icons icon rounded-circle mt-1 ml-2">phone</i>
                     </div>
                     <div class="col-4">
                         <label for="contact" class="d-inline label"> Mobile Number</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresent}" type="number" pattern="[+0-9]{10}" id="contact" placeholder="Mobile No." formControlName="mobile">
+                    <div class="col-5 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresent}"
+                            type="number" pattern="[+0-9]{10}" id="contact" placeholder="Mobile No."
+                            formControlName="mobile">
                         <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
                         </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
@@ -42,13 +45,15 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right"><i class='fas fa-rupee-sign icon2 rounded-circle'></i></div>
+                    <div class="col-2 text-right"><i class='fas fa-rupee-sign icon2 rounded-circle'></i></div>
                     <div class="col-4">
                         <label for="amount" class="d-inline label"> Amount</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('amount')}" formControlName="amount" minlength="1" type="number" id="amount" placeholder="Amount" required>
+                    <div class="col-5 inputDiv">
+                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('amount')}"
+                            formControlName="amount" minlength="1" type="number" id="amount" placeholder="Amount"
+                            required>
                         <div class="feedback" *ngIf="isValid('amount')">
                             <span *ngIf="customerForm.controls.name.errors.required">Enter some money value!</span>
                         </div>
@@ -56,13 +61,15 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-1 text-right"><i class='fas fa-hand-holding-usd icon2 rounded-circle'></i></div>
+                    <div class="col-2 text-right"><i class='fas fa-hand-holding-usd icon2 rounded-circle'></i></div>
                     <div class="col-4">
                         <label for="txnType" class="d-inline label"> Transaction Type</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-6">
-                        <select href="#" id="txnType" formControlName="txnType" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" required>
+                    <div class="col-5">
+                        <select href="#" id="txnType" formControlName="txnType"
+                            class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false" required>
                             <option value="" disabled selected>
                                 Select an Option
                             </option>
@@ -77,11 +84,12 @@
                 <br><br><br>
                 <div class="row">
                     <div class="col-11 text-right">
-                        <button type="submit" [disabled]="!customerForm.valid" class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                        <button type="submit" [disabled]="!customerForm.valid"
+                            class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-sm-2"></div>
+        <div class="col-2"></div>
     </div>
 </div>

@@ -54,6 +54,11 @@
       "borrowId": "a5d34ffc-5a33-4f75-9fde-acac067271ab",
       "lenderId": "m1",
       "id": 11
+    },
+    {
+      "borrowId": "24f47cc7-a656-4b51-948d-da4f6d68762e",
+      "lenderId": "m1",
+      "id": 12
     }
   ]
 }
