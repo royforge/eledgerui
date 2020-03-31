@@ -7,7 +7,6 @@ import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
 import { Keys } from '../model/key';
-import { Key } from 'protractor';
 
 @Component({
   selector: 'app-add-credit',
@@ -65,25 +64,7 @@ export class AddCreditComponent implements OnInit {
     sessionStorage.getItem('amount');
     this.service.emitHeaderChangeEvent(this.title);
   }
-
-  // //click button to set TxnType = Credit
-  // giveCredit(event) {
-  //   document.getElementById("Credit").classList.remove("highlight");
-  //   var target = event.target || event.srcElement || event.currentTarget;
-  //   var value = target.attributes.value;
-  //   this.wallet.txnType = value.nodeValue;
-  //   document.getElementById("Debit").classList.add("highlight");
-  // }
-
-  // //click button to set TxnType = Debit
-  // takeCash(event) {
-  //   document.getElementById("Debit").classList.remove("highlight");
-  //   var target = event.target || event.srcElement || event.currentTarget;
-  //   var value = target.attributes.value;
-  //   this.wallet.txnType = value.nodeValue;
-  //   document.getElementById("Credit").classList.add("highlight");
-  // }
-
+  
   //method on form submition
   onSubmit() {
     //values

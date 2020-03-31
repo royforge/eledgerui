@@ -1,6 +1,6 @@
 .logo {
-    height: 98%;
-    width: 88px;
+    height: 99%;
+    width: 80px;
 }
 
 .creditType {
@@ -21,6 +21,16 @@ input {
     border: 1px solid red;
 }
 
+.val {
+    font-size: 18px;
+    word-wrap: break-word;
+}
+
+.headerDiv {
+    vertical-align: middle;
+    height: 50px;
+    font-size: 22px;
+}
 
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
@@ -32,7 +42,10 @@ input::-webkit-inner-spin-button {
 }
 
 @media screen and (max-width: 840px) {
-    .val {
+    .headName {
         font-size: 17px;
+    }
+    .val {
+        font-size: 15px;
     }
 }

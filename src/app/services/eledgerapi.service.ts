@@ -27,10 +27,10 @@ export class EledgerApiService {
     }
     headerchange: EventEmitter<string> = new EventEmitter();
     public emitHeaderChangeEvent(title) {
-    this.headerchange.emit(title);
-  }
-  getHeaderChangeEmitter() {
-    return this.headerchange;
-  }
+        this.headerchange.emit(title);
+    }
+    getHeaderChangeEmitter() {
+        return this.headerchange;
+    }
 
 }    
