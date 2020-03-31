@@ -63,13 +63,23 @@ thead {
 }
 
 .name {
-	width: 28%;
+	width: 20%;
 }
 
 .phone {
-	width: 35%;
+	width: 20%;
 }
 
 .txn {
+	width: 20%;
+}
+.date {
+	width: 25%;
+}
+.edit {
 	width: 15%;
+}
+
+.icon-color{
+	color: #46afec;
 }

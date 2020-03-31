@@ -1,19 +1,22 @@
 <div *ngIf="router.url === '/home/customers'" class="container mt-2">
-        <div id="table-wrapper">
+    <div id="table-wrapper">
         <table id="tbl" class="table table-bordered">
             <thead>
                 <tr>
                     <th class="name">
                         <div class="input-group">
-                            <input class="w-100 inp" id="name" type="text" placeholder="  Name Search" aria-label="Search">
+                            <input class="w-100 inp" id="name" type="text" placeholder="  Name Search"
+                                aria-label="Search">
                         </div>
                     </th>
                     <th class="phone">
                         <div class="input-group">
-                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search" aria-label="Search">
+                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search"
+                                aria-label="Search">
                         </div>
                     </th>
-                    <th class="txn"><select id="txn" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <th class="txn"><select id="txn" class="dropdown-toggle inp selectField btn w-100"
+                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <option value="" selected>
                                 Select an Option
                             </option>
@@ -21,10 +24,15 @@
                             <option value="Due">Due</option>
                         </select>
                     </th>
-                    <th class="text-center">
-                        <button type="submit" class="btn text-center confirmBtn border border-dark nav-item nav-link-edit" (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button> &nbsp;
-                        <a *ngIf='isReset==true' class="btn-reset" href="" (click)='getListAtStart(); isSearch=false'>Reset</a>
+                    <th class="text-center date">
+                        <button type="submit"
+                            class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
+                            (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        &nbsp;
+                        <a *ngIf='isReset==true' class="btn-reset" href=""
+                            (click)='getListAtStart(); isSearch=false'>Reset</a>
                     </th>
+                    <th class="edit"></th>
                 </tr>
 
                 <tr>
@@ -32,11 +40,14 @@
                     <th class="text-center">Mobile Number</th>
                     <th class="text-center">Amount Pending</th>
                     <th class="text-center">Transaction Date</th>
+                    <th class="text-center">Edit/Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr id="tbody" class="" *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
-                    <td class="text-center name pt-2"><a (click)="sendData(customer)" class="blue  " [routerLink]="['/credit']">{{customer.name}}</a></td>
+                <tr id="tbody" class=""
+                    *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
+                    <td class="text-center name pt-2"><a (click)="sendData(customer)" class="blue  "
+                            [routerLink]="['/credit']">{{customer.name}}</a></td>
                     <td class="text-center phone pt-2">{{customer.phone}}</td>
                     <td class="text-center txn pt-2" *ngIf='customer.amount<0'>
                         <p class="red">{{customer.amount}}</p>
@@ -44,7 +55,19 @@
                     <td class="text-center txn pt-2" *ngIf='customer.amount>=0'>
                         <p class="green  ">{{customer.amount}}</p>
                     </td>
-                    <td class="text-center pt-2">{{customer.date | date:'medium' }}</td>
+                    <td class="text-center date pt-2">{{customer.date | date:'medium' }}</td>
+                    <td class="text-center edit pt-2">
+                        <div class="row icon-color">
+                            
+                            <div class="col-6 text-right">
+                                <i class="fas fa-edit hand" style="padding-right: 5px;"></i>
+                            </div>
+                            <div class="col-6 text-left" (click)="deleteCustomer(customer.id)">
+                                <i class="fas fa-trash hand"
+                                    style="padding-left: 5px;"></i>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

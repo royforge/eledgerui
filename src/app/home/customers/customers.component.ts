@@ -28,6 +28,7 @@ export class CustomersComponent implements OnInit {
   p: number = 1;
   isSearch = false;
   isReset = false;
+  respDelete: any;
 
 
   constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
@@ -119,9 +120,6 @@ export class CustomersComponent implements OnInit {
       })
   }
 
-
-
-
   //set data using session when click on name of the customer
   sendData(data: Customers) {
     this.sessionModel.setSession(Keys.id, data.id);
@@ -131,5 +129,14 @@ export class CustomersComponent implements OnInit {
     this.sessionModel.setSession(Keys.amount, data.amount);
     this.sessionModel.setSession(Keys.walletId, data.walletId);
     this.sessionModel.setSession(Keys.borrowerId, data.borrowerId);
+  }
+
+  deleteCustomer(id){
+    console.log(id);
+    this._eledgerUser.deleteBorrower(id).subscribe(
+      resp => {
+        this.respDelete = resp;
+      });
+      window.location.href = ("http://localhost:4200/home/customers ");
   }
 }

@@ -19,12 +19,14 @@ export class EledgerApiService {
 
     postUser(url: string, any): Observable<any> {
         return this.httpclient.post(url, any);
-
     }
 
     putUser(url: string, any): Observable<any> {
         return this.httpclient.put(url, any);
+    }
 
+    deleteUser(url: string): Observable<any> {
+        return this.httpclient.delete(url);
     }
 
     headerchange: EventEmitter<string> = new EventEmitter();
@@ -35,5 +37,4 @@ export class EledgerApiService {
     getHeaderChangeEmitter() {
         return this.headerchange;
     }
-
 }    

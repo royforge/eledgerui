@@ -35,5 +35,9 @@ export class EledgerUser extends EledgerApiService {
     putLenders(lenderData: LenderData):Observable<any>{
     return this.putUser(LENDERURL+"/"+lenderData.id,lenderData);
     }
+
+    deleteBorrower(id): Observable<any>{
+        return this.deleteUser(CUSTOMERURL+"/"+id);
+    }
     
 }
