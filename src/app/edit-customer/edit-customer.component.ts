@@ -3,6 +3,8 @@ import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
 import { BorrowerData } from '../model/borrowerData';
 import { Keys } from '../model/key';
+import { EledgerApiService } from '../services/eledgerapi.service';
+import { HeaderData } from '../model/headerData';
 
 @Component({
   selector: 'app-edit-customer',
@@ -10,7 +12,7 @@ import { Keys } from '../model/key';
   styleUrls: ['./edit-customer.component.css']
 })
 export class EditCustomerComponent implements OnInit {
-
+  headerData = new HeaderData();
   id: string;
   response: any;
   sessionModel = new SessionModel();
@@ -30,9 +32,11 @@ export class EditCustomerComponent implements OnInit {
     phone: undefined
   }
 
-  constructor(private _eledgerUser: EledgerUser) { }
+  constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
+    this.headerData.title = "Edit Customer";
+    this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.borrowerName = this.sessionModel.getSession(Keys.name);
     this.borrowerPhone = this.sessionModel.getSession(Keys.phone);

@@ -23,6 +23,15 @@
       "shopName": " Shashank Store",
       "lenderId": "m3",
       "phone": "9414315028"
+    },
+    {
+      "name": "ghzfg",
+      "lenderId": "ghz5461422569",
+      "phone": 5461422569,
+      "email": "34343@gmail.com",
+      "shopName": "4dfgfdgrSelection",
+      "password": "@Ak123",
+      "id": 4
     }
   ]
 }

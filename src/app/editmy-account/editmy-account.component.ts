@@ -5,6 +5,7 @@ import { EledgerUser } from '../classes/EledgerUser';
 import { UserData } from '../model/UserData';
 import { LenderData } from '../model/lenderData';
 import { EledgerApiService } from '../services/eledgerapi.service';
+import { HeaderData } from '../model/headerData';
 
 @Component({
   selector: 'app-editmy-account',
@@ -13,35 +14,36 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 })
 export class EditmyAccountComponent implements OnInit {
   response: any;
-  lenderID:string;
+  lenderID: string;
   lenderId: string;
   shopName: string;
   phone: string;
   name: string;
   id: string;
-  password:string;
+  password: string;
   sessionModel = new SessionModel();
-  title = "Edit Account";
+  headerData = new HeaderData();
 
-  newlenderName:string;
-  newlenderPhone:string;
-  newlenderShopName:string;
-  newlenderId:string;
-  newpassword:string;
+  newlenderName: string;
+  newlenderPhone: string;
+  newlenderShopName: string;
+  newlenderId: string;
+  newpassword: string;
 
-  lender: LenderData ={
+  lender: LenderData = {
     id: undefined,
     name: undefined,
     shopName: undefined,
     lenderId: undefined,
     phone: undefined,
-    password:undefined
+    password: undefined
   }
 
-  constructor(private eledgerUser: EledgerUser,private service:EledgerApiService) { }
+  constructor(private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
-    this.service.emitHeaderChangeEvent(this.title);
+    this.headerData.title = "Edit Account";
+    this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
     this.eledgerUser.getLenders().subscribe(response => {
@@ -51,7 +53,7 @@ export class EditmyAccountComponent implements OnInit {
           this.shopName = lender.shopName;
           this.phone = lender.phone;
           this.name = lender.name;
-          this.lenderId= lender.lenderId;
+          this.lenderId = lender.lenderId;
           this.password = lender.password;
 
           this.newlenderName = this.name;
@@ -66,8 +68,8 @@ export class EditmyAccountComponent implements OnInit {
       }
     });
   }
-  
-  update(){
+
+  update() {
 
     this.lender.id = this.id;
     this.lender.name = this.newlenderName;
@@ -75,16 +77,16 @@ export class EditmyAccountComponent implements OnInit {
     this.lender.shopName = this.newlenderShopName;
     this.lender.lenderId = this.newlenderId;
     this.lender.password = this.newpassword;
-    this.eledgerUser.putLenders(this.lender).subscribe(resp =>{
+    this.eledgerUser.putLenders(this.lender).subscribe(resp => {
       this.response = resp;
     });
-      
-      this.sessionModel.setSession(Keys.name,this.newlenderName);
-      this.sessionModel.setSession(Keys.phone,this.newlenderPhone);
-      this.sessionModel.setSession(Keys.shopName,this.newlenderShopName);
-      this.sessionModel.setSession(Keys.lenderId,this.newlenderId);
-      this.sessionModel.setSession(Keys.password,this.newpassword);
-      window.location.href = ("http://localhost:4200/myaccount");
+
+    this.sessionModel.setSession(Keys.name, this.newlenderName);
+    this.sessionModel.setSession(Keys.phone, this.newlenderPhone);
+    this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
+    this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
+    this.sessionModel.setSession(Keys.password, this.newpassword);
+    window.location.href = ("http://localhost:4200/myaccount");
 
   }
 

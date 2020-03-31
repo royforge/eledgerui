@@ -21,12 +21,10 @@ input {
     border: 1px solid red;
 }
 
-
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
