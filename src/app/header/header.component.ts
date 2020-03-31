@@ -1,8 +1,8 @@
+import { HeaderData } from './../model/headerData';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SessionModel } from '../model/sessionmodel';
-import { Keys } from '../model/key';
- 
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,21 +10,26 @@ import { Keys } from '../model/key';
 })
 
 export class HeaderComponent implements OnInit {
-  title: string = "Eledger";
+  headerData = new HeaderData();
+
   subscription: any;
-  borrowerName: string;
-  constructor(private service: EledgerApiService) { }
+  constructor(private _location: Location, private service: EledgerApiService) { }
 
   ngOnInit(): void {
+    this.headerData.title = 'Eledger';
     this.subscription = this.service.getHeaderChangeEmitter()
-      .subscribe(item => this.selectedHeaderItem(item));
+      .subscribe(header => this.selectedHeaderItem(header));
   }
 
-  selectedHeaderItem(item: string) {
-    this.title = item;
+  selectedHeaderItem(headerData: HeaderData) {
+    this.headerData = headerData;
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
+  goBack() {
+    this._location.back();
+  }
 }

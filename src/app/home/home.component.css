@@ -59,16 +59,10 @@
 }
 
 .centered{ 
-    top: calc(35%);
+    top: calc(35%); 
 }
 
 .btn-square {
     height: 40px;
     width: 50px;
-}
-
-.btn-size {
-    position: relative;
-    margin-top: 5px;
-    color: #46afec;
 }

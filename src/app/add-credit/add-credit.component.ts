@@ -7,6 +7,7 @@ import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
 import { Keys } from '../model/key';
+import { HeaderData } from '../model/headerData';
 
 @Component({
   selector: 'app-add-credit',
@@ -14,9 +15,8 @@ import { Keys } from '../model/key';
   styleUrls: ['./add-credit.component.css']
 })
 export class AddCreditComponent implements OnInit {
-  title: string;
-
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service:EledgerApiService) {
+  headerData = new HeaderData();
+  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
 
   }
   wallet = new WalletData();
@@ -59,12 +59,13 @@ export class AddCreditComponent implements OnInit {
     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
     this.sessionModel.setSession(Keys.id, this.id);
 
-    this.title = sessionStorage.getItem('name')+
-    sessionStorage.getItem('phone')+
-    sessionStorage.getItem('amount');
-    this.service.emitHeaderChangeEvent(this.title);
+    this.headerData.title = 'Customer: ' + sessionStorage.getItem('name');
+    this.headerData.name = sessionStorage.getItem('name');
+    this.headerData.phone = sessionStorage.getItem('phone');
+    this.headerData.amount = sessionStorage.getItem('amount');
+    this.service.emitHeaderChangeEvent(this.headerData);
   }
-  
+
   //method on form submition
   onSubmit() {
     //values

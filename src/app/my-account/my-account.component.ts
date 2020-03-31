@@ -1,9 +1,10 @@
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { UserData } from './../model/UserData';
 import { SessionModel } from './../model/sessionmodel';
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Keys } from '../model/key';
 import { EledgerUser } from '../classes/EledgerUser';
+import { HeaderData } from '../model/headerData';
 
 @Component({
   selector: 'app-my-account',
@@ -11,21 +12,22 @@ import { EledgerUser } from '../classes/EledgerUser';
   styleUrls: ['./my-account.component.css']
 })
 export class MyAccountComponent implements OnInit {
-  title = "Your Account";
+  headerData = new HeaderData();
   response: any;
-  lenderID:string;
+  lenderID: string;
   lenderId: string;
   shopName: string;
   phone: string;
   name: string;
   id: string;
   sessionModel = new SessionModel();
-  constructor(private eledgerUser: EledgerUser,private service:EledgerApiService) { }
+  constructor(private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
-    this.service.emitHeaderChangeEvent(this.title);
+    this.headerData.title = "Your Account";
+    this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
-    this.sessionModel.setSession(Keys.id,this.id);
+    this.sessionModel.setSession(Keys.id, this.id);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
     this.eledgerUser.getLenders().subscribe(response => {
       this.response = response
@@ -34,11 +36,11 @@ export class MyAccountComponent implements OnInit {
           this.shopName = lender.shopName;
           this.phone = lender.phone;
           this.name = lender.name;
-          this.lenderId= lender.lenderId;
+          this.lenderId = lender.lenderId;
           break;
         }
       }
     });
   }
 }
-  
+

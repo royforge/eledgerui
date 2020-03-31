@@ -7,8 +7,9 @@ import { EledgerUser } from '../classes/EledgerUser';
 import { BorrowerData } from '../model/borrowerData';
 import { RelationData } from '../model/relationData';
 import { SessionModel } from '../model/sessionmodel';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { EledgerApiService } from '../services/eledgerapi.service';
+import { HeaderData } from '../model/headerData';
 
 @Component({
   selector: 'app-add-customer',
@@ -40,13 +41,13 @@ export class AddCustomerComponent implements OnInit {
     lenderId: undefined,
   }
   response: any;
-  title="Add New Customer";
+  headerData = new HeaderData();
 
   constructor(private fb: FormBuilder,
     private eledgerApi: EledgerApi,
     private eledgerUser: EledgerUser,
     private _location: Location,
-    private service:EledgerApiService) { }
+    private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -57,7 +58,8 @@ export class AddCustomerComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.service.emitHeaderChangeEvent(this.title);
+    this.headerData.title = "Add New Customer";
+    this.service.emitHeaderChangeEvent(this.headerData);
 
   }
 
@@ -128,7 +130,7 @@ export class AddCustomerComponent implements OnInit {
     });
   }
 
-  goBack(){
+  goBack() {
     this._location.back();
   }
   //check the form validation
