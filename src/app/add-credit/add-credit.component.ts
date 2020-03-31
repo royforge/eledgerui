@@ -7,7 +7,6 @@ import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
 import { Keys } from '../model/key';
-import { Key } from 'protractor';
 import { HeaderData } from '../model/headerData';
 
 @Component({
@@ -17,7 +16,7 @@ import { HeaderData } from '../model/headerData';
 })
 export class AddCreditComponent implements OnInit {
   headerData = new HeaderData();
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service:EledgerApiService) {
+  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
 
   }
   wallet = new WalletData();
@@ -61,29 +60,11 @@ export class AddCreditComponent implements OnInit {
     this.sessionModel.setSession(Keys.id, this.id);
 
     this.headerData.title = 'Customer: ' + sessionStorage.getItem('name');
-    this.headerData.name = sessionStorage.getItem('name'); 
-    this.headerData.phone =  sessionStorage.getItem('phone');
-    this.headerData.amount =  sessionStorage.getItem('amount');
+    this.headerData.name = sessionStorage.getItem('name');
+    this.headerData.phone = sessionStorage.getItem('phone');
+    this.headerData.amount = sessionStorage.getItem('amount');
     this.service.emitHeaderChangeEvent(this.headerData);
   }
-
-  // //click button to set TxnType = Credit
-  // giveCredit(event) {
-  //   document.getElementById("Credit").classList.remove("highlight");
-  //   var target = event.target || event.srcElement || event.currentTarget;
-  //   var value = target.attributes.value;
-  //   this.wallet.txnType = value.nodeValue;
-  //   document.getElementById("Debit").classList.add("highlight");
-  // }
-
-  // //click button to set TxnType = Debit
-  // takeCash(event) {
-  //   document.getElementById("Debit").classList.remove("highlight");
-  //   var target = event.target || event.srcElement || event.currentTarget;
-  //   var value = target.attributes.value;
-  //   this.wallet.txnType = value.nodeValue;
-  //   document.getElementById("Credit").classList.add("highlight");
-  // }
 
   //method on form submition
   onSubmit() {
