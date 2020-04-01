@@ -1,18 +1,24 @@
-<div class="container block">
-    <div style="height: 60px;"></div>
+<div *ngIf="headerData.isHeader" class="container block">
+    <div style="height: 50px;"></div>
 
     <div class="row">
         <div class="col-sm-2 text-right">
             <a (click)="goBack()">
-                <div class=" btn-size hand"><i class="fas fa-arrow-left fa-2x"></i>
-                </div></a>
+                <div class=" btn-size"><i class="hand fas fa-arrow-left fa-2x"></i>
+                </div>
+            </a>
         </div>
         <div class="col-sm-10">
             <div class="row">
                 <div class="col-sm-2 img">
                     <img class="logo" src="../../assets/image1.png" alt="logo">
                 </div>
-                <div class="col-sm-6 item">
+                <div *ngIf="headerData.isIcon" class="col-sm-6 item">
+                    <h5 class="logoColor border border-dark rounded p-2"> <span class="val">
+                            <i class='fas fa-user icon mt-1'></i>&nbsp; {{headerData.title}}</span>
+                    </h5>
+                </div>
+                <div *ngIf="headerData.isIcon==false" class="col-sm-6 item">
                     <h5 class="logoColor border border-dark rounded p-2">
                         {{headerData.title}}
                     </h5>

@@ -5,6 +5,8 @@ import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
+import { HeaderData } from '../model/headerData';
+import { EledgerApiService } from '../services/eledgerapi.service';
 
 @Component({
   selector: 'app-signup',
@@ -36,10 +38,11 @@ export class SignupComponent implements OnInit {
   }
 
   sessionModel = new SessionModel();
+  headerData = new HeaderData();
 
   constructor(private fb: FormBuilder,
     private eledgerApi: EledgerApi,
-    private eledgerUser: EledgerUser) { }
+    private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -52,6 +55,8 @@ export class SignupComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.headerData.isHeader = false;
+    this.service.emitHeaderChangeEvent(this.headerData);
   }
 
   addMerchant() {

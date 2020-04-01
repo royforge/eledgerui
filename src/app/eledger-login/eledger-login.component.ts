@@ -4,6 +4,8 @@ import { UserData } from './../model/UserData';
 import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
 import { USERDATA } from './userDataList';
+import { EledgerApiService } from '../services/eledgerapi.service';
+import { HeaderData } from '../model/headerData';
 
 @Component({
   selector: 'app-eledger-login',
@@ -15,9 +17,14 @@ export class EledgerLoginComponent implements OnInit {
   userData: UserData[];
   user: UserData;
   sessionModel = new SessionModel();
-  constructor(private _eledgerUser: EledgerUser) { }
+  headerData = new HeaderData();
+  
+  constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
+    this.headerData.isHeader = false;
+    this.service.emitHeaderChangeEvent(this.headerData);
+
     this.isValid = true;
 
     //Mock api to get data og lender

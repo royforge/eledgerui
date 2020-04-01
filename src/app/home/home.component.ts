@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('lenderId', this.lenderId);
 
     this.headerData.title = this.sessionModel.getSession(Keys.shopName);
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
   }
 

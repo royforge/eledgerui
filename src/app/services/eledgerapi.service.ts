@@ -25,7 +25,7 @@ export class EledgerApiService {
         return this.httpclient.put(url, any);
     }
 
-    deleteUser(url: string): Observable<any> {
+    delete(url: string): Observable<any> {
         return this.httpclient.delete(url);
     }
 

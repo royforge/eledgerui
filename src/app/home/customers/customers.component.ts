@@ -28,9 +28,10 @@ export class CustomersComponent implements OnInit {
   p: number = 1;
   isSearch = false;
   isReset = false;
-  respDelete: any;
-
-
+  respDeleteEledgerUser: any;
+  respDeleteEledgerApi: any;
+  borrower= new BorrowerData();
+  
   constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
 
   ngOnInit(): void {
@@ -38,7 +39,6 @@ export class CustomersComponent implements OnInit {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
     this.getListAtStart();
-
   }
 
   getListAtStart() {
@@ -56,7 +56,7 @@ export class CustomersComponent implements OnInit {
 
             this.walletData.map(wallet => {
               for (let borrorowerData of this.borrowerList) {
-                if (borrorowerData.borrowId == wallet.borrowId) {
+                if (borrorowerData.borrowId == wallet.borrowId && borrorowerData.isDeleted == "false") {
                   this.newMethod_1(wallet, borrorowerData);
                 }
               }
@@ -64,7 +64,6 @@ export class CustomersComponent implements OnInit {
           })
       })
     this.isReset = false;
-
   }
 
   private newMethod_1(wallet: WalletData, borrorowerData: BorrowerData) {
@@ -116,7 +115,7 @@ export class CustomersComponent implements OnInit {
               }
             })
           })
-         this.isSearch = true;
+        this.isSearch = true;
       })
   }
 
@@ -131,12 +130,23 @@ export class CustomersComponent implements OnInit {
     this.sessionModel.setSession(Keys.borrowerId, data.borrowerId);
   }
 
-  deleteCustomer(id){
-    console.log(id);
-    this._eledgerUser.deleteBorrower(id).subscribe(
-      resp => {
-        this.respDelete = resp;
+  deleteCustomer(customerData: Customers) {
+    this._eledgerApi.deleteEledgerApi(customerData.walletId).subscribe(
+      respEledgeApi => {
+        this.respDeleteEledgerApi = respEledgeApi["data"];
       });
-      window.location.href = ("http://localhost:4200/home/customers ");
+
+      this.borrower.borrowId = customerData.borrowerId;
+      this.borrower.lenderId = customerData.lenderId;
+      this.borrower.name = customerData.name;
+      this.borrower.phone = customerData.phone;
+      this.borrower.isDeleted = "true";
+      this.borrower.id = customerData.id;
+
+      this._eledgerUser.putBorrower(this.borrower)
+      .subscribe(resp => {
+        this.respDeleteEledgerUser = resp;
+      });
+    window.location.href = ("http://localhost:4200/home/customers");
   }
 }

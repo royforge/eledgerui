@@ -43,6 +43,8 @@ export class EditmyAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerData.title = "Edit Account";
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);

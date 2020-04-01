@@ -44,11 +44,11 @@ export class ReportsComponent implements OnInit {
   getListAtStart() {
     this.customers = [];
 
+    
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
         this.transactions = respTrans["data"];
-
 
         //Mock api to get data from borrorer
         this._eledgerUser.getBorrowers().subscribe(
