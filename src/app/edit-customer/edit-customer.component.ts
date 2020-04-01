@@ -29,13 +29,16 @@ export class EditCustomerComponent implements OnInit {
     name: undefined,
     borrowId: undefined,
     lenderId: undefined,
-    phone: undefined
+    phone: undefined,
+    isDeleted: undefined
   }
 
   constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.headerData.title = "Edit Customer";
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.borrowerName = this.sessionModel.getSession(Keys.name);
@@ -53,12 +56,13 @@ export class EditCustomerComponent implements OnInit {
     this.borrower.lenderId = this.lenderId;
     this.borrower.name = this.customerName;
     this.borrower.phone = this.customerPhone;
+    this.borrower.isDeleted = 'false';
     this._eledgerUser.putBorrower(this.borrower)
       .subscribe(resp => {
         this.response = resp;
       });
     this.sessionModel.setSession(Keys.name, this.customerName);
     this.sessionModel.setSession(Keys.phone, this.customerPhone);
-    window.location.href = ("http://localhost:4200/credit");
+    window.location.href = ("http://localhost:4200/home/customers");
   }
 }

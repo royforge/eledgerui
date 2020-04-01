@@ -59,10 +59,12 @@ export class AddCreditComponent implements OnInit {
     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
     this.sessionModel.setSession(Keys.id, this.id);
 
-    this.headerData.title = 'Customer: ' + sessionStorage.getItem('name');
+    this.headerData.title = sessionStorage.getItem('name');
     this.headerData.name = sessionStorage.getItem('name');
     this.headerData.phone = sessionStorage.getItem('phone');
     this.headerData.amount = sessionStorage.getItem('amount');
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = true;
     this.service.emitHeaderChangeEvent(this.headerData);
   }
 
