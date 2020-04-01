@@ -34,7 +34,8 @@ export class AddCustomerComponent implements OnInit {
     name: undefined,
     borrowId: undefined,
     lenderId: undefined,
-    phone: undefined
+    phone: undefined,
+    isDeleted: undefined
   }
   relation: RelationData = {
     borrowId: undefined,
@@ -59,6 +60,8 @@ export class AddCustomerComponent implements OnInit {
 
   ngOnInit() {
     this.headerData.title = "Add New Customer";
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
 
   }
@@ -79,9 +82,11 @@ export class AddCustomerComponent implements OnInit {
 
       //updating values for the borrower data
       this.borrower.borrowId = resp.data.borrowId;
-      this.borrower.name = this.borrowerName
-      this.borrower.lenderId = this.wallet.lenderId
-      this.borrower.phone = this.mobile.toString()
+      this.borrower.name = this.borrowerName;
+      this.borrower.lenderId = this.wallet.lenderId;
+      this.borrower.phone = this.mobile.toString();
+      this.borrower.isDeleted = "false";
+      
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {

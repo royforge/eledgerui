@@ -25,6 +25,8 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerData.title = "Your Account";
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.sessionModel.setSession(Keys.id, this.id);

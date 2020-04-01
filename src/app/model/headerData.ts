@@ -3,4 +3,6 @@ export class HeaderData {
     name: string;
     amount: string;
     phone: string;  
+    isHeader: boolean;
+    isIcon: boolean;
 }

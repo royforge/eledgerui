@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerData.title = 'Eledger';
+    this.headerData.isHeader = false;
+    this.headerData.isIcon = false;
     this.subscription = this.service.getHeaderChangeEmitter()
       .subscribe(header => this.selectedHeaderItem(header));
   }
