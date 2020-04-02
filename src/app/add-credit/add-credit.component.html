@@ -2,7 +2,7 @@
     <div class=" row">
         <div class="col-sm-4"></div>
 
-        <div class="col-sm-7" style="right: 40px;" >
+        <div class="col-sm-7" style="right: 40px;">
             <div class="row mt-2">
                 <div class="col-sm-1"></div>
 
@@ -11,14 +11,13 @@
                         {{borrowerPhone}}</span>
                 </div>
                 <div class="col-sm-2"></div>
-                <div class="col-sm-2 text-center logoColor border border-dark rounded" *ngIf="balance>=0"
+                <div class="col-sm-2 text-center logoColor border border-dark rounded" *ngIf="balance>='0'"
                     style="background-color: rgb(24, 170, 24); right: 35px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>
-                <div class="col-sm-2 text-center logoColor border border-dark rounded" *ngIf="balance<0"
+                <div class="col-sm-2 text-center logoColor border border-dark rounded" *ngIf="balance<'0'"
                     style="background-color: #F44336; right: 35px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
-
                 </div>
             </div>
         </div>
@@ -26,7 +25,7 @@
 
         <div class="col-sm-2"></div>
 
-        <div class="col-sm-8" >
+        <div class="col-sm-8">
             <br><br><br><br>
             <div class="row">
                 <div class="col-sm-12 text-center">

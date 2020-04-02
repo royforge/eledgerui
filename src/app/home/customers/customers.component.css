@@ -19,10 +19,10 @@ td, th {
 	padding: 4px;
 	text-align: center;
 	vertical-align: middle;
-	
+	margin-bottom: 0px;
 }
 
-.ted{
+.tx{
 	margin: auto;
 }
 
@@ -32,8 +32,6 @@ table {
 	margin: auto;
 	word-wrap: break-word;
 }
-
-
 
 .name {
 	width: 20%;
