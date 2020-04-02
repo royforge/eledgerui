@@ -1,33 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
-.logoColor {
+.logoColor, .confirmBtn {
     background-color: #46afec;
     color: white;
 }
 
-.confirmBtn {
-    background-color: #46afec;
-    color: white;
+::-webkit-input-placeholder {
+    /* Edge */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-::-webkit-input-placeholder { /* Edge */
-    font-family: Arial, Helvetica, sans-serif; 
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-family: Arial, Helvetica, sans-serif;
 }
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    font-family: Arial, Helvetica, sans-serif; 
-}
-  
+
 ::placeholder {
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 input {
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
     color: rgb(71, 71, 71);
     transition: background-color 0.1s;
     font-size: 17px;
-    background-color : #f1faff;
+    background-color: #f1faff;
     font-weight: 100;
     letter-spacing: 0.01em;
     box-shadow: none;
@@ -35,36 +32,36 @@ input {
     padding: 2px 10px 2px 15px;
     height: 35px;
     border: 1px solid #46afec;
-    border-radius: 	10px;
-    background-color : #f1faff;
+    border-radius: 10px;
+    background-color: #f1faff;
 }
 
 input:focus {
-  outline: none;
-  background-color: white;
-  box-shadow: 1px 1px 2px 3px #8ec7e9;
+    outline: none;
+    background-color: white;
+    box-shadow: 1px 1px 2px 3px #8ec7e9;
 }
 
 .selectField {
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
     border: 1px solid #46afec;
     color: rgb(82, 81, 81);
-    background-color: white;    
+    background-color: white;
     height: 35px;
 }
 
-.back {
+.cancel {
     cursor: pointer;
     color: #46afec;
+    font-size: large;
     font-weight: bold;
-}
-
-.back:hover {
     text-decoration: underline;
-    background-color: rgb(236, 32, 32);
-    color: white;
 }
 
+.cancel:hover {
+    color: #155f8a;
+    text-decoration: underline;
+}
 .hand {
     cursor: pointer;
 }
@@ -78,9 +75,16 @@ input:focus {
     color: red;
 }
 
-.blue .link {
-    color: #46afec;
-}
 .logo-color {
     color: #46afec;
+    cursor: pointer;
+}
+
+.centered {
+    top: calc(30%);
+}
+
+.btn:hover {
+    background-color: #227baf;
+    color: #f1f1f1;
 }

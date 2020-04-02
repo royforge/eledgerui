@@ -44,7 +44,7 @@ export class ReportsComponent implements OnInit {
   getListAtStart() {
     this.customers = [];
 
-    
+
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
@@ -79,7 +79,7 @@ export class ReportsComponent implements OnInit {
 
   search() {
     this.searchedCustomers = [];
-    this.txnType = ( <HTMLInputElement>document.getElementById("txnType")).value;
+    this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
 
     if (this.txnType != undefined && this.customerName != undefined && this.customerPhone == undefined && this.startDate == undefined && this.endDate == undefined) {
       for (let customer of this.customers) {

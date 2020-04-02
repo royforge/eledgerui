@@ -18,7 +18,7 @@ export class EledgerLoginComponent implements OnInit {
   user: UserData;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
-  
+
   constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
@@ -53,13 +53,13 @@ export class EledgerLoginComponent implements OnInit {
 
     for (let user of this.userData) {
       if (user.phone == userID && user.password == password) {
-        this.sessionModel.setSession(Keys.id,user.id);
+        this.sessionModel.setSession(Keys.id, user.id);
         this.sessionModel.setSession(Keys.lenderId, user.lenderId);
         this.sessionModel.setSession(Keys.shopName, user.shopName);
         this.sessionModel.setSession(Keys.name, user.name);
         this.sessionModel.setSession(Keys.phone, user.phone);
         console.log(user.id);
-        
+
 
         return true;
       }
