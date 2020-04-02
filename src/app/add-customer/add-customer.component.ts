@@ -86,7 +86,7 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.lenderId = this.wallet.lenderId;
       this.borrower.phone = this.mobile.toString();
       this.borrower.isDeleted = "false";
-      
+
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
@@ -100,7 +100,7 @@ export class AddCustomerComponent implements OnInit {
       this.eledgerUser.postRelation(this.relation)
         .subscribe(resp => {
           this.response = resp;
-          window.location.href = ("http://localhost:4200/home");
+          this.goBack();
         });
     });
   }
