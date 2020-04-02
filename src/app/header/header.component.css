@@ -13,6 +13,16 @@ img {
 }
 
 .btn-size {
-    margin-top: 8px;
+    margin-top: 9px;
     color: #46afec;
+    
+}
+
+.icon-size{
+    font-size: x-large;
+}
+
+.btn-size:hover {
+    color: #126596;
+    
 }

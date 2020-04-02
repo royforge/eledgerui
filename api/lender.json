@@ -1,13 +1,20 @@
 {
   "lender": [
     {
+      "id": 1,
       "name": "Arpit Goyal",
+      "shopName": "Arpit Collection",
       "lenderId": "Arp9461422569",
       "phone": 9461422569,
-      "email": "arpitgoyal437@gmail.com",
-      "shopName": "Arpit Selection",
-      "password": "@Arpit123",
-      "id": 1
+      "password": "@Arpit123"
+    },
+    {
+      "id": 2,
+      "name": "Sahil Kharya",
+      "shopName": "Sahil Stores and Company",
+      "lenderId": "Sah7976347047",
+      "phone": 7976347047,
+      "password": "@Sahil123"
     }
   ]
 }

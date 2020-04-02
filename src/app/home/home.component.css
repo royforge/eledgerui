@@ -23,11 +23,6 @@
     color: #46afec;
 }
 
-.btn:hover {
-    background-color: #227baf;
-    color: #f1f1f1;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -58,8 +53,8 @@
     display: block;
 }
 
-.centered{ 
-    top: calc(35%); 
+.centered {
+    top: calc(35%);
 }
 
 .btn-square {

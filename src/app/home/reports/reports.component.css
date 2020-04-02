@@ -11,7 +11,6 @@ td, th {
 	text-align: center;
 }
 
-
 table {
 	max-width: 1000px;
 	table-layout: fixed;
@@ -32,15 +31,9 @@ table {
 	cursor: pointer;
 }
 
-.centered{ 
-    top: calc(30%);
-}
-
-.cancel-icon{
-	float:right; 
+.cancel-icon {
+	float: right;
 	size: 10px;
-	cursor:pointer;
+	cursor: pointer;
 	margin-top: 0px;
 }
-
-

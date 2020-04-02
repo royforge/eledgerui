@@ -21,3 +21,9 @@
 input{
     border: 1px solid #46afec;
 }
+
+.cancel{
+    margin-top: 10px;
+    font-size: large;
+    text-decoration: underline;
+}
