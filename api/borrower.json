@@ -41,60 +41,92 @@
       "id": 5
     },
     {
-      "name": "Bhavya",
       "borrowId": "0a7d86ee-d217-4b15-8cf1-5bc7e7767932",
       "lenderId": "Arp9461422569",
+      "name": "Bhavya",
       "phone": "9763892463",
-      "isDeleted": "false",
+      "isDeleted": "true",
       "id": 6
     },
     {
-      "name": "Reddy ",
       "borrowId": "87821383-3b9b-4acf-ad7d-bc58429f6757",
       "lenderId": "Arp9461422569",
+      "name": "Reddy ",
       "phone": "9743724324",
-      "isDeleted": "false",
+      "isDeleted": "true",
       "id": 7
     },
     {
-      "name": "Yasen",
       "borrowId": "c5194d78-c690-4cc3-9ee1-68153dd8fb91",
       "lenderId": "Arp9461422569",
+      "name": "Yasen",
       "phone": "9876438974",
-      "isDeleted": "false",
+      "isDeleted": "true",
       "id": 8
     },
     {
-      "id": 9,
-      "name": "Fasan",
       "borrowId": "64fe3634-5008-40cd-b1a5-2d807eedc370",
       "lenderId": "Arp9461422569",
+      "name": "Fasan",
       "phone": "8658938444",
-      "isDeleted": "false"
+      "isDeleted": "true",
+      "id": 9
     },
     {
-      "id": 10,
-      "name": "Mannan Singh Rathor",
       "borrowId": "9076b9b1-c88c-4bf0-927d-48bbdf0974c6",
       "lenderId": "Arp9461422569",
+      "name": "Mannan Singh Rathor",
       "phone": "8536463633",
-      "isDeleted": "false"
+      "isDeleted": "true",
+      "id": 10
     },
     {
-      "id": 11,
-      "name": "Sitaram",
       "borrowId": "f970b9fa-88f5-42af-8d6b-59e1319adfeb",
       "lenderId": "Arp9461422569",
+      "name": "Sitaram",
       "phone": "8634638483",
+      "isDeleted": "true",
+      "id": 11
+    },
+    {
+      "borrowId": "73112fdc-eb7b-4e03-a429-eb2631aebabf",
+      "lenderId": "Arp9461422569",
+      "name": "Lakshman",
+      "phone": "7583648633",
+      "isDeleted": "true",
+      "id": 12
+    },
+    {
+      "id": 13,
+      "name": "Yogesh",
+      "borrowId": "32f9d67e-dc08-4884-bd01-5ae118372ecb",
+      "lenderId": "Arp9461422569",
+      "phone": "9887474849",
       "isDeleted": "false"
     },
     {
-      "name": "Lakshman",
-      "borrowId": "73112fdc-eb7b-4e03-a429-eb2631aebabf",
+      "borrowId": "5d40e143-6295-4947-82a1-56f8c6ea1298",
       "lenderId": "Arp9461422569",
-      "phone": "7583648633",
+      "name": "Reddy ",
+      "phone": "8784837438",
+      "isDeleted": "true",
+      "id": 14
+    },
+    {
+      "borrowId": "7db025d7-ea12-427d-855e-f864a2809657",
+      "lenderId": "Arp9461422569",
+      "name": "Sahil Kharya",
+      "phone": "8764364836",
+      "isDeleted": "true",
+      "id": 15
+    },
+    {
+      "name": "Reddy ",
+      "borrowId": "fb1e5f97-cb26-4558-a82a-4657b7ee6384",
+      "lenderId": "Sah7976347047",
+      "phone": "9733243243",
       "isDeleted": "false",
-      "id": 12
+      "id": 16
     }
   ]
 }

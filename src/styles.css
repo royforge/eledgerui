@@ -53,15 +53,6 @@ input:focus {
     height: 35px;
 }
 
-.back {
-    cursor: pointer;
-    color: #46afec;
-}
-
-.back:hover {
-    text-decoration: underline;
-}
-
 .hand {
     cursor: pointer;
 }
@@ -75,9 +66,16 @@ input:focus {
     color: red;
 }
 
-.blue .link {
-    color: #46afec;
-}
 .logo-color {
     color: #46afec;
+    cursor: pointer;
+}
+
+.centered{ 
+    top: calc(30%);
+}
+
+.btn:hover {
+    background-color: #227baf;
+    color: #f1f1f1;
 }

@@ -5,16 +5,11 @@
     margin-left: 250px;
 }
 
-.logo {
-    height: 95%;
-    width: 65px;
-}
-
 .info {
     font-weight: bold;
     margin-top: 7px;
     font-size: large;
-    margin-left: 200px;
+    margin-left: 150px;
 }
 
 .data {
@@ -39,7 +34,6 @@ input {
 }
 
 .cancel:hover {
-    background-color: rgb(155, 40, 40);
-    color: white;
+    color: #155f8a;
     text-decoration: underline;
 }

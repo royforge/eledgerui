@@ -63,8 +63,6 @@ export class EditmyAccountComponent implements OnInit {
           this.newlenderPhone = this.phone;
           this.newlenderId = this.lenderId;
           this.newpassword = this.password;
-          console.log(this.newlenderId);
-          console.log(this.newlenderShopName);
           break;
         }
       }
