@@ -10,15 +10,13 @@ tr:nth-child(even) {
 	background-color: #f0ebeb;
 }
 
-
 td, th {
 	padding: 4px;
 	text-align: center;
 	vertical-align: middle;
-	
 }
 
-.ted{
+.ted {
 	margin: auto;
 }
 
@@ -29,11 +27,11 @@ table {
 	word-wrap: break-word;
 }
 
-td{
+td {
 	height: 50px;
 }
 
-.delete{
+.delete {
 	color: rgb(250, 94, 94);
 }
 
@@ -53,22 +51,22 @@ td{
 	width: 25%;
 }
 
-.edit {	
+.edit {
 	width: 15%;
 }
 
-.icon-color{
+.icon-color {
 	color: #46afec;
 }
 
-.btn-size{
+.btn-size {
 	width: 50px;
 }
 
 .delete:hover {
-	color: rgb(214, 34, 34);	
-  }
+	color: rgb(214, 34, 34);
+}
 
-.modal-size{
+.modal-size {
 	width: 320px;
 }

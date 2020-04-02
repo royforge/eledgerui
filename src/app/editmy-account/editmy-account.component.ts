@@ -2,7 +2,6 @@ import { Keys } from 'src/app/model/key';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
 import { EledgerUser } from '../classes/EledgerUser';
-import { UserData } from '../model/UserData';
 import { LenderData } from '../model/lenderData';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
@@ -70,7 +69,6 @@ export class EditmyAccountComponent implements OnInit {
   }
 
   update() {
-
     this.lender.id = this.id;
     this.lender.name = this.newlenderName;
     this.lender.phone = this.newlenderPhone;
@@ -87,8 +85,5 @@ export class EditmyAccountComponent implements OnInit {
     this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
     this.sessionModel.setSession(Keys.password, this.newpassword);
     window.location.href = ("http://localhost:4200/myaccount");
-
   }
-
-
 }

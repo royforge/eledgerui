@@ -1,5 +1,4 @@
 import { EledgerApiService } from './../services/eledgerapi.service';
-import { UserData } from './../model/UserData';
 import { SessionModel } from './../model/sessionmodel';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Keys } from '../model/key';
@@ -29,6 +28,7 @@ export class MyAccountComponent implements OnInit {
     this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
+    console.log(this.id);
     this.sessionModel.setSession(Keys.id, this.id);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
