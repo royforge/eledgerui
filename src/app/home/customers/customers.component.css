@@ -16,7 +16,7 @@ td, th {
 	vertical-align: middle;
 }
 
-.tx{
+.tx {
 	margin: auto;
 }
 
@@ -65,4 +65,5 @@ table {
 
 .modal-size {
 	width: 320px;
+	color: black;
 }
