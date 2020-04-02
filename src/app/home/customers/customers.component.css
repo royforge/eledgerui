@@ -16,7 +16,7 @@ td, th {
 	vertical-align: middle;
 }
 
-.ted {
+.tx{
 	margin: auto;
 }
 
@@ -25,10 +25,6 @@ table {
 	table-layout: fixed;
 	margin: auto;
 	word-wrap: break-word;
-}
-
-td {
-	height: 50px;
 }
 
 .delete {

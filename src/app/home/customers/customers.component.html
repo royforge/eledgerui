@@ -24,7 +24,7 @@
                             <option value="Due">Due</option>
                         </select>
                     </th>
-                    <th class="text-center date">
+                    <th class="date">
                         <button type="submit"
                             class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
                             (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -36,27 +36,27 @@
                 </tr>
 
                 <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Mobile Number</th>
-                    <th class="text-center">Amount Pending</th>
-                    <th class="text-center">Transaction Date</th>
-                    <th class="text-center">Edit/Delete</th>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Amount Pending</th>
+                    <th>Transaction Date</th>
+                    <th>Edit/Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr id="tbody" class=""
+                <tr id="tbody"
                     *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
-                    <td class="text-center name pt-2"><a (click)="sendData(customer)" class="logo-color hand"
+                    <td class="name"><a (click)="sendData(customer)" class="logo-color hand"
                             [routerLink]="['/credit']">{{customer.name}}</a></td>
-                    <td class="text-center phone pt-2">{{customer.phone}}</td>
-                    <td class="text-center txn pt-2" *ngIf='customer.amount<0'>
-                        <p class="red">{{customer.amount}}</p>
+                    <td class="phone">{{customer.phone}}</td>
+                    <td class="txn" *ngIf='customer.amount<0'>
+                        <p class="red tx">{{customer.amount}}</p>
                     </td>
-                    <td class="text-center txn pt-2" *ngIf='customer.amount>=0'>
-                        <p class="green  ">{{customer.amount}}</p>
+                    <td class="txn" *ngIf='customer.amount>=0'>
+                        <p class="green tx">{{customer.amount}}</p>
                     </td>
-                    <td class="text-center date pt-2">{{customer.date | date:'medium' }}</td>
-                    <td class="text-center edit pt-2">
+                    <td class="date">{{customer.date | date:'medium' }}</td>
+                    <td class="edit">
                         <div class="row icon-color">
 
                             <div class="col-6 text-right">
@@ -72,7 +72,8 @@
             </tbody>
         </table>
     </div>
-    <div class="col-12 text-center" style="color: #46afec;">
+    <br>
+    <div class="col-sm-12 text-center" style="color: #46afec;">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 

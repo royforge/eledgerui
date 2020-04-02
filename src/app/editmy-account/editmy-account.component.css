@@ -25,15 +25,3 @@ input {
 .EditButton {
     margin-top: 10px;
 }
-
-.cancel {
-    color: #46afec;
-    font-size: large;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-.cancel:hover {
-    color: #155f8a;
-    text-decoration: underline;
-}
