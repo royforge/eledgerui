@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class CustomersComponent implements OnInit {
   walletData: WalletData[];
   borrowerList: BorrowerData[];
+  deleteData: Customers;
   userData: UserData[];
   url: string;
   lenderId: string;
@@ -30,8 +31,8 @@ export class CustomersComponent implements OnInit {
   isReset = false;
   respDeleteEledgerUser: any;
   respDeleteEledgerApi: any;
-  borrower= new BorrowerData();
-  
+  borrower = new BorrowerData();
+
   constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
 
   ngOnInit(): void {
@@ -136,14 +137,14 @@ export class CustomersComponent implements OnInit {
         this.respDeleteEledgerApi = respEledgeApi["data"];
       });
 
-      this.borrower.borrowId = customerData.borrowerId;
-      this.borrower.lenderId = customerData.lenderId;
-      this.borrower.name = customerData.name;
-      this.borrower.phone = customerData.phone;
-      this.borrower.isDeleted = "true";
-      this.borrower.id = customerData.id;
+    this.borrower.borrowId = customerData.borrowerId;
+    this.borrower.lenderId = customerData.lenderId;
+    this.borrower.name = customerData.name;
+    this.borrower.phone = customerData.phone;
+    this.borrower.isDeleted = "true";
+    this.borrower.id = customerData.id;
 
-      this._eledgerUser.putBorrower(this.borrower)
+    this._eledgerUser.putBorrower(this.borrower)
       .subscribe(resp => {
         this.respDeleteEledgerUser = resp;
       });

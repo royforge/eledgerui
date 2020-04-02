@@ -1,11 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-.logoColor {
-    background-color: #46afec;
-    color: white;
-}
-
-.confirmBtn {
+.logoColor, .confirmBtn {
     background-color: #46afec;
     color: white;
 }
@@ -55,6 +50,18 @@ input:focus {
     height: 35px;
 }
 
+.cancel {
+    cursor: pointer;
+    color: #46afec;
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.cancel:hover {
+    color: #155f8a;
+    text-decoration: underline;
+}
 .hand {
     cursor: pointer;
 }

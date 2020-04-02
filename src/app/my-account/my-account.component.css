@@ -1,47 +1,9 @@
-    .logo {
-        height: 95%;
-        width: 65px;
-    }
-
-    .head {
-        position: relative;
-        text-align: center;
-    }
-
-    .block {
-        width: 800px;
-        margin: auto;
-        margin-top: 50px;
-        margin-left: 270px;
-    }
-
     .info {
         font-weight: bold;
         margin-top: 7px;
         font-size: large;
-        margin-left: 150px;
     }
 
     .data {
         margin-top: 25px;
-        text-align: left;
-    }
-
-    .infoDetail {
-        margin-left: 80px;
-    }
-
-    .EditButton {
-        margin-top: 10px;
-    }
-
-    .cancel {
-        color: #46afec;
-        font-size: large;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-
-    .cancel:hover {
-        color: #166796;
     }
