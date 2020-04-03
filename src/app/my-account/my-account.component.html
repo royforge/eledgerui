@@ -1,6 +1,6 @@
 <div class="container-fluid">
-    <br><br> 
-    <div class="row">
+    <br><br>
+    <!-- <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-2 data">
             <span class="info">Name</span>
@@ -43,7 +43,7 @@
     <br>
     <div class="row">
         <div class="col-sm-4"></div>
-        <div class="col-sm-2 pt-2 data"  style="left: 15px;">
+        <div class="col-sm-2 pt-2 data" style="left: 15px;">
             <a class="cancel" href="http://localhost:4200/home">
                 Cancel </a>
         </div>
@@ -51,5 +51,42 @@
             <button [routerLink]="['/editAccount']" class="btn confirmBtn border border-dark"><a> Edit
                 </a></button>
         </div>
+    </div> -->
+    <div class="block">
+        <table class="table ">
+            <tbody>
+                <tr>
+                    <th scope="row"><span class="info">Name</span></th>
+                    <td>:</td>
+                    <td>{{name}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="info">Phone</span></th>
+                    <td>:</td>
+                    <td>{{phone}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="info">Shop-Name</span></th>
+                    <td>:</td>
+                    <td>{{shopName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="info">Lender-Id</span></th>
+                    <td>:</td>
+                    <td>{{lenderId}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-2 pt-2 data" style="left: 15px;">
+            <a class="cancel" href="http://localhost:4200/home">
+                Cancel </a>
+        </div>
+        <div class="col-sm-2 data text-right" style="left: 13px;">
+            <button [routerLink]="['/editAccount']" class="btn confirmBtn border border-dark"><a> Edit
+                </a></button>
+        </div>
+    </div> -->
 </div>

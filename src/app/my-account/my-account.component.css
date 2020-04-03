@@ -3,7 +3,14 @@
         margin-top: 7px;
         font-size: large;
     }
-
+    
     .data {
         margin-top: 25px;
+        margin-left: 40px;
+    }
+    
+    .block {
+        width: 470px;
+        margin: auto;
+        margin-left: 500px;
     }
