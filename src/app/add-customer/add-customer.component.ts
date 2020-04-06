@@ -90,18 +90,20 @@ export class AddCustomerComponent implements OnInit {
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          this.response = resp;
-        });
-
-      //updating values for the relation data
-      this.relation.lenderId = this.wallet.lenderId
-      this.relation.borrowId = resp.data.borrowId
-      //posting the relation's data to relation.json 
-      this.eledgerUser.postRelation(this.relation)
-        .subscribe(resp => {
-          this.response = resp;
+          //this.response = resp;
+          this.response = resp["data"];
           this.goBack();
         });
+
+      // //updating values for the relation data
+      // this.relation.lenderId = this.wallet.lenderId
+      // this.relation.borrowId = resp.data.borrowId
+      // //posting the relation's data to relation.json 
+      // this.eledgerUser.postRelation(this.relation)
+      //   .subscribe(resp => {
+      //     this.response = resp;
+      //     this.goBack();
+      //   });
     });
   }
 
@@ -121,8 +123,9 @@ export class AddCustomerComponent implements OnInit {
 
     //checking if mobile number is already present
     this.eledgerUser.getBorrowers().subscribe(response => {
-      this.response = response
-      for (let customer of response) {
+      // this.response = response
+      this.response = response["data"]
+      for (let customer of response["data"]) {
         if (customer.phone == this.mobile) {
           this.isPresent = true;
           break;

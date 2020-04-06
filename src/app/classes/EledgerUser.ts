@@ -29,7 +29,7 @@ export class EledgerUser extends EledgerApiService {
     }
 
     getBorrowers(): Observable<any> {
-        return this.get(CUSTOMERURL);
+        return this.get(CUSTOMERURL+"/customers");
     }
 
     putLenders(lenderData: LenderData):Observable<any>{

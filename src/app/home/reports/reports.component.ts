@@ -53,7 +53,7 @@ export class ReportsComponent implements OnInit {
         //Mock api to get data from borrorer
         this._eledgerUser.getBorrowers().subscribe(
           respCustomer => {
-            this.borrowerData = respCustomer;
+            this.borrowerData = respCustomer["data"];
 
             this.transactions.map(transaction => {
               this.customerData(transaction);
@@ -69,12 +69,13 @@ export class ReportsComponent implements OnInit {
       if (transaction.borrowerId == borrower.borrowId) {
         this.customer.name = borrower.name;
         this.customer.phone = borrower.phone;
+        this.customer.amount = transaction.amount;
+        this.customer.txnType = transaction.txnType;
+        this.customer.date = transaction.date;
+        this.customers.push(this.customer);
       }
     }
-    this.customer.amount = transaction.amount;
-    this.customer.txnType = transaction.txnType;
-    this.customer.date = transaction.date;
-    this.customers.push(this.customer);
+
   }
 
   search() {
