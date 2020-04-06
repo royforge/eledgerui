@@ -18,20 +18,27 @@ export class EledgerLoginComponent implements OnInit {
   user: UserData;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
+  url: string;
 
   constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.headerData.isHeader = false;
     this.service.emitHeaderChangeEvent(this.headerData);
-
     this.isValid = true;
+    this.url =  "/lenders";
+    
+    //User Management get API to get data of lenders
+    this._eledgerUser.getEledgerLenders(this.url).subscribe(
+      data => { 
+        this.userData = data["data"];
+      })
 
     //Mock api to get data og lender
-    this._eledgerUser.getLenders().subscribe(
-      data => {
-        this.userData = data;
-      })
+    // this._eledgerUser.getLenders().subscribe(
+    //   data => {
+    //     this.userData = data;
+    //   })
   }
   userID: string;
   password: string;
@@ -58,16 +65,10 @@ export class EledgerLoginComponent implements OnInit {
         this.sessionModel.setSession(Keys.shopName, user.shopName);
         this.sessionModel.setSession(Keys.name, user.name);
         this.sessionModel.setSession(Keys.phone, user.phone);
-        console.log(user.id);
-
 
         return true;
       }
     }
     return false;
   }
-
 }
-
-
-

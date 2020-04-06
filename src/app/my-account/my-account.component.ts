@@ -20,6 +20,7 @@ export class MyAccountComponent implements OnInit {
   name: string;
   id: string;
   sessionModel = new SessionModel();
+  url: string;
   constructor(private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
@@ -32,9 +33,13 @@ export class MyAccountComponent implements OnInit {
     this.sessionModel.setSession(Keys.id, this.id);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
-    this.eledgerUser.getLenders().subscribe(response => {
-      this.response = response
-      for (let lender of response) {
+
+    this.url = "/lenders";
+
+    //User Management Api to get data of lender.
+    this.eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
+      this.response = resp["data"]
+      for (let lender of this.response) {
         if (lender.lenderId == this.lenderID) {
           this.shopName = lender.shopName;
           this.phone = lender.phone;

@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit {
 
   sessionModel = new SessionModel();
   headerData = new HeaderData();
+  url: string;
 
   constructor(private fb: FormBuilder,
     private eledgerApi: EledgerApi,
@@ -69,8 +70,9 @@ export class SignupComponent implements OnInit {
     this.merchant.password = this.password;
     this.merchant.lenderId = this.lenderId;
 
-    //posting the lender's data to lender.json 
-    this.eledgerUser.postLenders(this.merchant)
+
+    //User Management Post api to post data to the user database
+    this.eledgerUser.postEledgerLenders(this.merchant)
       .subscribe(respLender => {
         this.response = respLender;
         this.sessionModel.setSession(Keys.lenderId, this.lenderId);
@@ -79,6 +81,17 @@ export class SignupComponent implements OnInit {
         this.sessionModel.setSession(Keys.phone, this.mobile);
         window.location.href = ("http://localhost:4200/home");
       });
+
+    // //posting the lender's data to lender.json 
+    // this.eledgerUser.postLenders(this.merchant)
+    //   .subscribe(respLender => {
+    //     this.response = respLender;
+    //     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    //     this.sessionModel.setSession(Keys.shopName, this.shopName);
+    //     this.sessionModel.setSession(Keys.name, this.name);
+    //     this.sessionModel.setSession(Keys.phone, this.mobile);
+    //     window.location.href = ("http://localhost:4200/home");
+    //   });
   }
 
   onSubmit() {
@@ -93,33 +106,66 @@ export class SignupComponent implements OnInit {
     this.password = this.customerForm.value.password;
     this.confirm_password = this.customerForm.value.confirm_password;
 
-    //checking if mobile number is already present
-    this.eledgerUser.getLenders().subscribe(response => {
-      this.response = response
-      for (let customer of response) {
-        if (customer.email == this.email) {
-          this.isPresentEmail = true;
-          break;
-        }
-        if (customer.phone == this.mobile) {
-          this.isPresentPhone = true;
-          break;
-        }
-      }
 
-      // validate Password matches the confirm password field
-      if (this.password != null && this.confirm_password != null) {
-        if (this.password != this.confirm_password) {
-          this.isMatch = true;
-        }
-        else {
-          if (!this.isPresentPhone && !this.isPresentEmail) {
-            //If mobile is not already present, then add the merchant
-            this.addMerchant();
+    this.url = "/lenders";
+
+    //User Management Get API to get data 
+    this.eledgerUser.getEledgerLenders(this.url).subscribe(
+      data => {
+        this.response = data["data"]
+        for (let customer of this.response) {
+          if (customer.email == this.email) {
+            this.isPresentEmail = true;
+            break;
+          }
+          if (customer.phone == this.mobile) {
+            this.isPresentPhone = true;
+            break;
           }
         }
-      }
-    });
+
+        // validate Password matches the confirm password field
+        if (this.password != null && this.confirm_password != null) {
+          if (this.password != this.confirm_password) {
+            this.isMatch = true;
+          }
+          else {
+            if (!this.isPresentPhone && !this.isPresentEmail) {
+              //If mobile is not already present, then add the merchant
+              this.addMerchant();
+            }
+          }
+        }
+      });
+
+
+    // //checking if mobile number is already present
+    // this.eledgerUser.getLenders().subscribe(response => {
+    //   this.response = response
+    //   for (let customer of response) {
+    //     if (customer.email == this.email) {
+    //       this.isPresentEmail = true;
+    //       break;
+    //     }
+    //     if (customer.phone == this.mobile) {
+    //       this.isPresentPhone = true;
+    //       break;
+    //     }
+    //   }
+
+    //   // validate Password matches the confirm password field
+    //   if (this.password != null && this.confirm_password != null) {
+    //     if (this.password != this.confirm_password) {
+    //       this.isMatch = true;
+    //     }
+    //     else {
+    //       if (!this.isPresentPhone && !this.isPresentEmail) {
+    //         //If mobile is not already present, then add the merchant
+    //         this.addMerchant();
+    //       }
+    //     }
+    //   }
+    // });
 
   }
 
