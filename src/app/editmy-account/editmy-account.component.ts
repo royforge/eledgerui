@@ -1,3 +1,4 @@
+import { UserData } from 'src/app/model/UserData';
 import { Keys } from 'src/app/model/key';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
@@ -20,6 +21,7 @@ export class EditmyAccountComponent implements OnInit {
   name: string;
   id: string;
   password: string;
+  email: string;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
 
@@ -29,14 +31,16 @@ export class EditmyAccountComponent implements OnInit {
   newlenderId: string;
   newpassword: string;
 
-  lender: LenderData = {
+  lender: UserData = {
     id: undefined,
     name: undefined,
     shopName: undefined,
     lenderId: undefined,
     phone: undefined,
-    password: undefined
+    password: undefined,
+    email: undefined
   }
+  url: string;
 
   constructor(private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
@@ -47,15 +51,21 @@ export class EditmyAccountComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
-    this.eledgerUser.getLenders().subscribe(response => {
-      this.response = response
-      for (let lender of response) {
+
+    this.url = "/lenders";
+
+    //User Management Api to get data of lender.
+    this.eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
+      this.response = resp["data"]
+      for (let lender of this.response) {
         if (lender.lenderId == this.lenderID) {
+          this.id = lender.id;
           this.shopName = lender.shopName;
           this.phone = lender.phone;
           this.name = lender.name;
           this.lenderId = lender.lenderId;
           this.password = lender.password;
+          this.email = lender.email;
 
           this.newlenderName = this.name;
           this.newlenderShopName = this.shopName;
@@ -75,8 +85,9 @@ export class EditmyAccountComponent implements OnInit {
     this.lender.shopName = this.newlenderShopName;
     this.lender.lenderId = this.newlenderId;
     this.lender.password = this.newpassword;
-    this.eledgerUser.putLenders(this.lender).subscribe(resp => {
-      this.response = resp;
+    this.lender.email = this.email;
+    this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
+      this.response = resp["data"];
     });
 
     this.sessionModel.setSession(Keys.name, this.newlenderName);
