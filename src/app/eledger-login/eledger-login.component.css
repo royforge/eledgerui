@@ -1,5 +1,6 @@
 .block {
-    margin-left: 100px;
+    margin-left: 190px;
+    margin-top: 57px;
 }
 
 .logo {
@@ -49,4 +50,23 @@ input {
     text-align: center;
     width: 250px;
     font-size: 12px;
+}
+
+@media screen and (max-width: 500px) {
+    .block {
+        margin-left: 5px;
+        margin-top: 0px;
+    }
+    input {
+        text-align: center;
+        margin-left: 5px;
+        width: 270px;
+        border: 1px solid #46afec;
+    }
+    .password {
+        margin-top: 0px;
+    }
+    .signUpButton {
+        margin-top: -83px;
+    }
 }
