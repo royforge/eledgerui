@@ -92,7 +92,7 @@ export class AddCreditComponent implements OnInit {
       //updating the Wallet's data to Wallet database
       this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
         this.response = resp;
-        window.location.href = ("http://localhost:4200/home");
+        window.location.href = ("http://localhost:4200/home/customers");
       });
     } else {
       this.selectTxn = true;
