@@ -53,11 +53,11 @@ export class CustomersComponent implements OnInit {
         //Mock API to get the borrower data
         this._eledgerUser.getBorrowers().subscribe(
           respBorrower => {
-            this.borrowerList = respBorrower;
+            this.borrowerList = respBorrower["data"];
 
             this.walletData.map(wallet => {
               for (let borrorowerData of this.borrowerList) {
-                if (borrorowerData.borrowId == wallet.borrowId && borrorowerData.isDeleted == "false") {
+                if (borrorowerData.borrowId == wallet.borrowId) {
                   this.newMethod_1(wallet, borrorowerData);
                 }
               }
@@ -93,7 +93,7 @@ export class CustomersComponent implements OnInit {
         //Mock API to get the borrower data
         this._eledgerUser.getBorrowers().subscribe(
           respBorrower => {
-            this.borrowerList = respBorrower;
+            this.borrowerList = respBorrower["data"];
             this.walletData.map(wallet => {
 
               for (let borrorowerData of this.borrowerList) {
@@ -141,12 +141,12 @@ export class CustomersComponent implements OnInit {
     this.borrower.lenderId = customerData.lenderId;
     this.borrower.name = customerData.name;
     this.borrower.phone = customerData.phone;
-    this.borrower.isDeleted = "true";
+    this.borrower.isDeleted = true;
     this.borrower.id = customerData.id;
 
-    this._eledgerUser.putBorrower(this.borrower)
+    this._eledgerUser.deleteBorrower(customerData.id)
       .subscribe(resp => {
-        this.respDeleteEledgerUser = resp;
+        this.respDeleteEledgerUser = resp["data"];
       });
     window.location.href = ("http://localhost:4200/home/customers");
   }

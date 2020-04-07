@@ -4,5 +4,5 @@ export class BorrowerData{
     borrowId: string;
     lenderId: string;
     phone: string;
-    isDeleted: string;
+    isDeleted: boolean;
 }
