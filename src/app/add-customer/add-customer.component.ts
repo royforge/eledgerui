@@ -94,16 +94,6 @@ export class AddCustomerComponent implements OnInit {
           this.response = resp["data"];
           this.goBack();
         });
-
-      // //updating values for the relation data
-      // this.relation.lenderId = this.wallet.lenderId
-      // this.relation.borrowId = resp.data.borrowId
-      // //posting the relation's data to relation.json 
-      // this.eledgerUser.postRelation(this.relation)
-      //   .subscribe(resp => {
-      //     this.response = resp;
-      //     this.goBack();
-      //   });
     });
   }
 

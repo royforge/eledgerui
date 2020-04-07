@@ -144,9 +144,9 @@ export class CustomersComponent implements OnInit {
     this.borrower.isDeleted = "true";
     this.borrower.id = customerData.id;
 
-    this._eledgerUser.putBorrower(this.borrower)
+    this._eledgerUser.postBorrower(this.borrower)
       .subscribe(resp => {
-        this.respDeleteEledgerUser = resp;
+        this.respDeleteEledgerUser = resp["data"];
       });
     window.location.href = ("http://localhost:4200/home/customers");
   }

@@ -26,19 +26,13 @@ export class EledgerLoginComponent implements OnInit {
     this.headerData.isHeader = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     this.isValid = true;
-    this.url =  "/lenders";
-    
+    this.url = "/lenders";
+
     //User Management get API to get data of lenders
     this._eledgerUser.getEledgerLenders(this.url).subscribe(
-      data => { 
+      data => {
         this.userData = data["data"];
       })
-
-    //Mock api to get data og lender
-    // this._eledgerUser.getLenders().subscribe(
-    //   data => {
-    //     this.userData = data;
-    //   })
   }
   userID: string;
   password: string;

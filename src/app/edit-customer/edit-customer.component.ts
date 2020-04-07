@@ -57,9 +57,9 @@ export class EditCustomerComponent implements OnInit {
     this.borrower.name = this.customerName;
     this.borrower.phone = this.customerPhone;
     this.borrower.isDeleted = 'false';
-    this._eledgerUser.putBorrower(this.borrower)
+    this._eledgerUser.postBorrower(this.borrower)
       .subscribe(resp => {
-        this.response = resp;
+        this.response = resp["data"];
       });
     this.sessionModel.setSession(Keys.name, this.customerName);
     this.sessionModel.setSession(Keys.phone, this.customerPhone);
