@@ -85,7 +85,7 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.name = this.borrowerName;
       this.borrower.lenderId = this.wallet.lenderId;
       this.borrower.phone = this.mobile.toString();
-      this.borrower.isDeleted = "false";
+      this.borrower.isDeleted = false;
 
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)

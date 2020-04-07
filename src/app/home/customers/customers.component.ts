@@ -141,10 +141,10 @@ export class CustomersComponent implements OnInit {
     this.borrower.lenderId = customerData.lenderId;
     this.borrower.name = customerData.name;
     this.borrower.phone = customerData.phone;
-    this.borrower.isDeleted = "true";
+    this.borrower.isDeleted = true;
     this.borrower.id = customerData.id;
 
-    this._eledgerUser.postBorrower(this.borrower)
+    this._eledgerUser.deleteBorrower(customerData.id)
       .subscribe(resp => {
         this.respDeleteEledgerUser = resp["data"];
       });
