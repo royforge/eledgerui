@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   headerData = new HeaderData();
   id: string;
   response: any;
+  url: string;
 
   constructor(private _eledgerUser: EledgerUser, private route: ActivatedRoute, private service: EledgerApiService) { }
 
@@ -35,9 +36,12 @@ export class HomeComponent implements OnInit {
     this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     
-    this._eledgerUser.getLenders().subscribe(response => {
-      this.response = response
-      for (let lender of response) {
+    this.url =  "/lenders";
+    
+    //User Management get API to get data of lenders
+    this._eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
+      this.response = resp["data"]
+      for (let lender of this.response) {
         if (lender.lenderId == this.lenderId) {
           this.id = lender.id;
           this.sessionModel.setSession(Keys.id, this.id);
