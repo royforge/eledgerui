@@ -85,11 +85,11 @@
                     <td data-label="Edit/Delete" class="edit">
 
                         <div class="row">
-                            <div class="col-6 edit-right text-right">
+                            <div class="col-2 edit-margin">
                                 <a class="logo-color" [routerLink]="['/editcustomer']" (click)='sendData(customer)'><i
                                         class="fas fa-edit hand"></i></a>
                             </div>
-                            <div class="col-6 text-left" data-toggle="modal" data-target="#deleteModal"><a>
+                            <div class="col-2 delete-margin" data-toggle="modal" data-target="#deleteModal"><a>
                                     <i (click)="deleteData = customer" class="fas fa-trash-alt hand delete"></i></a>
 
                                 <div class="modal centered" id="deleteModal" tabindex="-1" role="dialog"
@@ -102,7 +102,7 @@
                                                 <div class="actionsBtns">
                                                     <form action="#" method="post">
                                                         <div class="row">
-                                                            <div class="col-6">
+                                                            <div class="col-6 text-left">
                                                                 <button
                                                                     class="btn btn-size confirmBtn border border-dark rounded p-2"
                                                                     (click)='deleteCustomer(deleteData)'
@@ -121,50 +121,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <!-- <div *ngIf='isIcons'>
-                                <div class="row">
-                                    <div class="col-8 text-right">
-                                        <a class="logo-color" [routerLink]="['/editcustomer']"
-                                            (click)='sendData(customer)'><i class="fas fa-edit hand"></i></a>
-                                    </div>
-                                    <div class="col-4 text-right" data-toggle="modal" data-target="#deleteModal"><a>
-                                            <i (click)="deleteData = customer"
-                                                class="fas fa-trash-alt hand delete"></i></a>
-
-                                        <div class="modal centered" id="deleteModal" tabindex="-1" role="dialog"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-sm">
-                                                <div class="modal-content modal-size">
-                                                    <div class="modal-body">
-                                                        <p class="text-center">Do you want to Delete this Customer
-                                                            ?<br /></p>
-                                                        <div class="actionsBtns">
-                                                            <form action="#" method="post">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <button
-                                                                            class="btn btn-size confirmBtn border border-dark rounded p-2"
-                                                                            (click)='deleteCustomer(deleteData)'
-                                                                            data-dismiss="modal">Yes</button>
-                                                                    </div>
-                                                                    <div class="col-6 text-right">
-                                                                        <button
-                                                                            class="btn btn-size confirmBtn border border-dark rounded p-2">
-                                                                            No </button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
                         </div>
                     </td>
                 </tr>

@@ -7,9 +7,10 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4">
                     <label for=name class="info">Name :</label>
+                    <p class="mandatory d-inline"> *</p>
                 </div>
                 <div class="col-sm-6">
-                    <input id="name" [(ngModel)]="newlenderName">
+                    <input id="name" [(ngModel)]="newlenderName" required>
                 </div>
             </div>
             <br>
@@ -17,9 +18,10 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4">
                     <label for=shopName class="info">Shop-Name :</label>
+                    <p class="mandatory d-inline"> *</p>
                 </div>
                 <div class="col-sm-6">
-                    <input id="shopName" [(ngModel)]="newlenderShopName">
+                    <input id="shopName" [(ngModel)]="newlenderShopName" required>
                 </div>
             </div>
             <br>
@@ -27,9 +29,10 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4">
                     <label for=phone class="info">Phone-No :</label>
+                    <p class="mandatory d-inline"> *</p>
                 </div>
                 <div class="col-sm-6">
-                    <input id="phone" [(ngModel)]="newlenderPhone">
+                    <input id="phone" [(ngModel)]="newlenderPhone" pattern="[+0-9]{10}" required>
                 </div>
             </div>
             <br>
@@ -60,7 +63,8 @@
                         Cancel </a>
                 </div>
                 <div class="col-4 text-right">
-                    <button (click)="update()" class="btn confirmBtn border border-dark"><a> Update </a></button>
+                    <button (click)="update()" [disabled]="!newlenderName || !newlenderShopName || !newlenderPhone"
+                        class="btn confirmBtn border border-dark"><a> Update </a></button>
                 </div>
             </div>
         </div>
