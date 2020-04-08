@@ -18,6 +18,11 @@
     font-size: 24px;
 }
 
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
+}
+
 input{
     border: 1px solid #46afec;
 }

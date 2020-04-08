@@ -33,7 +33,7 @@ input {
     color: white;
 }
 
-.invalidInput {
+.invalid{
     border: 1px solid red;
 }
 

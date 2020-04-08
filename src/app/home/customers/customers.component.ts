@@ -58,7 +58,7 @@ export class CustomersComponent implements OnInit {
             this.walletData.map(wallet => {
               for (let borrorowerData of this.borrowerList) {
                 if (borrorowerData.borrowId == wallet.borrowId) {
-                  this.newMethod_1(wallet, borrorowerData);
+                  this.setCustomerData(wallet, borrorowerData);
                 }
               }
             })
@@ -67,7 +67,7 @@ export class CustomersComponent implements OnInit {
     this.isReset = false;
   }
 
-  private newMethod_1(wallet: WalletData, borrorowerData: BorrowerData) {
+  private setCustomerData(wallet: WalletData, borrorowerData: BorrowerData) {
     this.customer = new Customers();
     this.customer.walletId = wallet.walletId;
     this.customer.date = wallet.updatedDate;
@@ -101,16 +101,16 @@ export class CustomersComponent implements OnInit {
 
                   if ((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
                     || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) {
-                    this.newMethod_1(wallet, borrorowerData);
+                    this.setCustomerData(wallet, borrorowerData);
                   }
 
                   //Fetch all the customers with positive value/credit
                   if (byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) {
-                    this.newMethod_1(wallet, borrorowerData);
+                    this.setCustomerData(wallet, borrorowerData);
                   }
                   //Fetch all the customers with due value/debt
                   if (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0) {
-                    this.newMethod_1(wallet, borrorowerData);
+                    this.setCustomerData(wallet, borrorowerData);
                   }
                 }
               }

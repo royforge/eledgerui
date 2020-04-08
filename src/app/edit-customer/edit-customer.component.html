@@ -2,50 +2,62 @@
     <div class=" row">
         <div class="col-sm-1"></div>
         <div class="col-sm-11">
+            <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
 
-            <br><br><br>
-            <div class="row">
-                <div class="col-sm-2"></div>
+                <br><br><br>
+                <div class="row">
+                    <div class="col-sm-2"></div>
 
-                <div class="col-sm-1">
-                    <i class='fa fa-user mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    <div class="col-sm-1">
+                        <i class='fa fa-user mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="name" class="d-inline label">New Name</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-3 inputDiv">
+                        <input class="rounded w-100 inp" [ngClass]="{'invalid' : isValid('name')}" type="text" id="name" name="name" placeholder="Enter New Name"
+                            [(ngModel)]="customerName" formControlName="name">
+                            <div class="feedback" *ngIf="isValid('name')">
+                                <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            </div>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <label for="name" class="d-inline label">New Name</label>
-                    <p class="mandatory d-inline"> *</p>
-                </div>
-                <div class="col-sm-3 inputDiv">
-                    <input class="rounded w-100 inp" type="text" id="name" name="name" placeholder="Enter New Name"
-                        [(ngModel)]="customerName">
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2"></div>
 
-                <div class="col-sm-1">
-                    <i class="material-icons icon rounded-circle mt-1 ml-2">phone</i>
+                    <div class="col-sm-1">
+                        <i class="material-icons icon rounded-circle mt-1 ml-2">phone</i>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="contact" class="d-inline label">New Mobile Number</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-3 inputDiv">
+                        <input class="rounded w-100 inp" type="text" id="contact" name="phone" [ngClass]="{'invalid' : isValid('mobile') || isPresent}" formControlName="mobile"
+                            placeholder="Enter New Mobile Number" pattern="[+0-9]{10}" [(ngModel)]="customerPhone"
+                            required>
+                        <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
+                        </div>
+                        <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
+                            <span *ngIf="customerForm.controls.mobile.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.mobile.errors.pattern">Enter Valid Mobile Number of 10
+                                digits!</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <label for="contact" class="d-inline label">New Mobile Number</label>
-                    <p class="mandatory d-inline"> *</p>
+                <br><br><br>
+                <div class="row">
+                    <div class="col-6 text-center cancel">
+                        <a class="logo-color" [routerLink]="['/home/customers']"><strong>Cancel</strong></a>
+                    </div>
+                    <div class="col-sm-2 text-right">
+                        <button type="submit"
+                            class="btn confirmBtn text-right border border-dark" [disabled]="!customerForm.valid">Update</button>
+                    </div>
                 </div>
-                <div class="col-sm-3 inputDiv">
-                    <input class="rounded w-100 inp" type="text" id="phone" name="phone"
-                        placeholder="Enter New Mobile Number" [(ngModel)]="customerPhone" required>
-                </div>
-            </div>
-            <br><br><br>
-            <div class="row">
-                <div class="col-6 text-center cancel">
-                    <a class="logo-color" [routerLink]="['/home/customers']"><strong>Cancel</strong></a>
-                </div>
-                <div class="col-sm-2 text-right">
-                    <button (click)='onSubmit()' type="submit"
-                        class="btn confirmBtn text-right border border-dark nav-item nav-link-edit" data-toggle="modal"
-                        data-target="#successModal">Update</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
