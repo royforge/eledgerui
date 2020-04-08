@@ -5,6 +5,7 @@ import { BorrowerData } from '../model/borrowerData';
 import { Keys } from '../model/key';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-customer',
@@ -23,6 +24,8 @@ export class EditCustomerComponent implements OnInit {
   lenderId: string;
   customerName: string;
   customerPhone: string;
+  isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
+
 
   borrower: BorrowerData = {
     id: undefined,
@@ -33,7 +36,13 @@ export class EditCustomerComponent implements OnInit {
     isDeleted: undefined
   }
 
-  constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private fb: FormBuilder, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
+
+  //validation the form
+  customerForm = this.fb.group({
+    name: ['', Validators.required],
+    mobile: ['', Validators.required]
+  });
 
   ngOnInit(): void {
     this.headerData.title = "Edit Customer";
@@ -51,18 +60,24 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isPresent = false;
     this.borrower.id = this.id;
     this.borrower.borrowId = this.borrowerId;
     this.borrower.lenderId = this.lenderId;
     this.borrower.name = this.customerName;
     this.borrower.phone = this.customerPhone;
-    this.borrower.isDeleted = 'false';
-    this._eledgerUser.putBorrower(this.borrower)
+    this.borrower.isDeleted = false;
+    this._eledgerUser.postBorrower(this.borrower)
       .subscribe(resp => {
-        this.response = resp;
+        this.response = resp["data"];
       });
     this.sessionModel.setSession(Keys.name, this.customerName);
     this.sessionModel.setSession(Keys.phone, this.customerPhone);
     window.location.href = ("http://localhost:4200/home/customers");
+  }
+
+  //check the form validation
+  isValid(control) {
+    return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;
   }
 }

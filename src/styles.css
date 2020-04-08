@@ -50,6 +50,11 @@ input:focus {
     height: 35px;
 }
 
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
+}
+
 .cancel {
     cursor: pointer;
     color: #46afec;

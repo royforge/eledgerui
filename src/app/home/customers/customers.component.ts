@@ -53,12 +53,12 @@ export class CustomersComponent implements OnInit {
         //Mock API to get the borrower data
         this._eledgerUser.getBorrowers().subscribe(
           respBorrower => {
-            this.borrowerList = respBorrower;
+            this.borrowerList = respBorrower["data"];
 
             this.walletData.map(wallet => {
               for (let borrorowerData of this.borrowerList) {
-                if (borrorowerData.borrowId == wallet.borrowId && borrorowerData.isDeleted == "false") {
-                  this.newMethod_1(wallet, borrorowerData);
+                if (borrorowerData.borrowId == wallet.borrowId) {
+                  this.setCustomerData(wallet, borrorowerData);
                 }
               }
             })
@@ -67,7 +67,7 @@ export class CustomersComponent implements OnInit {
     this.isReset = false;
   }
 
-  private newMethod_1(wallet: WalletData, borrorowerData: BorrowerData) {
+  private setCustomerData(wallet: WalletData, borrorowerData: BorrowerData) {
     this.customer = new Customers();
     this.customer.walletId = wallet.walletId;
     this.customer.date = wallet.updatedDate;
@@ -93,7 +93,7 @@ export class CustomersComponent implements OnInit {
         //Mock API to get the borrower data
         this._eledgerUser.getBorrowers().subscribe(
           respBorrower => {
-            this.borrowerList = respBorrower;
+            this.borrowerList = respBorrower["data"];
             this.walletData.map(wallet => {
 
               for (let borrorowerData of this.borrowerList) {
@@ -101,16 +101,16 @@ export class CustomersComponent implements OnInit {
 
                   if ((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
                     || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) {
-                    this.newMethod_1(wallet, borrorowerData);
+                    this.setCustomerData(wallet, borrorowerData);
                   }
 
                   //Fetch all the customers with positive value/credit
                   if (byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) {
-                    this.newMethod_1(wallet, borrorowerData);
+                    this.setCustomerData(wallet, borrorowerData);
                   }
                   //Fetch all the customers with due value/debt
                   if (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0) {
-                    this.newMethod_1(wallet, borrorowerData);
+                    this.setCustomerData(wallet, borrorowerData);
                   }
                 }
               }
@@ -141,12 +141,12 @@ export class CustomersComponent implements OnInit {
     this.borrower.lenderId = customerData.lenderId;
     this.borrower.name = customerData.name;
     this.borrower.phone = customerData.phone;
-    this.borrower.isDeleted = "true";
+    this.borrower.isDeleted = true;
     this.borrower.id = customerData.id;
 
-    this._eledgerUser.putBorrower(this.borrower)
+    this._eledgerUser.deleteBorrower(customerData.id)
       .subscribe(resp => {
-        this.respDeleteEledgerUser = resp;
+        this.respDeleteEledgerUser = resp["data"];
       });
     window.location.href = ("http://localhost:4200/home/customers");
   }

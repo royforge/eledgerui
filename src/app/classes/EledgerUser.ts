@@ -1,43 +1,36 @@
 import { BorrowerData } from 'src/app/model/borrowerData';
 import { UserData } from './../model/UserData';
-import { LENDERURL, CUSTOMERURL, RELATIONSURL } from './../static/properties';
+import { LENDER_URL, CUSTOMER_URL } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core'
-import { LenderData } from '../model/lenderData';
+import { Injectable } from '@angular/core';
+
 @Injectable()
 export class EledgerUser extends EledgerApiService {
 
-    getLenders(): Observable<any> {
-        return this.get(LENDERURL);
+    getEledgerLenders(customUrl: string): Observable<any> {
+        let url = LENDER_URL + customUrl;
+        return this.get(url);
     }
 
-    postLenders(userData: UserData): Observable<any> {
-        return this.postUser(LENDERURL, userData);
+    postEledgerLenders(userData: UserData): Observable<any> {
+        return this.postUser(LENDER_URL, userData);
     }
-    
+
+    getAllEledgerCustomers(customUrl: string): Observable<any> {
+        let url = CUSTOMER_URL + customUrl;
+        return this.get(url);
+    }
+
     postBorrower(borrowerData: BorrowerData): Observable<any> {
-        return this.postUser(CUSTOMERURL, borrowerData);
-    }
-
-    putBorrower(borrowerData: BorrowerData){
-        return this.putUser(CUSTOMERURL+"/"+borrowerData.id, borrowerData);
-    }
-
-    postRelation(any): Observable<any> {
-        return this.postUser(RELATIONSURL, any);
+        return this.postUser(CUSTOMER_URL, borrowerData);
     }
 
     getBorrowers(): Observable<any> {
-        return this.get(CUSTOMERURL);
+        return this.get(CUSTOMER_URL + "/customers");
     }
 
-    putLenders(lenderData: LenderData):Observable<any>{
-    return this.putUser(LENDERURL+"/"+lenderData.id,lenderData);
+    deleteBorrower(id){
+        return this.delete(CUSTOMER_URL+"/customer/"+id);
     }
-
-    deleteBorrower(id): Observable<any>{
-        return this.delete(CUSTOMERURL+"/"+id);
-    }
-    
 }

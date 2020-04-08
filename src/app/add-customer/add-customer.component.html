@@ -37,7 +37,7 @@
                         <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
                         </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
-                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.mobile.errors.required">Field cannot be Empty!!!</span>
                             <span *ngIf="customerForm.controls.mobile.errors.pattern">Enter Valid Mobile Number of 10
                                 digits!</span>
                         </div>
@@ -85,7 +85,7 @@
                 <div class="row">
                     <div class="col-sm-11 text-right">
                         <button type="submit" [disabled]="!customerForm.valid"
-                            class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                            class="btn confirmBtn border border-dark">Save</button>
                     </div>
                 </div>
             </form>

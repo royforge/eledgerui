@@ -1,5 +1,5 @@
 export class UserData{
-    id: number;
+    id: string;
     name: string;
     shopName: string;
     lenderId: string;
