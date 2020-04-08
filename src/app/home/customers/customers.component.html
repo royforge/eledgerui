@@ -1,17 +1,44 @@
 <div *ngIf="router.url === '/home/customers'" class="container mt-2">
+
+    <div *ngIf="isMobileCustomers" class="mobile-view-customers">
+        <div class="input-group space">
+            <input class="w-100 inp" id="name" type="text" placeholder="Name Search" aria-label="Search">
+        </div>
+
+        <div class="input-group space">
+            <input class="w-100 inp" id="phone" type="number" placeholder="Number Search" aria-label="Search">
+        </div>
+        <div class="space">
+            <select id="txn" class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown" role="button"
+                aria-haspopup="true" aria-expanded="false">
+                <option value="" selected>
+                    Select an Option
+                </option>
+                <option value="Credit">Credit</option>
+                <option value="Due">Due</option>
+            </select>
+        </div>
+        <div class="space text-center">
+            <button type="submit" class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
+                (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button>
+            &nbsp;
+            <a *ngIf='isReset==true' class="btn-reset" href="" (click)='getListAtStart(); isSearch=false'>Reset</a>
+        </div>
+    </div>
+
     <div id="table-wrapper">
         <table id="tbl" class="table table-bordered">
             <thead>
                 <tr>
                     <th class="name">
                         <div class="input-group">
-                            <input class="w-100 inp" id="name" type="text" placeholder="  Name Search"
+                            <input class="w-100 inp" id="name" type="text" placeholder="Name Search"
                                 aria-label="Search">
                         </div>
                     </th>
                     <th class="phone">
                         <div class="input-group">
-                            <input class="w-100 inp" id="phone" type="number" placeholder="  Number Search"
+                            <input class="w-100 inp" id="phone" type="number" placeholder="Number Search"
                                 aria-label="Search">
                         </div>
                     </th>
@@ -36,35 +63,34 @@
                 </tr>
 
                 <tr>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                    <th>Amount Pending</th>
-                    <th>Transaction Date</th>
-                    <th>Edit/Delete</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Amount Pending</th>
+                    <th scope="col">Transaction Date</th>
+                    <th scope="col">Edit/Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr id="tbody" *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
-                    <td class="name"><a (click)="sendData(customer)" class="logo-color hand"
-                            [routerLink]="['/credit']">{{customer.name}}</a></td>
-                    <td class="phone">{{customer.phone}}</td>
-                    <td class="txn" *ngIf='customer.amount<0'>
+                    <td scope="row" data-label="Name" class="name"><a (click)="sendData(customer)"
+                            class="logo-color hand" [routerLink]="['/credit']">{{customer.name}}</a></td>
+                    <td data-label="Mobile Number" class="phone">{{customer.phone}}</td>
+                    <td data-label="Amount Pending" class="txn" *ngIf='customer.amount<0'>
                         <p class="red tx">{{customer.amount}}</p>
                     </td>
-                    <td class="txn" *ngIf='customer.amount>=0'>
+                    <td data-label="Amount Pending" class="txn" *ngIf='customer.amount>=0'>
                         <p class="green tx">{{customer.amount}}</p>
                     </td>
-                    <td class="date">{{customer.date | date:'medium' }}</td>
-                    <td class="edit">
-                        <div class="row icon-color">
+                    <td data-label="Transaction Date" class="date">{{customer.date | date:'medium' }}</td>
+                    <td data-label="Edit/Delete" class="edit">
 
-                            <div class="col-6 text-right">
+                        <div class="row">
+                            <div class="col-6 edit-right text-right">
                                 <a class="logo-color" [routerLink]="['/editcustomer']" (click)='sendData(customer)'><i
-                                        class="fas fa-edit hand" style="padding-right: 5px;"></i></a>
+                                        class="fas fa-edit hand"></i></a>
                             </div>
                             <div class="col-6 text-left" data-toggle="modal" data-target="#deleteModal"><a>
-                                    <i (click)="deleteData = customer" class="fas fa-trash-alt hand delete"
-                                        style="padding-left: 5px;"></i></a>
+                                    <i (click)="deleteData = customer" class="fas fa-trash-alt hand delete"></i></a>
 
                                 <div class="modal centered" id="deleteModal" tabindex="-1" role="dialog"
                                     aria-hidden="true">
@@ -95,6 +121,50 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <!-- <div *ngIf='isIcons'>
+                                <div class="row">
+                                    <div class="col-8 text-right">
+                                        <a class="logo-color" [routerLink]="['/editcustomer']"
+                                            (click)='sendData(customer)'><i class="fas fa-edit hand"></i></a>
+                                    </div>
+                                    <div class="col-4 text-right" data-toggle="modal" data-target="#deleteModal"><a>
+                                            <i (click)="deleteData = customer"
+                                                class="fas fa-trash-alt hand delete"></i></a>
+
+                                        <div class="modal centered" id="deleteModal" tabindex="-1" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content modal-size">
+                                                    <div class="modal-body">
+                                                        <p class="text-center">Do you want to Delete this Customer
+                                                            ?<br /></p>
+                                                        <div class="actionsBtns">
+                                                            <form action="#" method="post">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <button
+                                                                            class="btn btn-size confirmBtn border border-dark rounded p-2"
+                                                                            (click)='deleteCustomer(deleteData)'
+                                                                            data-dismiss="modal">Yes</button>
+                                                                    </div>
+                                                                    <div class="col-6 text-right">
+                                                                        <button
+                                                                            class="btn btn-size confirmBtn border border-dark rounded p-2">
+                                                                            No </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
                         </div>
                     </td>
                 </tr>

@@ -31,26 +31,30 @@ export class ReportsComponent implements OnInit {
   endDate: string = "";
   isSearch = false;
   isReset = false;
+  isMobileReports = false;
   p: number = 1;
 
   constructor(public router: Router, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
 
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
-    this.url = TRANSACTION + "/lenderId/" + this.lenderId;
     this.getListAtStart();
+
+    if (window.innerWidth <= 768) {
+      this.isMobileReports = true;
+    }
   }
 
   getListAtStart() {
     this.customers = [];
-
+    this.url = TRANSACTION + "/lenderId/" + this.lenderId;
 
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
         this.transactions = respTrans["data"];
         this.url = "/allcustomers";
-    
+
         //Mock api to get data from borrorer
         this._eledgerUser.getAllEledgerCustomers(this.url).subscribe(
           respCustomer => {

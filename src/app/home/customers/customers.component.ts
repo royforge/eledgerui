@@ -29,6 +29,7 @@ export class CustomersComponent implements OnInit {
   p: number = 1;
   isSearch = false;
   isReset = false;
+  isMobileCustomers = false;
   respDeleteEledgerUser: any;
   respDeleteEledgerApi: any;
   borrower = new BorrowerData();
@@ -40,6 +41,10 @@ export class CustomersComponent implements OnInit {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
     this.getListAtStart();
+
+    if (window.innerWidth <= 768) {
+      this.isMobileCustomers = true;
+    }
   }
 
   getListAtStart() {

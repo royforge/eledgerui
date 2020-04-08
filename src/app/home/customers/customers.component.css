@@ -21,17 +21,39 @@ td, th {
 }
 
 table {
-	max-width: 1000px;
-	table-layout: fixed;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
 	margin: auto;
+	width: 100%;
+	table-layout: fixed;
 	word-wrap: break-word;
 }
+
+/* table tr {
+	background-color: #f8f8f8;
+	border: 1px solid #ddd;
+	padding: .35em;
+  }
+  
+  table th,
+  table td {
+	padding: .625em;
+	text-align: center;
+  }
+  
+  table th {
+	font-size: .85em;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+  } */
+
+/* end */
 
 .delete {
 	color: rgb(250, 94, 94);
 }
 
-.name {
+/* .name {
 	width: 20%;
 }
 
@@ -53,7 +75,7 @@ table {
 
 .icon-color {
 	color: #46afec;
-}
+} */
 
 .btn-size {
 	width: 50px;
@@ -66,4 +88,63 @@ table {
 .modal-size {
 	width: 320px;
 	color: black;
+}
+
+div.space {
+	margin-bottom: 10px;
+}
+
+/* Responsive Table CSS	 */
+
+@media screen and (min-width: 768px) {
+	div.mobile-view-customers {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	
+	.edit-right {
+		text-align: right;
+	}
+
+	table {
+		border: 0;
+	}
+
+	table thead {
+		border: none;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	table tr {
+		border-bottom: 3px solid #ddd;
+		display: block;
+		margin-bottom: .625em;
+	}
+	table td {
+		border-bottom: 1px solid #ddd;
+		display: block;
+		font-size: .8em;
+		text-align: right;
+		right: -155px;
+	}
+	table td::before {
+		/*
+	  * aria-label has no advantage, it won't be read inside a table
+	  content: attr(aria-label);
+	  */
+		content: attr(data-label);
+		float: left;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	table td:last-child {
+		border-bottom: 0;
+	}
 }
