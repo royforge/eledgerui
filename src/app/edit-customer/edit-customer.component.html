@@ -5,28 +5,28 @@
 
             <br><br><br>
             <div class="row">
-                <div class="col-sm-1 col-1">
+                <div class="col-sm-1 col-2 text-right">
                     <i class='fa fa-user icon2 mt-1 ml-3'></i>
                 </div>
-                <div class="col-sm-4 col-11">
+                <div class="col-sm-4 lbl col-10">
                     <label for="name" class="d-inline label">New Name</label>
                     <p class="mandatory d-inline"> *</p>
                 </div>
-                <div class="col-sm-3 col-12 inputDiv">
+                <div class="col-sm-4 col-12 inputDiv">
                     <input class="rounded w-100 inp" type="text" id="name" name="name" placeholder="Enter New Name"
                         [(ngModel)]="customerName">
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-sm-1 col-1">
+                <div class="col-sm-1 col-2 text-right">
                     <i class="material-icons icon rounded-circle mt-1 ml-2">phone</i>
                 </div>
-                <div class="col-sm-4 col-11">
+                <div class="col-sm-4 lbl col-10">
                     <label for="contact" class="d-inline label">New Mobile Number</label>
                     <p class="mandatory d-inline"> *</p>
                 </div>
-                <div class="col-sm-3 inputDiv">
+                <div class="col-sm-4 inputDiv">
                     <input class="rounded w-100 inp" type="text" id="phone" name="phone"
                         placeholder="Enter New Mobile Number" [(ngModel)]="customerPhone" required>
                 </div>

@@ -6,16 +6,16 @@
             <div class="row mt-2">
                 <div class="col-2"></div>
 
-                <div class="col-sm-3 w-100 text-center logoColor border border-dark rounded"> <i
+                <div class="col-sm-3 col-11 w-100 text-center fix logoColor border border-dark rounded"> <i
                         class="fa fa-phone fa-flip-horizontal mr-1 icon" aria-hidden="true"></i><span class="val pb-1">
                         {{borrowerPhone}}</span>
                 </div>
                 <div class="col-sm-1"></div>
-                <div class="col-3 text-center logoColor border fix border-dark rounded" *ngIf="balance>='0'"
+                <div class="col-sm-2 col-11 text-center logoColor border fix border-dark rounded" *ngIf="balance>='0'"
                     style="background-color: rgb(24, 170, 24); right: 30px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>
-                <div class="col-sm-2 text-center logoColor border fix border-dark rounded" *ngIf="balance<'0'"
+                <div class="col-sm-2 col-11 text-center logoColor border fix border-dark rounded" *ngIf="balance<'0'"
                     style="background-color: #F44336; right: 30px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>

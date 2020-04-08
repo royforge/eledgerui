@@ -88,7 +88,7 @@ export class AddCreditComponent implements OnInit {
     }
 
     //Save button works only if txntype has value
-    if (this.wallet.txnType == "DEBIT" || this.wallet.txnType == "CREDIT") {
+    if ((this.wallet.txnType == "DEBIT" || this.wallet.txnType == "CREDIT") && !isNaN(this.wallet.amount)){
       //updating the Wallet's data to Wallet database
       this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
         this.response = resp;
