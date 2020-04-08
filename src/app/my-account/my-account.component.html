@@ -1,55 +1,62 @@
 <div class="container-fluid">
-    <br><br> 
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-2 data">
-            <span class="info">Name</span>
-        </div>
-        <div class="col-sm-1 data">:</div>
-        <div class="col-sm-5 data">
-            <span>{{name}}</span>
+    <div style="height: 60px;"></div>
+        <div class="row">
+
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+
+                <div class="row">
+
+                    <div class="col-2"></div>
+                    <div class="col-4 data">
+                        <span class="info">Name</span>
+                    </div>
+                    <div class="col-1 data">:</div>
+                    <div class="col-5 data">
+                        <span>{{name}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-4 data">
+                        <span class="info">Phone</span>
+                    </div>
+                    <div class="col-1 data">:</div>
+                    <div class="col-5 data">
+                        <span>{{phone}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-4 data">
+                        <span class="info">Shop-Name</span>
+                    </div>
+                    <div class="col-1 data">:</div>
+                    <div class="col-5 data">
+                        <span>{{shopName}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-4 data">
+                        <span class="info">Lender-Id</span>
+                    </div>
+                    <div class="col-1 data">:</div>
+                    <div class="col-5 data">
+                        <span>{{lenderId}}</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4 text-right pt-2 data"  style="left: 15px;">
+                        <a class="cancel" href="http://localhost:4200/home">
+                            Cancel </a>
+                    </div>
+                    <div class="col-sm-4 col-6 data text-right" style="left: 15px;">
+                        <button [routerLink]="['/editAccount']" class="btn confirmBtn border border-dark"><a> Edit
+                            </a></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-2 data">
-            <span class="info">Phone</span>
-        </div>
-        <div class="col-sm-1 data">:</div>
-        <div class="col-sm-5 data">
-            <span>{{phone}}</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-2 data">
-            <span class="info">Shop-Name</span>
-        </div>
-        <div class="col-sm-1 data">:</div>
-        <div class="col-sm-5 data">
-            <span>{{shopName}}</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-2 data">
-            <span class="info">Lender-Id</span>
-        </div>
-        <div class="col-sm-1 data">:</div>
-        <div class="col-sm-5 data">
-            <span>{{lenderId}}</span>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-2 pt-2 data"  style="left: 15px;">
-            <a class="cancel" href="http://localhost:4200/home">
-                Cancel </a>
-        </div>
-        <div class="col-sm-2 data text-right" style="left: 15px;">
-            <button [routerLink]="['/editAccount']" class="btn confirmBtn border border-dark"><a> Edit
-                </a></button>
-        </div>
-    </div>
-</div>
