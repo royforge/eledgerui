@@ -1,27 +1,15 @@
-.block {
-    margin: auto;
-    width: 800px;
-    margin-top: 50px;
-    margin-left: 250px;
+.info {
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: large;
+}
+
+@media screen and (max-width: 840px) {
+.cancel{
+    font-size: 14px;
 }
 
 .info {
-    font-weight: bold;
-    margin-top: 7px;
-    font-size: large;
-    margin-left: 150px;
+    font-size: 15px;
 }
-
-.data {
-    margin-top: 25px;
-    text-align: left;
-}
-
-input {
-    width: 300px;
-    border: 1px solid #46afec;
-}
-
-.EditButton {
-    margin-top: 10px;
 }

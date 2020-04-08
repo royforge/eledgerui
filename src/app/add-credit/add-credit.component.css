@@ -42,4 +42,13 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     .val, .icon {
         font-size: 15px;
     }
+
+    .fix {
+        left: 0px;
+        margin-top: 8px;
+    }
+
+    .label {
+        text-align: left;
+    }
 }

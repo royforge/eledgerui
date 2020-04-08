@@ -1,13 +1,3 @@
-.logoColor {
-    height: 50px;
-    height: auto;
-}
-
-.logo {
-    height: 95%;
-    width: 65px;
-}
-
 .icon {
     background-color: #46afec;
     color: white;
@@ -15,15 +5,33 @@
 }
 .icon2 {
     color: #46afec;
-    font-size: 24px;
+    font-size: 21px;
+}
+.btnDiv {
+    left: 30px;
 }
 
-input{
-    border: 1px solid #46afec;
-}
+@media screen and (max-width: 540px) {
+    .cancel{
+        font-size: 15px;
+    }
+    
+    .label {
+        font-size: 16px;
+        width: 100%;
+    }
 
-.cancel{
-    margin-top: 10px;
-    font-size: large;
-    text-decoration: underline;
+    .icon2{
+        font-size: 16px;
+    }
+    .icon{
+        font-size: 18px;
+    }
+
+    .block {
+        left: 0px;
+    }
+    .btnDiv {
+        left: 130px;
+    }
 }

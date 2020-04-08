@@ -71,7 +71,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr id="tbody" *ngFor='let customer of customers | paginate: { itemsPerPage: 6, currentPage: p }'>
+                <tr id="tbody" *ngFor='let customer of customers | paginate: { itemsPerPage: 8, currentPage: p }'>
                     <td scope="row" data-label="Name" class="name"><a (click)="sendData(customer)"
                             class="logo-color hand" [routerLink]="['/credit']">{{customer.name}}</a></td>
                     <td data-label="Mobile Number" class="phone">{{customer.phone}}</td>
