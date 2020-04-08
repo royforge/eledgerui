@@ -8,7 +8,7 @@ img {
     height: 40px;
 }
 
-.invalidInput {
+.invalid {
     border: 1px solid red;
 }
 
