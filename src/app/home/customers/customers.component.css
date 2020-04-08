@@ -94,17 +94,32 @@ div.space {
 	margin-bottom: 10px;
 }
 
+.edit-margin{
+	margin-left: 70px;
+}
+
+.delete-margin{
+	margin-left: 20px;
+}
+
 /* Responsive Table CSS	 */
 
 @media screen and (min-width: 768px) {
-	div.mobile-view-customers {
+	.mobile-view-customers {
 		display: none;
 	}
 }
 
 @media screen and (max-width: 768px) {
 	
-	.edit-right {
+	.edit-margin{
+		margin-left: 140px;
+		margin-right: 0px;
+	}
+	
+	.delete-margin{
+		margin-left: 0px;
+		margin-right: 0px;
 		text-align: right;
 	}
 
