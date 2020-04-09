@@ -1,3 +1,4 @@
+import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -70,7 +71,6 @@ export class SignupComponent implements OnInit {
     this.merchant.password = this.password;
     this.merchant.lenderId = this.lenderId;
 
-
     //User Management Post api to post data to the user database
     this.eledgerUser.postEledgerLenders(this.merchant)
       .subscribe(respLender => {
@@ -79,7 +79,7 @@ export class SignupComponent implements OnInit {
         this.sessionModel.setSession(Keys.shopName, this.shopName);
         this.sessionModel.setSession(Keys.name, this.name);
         this.sessionModel.setSession(Keys.phone, this.mobile);
-        window.location.href = ("http://localhost:4200/home");
+        window.location.href = (UI_URL + "/home");
       });
   }
 
@@ -94,8 +94,6 @@ export class SignupComponent implements OnInit {
     this.shopName = this.customerForm.value.shopName;
     this.password = this.customerForm.value.password;
     this.confirm_password = this.customerForm.value.confirm_password;
-
-
     this.url = "/lenders";
 
     //User Management Get API to get data 

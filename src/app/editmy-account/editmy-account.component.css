@@ -5,11 +5,13 @@
 }
 
 @media screen and (max-width: 840px) {
-.cancel{
-    font-size: 14px;
-}
-
-.info {
-    font-size: 15px;
-}
+    .cancel {
+        font-size: 14px;
+    }
+    .info {
+        font-size: 15px;
+    }
+    .mobile-left{
+        padding-right: 50px;
+    }
 }

@@ -1,3 +1,4 @@
+import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Keys } from 'src/app/model/key';
 import { SessionModel } from 'src/app/model/sessionmodel';
@@ -24,7 +25,7 @@ export class EditmyAccountComponent implements OnInit {
   email: string;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
-  
+
   newlenderName: string;
   newlenderPhone: string;
   newlenderShopName: string;
@@ -96,6 +97,6 @@ export class EditmyAccountComponent implements OnInit {
     this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
     this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
     this.sessionModel.setSession(Keys.password, this.newpassword);
-    window.location.href = ("http://localhost:4200/myaccount");
+    window.location.href = (UI_URL + "/myaccount");
   }
 }
