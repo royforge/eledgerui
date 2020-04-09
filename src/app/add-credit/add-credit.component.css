@@ -30,7 +30,13 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (min-width: 768px) {
+    .block{
+  right: 2vw;
+    }
+}
+
+@media screen and (max-width: 767px) {
     .headName {
         font-size: 17px;
     }
