@@ -44,8 +44,8 @@ div.space {
 	margin-bottom: 10px;
 }
 
-
 /* Responsive Table CSS	 */
+
 @media screen and (min-width: 768px) {
 	div.mobile-view-reports {
 		display: none;
@@ -53,14 +53,16 @@ div.space {
 }
 
 @media screen and (max-width: 768px) {
-	
+	.mobile-sm {
+		text-align: center;
+		font-size: 12px;
+	}
 	.mobile-margin {
 		margin-top: 10px;
 		margin-bottom: 10px;
 		margin-right: 80px;
 		margin-left: 50px;
-	} 
-
+	}
 	table {
 		border: 0;
 	}

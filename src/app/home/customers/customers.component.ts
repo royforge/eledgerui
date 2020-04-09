@@ -1,3 +1,4 @@
+import { UI_URL } from './../../static/properties';
 import { Customers } from './../../model/customers';
 import { BorrowerData } from './../../model/borrowerData';
 import { EledgerApi } from './../../classes/EledgerApi';
@@ -153,6 +154,6 @@ export class CustomersComponent implements OnInit {
       .subscribe(resp => {
         this.respDeleteEledgerUser = resp["data"];
       });
-    window.location.href = ("http://localhost:4200/home/customers");
+    window.location.href = (UI_URL + "/home/customers");
   }
 }

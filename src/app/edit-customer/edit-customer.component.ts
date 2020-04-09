@@ -1,3 +1,4 @@
+import { UI_URL } from './../static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
@@ -73,7 +74,7 @@ export class EditCustomerComponent implements OnInit {
       });
     this.sessionModel.setSession(Keys.name, this.customerName);
     this.sessionModel.setSession(Keys.phone, this.customerPhone);
-    window.location.href = ("http://localhost:4200/home/customers");
+    window.location.href = (UI_URL + "/home/customers");
   }
 
   //check the form validation

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EledgerApi } from 'src/app/classes/EledgerApi';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletData } from 'src/app/model/walletdata';
@@ -17,7 +17,7 @@ export class HomepageComponent implements OnInit {
   newBalance: number;
   customerCount = 0;
   lenderId: string;
-  shopName:string;
+  shopName: string;
   url: string;
   sessionModel = new SessionModel();
   constructor(public router: Router, private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
@@ -27,10 +27,10 @@ export class HomepageComponent implements OnInit {
     this.url = WALLET + "/lenderId/" + this.lenderId;
     //Backend API to get data using lenderId 
     this._eledgerApi.getEledgerApi(this.url).subscribe(
-      data => { 
+      data => {
         this.walletData = data["data"];
         this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
         this.customerCount = this.walletData.reduce((sum, item) => sum + 1, 0);
-      })
+      });
   }
 }
