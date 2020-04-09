@@ -53,6 +53,14 @@ div.space {
 }
 
 @media screen and (max-width: 768px) {
+	
+	.mobile-margin {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-right: 80px;
+		margin-left: 50px;
+	} 
+
 	table {
 		border: 0;
 	}

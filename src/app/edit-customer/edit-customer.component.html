@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-4 btnDiv text-right">
                     <button (click)='onSubmit()' type="submit"
-                        class="btn confirmBtn text-right border border-dark nav-item nav-link-edit" data-toggle="modal"
+                        class="btn confirmBtn text-right border border-dark nav-item nav-link-edit" [disabled]="!customerName || !customerPhone" data-toggle="modal"
                         data-target="#successModal">Update</button>
                 </div>
             </div>
