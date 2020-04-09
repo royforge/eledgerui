@@ -2,10 +2,17 @@
     <div style="height: 50px;"></div>
 
     <div class="row">
-        <div class="col-2 text-right">
+        <div class="col-2 text-right d-none d-sm-flex">
             <a (click)="goBack()">
                 <div class="hand back-btn"><strong>
                         < Back</strong>
+                </div>
+            </a>
+        </div>
+        <div class="col-2 d-flex d-sm-none">
+            <a (click)="goBack()">
+                <div class="hand back-btn">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size: 18px;"></i>
                 </div>
             </a>
         </div>
@@ -16,7 +23,7 @@
                 </div>
                 <div *ngIf="headerData.isIcon" class="col-7 item">
                     <h5 class="logoColor border border-dark rounded p-2"> <span class="val">
-                            <i class='fas fa-user icon mt-1'></i>&nbsp; {{headerData.title}}</span>
+                            <i class='fas fa-user icon mt-1 d-inline'></i>&nbsp; <p class="d-inline">{{headerData.title}}</p></span>
                     </h5>
                 </div>
                 <div *ngIf="headerData.isIcon==false" class="col-7 item">

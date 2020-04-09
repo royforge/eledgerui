@@ -1,13 +1,14 @@
 <div class="container-fluid">
     <br>
     <div class="row">
-        <div class="col-4 id2"><img [src]="LOGO2" /><a class="logo-color" [routerLink]='["/home/customers"]'>Customers</a>
+        <div class="col-sm-1"></div>
+        <div class="col-4 col-sm-3 id2"><img [src]="LOGO2" /><a class="logo-color" [routerLink]='["/home/customers"]'> Customers</a>
         </div>
-        <div class="col-4 id2 hand"><img [src]="LOGO3" /><a class="logo-color" [routerLink]='["/home/reports"]'>Reports</a>
+        <div class="col-4 id2 hand"><img [src]="LOGO3" /><a class="logo-color" [routerLink]='["/home/reports"]'> Reports</a>
         </div>
-        <div class="col-4 id2">
+        <div class="col-4 col-sm-3 id2">
         <div class="dropdown"><img [src]="LOGO4" /><a class="logo-color dropbtn" href="/home/profile"
-                [routerLink]='["/home"]'>Profile </a>
+                [routerLink]='["/home"]'> Profile </a>
             <div class="dropdown-content">
                 <a href="http://localhost:4200/myaccount">My Account</a>
                 <a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>

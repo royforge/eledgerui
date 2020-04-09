@@ -30,7 +30,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 540px) {
     .headName {
         font-size: 17px;
     }
@@ -40,6 +40,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
     .fix {
         left: 0px;
+        margin: auto;
         margin-top: 8px;
     }
 

@@ -20,8 +20,9 @@ img {
 
 .back-btn:hover {
     color: #126596;
-    
 }
+
+
 
 @media screen and (max-width: 540px) {
     .back-btn {
@@ -31,10 +32,12 @@ img {
     img {
         height: 41px;
         width: 52px;
+        text-align: left;
     }
 
     .logoColor {
         font-size: 18px;
 
     }
+
 }
