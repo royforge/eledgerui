@@ -8,6 +8,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { AddCreditComponent } from './add-credit/add-credit.component';
 import { HeaderComponent } from './header/header.component';
 import { EditmyAccountComponent } from './editmy-account/editmy-account.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'editcustomer', component: EditCustomerComponent},
   { path: 'header', component:HeaderComponent },
   { path: 'editAccount', component: EditmyAccountComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '**', component: SignupComponent }
 ];
 
