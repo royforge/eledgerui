@@ -65,12 +65,6 @@ div.space {
 
 /* Responsive Table CSS	 */
 
-@media screen and (min-width: 768px) {
-	.mobile-view-customers {
-		display: none;
-	}
-}
-
 @media screen and (max-width: 768px) {
 	.mobile-sm {
 		text-align: center;

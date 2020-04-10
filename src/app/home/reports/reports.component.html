@@ -1,6 +1,6 @@
-<div *ngIf="router.url === '/home/reports'" class="container mt-2">
+<div *ngIf="router.url === '/home/reports'" class="container mt-2" #widgetParentDiv>
 
-    <div *ngIf="isMobileReports" class="mobile-view-reports">
+    <div *ngIf="visible" (window:resize)="onResize($event)">
         <div class="input-group space">
             <input matInput class="w-100 inp" id="name" type="text" placeholder="Name Search" [(ngModel)]="customerName"
                 aria-label="Search" autofocus>
@@ -107,9 +107,11 @@
                     <div class="actionsBtns text-center">
                         <div class="col-sm-12 text-center">
                             <input type="date" id="startDate" name="startDate" value="2012-10-08"
-                                class="date inp mobile-margin" [(ngModel)]="startDate" aria-label="Search" autofocus />
+                                placeholder="2012-10-08" class="date inp mobile-margin" [(ngModel)]="startDate"
+                                aria-label="Search" autofocus />
                             to <input type="date" id="endDate" name="endDate" value="2012-10-08"
-                                class="date inp mobile-margin" [(ngModel)]="endDate" aria-label="Search" autofocus />
+                                placeholder="2012-10-09" class="date inp mobile-margin" [(ngModel)]="endDate"
+                                aria-label="Search" autofocus />
                         </div>
                         <br>
                         <div class="text-center">
