@@ -1,6 +1,6 @@
 <div *ngIf="router.url === '/home/customers'" class="container mt-2">
 
-    <div *ngIf="isMobileCustomers" class="mobile-view-customers">
+    <div *ngIf="visible" (window:resize)="onResize($event)">
         <div class="input-group space">
             <input class="w-100 inp" id="name" type="text" placeholder="Name Search" aria-label="Search">
         </div>

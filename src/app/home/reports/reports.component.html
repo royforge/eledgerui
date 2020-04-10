@@ -1,6 +1,6 @@
-<div *ngIf="router.url === '/home/reports'" class="container mt-2">
+<div *ngIf="router.url === '/home/reports'" class="container mt-2" #widgetParentDiv>
 
-    <div *ngIf="isMobileReports" class="mobile-view-reports">
+    <div *ngIf="visible" (window:resize)="onResize($event)">
         <div class="input-group space">
             <input matInput class="w-100 inp" id="name" type="text" placeholder="Name Search" [(ngModel)]="customerName"
                 aria-label="Search" autofocus>

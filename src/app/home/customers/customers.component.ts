@@ -3,7 +3,7 @@ import { Customers } from './../../model/customers';
 import { BorrowerData } from './../../model/borrowerData';
 import { EledgerApi } from './../../classes/EledgerApi';
 import { EledgerUser } from './../../classes/EledgerUser';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
@@ -30,12 +30,23 @@ export class CustomersComponent implements OnInit {
   p: number = 1;
   isSearch = false;
   isReset = false;
-  isMobileCustomers = false;
   respDeleteEledgerUser: any;
   respDeleteEledgerApi: any;
   borrower = new BorrowerData();
+  visible = false;
 
   constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
+
+  //onresize event to show or hide filters
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth <= 768) {
+      this.visible = true;
+    } else {
+      // whenever the window is greater than 768
+      this.visible = false;
+    }
+  }
 
   ngOnInit(): void {
     //this.myFunction();
@@ -44,7 +55,7 @@ export class CustomersComponent implements OnInit {
     this.getListAtStart();
 
     if (window.innerWidth <= 768) {
-      this.isMobileCustomers = true;
+      this.visible = true;
     }
   }
 
