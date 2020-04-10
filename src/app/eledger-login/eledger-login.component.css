@@ -38,9 +38,9 @@ input:focus {
     color: red;
     position: relative;
     margin-top: 11px;
-    margin-left: 51px;
+    margin-left: 30px;
     text-align: center;
-    width: 250px;
+    width: 180px;
     font-size: 12px;
 }
 
@@ -54,5 +54,9 @@ input:focus {
     }
     .signUp {
         padding-top: 0px;
+    }
+    .invalidEntry {
+        margin-left: 50px;
+        width: 200px;
     }
 }

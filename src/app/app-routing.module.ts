@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'editcustomer', component: EditCustomerComponent},
   { path: 'header', component:HeaderComponent },
   { path: 'editAccount', component: EditmyAccountComponent },
-  { path: '**', component: SignupComponent }
+  { path: '**', component: EledgerLoginComponent }
 ];
 
 @NgModule({
