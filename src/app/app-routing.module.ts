@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'header', component:HeaderComponent },
   { path: 'editAccount', component: EditmyAccountComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: '**', component: SignupComponent }
+  { path: '**', component: EledgerLoginComponent }
 ];
 
 @NgModule({
