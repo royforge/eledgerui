@@ -10,6 +10,7 @@ import { SessionModel } from '../model/sessionmodel';
 import { Location } from '@angular/common';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
+import { UI_URL } from '../static/properties';
 
 @Component({
   selector: 'app-add-customer',
@@ -92,7 +93,7 @@ export class AddCustomerComponent implements OnInit {
         .subscribe(resp => {
           //this.response = resp;
           this.response = resp["data"];
-          this.goBack();
+          window.location.href = (UI_URL + "/home/customers");
         });
     });
   }

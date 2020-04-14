@@ -16,12 +16,6 @@ input {
     word-wrap: break-word;
 }
 
-.headerDiv {
-    vertical-align: middle;
-    height: 50px;
-    font-size: 22px;
-}
-
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
 
@@ -31,8 +25,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 @media screen and (min-width: 768px) {
-    .block{
-  right: 2vw;
+
+    .align {
+        left: 2%;
     }
 }
 

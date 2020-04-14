@@ -7,12 +7,6 @@
     color: #46afec;
     font-size: 21px;
 }
-.btnDiv {
-    left: 30px;
-}
-.inputDiv {
-    right: 30px;
-}
 
 @media screen and (max-width: 580px) {
     .cancel{
@@ -33,16 +27,5 @@
     }
     .icon{
         font-size: 18px;
-    }
-
-    .block {
-        left: 0px;
-    }
-    .btnDiv {
-        left: 130px;
-    }
-
-    .inputDiv {
-        right: 0;
     }
 }
