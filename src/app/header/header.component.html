@@ -1,25 +1,32 @@
 <div *ngIf="headerData.isHeader" class="container block">
     <div style="height: 50px;"></div>
-
     <div class="row">
-        <div class="col-sm-2 text-right">
+        <div class="col-2 text-right d-none d-sm-flex">
             <a (click)="goBack()">
-                <div class="hand btn-size"><strong>
+                <div class="hand back-btn"><strong>
                         < Back</strong>
                 </div>
             </a>
         </div>
-        <div class="col-sm-10">
-            <div class="row">
-                <div class="col-sm-2 img">
-                    <img class="logo" src="../../assets/image1.png" alt="logo">
+        <div class="col-1 d-flex d-sm-none">
+            <a (click)="goBack()">
+                <div class="hand back-btn">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size: 18px;"></i>
                 </div>
-                <div *ngIf="headerData.isIcon" class="col-sm-6 item">
+            </a>
+        </div>
+        <div class="col-11 col-sm-10">
+            <div class="row">
+                <div class="col-2 img">
+                    <img [routerLink]="['/home']" class="logo hand" src="../../assets/image1.png" alt="logo">
+                </div>
+                <div *ngIf="headerData.isIcon" class="col-8 col-sm-7 item">
                     <h5 class="logoColor border border-dark rounded p-2"> <span class="val">
-                            <i class='fas fa-user icon mt-1'></i>&nbsp; {{headerData.title}}</span>
+                            <i class='fas fa-user icon mt-1 d-inline'></i>&nbsp; <p class="d-inline">
+                                {{headerData.title}}</p></span>
                     </h5>
                 </div>
-                <div *ngIf="headerData.isIcon==false" class="col-sm-6 item">
+                <div *ngIf="headerData.isIcon==false" class="col-8 col-sm-7  item">
                     <h5 class="logoColor border border-dark rounded p-2">
                         {{headerData.title}}
                     </h5>

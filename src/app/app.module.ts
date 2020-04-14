@@ -24,6 +24,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { SignupComponent } from './signup/signup.component';
 import { EditmyAccountComponent } from './editmy-account/editmy-account.component';
 import { HeaderComponent } from './header/header.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HeaderComponent } from './header/header.component';
     SignupComponent,
     MyAccountComponent,
     EditmyAccountComponent,
-    HeaderComponent
+    HeaderComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

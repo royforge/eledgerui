@@ -4,12 +4,12 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4">
+                <div class="col-sm-1 col-0"></div>
+                <div class="col-sm-6 col-9">
                     <h2><img class="logo" src="../../assets/image1.png" alt="logo"> Registration</h2>
                 </div>
-                <div class="col-sm-6 text-right mt-2 rounded-circle">
-                    <button class="btn confirmBtn border border-dark signUpButton"><a
+                <div class="col-sm-4 col-3 text-right mt-2 rounded-circle">
+                    <button class="btn confirmBtn border border-dark"><a
                             style="text-decoration: none; color: white;" [routerLink]="['/login']">Login</a>
                     </button>
                 </div>
@@ -17,14 +17,14 @@
             <br><br>
             <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
                 <div class="row">
-                    <div class="col-sm-1 text-right">
+                    <div class="col-sm-1 col-1 text-right">
                         <i class='fa fa-user mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-11">
                         <label for="name" class="d-inline label">Your Name</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 inputDiv">
+                    <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}"
                             formControlName="name" type="text" id="name" placeholder=" Enter Full Name" required>
                         <div class="feedback" *ngIf="isValid('name')">
@@ -34,14 +34,14 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-1 text-right">
-                        <i class='fa fa-phone-square mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                    <div class="col-sm-1 col-1 text-right">
+                        <i class='fa fa-phone-square fa-rotate-90 mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-11">
                         <label for="contact" class="d-inline label"> Mobile Number</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 inputDiv">
+                    <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresentPhone}"
                             type="number" pattern="[+0-9]{10}" id="contact" placeholder=" Enter Mobile Number"
                             formControlName="mobile">
@@ -57,14 +57,14 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-1 text-right">
+                    <div class="col-sm-1 col-1 text-right">
                         <i class='fa fa-envelope mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-11">
                         <label for="email" class="d-inline label"> Email ID</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 inputDiv">
+                    <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('email') || isPresentEmail}"
                             type="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" id="email"
                             placeholder=" Enter Email ID" formControlName="email">
@@ -79,14 +79,14 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-1 text-right">
+                    <div class="col-sm-1 col-1 text-right">
                         <i class='fa fa-briefcase mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-11">
                         <label for="shopName" class="d-inline label">Business Name</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 inputDiv">
+                    <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('shopName')}" type="text"
                             id="shopName" placeholder=" Enter Business Name" formControlName="shopName" required>
                         <div class="feedback" *ngIf="isValid('shopName')">
@@ -96,14 +96,14 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-1 text-right">
+                    <div class="col-sm-1 col-1 text-right">
                         <i class='fa fa-key mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-11">
                         <label for="password" class="d-inline label">Password</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 inputDiv">
+                    <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('password') }" type="password"
                             pattern="(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
                             id="password" placeholder=" Enter Password" formControlName="password" required>
@@ -115,14 +115,14 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-1 text-right">
+                    <div class="col-sm-1 col-1 text-right">
 
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-11">
                         <label for="confirm_password" class="d-inline label">Confirm Password</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 inputDiv">
+                    <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100"
                             [ngClass]="{'invalid' : isValid('confirm_password') || isMatch}" type="password"
                             pattern="(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
@@ -137,7 +137,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-11 text-right">
+                    <div class="col-sm-11 col-8 text-right">
                         <button type="submit" [disabled]="!customerForm.valid"
                             class="btn confirmBtn border border-dark nav-item nav-link-edit">Sign Up</button>
                     </div>

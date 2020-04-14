@@ -1,20 +1,23 @@
-<div class="container">
+<div class="container-fluid">
     <br>
     <div class="row">
-        <div class="id2"><img [src]="LOGO2" /><a class="logo-color" [routerLink]='["/home/customers"]'>Customers</a>
+        <div class="col-sm-1"></div>
+        <div class="col-4 col-sm-3 id2"><img [src]="LOGO2" /><a class="logo-color" [routerLink]='["/home/customers"]'> Customers</a>
         </div>
-        <div class="id2 hand"><img [src]="LOGO3" /><a class="logo-color" [routerLink]='["/home/reports"]'>Reports</a>
+        <div class="col-4 id2"><img [src]="LOGO3" /><a class="logo-color" [routerLink]='["/home/reports"]'> Reports</a>
         </div>
-        <div class="id2 dropdown"><img [src]="LOGO4" /><a class="logo-color dropbtn" href="/home/profile"
-                [routerLink]='["/home"]'>Profile</a>
+        <div class="col-4 col-sm-3 id2">
+        <div class="dropdown"><img [src]="LOGO4" /><a class="logo-color dropbtn" href="/home/profile"
+                [routerLink]='["/home"]'> Profile </a>
             <div class="dropdown-content">
-                <a href="http://localhost:4200/myaccount">My Account</a>
+                <a [routerLink]='["/myaccount"]'>My Account</a>
                 <a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
         </div>
+        </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 text-center"><button type="button" class="btn confirmBtn border-dark rounded p-2 mt-2"
+        <div class="col-12 text-center"><button type="button" class="btn confirmBtn border-dark rounded p-2 mt-2"
                 [routerLink]="['/addcustomer']"><i class='fa fa-plus'></i>
                 <strong> Add New Customer </strong></button>
         </div>
@@ -33,13 +36,13 @@
                         <div class="actionsBtns">
                             <form action="#" method="post">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-6">
                                         <input type="submit"
                                             class="btn btn-square confirmBtn border border-dark rounded p-2"
                                             (click)='clearData()' [routerLink]="['/login']" data-dismiss="modal"
                                             value="Yes" />
                                     </div>
-                                    <div class="col-sm-6 text-right">
+                                    <div class="col-6 text-right">
                                         <button class="btn btn-square confirmBtn border border-dark rounded p-2    "
                                             data-dismiss="modal"> No </button>
                                     </div>

@@ -1,3 +1,4 @@
+import { UI_URL } from './../static/properties';
 import { Keys } from './../model/key';
 import { SessionModel } from './../model/sessionmodel';
 import { UserData } from './../model/UserData';
@@ -45,7 +46,7 @@ export class EledgerLoginComponent implements OnInit {
     let check = this.checkValidUser(userID, password);
 
     if (check) {
-      window.location.href = ("http://localhost:4200/home");
+      window.location.href = (UI_URL + "/home");
     } else {
       this.isValid = false;
     }

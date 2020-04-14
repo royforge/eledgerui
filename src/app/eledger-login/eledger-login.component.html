@@ -1,59 +1,57 @@
-<div class="container-fluid block">
+<div class="container">
     <div style="height: 120px;"></div>
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-5">
+        <div class="col-sm-4 col-0"></div>
+        <div class="col-sm-4 col-12 block">
             <div class="row">
-                <div class="col-sm-5 text-right">
-                    <h2 class="logo">
+                <div class="col-9">
+                    <h2 class="">
                         <img src="../../assets/image1.png"> Login
                     </h2>
                 </div>
-                <div class="col-sm-7 text-right">
-                    <button class="btn confirmBtn border border-dark signUpButton"><a
-                            style="text-decoration: none; color: white;" [routerLink]="['/sign-up']">SignUp</a>
+                <div class="col-3">
+                    <button class="btn confirmBtn border border-dark signUp" [routerLink]="['/sign-up']">SignUp
                     </button>
                 </div>
             </div>
-            <div>
-            </div>
-            <br>
-            <form ng-submit="login()">
-                <div class="row">
-                    <div class="col-sm-5">
+            <br><br>
+                <form ng-submit="login()">
+                    <div class="row">
+                        <div class="col-sm-5">
 
-                        <label class="logo" for="UserId">Mobile Number/Email:</label>
+                            <label class="label" for="UserId">Mobile Number/Email:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input class=" w-100" [(ngModel)]="userID"
+                                [className]="isValid? 'form-control': 'form-control invalid'" type="text"
+                                name="uname" required>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input class=" w-100" [(ngModel)]="userID"
-                            [className]="isValid? 'form-control': 'form-control invalid'" type="text" name="uname"
-                            required>
+                    <br>
+                    <div class="row ">
+                        <div class="col-sm-5 form-group">
+                            <label class="label" for="password">Password:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input class="w-100" [(ngModel)]="password" id="password"
+                                [className]="isValid? 'form-control': 'form-control invalid'" type="password"
+                                name="password" required>
+                            <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid
+                                    input Id / Password !</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="row ">
-                    <div class="col-sm-5 form-group">
-                        <label class="logo" for="password">Password:</label>
+                    <br>
+                    <div class="row">
+                        <div class="col-9">
+                            <span class=""><a class="logo-color" [routerLink]="['/forgot-password']">Forgot Password?</a></span>
+                        </div>
+                        <div class="col-3 text-right">
+                            <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark">
+                                Login
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input class=" w-100" [(ngModel)]="password" id="password"
-                            [className]="isValid? 'form-control': 'form-control invalid'" type="password"
-                            name="password" required>
-                        <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid
-                                input Id / Password !</span></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <span class="logo"><a class="logo-color" href="#">Forgot Password?</a></span>
-                    </div>
-                    <div class="col-sm-7 text-right">
-                        <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark loginButton"
-                            style="text-decoration: none; color: white;">
-                            Login
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
         </div>
     </div>
 </div>

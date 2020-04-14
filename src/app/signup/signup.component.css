@@ -8,9 +8,6 @@
     width: 65px;
 }
 
-.inp {
-    height: 32px;
-}
 .icon {
     background-color: #46afec;
     color: white;
@@ -21,18 +18,15 @@
     font-size: 24px;
 }
 
-.selectField {
-border: 1px solid #46afec;
-color: rgb(82, 81, 81);
-background-color: white;
-}
 .label {
     font-size: 20px;
 }
 
-.inputDiv{
-    height: 35px;
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
 }
+
 
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
@@ -44,8 +38,12 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* If the screen size is 840px wide or less, set the font-size of <div> to 30px */
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 540px) {
     .label {
         font-size: 17px;
+        margin-left: 15px;
+    }
+    h2 {
+        font-size: 25px;
     }
 }

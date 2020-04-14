@@ -1,6 +1,6 @@
 
 img {
-    height: 50px;
+    height: 48px;
     width: 60px;
 }
 
@@ -12,17 +12,32 @@ img {
     text-align: right;
 }
 
-.btn-size {
+.back-btn {
     margin-top: 9px;
     color: #46afec;
     
 }
 
-.icon-size{
-    font-size: x-large;
+.back-btn:hover {
+    color: #126596;
 }
 
-.btn-size:hover {
-    color: #126596;
+
+
+@media screen and (max-width: 540px) {
+    .back-btn {
+        font-size: 12px;
+    }
     
+    img {
+        height: 41px;
+        width: 52px;
+        text-align: left;
+    }
+
+    .logoColor {
+        font-size: 18px;
+
+    }
+
 }

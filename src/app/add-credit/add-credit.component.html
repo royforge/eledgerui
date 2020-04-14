@@ -1,93 +1,84 @@
-<div class="container-fluid">
+<div class="container">
     <div class=" row">
-        <div class="col-sm-4"></div>
-
-        <div class="col-sm-7" style="right: 40px;">
+        <div class="col-1 col-md-2"></div>
+        <div class="col-sm-10 block">
             <div class="row mt-2">
-                <div class="col-sm-1"></div>
+                <div class="col-2"></div>
 
-                <div class="col-sm-3 w-100 text-center logoColor border border-dark rounded"> <i
+                <div class="col-md-3 col-7 text-center fix logoColor border border-dark rounded align"> <i
                         class="fa fa-phone fa-flip-horizontal mr-1 icon" aria-hidden="true"></i><span class="val pb-1">
                         {{borrowerPhone}}</span>
                 </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 text-center logoColor border border-dark rounded" *ngIf="balance>='0'"
-                    style="background-color: rgb(24, 170, 24); right: 35px;"> <span class="val">
+                <div class="col-md-2 col-2"></div>
+                <div class="col-md-2 col-7 text-center logoColor border fix border-dark rounded" *ngIf="balance>='0'"
+                    style="background-color: rgb(24, 170, 24); right: 16px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>
-                <div class="col-sm-2 text-center logoColor border border-dark rounded" *ngIf="balance<'0'"
-                    style="background-color: #F44336; right: 35px;"> <span class="val">
+                <div class="col-md-2 col-7 text-center logoColor border fix border-dark rounded" *ngIf="balance<'0'"
+                    style="background-color: #F44336; right: 16px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>
             </div>
         </div>
-        <div class="col-sm-1"></div>
-
         <div class="col-sm-2"></div>
 
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <br><br><br><br>
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <form [formGroup]='creditForm' (ngSubmit)="onSubmit()">
-                        <div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                </div>
-                                <div class="col-sm-2 text-right">
-                                    <label for="name" class="d-inline label">Credit
-                                        type <p class="mandatory d-inline"> *</p>
-                                        :</label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <select href="#" id="txnType" class="dropdown-toggle inp selectField btn w-100"
-                                        data-toggle="dropdown" role="button" required>
-                                        <option value="" disabled selected>
-                                            Select an Option
-                                        </option>
-                                        <option value="DEBIT">Credit Given</option>
-                                        <option value="CREDIT">Cash Received</option>
-                                    </select>
-                                </div>
+                        <div class="row">
+                            <div class="col-sm-3">
                             </div>
-                            <br>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                </div>
-                                <div class="col-sm-2 text-right">
-                                    <label for="amount" class="d-inline label"> Amount <p class="mandatory d-inline">*
-                                        </p>
-                                        :</label>
-
-                                </div>
-                                <div class="col-sm-3">
-                                    <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100"
-                                        formControlName="amount" min="0" type="number" id="amount" placeholder="Amount"
-                                        required>
-                                    <div class="feedback" *ngIf="this.isNaN">Enter amount
-                                    </div>
-                                    <div class="feedback" *ngIf="isValid('amount')">
-                                        <span *ngIf="creditForm.controls.name.errors.required">Enter some money
-                                            value!</span>
-                                    </div>
-                                </div>
+                            <div class="col-sm-3 label">
+                                <label for="name" class="d-inline label">Credit
+                                    type <p class="mandatory d-inline"> * </p>
+                                    :</label>
                             </div>
-                            <br>
-                            <br><br>
-                            <!-- <div class="row"> -->
-                            <div class="col-sm-12 text-center">
-                                <button id="save" type="submit" [disabled]="!creditForm.valid"
-                                    class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
-                                <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
-                                </div>
+                            <div class="col-sm-3">
+                                <select href="#" id="txnType" class="dropdown-toggle inp selectField btn w-100"
+                                    data-toggle="dropdown" role="button" required>
+                                    <option value="" disabled selected>
+                                        Select an Option
+                                    </option>
+                                    <option value="DEBIT">Credit Given</option>
+                                    <option value="CREDIT">Cash Received</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-sm-3 label">
+                                <label for="amount" class="d-inline label"> Amount <p class="mandatory d-inline">* </p>
+                                    :</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input [ngClass]="{'invalid' : isValid('amount')}" class="rounded w-100"
+                                    formControlName="amount" min="0" type="number" id="amount" placeholder="Amount"
+                                    required>
                                 <div class="feedback" *ngIf="this.isNaN">Enter amount
                                 </div>
-                                <div class="feedback" *ngIf="isValid('amount')">Input all required values before
-                                    submitting
+                                <div class="feedback" *ngIf="isValid('amount')">
+                                    <span *ngIf="creditForm.controls.name.errors.required">Enter some money
+                                        value!</span>
                                 </div>
                             </div>
-                            <!-- </div> -->
+                        </div>
+                        <br>
+                        <br><br>
+                        <div class="col-sm-12 text-center">
+                            <button id="save" type="submit" [disabled]="!creditForm.valid"
+                                class="btn confirmBtn border border-dark nav-item nav-link-edit">Save</button>
+                            <div class="feedback" *ngIf="this.selectTxn">Select one transaction type
+                            </div>
+                            <div class="feedback" *ngIf="this.isNaN">Enter amount
+                            </div>
+                            <div class="feedback" *ngIf="isValid('amount')">Input all required values before
+                                submitting
+                            </div>
                         </div>
                     </form>
                 </div>

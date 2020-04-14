@@ -1,11 +1,12 @@
+import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Keys } from 'src/app/model/key';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
 import { EledgerUser } from '../classes/EledgerUser';
-import { LenderData } from '../model/lenderData';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editmy-account',
@@ -42,7 +43,7 @@ export class EditmyAccountComponent implements OnInit {
   }
   url: string;
 
-  constructor(private eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.headerData.title = "Edit Account";
@@ -86,6 +87,7 @@ export class EditmyAccountComponent implements OnInit {
     this.lender.lenderId = this.newlenderId;
     this.lender.password = this.newpassword;
     this.lender.email = this.email;
+
     this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
       this.response = resp["data"];
     });
@@ -95,6 +97,6 @@ export class EditmyAccountComponent implements OnInit {
     this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
     this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
     this.sessionModel.setSession(Keys.password, this.newpassword);
-    window.location.href = ("http://localhost:4200/myaccount");
+    window.location.href = (UI_URL + "/myaccount");
   }
 }

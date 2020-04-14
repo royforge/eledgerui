@@ -1,3 +1,4 @@
+import { UI_URL } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
@@ -88,11 +89,11 @@ export class AddCreditComponent implements OnInit {
     }
 
     //Save button works only if txntype has value
-    if (this.wallet.txnType == "DEBIT" || this.wallet.txnType == "CREDIT") {
+    if ((this.wallet.txnType == "DEBIT" || this.wallet.txnType == "CREDIT") && !isNaN(this.wallet.amount)) {
       //updating the Wallet's data to Wallet database
       this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
         this.response = resp;
-        window.location.href = ("http://localhost:4200/home/customers");
+        window.location.href = (UI_URL + "/home/customers");
       });
     } else {
       this.selectTxn = true;

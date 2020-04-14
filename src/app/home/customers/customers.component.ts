@@ -1,8 +1,9 @@
+import { UI_URL } from './../../static/properties';
 import { Customers } from './../../model/customers';
 import { BorrowerData } from './../../model/borrowerData';
 import { EledgerApi } from './../../classes/EledgerApi';
 import { EledgerUser } from './../../classes/EledgerUser';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
@@ -32,14 +33,30 @@ export class CustomersComponent implements OnInit {
   respDeleteEledgerUser: any;
   respDeleteEledgerApi: any;
   borrower = new BorrowerData();
+  visible = false;
 
   constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
+
+  //onresize event to show or hide filters
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth <= 768) {
+      this.visible = true;
+    } else {
+      // whenever the window is greater than 768
+      this.visible = false;
+    }
+  }
 
   ngOnInit(): void {
     //this.myFunction();
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
     this.getListAtStart();
+
+    if (window.innerWidth <= 768) {
+      this.visible = true;
+    }
   }
 
   getListAtStart() {
@@ -148,6 +165,6 @@ export class CustomersComponent implements OnInit {
       .subscribe(resp => {
         this.respDeleteEledgerUser = resp["data"];
       });
-    window.location.href = ("http://localhost:4200/home/customers");
+    window.location.href = (UI_URL + "/home/customers");
   }
 }

@@ -16,12 +16,6 @@ input {
     word-wrap: break-word;
 }
 
-.headerDiv {
-    vertical-align: middle;
-    height: 50px;
-    font-size: 22px;
-}
-
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
 
@@ -30,11 +24,28 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (min-width: 768px) {
+
+    .align {
+        left: 2%;
+    }
+}
+
+@media screen and (max-width: 767px) {
     .headName {
         font-size: 17px;
     }
     .val, .icon {
         font-size: 15px;
+    }
+
+    .fix {
+        left: 0px;
+        margin: auto;
+        margin-top: 8px;
+    }
+
+    .label {
+        text-align: left;
     }
 }
