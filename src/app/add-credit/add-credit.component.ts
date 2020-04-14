@@ -4,6 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BorrowerData } from '../model/borrowerData';
 import { EledgerApi } from '../classes/EledgerApi';
 import { WalletData } from '../model/walletdata';
+import { Keys } from '../model/key';
+import { HeaderData } from '../model/headerData';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-add-credit',
@@ -11,8 +14,8 @@ import { WalletData } from '../model/walletdata';
   styleUrls: ['./add-credit.component.css']
 })
 export class AddCreditComponent implements OnInit {
-
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi) {
+  headerData = new HeaderData();
+  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
 
   }
   wallet = new WalletData();
@@ -89,7 +92,8 @@ export class AddCreditComponent implements OnInit {
       //updating the Wallet's data to Wallet database
       this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
         this.response = resp;
-        window.location.href = ("http://localhost:4200/home");
+        window.location.href = (UI_URL + "/home/customers");
+        this.notify.showSuccess("Values Updated" , "Credited");
       });
     } else {
       this.selectTxn = true;
