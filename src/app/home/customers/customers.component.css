@@ -13,7 +13,6 @@ tr:nth-child(even) {
 td, th {
 	padding: 4px;
 	text-align: center;
-	vertical-align: middle;
 }
 
 .tx {
@@ -63,6 +62,12 @@ div.space {
 	margin-left: 20px;
 }
 
+.not-found {
+	color: rgb(128, 128, 128);
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
 /* Responsive Table CSS	 */
 
 @media screen and (max-width: 768px) {
@@ -102,7 +107,6 @@ div.space {
 		display: block;
 		font-size: .8em;
 		text-align: right;
-		right: -155px;
 	}
 	table td::before {
 		/*

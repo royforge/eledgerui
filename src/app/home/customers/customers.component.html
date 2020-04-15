@@ -126,6 +126,12 @@
                     </td>
                 </tr>
             </tbody>
+            <tbody>
+                <tr>
+                    <td colspan="5" *ngIf="customers.length <= 0" class="col-12 text-center mobile-sm not-found">
+                        We couldn't find any records.</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <br>
