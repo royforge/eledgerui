@@ -50,6 +50,15 @@ export class EditmyAccountComponent implements OnInit {
   constructor(private notify: AlertService,
     private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
+  //validation the form
+  customerForm = this.fb.group({
+    newlenderName: ['', Validators.required],
+    newlenderPhone: ['', Validators.required],
+    newlenderShopName: ['', Validators.required],
+    newlenderId: ['', Validators.required],
+    newpassword: ['', Validators.required]
+  });
+
   ngOnInit(): void {
     this.headerData.title = "Edit Account";
     this.headerData.isHeader = true;
@@ -117,4 +126,10 @@ export class EditmyAccountComponent implements OnInit {
       return of(err);
     });
   }
+
+  //check the form validation
+  isValid(control) {
+    return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;
+  }
 }
+
