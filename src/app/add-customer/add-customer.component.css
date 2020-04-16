@@ -27,7 +27,7 @@
 }
 
 .inputDiv {
-    height: 35px;
+    height: 45px;
 }
 .block {
     left: 1%;
@@ -51,6 +51,12 @@ input::-webkit-inner-spin-button {
     }
     .block {
         left: 0%;
+    }
+    
+}
+@media screen and (max-width: 640px) {
+    .feedback{
+        font-size: 11px;
     }
     
 }

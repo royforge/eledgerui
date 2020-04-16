@@ -87,7 +87,7 @@ export class ReportsComponent implements OnInit {
     this.customers = [];
     this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
     this.url = TRANSACTION + "/lenderId/" + this.lenderId;
-
+    this.p = 1;
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {

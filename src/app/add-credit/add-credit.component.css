@@ -11,6 +11,11 @@ input {
     font-size: 17px;
 }
 
+.invalid {
+    background-color: #fff0ff;
+    border: 1px solid red;
+}
+
 .val {
     font-size: 18px;
     word-wrap: break-word;

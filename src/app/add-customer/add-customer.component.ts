@@ -12,9 +12,6 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { UI_URL } from '../static/properties';
 import { AlertService } from '../services/alert.service';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -126,7 +123,7 @@ export class AddCustomerComponent implements OnInit {
           this.isPresent = true;
           break;
         }
-      }
+      } 
       if (!this.isPresent) {
         //If mobile is not already present, then add the customer
         this.addCustomer();

@@ -100,6 +100,7 @@ export class CustomersComponent implements OnInit {
   onSubmit() {
     //Clear the list of customers first
     this.customers = []
+    this.p = 1;
     var byName = (<HTMLInputElement>document.getElementById("name")).value;
     var byPhone = (<HTMLInputElement>document.getElementById("phone")).value;
     var byDebt = (<HTMLInputElement>document.getElementById("txn")).value;
@@ -119,14 +120,12 @@ export class CustomersComponent implements OnInit {
                   if ((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
                     || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) {
                     this.setCustomerData(wallet, borrorowerData);
-                  }
-
-                  //Fetch all the customers with positive value/credit
-                  if (byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) {
+                  } else if (byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) {
                     this.setCustomerData(wallet, borrorowerData);
-                  }
-                  //Fetch all the customers with due value/debt
-                  if (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0) {
+                  } else if (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0) {
+                    this.setCustomerData(wallet, borrorowerData);
+                  } else if (((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
+                    || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) && ((byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) || (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0))) {
                     this.setCustomerData(wallet, borrorowerData);
                   }
                 }
