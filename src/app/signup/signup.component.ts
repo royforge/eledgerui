@@ -101,14 +101,20 @@ export class SignupComponent implements OnInit {
       data => {
         this.response = data["data"]
         for (let customer of this.response) {
-          if (customer.email == this.email) {
+          if (customer.email == this.email && customer.phone == this.mobile) {
+            this.isPresentPhone = true;
             this.isPresentEmail = true;
             break;
           }
-          if (customer.phone == this.mobile) {
-            this.isPresentPhone = true;
+          else if (customer.email == this.email || customer.phone == this.mobile) {
+            if (customer.phone == this.mobile) {
+              this.isPresentPhone = true;
+              break;
+            }
+            this.isPresentEmail = true;
             break;
           }
+
         }
 
         // validate Password matches the confirm password field

@@ -24,7 +24,7 @@ export class EditCustomerComponent implements OnInit {
   borrowerId: string;
   lenderId: string;
   customerName: string;
-  customerPhone: string;
+  customerMobile: string;
   isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
 
 
@@ -41,8 +41,8 @@ export class EditCustomerComponent implements OnInit {
 
   //validation the form
   customerForm = this.fb.group({
-    name: ['', Validators.required],
-    mobile: ['', Validators.required]
+    customerName: ['', Validators.required],
+    customerMobile: ['', Validators.required]
   });
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class EditCustomerComponent implements OnInit {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
 
     this.customerName = this.borrowerName;
-    this.customerPhone = this.borrowerPhone;
+    this.customerMobile = this.borrowerPhone;
   }
 
   onSubmit() {
@@ -66,14 +66,14 @@ export class EditCustomerComponent implements OnInit {
     this.borrower.borrowId = this.borrowerId;
     this.borrower.lenderId = this.lenderId;
     this.borrower.name = this.customerName;
-    this.borrower.phone = this.customerPhone;
+    this.borrower.phone = this.customerMobile;
     this.borrower.isDeleted = false;
     this._eledgerUser.postBorrower(this.borrower)
       .subscribe(resp => {
         this.response = resp["data"];
       });
     this.sessionModel.setSession(Keys.name, this.customerName);
-    this.sessionModel.setSession(Keys.phone, this.customerPhone);
+    this.sessionModel.setSession(Keys.phone, this.customerMobile);
     window.location.href = (UI_URL + "/home/customers");
   }
 

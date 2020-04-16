@@ -9,8 +9,8 @@
                     <h2><img class="logo" src="../../assets/image1.png" alt="logo"> Registration</h2>
                 </div>
                 <div class="col-sm-4 col-3 text-right mt-2 rounded-circle">
-                    <button class="btn confirmBtn border border-dark"><a
-                            style="text-decoration: none; color: white;" [routerLink]="['/login']">Login</a>
+                    <button class="btn confirmBtn border border-dark"><a style="text-decoration: none; color: white;"
+                            [routerLink]="['/login']">Login</a>
                     </button>
                 </div>
             </div>
@@ -35,7 +35,8 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-1 col-1 text-right">
-                        <i class='fa fa-phone-square fa-rotate-90 mt-1 ml-3' style="font-size: 21px; color: #46afec;"></i>
+                        <i class='fa fa-phone-square fa-rotate-90 mt-1 ml-3'
+                            style="font-size: 21px; color: #46afec;"></i>
                     </div>
                     <div class="col-sm-4 col-11">
                         <label for="contact" class="d-inline label"> Mobile Number</label>
@@ -49,7 +50,7 @@
                             number
                         </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
-                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.mobile.errors.required">Field cannot be Empty!!!</span>
                             <span *ngIf="customerForm.controls.mobile.errors.pattern">Enter Valid Mobile Number of 10
                                 digits!</span>
                         </div>
@@ -72,7 +73,7 @@
                             Email ID
                         </div>
                         <div class="feedback emailFeedback" *ngIf="isValid('email')">
-                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.email.errors.required">Field cannot be Empty!!!</span>
                             <span *ngIf="customerForm.controls.email.errors.pattern">Enter a Valid Email ID</span>
                         </div>
                     </div>
@@ -105,11 +106,12 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('password') }" type="password"
-                            pattern="(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
-                            id="password" placeholder=" Enter Password" formControlName="password" required>
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$" id="password"
+                            placeholder=" Enter Password" formControlName="password" required>
                         <div class="feedback" *ngIf="isValid('password')">
                             <span *ngIf="customerForm.controls.password.errors.required">Field cannot be Empty!!!</span>
-                            <span *ngIf="customerForm.controls.password.errors.pattern">Min 6 digit Password with atleast one digit, small and capital letter & special character</span>
+                            <span *ngIf="customerForm.controls.password.errors.pattern">Min 6 digit Password with
+                                atleast one digit, small and capital letter & special character</span>
                         </div>
                     </div>
                 </div>
