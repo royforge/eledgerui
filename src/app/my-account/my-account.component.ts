@@ -4,6 +4,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Keys } from '../model/key';
 import { EledgerUser } from '../classes/EledgerUser';
 import { HeaderData } from '../model/headerData';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-my-account',
@@ -21,7 +25,7 @@ export class MyAccountComponent implements OnInit {
   id: string;
   sessionModel = new SessionModel();
   url: string;
-  constructor(private eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.headerData.title = "Your Account";

@@ -11,6 +11,10 @@ import { Location } from '@angular/common';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { UI_URL } from '../static/properties';
+import { AlertService } from '../services/alert.service';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -45,7 +49,7 @@ export class AddCustomerComponent implements OnInit {
   response: any;
   headerData = new HeaderData();
 
-  constructor(private fb: FormBuilder,
+  constructor(private notify: AlertService, private fb: FormBuilder,
     private eledgerApi: EledgerApi,
     private eledgerUser: EledgerUser,
     private _location: Location,
@@ -93,6 +97,7 @@ export class AddCustomerComponent implements OnInit {
         .subscribe(resp => {
           //this.response = resp;
           this.response = resp["data"];
+          this.notify.showSuccess("Customer Added", "Successful");
           window.location.href = (UI_URL + "/home/customers");
         });
     });

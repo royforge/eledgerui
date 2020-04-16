@@ -7,6 +7,10 @@ import { Keys } from '../model/key';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from '../services/alert.service';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-edit-customer',
@@ -37,7 +41,7 @@ export class EditCustomerComponent implements OnInit {
     isDeleted: undefined
   }
 
-  constructor(private fb: FormBuilder, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService, private fb: FormBuilder, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -74,6 +78,7 @@ export class EditCustomerComponent implements OnInit {
       });
     this.sessionModel.setSession(Keys.name, this.customerName);
     this.sessionModel.setSession(Keys.phone, this.customerPhone);
+    this.notify.showSuccess("Info Updated", "Successful");
     window.location.href = (UI_URL + "/home/customers");
   }
 

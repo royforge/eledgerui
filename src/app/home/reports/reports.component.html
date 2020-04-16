@@ -61,8 +61,8 @@
                     <button (click)='search(); isReset=true' type="submit"
                         class="btn confirmBtn border border-dark nav-item nav-link-edit ml-3"><i class="fa fa-search"
                             aria-hidden="true"></i></button>
-                    <a *ngIf='isReset==true' class="btn-reset" href=""
-                        (click)='getListAtStart(); isSearch=false'>Reset</a>
+                    <a *ngIf='isReset==true' class="btn-reset" href="" (click)='getListAtStart(); isSearch=false'
+                        onclick="document.getElementById('txnType').value = ''; document.getElementById('name').value='';  document.getElementById('phone').value=''; document.getElementById('startDate').value=''; document.getElementById('endDate').value = ''">Reset</a>
                 </th>
             </tr>
 

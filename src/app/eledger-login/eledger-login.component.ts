@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { USERDATA } from './userDataList';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-eledger-login',
@@ -21,7 +22,7 @@ export class EledgerLoginComponent implements OnInit {
   headerData = new HeaderData();
   url: string;
 
-  constructor(private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.headerData.isHeader = false;
@@ -39,6 +40,8 @@ export class EledgerLoginComponent implements OnInit {
   password: string;
   userList = USERDATA;
   isValid: boolean;
+  name: string;
+
 
   login() {
     const userID = this.userID;
@@ -46,6 +49,8 @@ export class EledgerLoginComponent implements OnInit {
     let check = this.checkValidUser(userID, password);
 
     if (check) {
+      this.name = this.sessionModel.getSession(Keys.name);
+      this.notify.showSuccess("Welcome " + this.name, "Successful");
       window.location.href = (UI_URL + "/home");
     } else {
       this.isValid = false;
