@@ -57,8 +57,8 @@
                             class="btn text-center confirmBtn border border-dark nav-item nav-link-edit"
                             (click)="onSubmit(); isReset=true"><i class="fa fa-search" aria-hidden="true"></i></button>
                         &nbsp;
-                        <a *ngIf='isReset==true' class="btn-reset" href=""
-                            (click)='getListAtStart(); isSearch=false'>Reset</a>
+                        <a *ngIf='isReset==true' class="btn-reset" href="" (click)='getListAtStart(); isSearch=false'
+                            onclick="document.getElementById('txn').value = ''; document.getElementById('name').value='';  document.getElementById('phone').value=''">Reset</a>
                     </th>
                     <th class="edit"></th>
                 </tr>

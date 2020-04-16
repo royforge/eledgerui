@@ -2,12 +2,12 @@ import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
 import { HeaderData } from '../model/headerData';
 import { EledgerApiService } from '../services/eledgerapi.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-signup',
@@ -42,9 +42,7 @@ export class SignupComponent implements OnInit {
   headerData = new HeaderData();
   url: string;
 
-  constructor(private fb: FormBuilder,
-    private eledgerApi: EledgerApi,
-    private eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -64,6 +62,7 @@ export class SignupComponent implements OnInit {
   addMerchant() {
     this.lenderId = this.name.slice(0, 3) + this.mobile.toString();
     // adding data to the object
+    this.shopName[0].toUpperCase();
     this.merchant.name = this.name;
     this.merchant.phone = this.mobile;
     this.merchant.email = this.email;
@@ -80,6 +79,7 @@ export class SignupComponent implements OnInit {
         this.sessionModel.setSession(Keys.name, this.name);
         this.sessionModel.setSession(Keys.phone, this.mobile);
         window.location.href = (UI_URL + "/home");
+        this.notify.showSuccess("Welcome to ELedger", "Registration Successful");
       });
   }
 
@@ -115,6 +115,12 @@ export class SignupComponent implements OnInit {
             break;
           }
 
+        }
+        for (let customer of this.response) {
+          if (customer.email == this.email) {
+            this.isPresentEmail = true;
+            break;
+          }
         }
 
         // validate Password matches the confirm password field

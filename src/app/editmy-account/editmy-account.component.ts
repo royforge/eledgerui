@@ -7,6 +7,10 @@ import { EledgerUser } from '../classes/EledgerUser';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from '../services/alert.service';
+import { of } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editmy-account',
@@ -43,7 +47,8 @@ export class EditmyAccountComponent implements OnInit {
   }
   url: string;
 
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService,
+    private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -106,7 +111,20 @@ export class EditmyAccountComponent implements OnInit {
     this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
     this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
     this.sessionModel.setSession(Keys.password, this.newpassword);
+    this.notify.showSuccess("Changes Updated", "Successful");
     window.location.href = (UI_URL + "/myaccount");
+
+    catchError((err: any) => {
+      if (err instanceof HttpErrorResponse) {
+        try {
+          this.notify.showError(err.error.message, err.status.toString());
+        } catch (e) {
+          this.notify.showError('An error occurred', '');
+        }
+        //log error 
+      }
+      return of(err);
+    });
   }
 
   //check the form validation

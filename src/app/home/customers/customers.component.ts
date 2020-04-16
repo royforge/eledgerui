@@ -8,11 +8,10 @@ import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Keys } from 'src/app/model/key';
-import { AlertService } from 'src/app/services/alert.service'
 import { FormBuilder } from '@angular/forms';
 import { UserData } from 'src/app/model/UserData';
 import { Router } from '@angular/router';
-
+import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -36,7 +35,7 @@ export class CustomersComponent implements OnInit {
   borrower = new BorrowerData();
   visible = false;
 
-  constructor(public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi, private alertService: AlertService) { }
+  constructor(private notify: AlertService, public router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private _eledgerApi: EledgerApi) { }
 
   //onresize event to show or hide filters
   @HostListener('window:resize', ['$event'])
@@ -166,6 +165,7 @@ export class CustomersComponent implements OnInit {
       .subscribe(resp => {
         this.respDeleteEledgerUser = resp["data"];
       });
+    this.notify.showWarning('Customer Removed', 'Deleted');
     window.location.href = (UI_URL + "/home/customers");
   }
 }
