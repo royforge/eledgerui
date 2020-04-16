@@ -74,7 +74,7 @@
                 <th scope="col">Transaction Date</th>
             </tr>
         </thead>
-        <tbody *ngIf='isSearch==false'>
+        <tbody>
             <tr *ngFor='let customer of customers | paginate: { itemsPerPage: 8, currentPage: p }'>
                 <td scope="row" data-label="Name">{{customer.name}}</td>
                 <td data-label="Mobile Number">{{customer.phone}}</td>
@@ -83,13 +83,10 @@
                 <td data-label="Transaction Date">{{customer.date | date:'medium' }}</td>
             </tr>
         </tbody>
-        <tbody *ngIf='isSearch==true'>
-            <tr *ngFor='let customer of searchedCustomers | paginate: { itemsPerPage: 8, currentPage: p }'>
-                <td scope="row" data-label="Name">{{customer.name}}</td>
-                <td data-label="Mobile Number">{{customer.phone}}</td>
-                <td data-label="Amount">{{customer.amount}}</td>
-                <td data-label="Transaction Type">{{customer.txnType}}</td>
-                <td data-label="Transaction Date">{{customer.date | date:'medium' }}</td>
+        <tbody>
+            <tr>
+                <td colspan="5" *ngIf="customers.length <= 0" class="col-12 text-center mobile-sm not-found">
+                    We couldn't find any records.</td>
             </tr>
         </tbody>
     </table>
