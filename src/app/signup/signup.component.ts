@@ -86,6 +86,7 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.isPresentPhone = false;
     this.isPresentEmail = false;
+    this.isMatch = false; 
 
     // TODO: Use EventEmitter with form value
     this.name = this.customerForm.value.name;
@@ -111,13 +112,6 @@ export class SignupComponent implements OnInit {
               this.isPresentPhone = true;
               break;
             }
-            this.isPresentEmail = true;
-            break;
-          }
-
-        }
-        for (let customer of this.response) {
-          if (customer.email == this.email) {
             this.isPresentEmail = true;
             break;
           }

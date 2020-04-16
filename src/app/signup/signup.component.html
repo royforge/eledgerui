@@ -42,7 +42,7 @@
                         <label for="contact" class="d-inline label"> Mobile Number</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 col-12">
+                    <div class="col-sm-6 col-12" (click)="isPresentPhone = false">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresentPhone}"
                             type="number" pattern="[+0-9]{10}" id="contact" placeholder=" Enter Mobile Number"
                             formControlName="mobile">
@@ -65,7 +65,7 @@
                         <label for="email" class="d-inline label"> Email ID</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-6 col-12">
+                    <div class="col-sm-6 col-12" (click)="isPresentEmail = false">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('email') || isPresentEmail}"
                             type="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" id="email"
                             placeholder=" Enter Email ID" formControlName="email">
