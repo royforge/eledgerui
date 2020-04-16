@@ -18,13 +18,12 @@
                 <form ng-submit="login()">
                     <div class="row">
                         <div class="col-sm-5">
-
                             <label class="label" for="UserId">Mobile Number/Email:</label>
                         </div>
                         <div class="col-sm-7">
                             <input class=" w-100" [(ngModel)]="userID"
                                 [className]="isValid? 'form-control': 'form-control invalid'" type="text"
-                                name="uname" required>
+                                name="uname" placeholder=" Enter Mobile Number/Email" required>
                         </div>
                     </div>
                     <br>
@@ -35,7 +34,7 @@
                         <div class="col-sm-7">
                             <input class="w-100" [(ngModel)]="password" id="password"
                                 [className]="isValid? 'form-control': 'form-control invalid'" type="password"
-                                name="password" required>
+                                name="password" placeholder=" Enter Password" required>
                             <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid
                                     input Id / Password !</span></div>
                         </div>
