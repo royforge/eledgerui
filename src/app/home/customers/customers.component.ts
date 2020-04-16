@@ -11,9 +11,6 @@ import { Keys } from 'src/app/model/key';
 import { FormBuilder } from '@angular/forms';
 import { UserData } from 'src/app/model/UserData';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-customers',

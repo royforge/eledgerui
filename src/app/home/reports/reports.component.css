@@ -2,10 +2,6 @@ tr:nth-child(even) {
 	background-color: #f0ebeb;
 }
 
-btn {
-	height: 30px;
-}
-
 td, th {
 	padding: 4px;
 	text-align: center;
@@ -40,6 +36,12 @@ table {
 	margin-top: 0px;
 }
 
+.not-found {
+	color: rgb(128, 128, 128);
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
 div.space {
 	margin-bottom: 10px;
 }
@@ -59,9 +61,6 @@ div.space {
 	}
 	table {
 		border: 0;
-	}
-	table caption {
-		font-size: 1.3em;
 	}
 	table thead {
 		border: none;

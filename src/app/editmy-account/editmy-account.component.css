@@ -1,7 +1,10 @@
 .info {
     font-weight: bold;
-    margin-top: 5px;
     font-size: large;
+}
+
+.md {
+    margin-top: 8px;
 }
 
 @media screen and (max-width: 840px) {
@@ -9,9 +12,13 @@
         font-size: 14px;
     }
     .info {
-        font-size: 15px;
+        font-size: 15;
     }
-    .mobile-left{
-        padding-right: 50px;
+    input {
+        width: 100%;
+    }
+    .btn-right {
+        margin-left: 90px;
+        margin-bottom: 10px;
     }
 }

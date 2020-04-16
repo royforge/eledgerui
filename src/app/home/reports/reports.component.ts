@@ -20,15 +20,14 @@ export class ReportsComponent implements OnInit {
   lenderId: string;
   transactions: Transaction[];
   customers: Customers[] = [];
-  searchedCustomers: Customers[];
   customer = new Customers();
   borrowerData: BorrowerData[];
   sessionModel = new SessionModel();
   customerName: string = "";
   customerPhone: string = "";
   txnType: string = "";
-  startDate: string = "";
-  endDate: string = "";
+  startDate = new Date();
+  endDate = new Date();
   isSearch = false;
   isReset = false;
   visible: boolean = false;
@@ -50,10 +49,10 @@ export class ReportsComponent implements OnInit {
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.getListAtStart();
-    console.log(window.innerWidth);
     if (window.innerWidth <= 768) {
       this.visible = true;
     }
+
   }
 
   getListAtStart() {
@@ -72,30 +71,20 @@ export class ReportsComponent implements OnInit {
             this.borrowerData = respCustomer["data"];
 
             this.transactions.map(transaction => {
-              this.customerData(transaction);
+              // this.customerData(transaction);
+              for (let borrower of this.borrowerData) {
+                if (borrower.borrowId == transaction.borrowerId) {
+                  this.setCustomerData(transaction, borrower);
+                }
+              }
             })
           })
       })
     this.isReset = false;
   }
 
-  //Set data from transaction api and borrower api into a single object
-  customerData(transaction: Transaction) {
-    this.customer = new Customers();
-    for (let borrower of this.borrowerData) {
-      if (transaction.borrowerId == borrower.borrowId) {
-        this.customer.name = borrower.name;
-        this.customer.phone = borrower.phone;
-        this.customer.amount = transaction.amount;
-        this.customer.txnType = transaction.txnType;
-        this.customer.date = transaction.date;
-        this.customers.push(this.customer);
-      }
-    }
-  }
-
   search() {
-    this.searchedCustomers = [];
+    this.customers = [];
     this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
     this.url = TRANSACTION + "/lenderId/" + this.lenderId;
 
@@ -109,31 +98,32 @@ export class ReportsComponent implements OnInit {
         this._eledgerUser.getAllEledgerCustomers(this.url).subscribe(
           respCustomer => {
             this.borrowerData = respCustomer["data"];
+            // this.endDate.setDate(this.endDate.getDate() + (86400000));
+            // console.log(this.endDate);
 
             this.transactions.map(transaction => {
-
               for (let customer of this.borrowerData) {
                 if (transaction.borrowerId == customer.borrowId) {
                   if (this.txnType != undefined && this.customerName != undefined && this.customerPhone == undefined && this.startDate == undefined && this.endDate == undefined) {
-                    if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == transaction.txnType || (transaction.date >= this.startDate && transaction.date <= this.endDate))) {
-                      this.searchedCustomerData(transaction, customer);
+                    if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == transaction.txnType || (new Date(transaction.date) >= new Date(this.startDate) && new Date(transaction.date) <= new Date(this.endDate)))) {
+                      this.setCustomerData(transaction, customer);
                     }
 
                   } else {
                     if (customer.name.toLowerCase() == this.customerName.toLowerCase()) {
-                      this.searchedCustomerData(transaction, customer);
+                      this.setCustomerData(transaction, customer);
                     }
                     else if (this.customerPhone == customer.phone) {
-                      this.searchedCustomerData(transaction, customer);
+                      this.setCustomerData(transaction, customer);
                     }
                     else if (this.txnType == transaction.txnType) {
-                      this.searchedCustomerData(transaction, customer);
+                      this.setCustomerData(transaction, customer);
                     }
-                    else if (transaction.date >= this.startDate && transaction.date <= this.endDate) {
-                      this.searchedCustomerData(transaction, customer);
+                    else if (new Date(transaction.date) >= new Date(this.startDate) && new Date(transaction.date) <= new Date(this.endDate)) {
+                      this.setCustomerData(transaction, customer);
                     }
-                    else if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == transaction.txnType || (transaction.date >= this.startDate && transaction.date <= this.endDate))) {
-                      this.searchedCustomerData(transaction, customer);
+                    else if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == transaction.txnType || (new Date(transaction.date) >= new Date(this.startDate) && new Date(transaction.date) <= new Date(this.endDate)))) {
+                      this.setCustomerData(transaction, customer);
                     }
                   }
                 }
@@ -145,13 +135,13 @@ export class ReportsComponent implements OnInit {
   }
 
   //Set data from transaction api and borrower api into a single object
-  searchedCustomerData(transaction: Transaction, borrorower: BorrowerData) {
+  setCustomerData(transaction: Transaction, borrorower: BorrowerData) {
     this.customer = new Customers();
     this.customer.name = borrorower.name;
     this.customer.phone = borrorower.phone;
     this.customer.amount = transaction.amount;
     this.customer.txnType = transaction.txnType;
     this.customer.date = transaction.date;
-    this.searchedCustomers.push(this.customer);
+    this.customers.push(this.customer);
   }
 }
