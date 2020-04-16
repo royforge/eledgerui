@@ -14,7 +14,7 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-sm-5 inputDiv">
-                        <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('name')}"
+                        <input class="rounded w-100" [ngClass]="{'invalid' : isValid('name')}"
                             formControlName="name" type="text" id="name" placeholder="Name" required>
                         <div class="feedback" *ngIf="isValid('name')">
                             <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
@@ -33,7 +33,7 @@
                     <div class="col-sm-5 inputDiv">
                         <input class="rounded inp w-100" [ngClass]="{'invalid' : isValid('mobile') || isPresent}"
                             type="number" pattern="[+0-9]{10}" id="contact" placeholder="Mobile No."
-                            formControlName="mobile">
+                            formControlName="mobile" (click)="isPresent=false">
                         <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
                         </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('mobile')">

@@ -15,7 +15,6 @@ export class AlertService {
 
   showSuccess(message, title) {
     this.toastr.success(message, title, {timeOut:10000})
-    
   }
 
   showError(message, title) {

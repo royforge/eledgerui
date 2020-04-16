@@ -15,42 +15,45 @@
                 </div>
             </div>
             <br><br>
-                <form ng-submit="login()">
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <label class="label" for="UserId">Mobile Number/Email:</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <input class=" w-100" [(ngModel)]="userID"
-                                [className]="isValid? 'form-control': 'form-control invalid'" type="text"
-                                name="uname" placeholder=" Enter Mobile Number/Email" required>
-                        </div>
+            <form ng-submit="login()">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <label class="label" for="UserId">Mobile Number/Email:</label>
                     </div>
-                    <br>
-                    <div class="row ">
-                        <div class="col-sm-5 form-group">
-                            <label class="label" for="password">Password:</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <input class="w-100" [(ngModel)]="password" id="password"
-                                [className]="isValid? 'form-control': 'form-control invalid'" type="password"
-                                name="password" placeholder=" Enter Password" required>
-                            <div [className]="isValid? 'valid': 'invalidEntry'"><span style="margin-top: 5px;">Invalid
-                                    input Id / Password !</span></div>
-                        </div>
+                    <div class="col-sm-7">
+                        <input class=" w-100" [(ngModel)]="userID"
+                            [className]="isValid? 'form-control': 'form-control invalid'" type="text" name="uname"
+                            placeholder=" Enter Mobile Number/Email" required>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <span class=""><a class="logo-color" [routerLink]="['/forgot-password']">Forgot Password?</a></span>
-                        </div>
-                        <div class="col-sm-3 text-right">
-                            <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark">
-                                Login
-                            </button>
-                        </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-sm-5 form-group">
+                        <label class="label" for="password">Password:</label>
                     </div>
-                </form>
+                    <div class="col-sm-7">
+                        <input class="w-100" [(ngModel)]="password" id="password"
+                            [className]="isValid? 'form-control': 'form-control invalid'" type="password"
+                            name="password" placeholder=" Enter Password" required>
+
+                    </div>
+
+                </div>
+                <div class="row" [className]="isValid? 'valid': 'invalidEntry'"><span style="margin: auto;">Invalid
+                        input Id / Password !</span></div>
+                <br>
+                <div class="row">
+                    <div class="col-9 mt-2">
+                        <span class=""><a class="logo-color" [routerLink]="['/forgot-password']">Forgot
+                                Password?</a></span>
+                    </div>
+                    <div class="col-3 text-right">
+                        <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

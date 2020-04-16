@@ -10,9 +10,6 @@ import { WalletData } from '../model/walletdata';
 import { Keys } from '../model/key';
 import { HeaderData } from '../model/headerData';
 import { AlertService } from '../services/alert.service';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-credit',
@@ -30,9 +27,8 @@ export class AddCreditComponent implements OnInit {
 
   //form values and validation
   creditForm = this.fb.group({
-    date: [''],
-    amount: [NaN, Validators.required],
-    due: ['']
+    txnType: ['', Validators.required],
+    amount: ['', Validators.required]
   });
   //set values we need to use
   lenderId = sessionStorage.getItem('lenderId');
@@ -49,6 +45,7 @@ export class AddCreditComponent implements OnInit {
   isNaN = false
   sessionModel = new SessionModel();
 
+  
   ngOnInit(): void {
     this.borrowerName = this.sessionModel.getSession(Keys.name);
     this.borrowerPhone = this.sessionModel.getSession(Keys.phone);
@@ -99,7 +96,6 @@ export class AddCreditComponent implements OnInit {
         this.response = resp;
         this.notify.showSuccess("Transaction Updated", "Successful");
         window.location.href = (UI_URL + "/home/customers");
-
       });
     } else {
       this.selectTxn = true;
