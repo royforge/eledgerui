@@ -1,3 +1,4 @@
+import { WALLET } from 'src/app/static/properties';
 import { PAYMENTURL } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { WalletData } from '../model/walletdata';
@@ -13,5 +14,9 @@ export class EledgerApi extends EledgerApiService {
 
     postEledgerApi(walletData: WalletData): Observable<any> {
         return this.post(PAYMENTURL, walletData);
+    }
+    
+    deleteEledgerApi(walletId){
+        return this.delete(PAYMENTURL+WALLET+"/walletId/"+walletId);
     }
 }

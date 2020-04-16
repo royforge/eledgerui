@@ -1,0 +1,43 @@
+
+img {
+    height: 48px;
+    width: 60px;
+}
+
+.item {
+    text-align: center;
+}
+
+.img {
+    text-align: right;
+}
+
+.back-btn {
+    margin-top: 9px;
+    color: #46afec;
+    
+}
+
+.back-btn:hover {
+    color: #126596;
+}
+
+
+
+@media screen and (max-width: 540px) {
+    .back-btn {
+        font-size: 12px;
+    }
+    
+    img {
+        height: 41px;
+        width: 52px;
+        text-align: left;
+    }
+
+    .logoColor {
+        font-size: 18px;
+
+    }
+
+}

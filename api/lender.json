@@ -1,28 +1,20 @@
 {
   "lender": [
     {
-      "name": "Arpit",
-      "phone": "9461422569",
-      "lenderId": "m2",
-      "shopName": "Arpit Selection",
-      "password": "@Arpit123",
-      "id": 1
+      "id": 1,
+      "name": "Arpit Goyal",
+      "shopName": "Arpit Collection",
+      "lenderId": "Arp9461422569",
+      "phone": 9461422569,
+      "password": "@Arpit123"
     },
     {
-      "name": "Sahil",
-      "shopName": "Sahil enterprises",
-      "phone": "7976347047",
-      "lenderId": "m1",
-      "password": "@Sahil123",
-      "id": 2
-    },
-    {
-      "name": "Shashank",
-      "shopName": "Shashank Stores",
-      "phone": "9414315028",
-      "lenderId": "m3",
-      "password": "@Shashank123",
-      "id": 3
+      "id": 2,
+      "name": "Sahil Kharya",
+      "shopName": "Sahil Stores and Company",
+      "lenderId": "Sah7976347047",
+      "phone": 7976347047,
+      "password": "@Sahil123"
     }
   ]
 }

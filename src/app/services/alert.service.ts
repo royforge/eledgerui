@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { timeout } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,24 @@ export class AlertService {
 
   constructor(private toastr: ToastrService) { }
 
+  show(message, title) {
+    this.toastr.show(message, title)
+  }
+
   showSuccess(message, title) {
-    this.toastr.success(message, title)
+    this.toastr.success(message, title, {timeOut:10000})
+    
   }
 
   showError(message, title) {
     this.toastr.error(message, title)
+  }
+
+  showInfo(message, title) {
+    this.toastr.info(message, title)
+  }
+
+  showWarning(message, title) {
+    this.toastr.warning(message, title)
   }
 }

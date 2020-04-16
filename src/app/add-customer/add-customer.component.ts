@@ -1,12 +1,20 @@
 import { Keys } from './../model/key';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { WalletData } from '../model/walletdata';
 import { EledgerApi } from '../classes/EledgerApi';
 import { EledgerUser } from '../classes/EledgerUser';
 import { BorrowerData } from '../model/borrowerData';
 import { RelationData } from '../model/relationData';
 import { SessionModel } from '../model/sessionmodel';
+import { Location } from '@angular/common';
+import { EledgerApiService } from '../services/eledgerapi.service';
+import { HeaderData } from '../model/headerData';
+import { UI_URL } from '../static/properties';
+import { AlertService } from '../services/alert.service';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -27,20 +35,25 @@ export class AddCustomerComponent implements OnInit {
     balance: undefined
   };
   borrower: BorrowerData = {
+    id: undefined,
     name: undefined,
     borrowId: undefined,
     lenderId: undefined,
-    phone: undefined
+    phone: undefined,
+    isDeleted: undefined
   }
   relation: RelationData = {
     borrowId: undefined,
     lenderId: undefined,
   }
   response: any;
+  headerData = new HeaderData();
 
-  constructor(private fb: FormBuilder,
+  constructor(private notify: AlertService, private fb: FormBuilder,
     private eledgerApi: EledgerApi,
-    private eledgerUser: EledgerUser) { }
+    private eledgerUser: EledgerUser,
+    private _location: Location,
+    private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -51,6 +64,10 @@ export class AddCustomerComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.headerData.title = "Add New Customer";
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
+    this.service.emitHeaderChangeEvent(this.headerData);
 
   }
 
@@ -70,23 +87,18 @@ export class AddCustomerComponent implements OnInit {
 
       //updating values for the borrower data
       this.borrower.borrowId = resp.data.borrowId;
-      this.borrower.name = this.borrowerName
-      this.borrower.lenderId = this.wallet.lenderId
-      this.borrower.phone = this.mobile
+      this.borrower.name = this.borrowerName;
+      this.borrower.lenderId = this.wallet.lenderId;
+      this.borrower.phone = this.mobile.toString();
+      this.borrower.isDeleted = false;
+
       //posting the borrower's data to borrower.json 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          this.response = resp;
-        });
-
-      //updating values for the relation data
-      this.relation.lenderId = this.wallet.lenderId
-      this.relation.borrowId = resp.data.borrowId
-      //posting the relation's data to relation.json 
-      this.eledgerUser.postRelation(this.relation)
-        .subscribe(resp => {
-          this.response = resp;
-          window.location.href = ("http://localhost:4200/home");
+          //this.response = resp;
+          this.response = resp["data"];
+          this.notify.showSuccess("Customer Added", "Successful");
+          window.location.href = (UI_URL + "/home/customers");
         });
     });
   }
@@ -107,8 +119,9 @@ export class AddCustomerComponent implements OnInit {
 
     //checking if mobile number is already present
     this.eledgerUser.getBorrowers().subscribe(response => {
-      this.response = response
-      for (let customer of response) {
+      // this.response = response
+      this.response = response["data"]
+      for (let customer of response["data"]) {
         if (customer.phone == this.mobile) {
           this.isPresent = true;
           break;
@@ -121,6 +134,9 @@ export class AddCustomerComponent implements OnInit {
     });
   }
 
+  goBack() {
+    this._location.back();
+  }
   //check the form validation
   isValid(control) {
     return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;

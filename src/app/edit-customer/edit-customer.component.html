@@ -1,0 +1,62 @@
+<div class="container">
+    <div class=" row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10 block">
+            <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
+
+                <br><br><br>
+                <div class="row">
+                    <div class="col-sm-2 col-2 text-right">
+                        <i class='fa fa-user icon2 mt-1 ml-3'></i>
+                    </div>
+                    <div class="col-sm-3 lbl col-10">
+                        <label for="name" class="d-inline label">New Name</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-4 col-12">
+                        <input class="rounded w-100 inp" [ngClass]="{'invalid' : isValid('name')}" type="text" id="name"
+                            name="name" placeholder="Enter New Name" [(ngModel)]="customerName" formControlName="name">
+                        <div class="feedback" *ngIf="isValid('name')">
+                            <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2 col-2 text-right">
+                        <i class="material-icons icon rounded-circle mt-1 ml-2">phone</i>
+                    </div>
+                    <div class="col-sm-3 lbl col-10">
+                        <label for="contact" class="d-inline label">New Mobile Number</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <input class="rounded w-100 inp" type="number" id="contact" name="phone"
+                            [ngClass]="{'invalid' : isValid('mobile') || isPresent}" formControlName="mobile"
+                            placeholder="Enter New Mobile Number" pattern="[+0-9]{10}" [(ngModel)]="customerPhone"
+                            required>
+                        <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
+                        </div>
+                        <div class="feedback mobFeedback" *ngIf="isValid('mobile')">
+                            <span *ngIf="customerForm.controls.mobile.errors.required">Field cannot be Empty!!!</span>
+                            <span *ngIf="customerForm.controls.mobile.errors.pattern">Enter Valid Mobile Number of 10
+                                digits!</span>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="row">
+                    <div class="col-5 text-center pt-2 cancel">
+                        <a class="logo-color" [routerLink]="['/home/customers']"><strong>Cancel</strong></a>
+                    </div>
+                    <div class="col-6  col-sm-4 text-right">
+                        <button (click)='onSubmit()' type="submit"
+                            class="btn confirmBtn text-right border border-dark nav-item nav-link-edit"
+                            [disabled]="!customerName || !customerPhone" data-toggle="modal"
+                            data-target="#successModal">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

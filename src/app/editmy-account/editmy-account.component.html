@@ -1,0 +1,72 @@
+<div class="container">       
+    <div style="height: 50px;"></div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
+                <div class="col-sm-4 col-md-3 col-xl-4">
+                    <label for=name class="info">Name :</label>
+                    <p class="mandatory d-inline"> *</p>
+                </div>
+                <div class="col-sm-6 col-8">
+                    <input id="name" [(ngModel)]="newlenderName" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
+                <div class="col-sm-4 col-md-3 col-xl-4">
+                    <label for=shopName class="info">Shop-Name :</label>
+                    <p class="mandatory d-inline"> *</p>
+                </div>
+                <div class="col-8 col-sm-6">
+                    <input id="shopName" [(ngModel)]="newlenderShopName" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
+                <div class="col-sm-4 col-md-3 col-xl-4">
+                    <label for=phone class="info">Phone-No :</label>
+                    <p class="mandatory d-inline"> *</p>
+                </div>
+                <div class="col-sm-6 col-8">
+                    <input id="phone" [(ngModel)]="newlenderPhone" pattern="[+0-9]{10}" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
+                <div class="col-sm-4 col-md-3 col-xl-4">
+                    <label for=lenderid class="info">Lender-Id :</label>
+                </div>
+                <div class="col-sm-6 col-8">
+                    <input disabled id="lenderid" [(ngModel)]="newlenderId">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
+                <div class="col-sm-4 col-md-3 col-xl-4">
+                    <label for=lenderid class="info">Password :</label>
+                </div>
+                <div class="col-sm-6 col-8">
+                    <input disabled type="password" id="lenderid" [(ngModel)]="newpassword">
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-5 text-center">
+                    <a class="cancel mt-4" [routerLink]="['/myaccount']">
+                        Cancel </a>
+                </div>
+                <div class="col-4 text-right">
+                    <button (click)="update()" [disabled]="!newlenderName || !newlenderShopName || !newlenderPhone"
+                        class="btn confirmBtn border border-dark"><a> Update </a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

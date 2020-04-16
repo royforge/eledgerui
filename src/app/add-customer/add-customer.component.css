@@ -4,52 +4,44 @@
 }
 
 .logo {
-    height: 95%;
-    width: 65px;
+    width: 80px;
 }
 
-.inp {
-    height: 32px;
-}
 .icon {
     background-color: #46afec;
     color: white;
     font-size: 24px;
 }
+
 .icon2 {
     color: #46afec;
     font-size: 24px;
 }
 
-.selectField {
-border: 1px solid #46afec;
-color: rgb(82, 81, 81);
-background-color: white;
-}
 .label {
     font-size: 20px;
 }
 
-input{
-    border: 1px solid #46afec;
+.link {
+    color: #46afec;
 }
 
-.invalid {
-    background-color: #fff0ff;
-    border: 1px solid red;
-}
-
-.inputDiv{
+.inputDiv {
     height: 35px;
+}
+.block {
+    left: 1%;
 }
 
 /* Chrome, Safari, Edge, Opera 
 To remove the spnners/ arrows from input field type "number" */
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 
 /* If the screen size is 840px wide or less, set the font-size of <div> to 30px */
 
@@ -57,4 +49,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     .label {
         font-size: 17px;
     }
+    .block {
+        left: 0%;
+    }
+    
 }

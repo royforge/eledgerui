@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EledgerApi } from 'src/app/classes/EledgerApi';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WalletData } from 'src/app/model/walletdata';
 import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
@@ -17,20 +17,20 @@ export class HomepageComponent implements OnInit {
   newBalance: number;
   customerCount = 0;
   lenderId: string;
+  shopName: string;
   url: string;
   sessionModel = new SessionModel();
-  constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
+  constructor(public router: Router, private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.url = WALLET + "/lenderId/" + this.lenderId;
-
     //Backend API to get data using lenderId 
     this._eledgerApi.getEledgerApi(this.url).subscribe(
-      data => { 
+      data => {
         this.walletData = data["data"];
         this.newBalance = this.walletData.reduce((sum, item) => sum + item.balance, 0);
         this.customerCount = this.walletData.reduce((sum, item) => sum + 1, 0);
-      })
+      });
   }
 }

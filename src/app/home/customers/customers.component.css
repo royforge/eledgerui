@@ -1,37 +1,120 @@
 .red {
-    color: rgb(243, 71, 71);
+	color: rgb(243, 71, 71);
 }
 
 .green {
-    color: green;
+	color: green;
 }
 
 tr:nth-child(even) {
-    background-color: #f0ebeb;
+	background-color: #f0ebeb;
 }
 
 td, th {
-    padding: 4px;
-  }
-
-#table-wrapper {
-    position: relative;
+	padding: 4px;
+	text-align: center;
+	vertical-align: middle;
 }
 
-#table-scroll {
-    height: 350px;
-    overflow: auto;
-    margin-top: 20px;
+.tx {
+	margin: auto;
 }
 
-#table-wrapper table {
-    width: 100%;
+table {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	margin: auto;
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
 }
 
-#table-wrapper table thead th .text {
-    position: absolute;
-    z-index: 2;
-    height: 50px;
-    width: 55%;
-    border: 1px solid;
+.btn-reset {
+	color: #46afec;
+	cursor: pointer;
+}
+
+.delete {
+	color: rgb(250, 94, 94);
+}
+
+.btn-size {
+	width: 50px;
+}
+
+.delete:hover {
+	color: rgb(214, 34, 34);
+}
+
+.modal-size {
+	width: 320px;
+	color: black;
+}
+
+div.space {
+	margin-bottom: 10px;
+}
+
+.edit-margin {
+	margin-left: 70px;
+}
+
+.delete-margin {
+	margin-left: 20px;
+}
+
+/* Responsive Table CSS	 */
+
+@media screen and (max-width: 768px) {
+	.mobile-sm {
+		text-align: center;
+		font-size: 12px;
+	}
+	.edit-margin {
+		margin-left: 140px;
+		margin-right: 0px;
+	}
+	.delete-margin {
+		margin-left: 0px;
+		margin-right: 0px;
+		text-align: right;
+	}
+	table {
+		border: 0;
+	}
+	table thead {
+		border: none;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	table tr {
+		border-bottom: 3px solid #ddd;
+		display: block;
+		margin-bottom: .625em;
+	}
+	table td {
+		border-bottom: 1px solid #ddd;
+		display: block;
+		font-size: .8em;
+		text-align: right;
+		right: -155px;
+	}
+	table td::before {
+		/*
+	  * aria-label has no advantage, it won't be read inside a table
+	  content: attr(aria-label);
+	  */
+		content: attr(data-label);
+		float: left;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	table td:last-child {
+		border-bottom: 0;
+	}
 }

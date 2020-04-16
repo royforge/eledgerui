@@ -1,9 +1,10 @@
+import { EledgerUser } from 'src/app/classes/EledgerUser';
+import { HeaderData } from './../model/headerData';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WalletData } from '../model/walletdata';
-import { EledgerApi } from '../classes/EledgerApi';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
+import { EledgerApiService } from '../services/eledgerapi.service';
 
 declare var require: any;
 @Component({
@@ -16,21 +17,40 @@ export class HomeComponent implements OnInit {
   public LOGO2 = require("./assets/logo2.png");
   public LOGO3 = require("./assets/logo3.png");
   public LOGO4 = require("./assets/logo4.png");
-  walletData: WalletData[];
   lenderId: string;
   shopName: string;
-  isOn = true;
   sessionModel = new SessionModel();
-  isReports = false;
+  headerData = new HeaderData();
+  id: string;
+  response: any;
+  url: string;
 
-  constructor(private _eledgerApi: EledgerApi, private route: ActivatedRoute) { }
+  constructor(private _eledgerUser: EledgerUser, private route: ActivatedRoute, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
     sessionStorage.setItem('lenderId', this.lenderId);
+    this.headerData.title = this.sessionModel.getSession(Keys.shopName);
+    this.headerData.isHeader = true;
+    this.headerData.isIcon = false;
+    this.service.emitHeaderChangeEvent(this.headerData);
+    
+    this.url =  "/lenders";
+    
+    //User Management get API to get data of lenders
+    this._eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
+      this.response = resp["data"]
+      for (let lender of this.response) {
+        if (lender.lenderId == this.lenderId) {
+          this.id = lender.id;
+          this.sessionModel.setSession(Keys.id, this.id);
+          break;
+        }
+      }
+    });
   }
-  
+
   //clear the session when user click on yes during logout
   clearData() {
     sessionStorage.clear();

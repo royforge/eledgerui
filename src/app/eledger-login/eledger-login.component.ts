@@ -1,9 +1,13 @@
+import { UI_URL } from './../static/properties';
 import { Keys } from './../model/key';
 import { SessionModel } from './../model/sessionmodel';
 import { UserData } from './../model/UserData';
 import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
 import { USERDATA } from './userDataList';
+import { EledgerApiService } from '../services/eledgerapi.service';
+import { HeaderData } from '../model/headerData';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-eledger-login',
@@ -15,21 +19,29 @@ export class EledgerLoginComponent implements OnInit {
   userData: UserData[];
   user: UserData;
   sessionModel = new SessionModel();
-  constructor(private _eledgerUser: EledgerUser) { }
+  headerData = new HeaderData();
+  url: string;
+
+  constructor(private notify: AlertService, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   ngOnInit(): void {
+    this.headerData.isHeader = false;
+    this.service.emitHeaderChangeEvent(this.headerData);
     this.isValid = true;
+    this.url = "/lenders";
 
-    //Mock api to get data og lender
-    this._eledgerUser.getLenders().subscribe(
+    //User Management get API to get data of lenders
+    this._eledgerUser.getEledgerLenders(this.url).subscribe(
       data => {
-        this.userData = data;
+        this.userData = data["data"];
       })
   }
   userID: string;
   password: string;
   userList = USERDATA;
   isValid: boolean;
+  name: string;
+
 
   login() {
     const userID = this.userID;
@@ -37,7 +49,9 @@ export class EledgerLoginComponent implements OnInit {
     let check = this.checkValidUser(userID, password);
 
     if (check) {
-      window.location.href = ("http://localhost:4200/home");
+      this.name = this.sessionModel.getSession(Keys.name);
+      this.notify.showSuccess("Welcome " + this.name, "Successful");
+      window.location.href = (UI_URL + "/home");
     } else {
       this.isValid = false;
     }
@@ -46,6 +60,7 @@ export class EledgerLoginComponent implements OnInit {
 
     for (let user of this.userData) {
       if (user.phone == userID && user.password == password) {
+        this.sessionModel.setSession(Keys.id, user.id);
         this.sessionModel.setSession(Keys.lenderId, user.lenderId);
         this.sessionModel.setSession(Keys.shopName, user.shopName);
         this.sessionModel.setSession(Keys.name, user.name);
@@ -56,8 +71,4 @@ export class EledgerLoginComponent implements OnInit {
     }
     return false;
   }
-
 }
-
-
-

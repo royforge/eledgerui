@@ -1,12 +1,12 @@
+import { HeaderData } from './../model/headerData';
 import { WalletData } from './../model/walletdata';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class EledgerApiService {
-
     constructor(private httpclient: HttpClient) { }
 
     get(url: string): Observable<any> {
@@ -19,6 +19,22 @@ export class EledgerApiService {
 
     postUser(url: string, any): Observable<any> {
         return this.httpclient.post(url, any);
+    }
 
+    putUser(url: string, any): Observable<any> {
+        return this.httpclient.put(url, any);
+    }
+
+    delete(url: string): Observable<any> {
+        return this.httpclient.delete(url);
+    }
+
+    headerchange: EventEmitter<string> = new EventEmitter();
+
+    public emitHeaderChangeEvent(headerData) {
+        this.headerchange.emit(headerData);
+    }
+    getHeaderChangeEmitter() {
+        return this.headerchange;
     }
 }    

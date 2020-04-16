@@ -1,44 +1,5 @@
 {
   "relation": [
-    {
-      "borrowId": "546525ee-5f41-4764-8262-9573e8ac8796",
-      "lenderId": "m2",
-      "id": 1
-    },
-    {
-      "borrowId": "12ca7522-a398-4f97-9f83-d430f99eaa63",
-      "lenderId": "m2",
-      "id": 2
-    },
-    {
-      "borrowId": "ce5db676-798c-4534-9dca-44f1f94984be",
-      "lenderId": "m2",
-      "id": 3
-    },
-    {
-      "borrowId": "3e5e7b7d-65e5-40a7-8de6-f9e031351d2c",
-      "lenderId": "m2",
-      "id": 4
-    },
-    {
-      "borrowId": "8844213d-b00a-44eb-9dbc-cdde728529ca",
-      "lenderId": "m2",
-      "id": 5
-    },
-    {
-      "borrowId": "071b9d7f-2181-4878-9679-c0d73238cdc4",
-      "lenderId": "m2",
-      "id": 6
-    },
-    {
-      "borrowId": "cd0cbdee-47f2-4f2b-86e0-6806cc6aab01",
-      "lenderId": "m1",
-      "id": 7
-    },
-    {
-      "borrowId": "213e3f1f-a3d9-4460-8eff-e0f1f0a45e9b",
-      "lenderId": "m2",
-      "id": 8
-    }
+
   ]
 }
