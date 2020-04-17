@@ -39,9 +39,13 @@
                         <label for=phone class="info">Phone-No :</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-7">
-                        <input id="phone" type="number" [ngClass]="{'invalid' : isValid('newlenderPhone')}"
+                    <div class="col-sm-7" (click)="isPresentPhone = false">
+                        <input id="phone" type="number"
+                            [ngClass]="{'invalid' : isValid('newlenderPhone') || isPresentPhone}"
                             formControlName="newlenderPhone" [(ngModel)]="newlenderPhone" pattern="[+0-9]{10}" required>
+                        <div *ngIf="isPresentPhone" class="feedback">Number Already Exists!!! Please use different
+                            number
+                        </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('newlenderPhone')">
                             <span *ngIf="customerForm.controls.newlenderPhone.errors.required">Field cannot be
                                 Empty!!!</span>

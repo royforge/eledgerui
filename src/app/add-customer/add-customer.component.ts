@@ -76,6 +76,38 @@ export class AddCustomerComponent implements OnInit {
   sessionModel = new SessionModel();
   isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
 
+  onSubmit() {
+    this.isPresent = false;
+    // TODO: Use EventEmitter with form value
+    this.borrowerName = this.customerForm.value.name;
+    this.mobile = this.customerForm.value.mobile;
+    this.txn = this.customerForm.value.txnType;
+    this.balance = this.customerForm.value.amount;
+
+    //updating values for the Wallet data
+    this.wallet.lenderId = this.sessionModel.getSession(Keys.lenderId);
+    this.wallet.amount = this.balance
+    this.wallet.txnType = this.txn
+    this.wallet.comment = "Add New Customer"
+
+    //checking if mobile number is already present
+    this.eledgerUser.getBorrowers().subscribe(response => {
+      // this.response = response
+      this.response = response["data"]
+      for (let customer of response["data"]) {
+        if (customer.lenderId == this.wallet.lenderId)
+          if (customer.phone == this.mobile) {
+            this.isPresent = true;
+            break;
+          }
+      }
+      if (!this.isPresent) {
+        //If mobile is not already present, then add the customer
+        this.addCustomer();
+      }
+    });
+  }
+
   //Method to add customer details to all the required databases
   addCustomer() {
     //posting the Wallet's data to Wallet database
@@ -97,37 +129,6 @@ export class AddCustomerComponent implements OnInit {
           this.notify.showSuccess("Customer Added", "Successful");
           window.location.href = (UI_URL + "/home/customers");
         });
-    });
-  }
-
-  onSubmit() {
-    this.isPresent = false;
-    // TODO: Use EventEmitter with form value
-    this.borrowerName = this.customerForm.value.name;
-    this.mobile = this.customerForm.value.mobile;
-    this.txn = this.customerForm.value.txnType;
-    this.balance = this.customerForm.value.amount;
-
-    //updating values for the Wallet data
-    this.wallet.lenderId = this.sessionModel.getSession(Keys.lenderId);
-    this.wallet.amount = this.balance
-    this.wallet.txnType = this.txn
-    this.wallet.comment = "Add New Customer"
-
-    //checking if mobile number is already present
-    this.eledgerUser.getBorrowers().subscribe(response => {
-      // this.response = response
-      this.response = response["data"]
-      for (let customer of response["data"]) {
-        if (customer.phone == this.mobile) {
-          this.isPresent = true;
-          break;
-        }
-      } 
-      if (!this.isPresent) {
-        //If mobile is not already present, then add the customer
-        this.addCustomer();
-      }
     });
   }
 
