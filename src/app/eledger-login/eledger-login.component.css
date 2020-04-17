@@ -10,6 +10,7 @@ img {
 .valid {
     display: none;
 }
+
 input {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(71, 71, 71);
@@ -29,6 +30,7 @@ input:focus {
     background-color: white;
     box-shadow: 1px 1px 2px 3px #8ec7e9;
 }
+
 .invalidEntry {
     color: red;
     margin-top: 11px;
@@ -40,12 +42,12 @@ input:focus {
     .block {
         left: 0px;
     }
-
     h2 {
         font-size: 25px;
     }
     .signUp {
-        padding-top: 0px;
+        padding-left: 6px;
+        padding-right: 6px;
     }
     .invalidEntry {
         margin-left: 50px;
