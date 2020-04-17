@@ -21,6 +21,7 @@ export class EditCustomerComponent implements OnInit {
   headerData = new HeaderData();
   id: string;
   response: any;
+  checkResponse: any;
   sessionModel = new SessionModel();
   borrowerData: BorrowerData;
   borrowerName: string
@@ -65,6 +66,24 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onSubmit() {
+    //checking if mobile number is already present
+    this._eledgerUser.getBorrowers().subscribe(response => {
+      // this.response = response
+      this.checkResponse = response["data"]
+      for (let customer of this.checkResponse) {
+        if (customer.lenderId == this.lenderId) {
+          if (customer.phone == this.customerMobile && this.customerMobile != this.borrowerPhone) {
+            this.isPresent = true;
+            break;
+          }
+        }
+      }
+      if (!this.isPresent) {
+        this.update();
+      }
+    });
+  }
+  update() {
     this.isPresent = false;
     this.borrower.id = this.id;
     this.borrower.borrowId = this.borrowerId;

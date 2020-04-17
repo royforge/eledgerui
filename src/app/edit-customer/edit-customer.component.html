@@ -31,11 +31,13 @@
                         <label for="contact" class="d-inline label">New Mobile Number</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" (click)="isPresent = false">
                         <input class="rounded w-100 inp" type="number"
-                            [ngClass]="{'invalid' : isValid('customerMobile')}" pattern="[+0-9]{10}" id="phone"
-                            name="phone" placeholder="Enter New Mobile Number" formControlName="customerMobile"
-                            [(ngModel)]="customerMobile" required>
+                            [ngClass]="{'invalid' : isValid('customerMobile') || isPresent}" pattern="[+0-9]{10}"
+                            id="phone" name="phone" placeholder="Enter New Mobile Number"
+                            formControlName="customerMobile" [(ngModel)]="customerMobile" required>
+                        <div *ngIf="isPresent" class="feedback">Number Already Exists!!! Please use different number
+                        </div>
                         <div class="feedback mobFeedback" *ngIf="isValid('customerMobile')">
                             <span *ngIf="customerForm.controls.customerMobile.errors.required">Field cannot be
                                 Empty!!!</span>
