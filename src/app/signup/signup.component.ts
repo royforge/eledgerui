@@ -79,7 +79,7 @@ export class SignupComponent implements OnInit {
         this.sessionModel.setSession(Keys.name, this.name);
         this.sessionModel.setSession(Keys.phone, this.mobile);
         window.location.href = (UI_URL + "/home");
-        this.notify.showSuccess("Welcome to ELedger", "Registration Successful");
+        this.notify.showSuccess("Welcome to Eledger", "Registration Successful");
       });
   }
 

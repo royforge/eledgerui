@@ -8,7 +8,7 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
-import { of, pipe } from 'rxjs';
+import { of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
@@ -111,37 +111,6 @@ export class EditmyAccountComponent implements OnInit {
           this.updateLender();
         }
       });
-    // this.lender.id = this.id;
-    // this.lender.name = this.newlenderName;
-    // this.lender.phone = this.newlenderPhone;
-    // this.lender.shopName = this.newlenderShopName;
-    // this.lender.lenderId = this.newlenderId;
-    // this.lender.password = this.newpassword;
-    // this.lender.email = this.email;
-
-    // this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
-    //   this.response = resp["data"];
-    // });
-
-    // this.sessionModel.setSession(Keys.name, this.newlenderName);
-    // this.sessionModel.setSession(Keys.phone, this.newlenderPhone);
-    // this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
-    // this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
-    // this.sessionModel.setSession(Keys.password, this.newpassword);
-    // this.notify.showSuccess("Changes Updated", "Successful");
-    // window.location.href = (UI_URL + "/myaccount");
-
-    // catchError((err: any) => {
-    //   if (err instanceof HttpErrorResponse) {
-    //     try {
-    //       this.notify.showError(err.error.message, err.status.toString());
-    //     } catch (e) {
-    //       this.notify.showError('An error occurred', '');
-    //     }
-    //     //log error 
-    //   }
-    //   return of(err);
-    // });
   }
 
   updateLender() {

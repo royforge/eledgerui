@@ -6,15 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-//   childData:string;
-//   loginData:string;
-// parentMethod(data){
-// this.childData = data;
-// }
-
-// loginMethod(data){
-//   this.loginData = data;
-//   }
-
   title = 'eledgerui';
 }
