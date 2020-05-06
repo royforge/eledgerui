@@ -7,6 +7,7 @@ import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-otpverfication',
@@ -22,6 +23,7 @@ export class OtpverficationComponent implements OnInit {
   password: String;
   confirm_password: String;
   id: any;
+  emailOtp: any;
 
   constructor(private notify: AlertService, private fb: FormBuilder) { }
 
@@ -33,12 +35,16 @@ export class OtpverficationComponent implements OnInit {
   ngOnInit(): void {
     this.email = this.sessionModel.getSession(Keys.email);
     this.id = this.sessionModel.getSession(Keys.id);
+    this.emailOtp = this.sessionModel.getSession(Keys.otp);
   }
 
   onSubmit() {
-    this.otp = this.customerForm.value.otpReader;
+    //OTP Encryption
+    const md5 = new Md5();
+    this.otp = md5.appendStr(this.customerForm.value.otpReader).end();
+
     if (this.otp != null) {
-      if (this.otp != "555555") {
+      if (this.otp != this.emailOtp) {
         this.isVerified = true;
       } else {
         this.verify();

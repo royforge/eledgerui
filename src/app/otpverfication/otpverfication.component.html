@@ -19,20 +19,21 @@
             <br><br>
             <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
                 <div class="text-center" (click)="isVerified = false">
-                    <input type="text" [ngClass]="{'invalid' : isValid('otpReader') || isVerified}" class="text-line text-center"
-                        maxlength="6" pattern="^\d{6}$" placeholder="******" id="otp" formControlName="otpReader"
-                        required />
+                    <input type="text" [ngClass]="{'invalid' : isValid('otpReader') || isVerified}"
+                        class="text-line text-center" maxlength="6" pattern="^\d{6}$" placeholder="******" id="otp"
+                        formControlName="otpReader" required />
                     <div *ngIf="isVerified" class="feedback">Please Enter The Correct OTP !!</div>
                     <div class="feedback" *ngIf="isValid('otpReader')">
                         <span *ngIf="customerForm.controls.otpReader.errors.required">Field cannot be
                             Empty!!!</span>
-                        <span *ngIf="customerForm.controls.otpReader.errors.pattern">Please Enter an 6 digit OTP !!</span>
+                        <span *ngIf="customerForm.controls.otpReader.errors.pattern">Please Enter an 6 digit OTP
+                            !!</span>
                     </div>
                 </div><br><br>
                 <div class="row text-center">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2 resend">
-                        <a style="color: #46afec;" [routerLink]="['/login']">Resend OTP ?</a>
+                        <a style="color: #46afec;" [routerLink]="['/login']">Resend OTP</a>
                     </div>
                     <div class="col-sm-4 text-center">
                         <button type="submit" [disabled]="!customerForm.valid"
