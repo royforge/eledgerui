@@ -27,6 +27,7 @@ import { HeaderComponent } from './header/header.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { OtpverficationComponent } from './otpverfication/otpverfication.component';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { OtpverficationComponent } from './otpverfication/otpverfication.compone
     ReactiveFormsModule,
     NgbModule,
     BrowserAnimationsModule,
+    NgOtpInputModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
       positionClass: 'toast-top-right'

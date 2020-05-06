@@ -6,8 +6,8 @@
             <br><br><br>
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2><img class="logo mr-3" src="../../assets/image1.png" alt="logo">OTP Verification</h2>
-
+                    <h2><img [routerLink]="['/login']" class="logo mr-3" src="../../assets/image1.png" alt="logo">OTP
+                        Verification</h2>
                 </div>
                 <div class="col-sm-1 col-md-2"></div>
                 <div class="col-sm-10 col-12 col-md-8">
@@ -17,30 +17,20 @@
                 </div>
             </div>
             <br><br>
-            <form [formGroup]='customerForm' (ngSubmit)="onSubmit()">
-                <div class="text-center" (click)="isVerified = false">
-                    <input type="text" [ngClass]="{'invalid' : isValid('otpReader') || isVerified}"
-                        class="text-line text-center" maxlength="6" pattern="^\d{6}$" placeholder="******" id="otp"
-                        formControlName="otpReader" required />
-                    <div *ngIf="isVerified" class="feedback">Please Enter The Correct OTP !!</div>
-                    <div class="feedback" *ngIf="isValid('otpReader')">
-                        <span *ngIf="customerForm.controls.otpReader.errors.required">Field cannot be
-                            Empty!!!</span>
-                        <span *ngIf="customerForm.controls.otpReader.errors.pattern">Please Enter an 6 digit OTP
-                            !!</span>
-                    </div>
-                </div><br><br>
-                <div class="row text-center">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2 resend">
-                        <a style="color: #46afec;" (click)="resend()">Resend OTP</a>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <button type="submit" [disabled]="!customerForm.valid"
-                            class="btn confirmBtn text-right border border-dark">Verify</button>
-                    </div>
+            <div class="text-center" (click)="isVerified = false">
+                <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                <div *ngIf="isVerified" class="feedback">Please Enter The Correct OTP !!</div>
+            </div><br><br>
+            <div class="row text-center">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 resend">
+                    <a style="color: #46afec;" (click)="resend()">Resend OTP</a>
                 </div>
-            </form>
+                <div class="col-sm-4 text-center">
+                    <button type="submit" (click)="onSubmit()"
+                        class="btn confirmBtn text-right border border-dark">Verify</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

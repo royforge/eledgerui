@@ -58,6 +58,23 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-5">
+                        <label for=email class="info">Email :</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-7">
+                        <input id="email" [ngClass]="{'invalid' : isValid('newlenderEmail')}"
+                            formControlName="newlenderEmail" type="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="newlenderEmail" required disabled>
+                        <div class="feedback" *ngIf="isValid('newlenderEmail')">
+                            <span *ngIf="customerForm.controls.newlenderEmail.errors.required">Field cannot be
+                                Empty!!!</span>
+                            <span *ngIf="customerForm.controls.newlenderEmail.errors.pattern">Enter a Valid Email
+                                ID</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-5">
                         <label for=lenderid class="info">Lender-Id :</label>
                     </div>
                     <div class="col-sm-7">

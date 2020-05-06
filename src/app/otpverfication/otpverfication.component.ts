@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
 import { UI_URL } from '../static/properties';
-import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -34,12 +33,7 @@ export class OtpverficationComponent implements OnInit {
     name: undefined
   }
 
-  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
-
-  //validation the form
-  customerForm = this.fb.group({
-    otpReader: ['', Validators.required]
-  });
+  constructor(private notify: AlertService, private eledgerUser: EledgerUser) { }
 
   ngOnInit(): void {
     this.email = this.sessionModel.getSession(Keys.email);
@@ -48,10 +42,26 @@ export class OtpverficationComponent implements OnInit {
     this.name = this.sessionModel.getSession(Keys.name);
   }
 
+  config = {
+    allowNumbersOnly: true,
+    length: 6,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '50px',
+      'height': '50px'
+    }
+  };
+
+  onOtpChange(otp) {
+    this.otp = otp;
+  }
+
   onSubmit() {
     //OTP Encryption
     const md5 = new Md5();
-    this.otp = md5.appendStr(this.customerForm.value.otpReader).end();
+    this.otp = md5.appendStr(this.otp).end();
 
     if (this.otp != null) {
       if (this.otp != this.emailOtp) {
@@ -89,10 +99,5 @@ export class OtpverficationComponent implements OnInit {
         this.notify.showSuccess("Successful", "New OTP Sent");
         this.emailOtp = this.resendOtp;
       });
-  }
-
-  //check the form validation
-  isValid(control) {
-    return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;
   }
 }

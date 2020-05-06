@@ -22,6 +22,7 @@ export class MyAccountComponent implements OnInit {
   shopName: string;
   phone: string;
   name: string;
+  email: string;
   id: string;
   sessionModel = new SessionModel();
   url: string;
@@ -36,6 +37,7 @@ export class MyAccountComponent implements OnInit {
     this.sessionModel.setSession(Keys.id, this.id);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
+    this.email = this.sessionModel.getSession(Keys.email);
 
     this.url = "/lenders";
 
@@ -48,6 +50,7 @@ export class MyAccountComponent implements OnInit {
           this.phone = lender.phone;
           this.name = lender.name;
           this.lenderId = lender.lenderId;
+          this.email = lender.email;
           break;
         }
       }
