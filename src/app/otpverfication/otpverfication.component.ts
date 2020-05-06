@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
 import { UI_URL } from '../static/properties';
-import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -23,20 +22,30 @@ export class OtpverficationComponent implements OnInit {
   confirm_password: String;
   id: any;
 
-  constructor(private notify: AlertService, private fb: FormBuilder) { }
-
-  //validation the form
-  customerForm = this.fb.group({
-    otpReader: ['', Validators.required]
-  });
+  constructor(private notify: AlertService) { }
 
   ngOnInit(): void {
     this.email = this.sessionModel.getSession(Keys.email);
     this.id = this.sessionModel.getSession(Keys.id);
   }
 
+  config = {
+    allowNumbersOnly: true,
+    length: 6,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '50px',
+      'height': '50px'
+    }
+  };
+
+  onOtpChange(otp) {
+    this.otp = otp;
+  }
+
   onSubmit() {
-    this.otp = this.customerForm.value.otpReader;
     if (this.otp != null) {
       if (this.otp != "555555") {
         this.isVerified = true;
@@ -61,10 +70,5 @@ export class OtpverficationComponent implements OnInit {
       }
       return of(err);
     });
-  }
-
-  //check the form validation
-  isValid(control) {
-    return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;
   }
 }

@@ -36,6 +36,7 @@ export class EditmyAccountComponent implements OnInit {
   newlenderShopName: string;
   newlenderId: string;
   newpassword: string;
+  newlenderEmail: string;
 
   lender: UserData = {
     id: undefined,
@@ -58,7 +59,8 @@ export class EditmyAccountComponent implements OnInit {
     newlenderPhone: ['', Validators.required],
     newlenderShopName: ['', Validators.required],
     newlenderId: ['', Validators.required],
-    newpassword: ['', Validators.required]
+    newpassword: ['', Validators.required],
+    newlenderEmail: ['', Validators.required]
   });
 
   ngOnInit(): void {
@@ -89,6 +91,8 @@ export class EditmyAccountComponent implements OnInit {
           this.newlenderPhone = this.phone;
           this.newlenderId = this.lenderId;
           this.newpassword = this.password;
+          this.newlenderEmail = this.email;
+
           break;
         }
       }
