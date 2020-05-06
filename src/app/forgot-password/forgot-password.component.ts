@@ -25,12 +25,13 @@ export class ForgotPasswordComponent implements OnInit {
   sessionModel = new SessionModel();
   id: any;
   dataOtp: Data;
+  name: string;
+  otp: any;
 
   emailData: EmailData = {
     email: undefined,
     name: undefined
   }
-  otp: any;
 
   constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
@@ -56,6 +57,7 @@ export class ForgotPasswordComponent implements OnInit {
             this.id = customer.id;
             this.emailData.email = customer.email;
             this.emailData.name = customer.name;
+            this.name = customer.name;
             break;
           }
         }
@@ -79,6 +81,8 @@ export class ForgotPasswordComponent implements OnInit {
         this.sessionModel.setSession(Keys.id, this.id);
         this.sessionModel.setSession(Keys.email, this.email);
         this.sessionModel.setSession(Keys.otp, this.otp);
+        this.sessionModel.setSession(Keys.name, this.name);
+
         window.location.href = (UI_URL + "/otp-verification");
         catchError((err: any) => {
           if (err instanceof HttpErrorResponse) {

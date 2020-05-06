@@ -68,7 +68,7 @@ export class ResetpasswordComponent implements OnInit {
           this.eledgerUser.postEledgerLenders(lender).subscribe(respLender => {
             this.responseLender = respLender["data"];
           });
-          this.notify.showSuccess("Password Reset", "Successful");
+          this.notify.showSuccess("Successful", "Password Reset");
           window.location.href = (UI_URL + "/login");
           catchError((err: any) => {
             if (err instanceof HttpErrorResponse) {

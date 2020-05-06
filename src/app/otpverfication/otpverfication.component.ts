@@ -8,6 +8,8 @@ import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { Md5 } from 'ts-md5/dist/md5';
+import { EledgerUser } from '../classes/EledgerUser';
+import { EmailData } from '../model/EmailData';
 
 @Component({
   selector: 'app-otpverfication',
@@ -17,15 +19,22 @@ import { Md5 } from 'ts-md5/dist/md5';
 export class OtpverficationComponent implements OnInit {
 
   sessionModel = new SessionModel();
-  email: String;
+  email: string;
   otp: any;
   isVerified = false;
-  password: String;
-  confirm_password: String;
+  password: string;
+  confirm_password: string;
   id: any;
   emailOtp: any;
+  name: string;
+  resendOtp: any;
 
-  constructor(private notify: AlertService, private fb: FormBuilder) { }
+  emailData: EmailData = {
+    email: undefined,
+    name: undefined
+  }
+
+  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -36,6 +45,7 @@ export class OtpverficationComponent implements OnInit {
     this.email = this.sessionModel.getSession(Keys.email);
     this.id = this.sessionModel.getSession(Keys.id);
     this.emailOtp = this.sessionModel.getSession(Keys.otp);
+    this.name = this.sessionModel.getSession(Keys.name);
   }
 
   onSubmit() {
@@ -67,6 +77,18 @@ export class OtpverficationComponent implements OnInit {
       }
       return of(err);
     });
+  }
+
+  resend() {
+    this.emailData.email = this.email;
+    this.emailData.name = this.name;
+
+    this.eledgerUser.postResetPasswordEmail(this.emailData).subscribe(
+      resp => {
+        this.resendOtp = resp["data"];
+        this.notify.showSuccess("Successful", "New OTP Sent");
+        this.emailOtp = this.resendOtp;
+      });
   }
 
   //check the form validation

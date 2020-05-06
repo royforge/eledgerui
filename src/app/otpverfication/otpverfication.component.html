@@ -33,7 +33,7 @@
                 <div class="row text-center">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2 resend">
-                        <a style="color: #46afec;" [routerLink]="['/login']">Resend OTP</a>
+                        <a style="color: #46afec;" (click)="resend()">Resend OTP</a>
                     </div>
                     <div class="col-sm-4 text-center">
                         <button type="submit" [disabled]="!customerForm.valid"
