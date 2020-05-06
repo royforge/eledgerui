@@ -1,9 +1,15 @@
+import { Data } from './../model/data';
+import { EmailData } from './../model/EmailData';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EledgerUser } from '../classes/EledgerUser';
 import { UI_URL } from '../static/properties';
 import { Keys } from '../model/key';
 import { SessionModel } from '../model/sessionmodel';
+import { AlertService } from '../services/alert.service';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,8 +24,15 @@ export class ForgotPasswordComponent implements OnInit {
   url: string;
   sessionModel = new SessionModel();
   id: any;
+  dataOtp: Data;
 
-  constructor(private fb: FormBuilder, private eledgerUser: EledgerUser) { }
+  emailData: EmailData = {
+    email: undefined,
+    name: undefined
+  }
+  otp: any;
+
+  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
   //form Validation
   resetForm = this.fb.group({
@@ -41,6 +54,8 @@ export class ForgotPasswordComponent implements OnInit {
           if (customer.email == this.email) {
             this.isEmailExist = true;
             this.id = customer.id;
+            this.emailData.email = customer.email;
+            this.emailData.name = customer.name;
             break;
           }
         }
@@ -56,9 +71,27 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   reset() {
-    this.sessionModel.setSession(Keys.id, this.id);
-    this.sessionModel.setSession(Keys.email, this.email);
-    window.location.href = (UI_URL + "/otp-verification");
+    //post api to send email and name and return encrypted OTP
+    this.eledgerUser.postResetPasswordEmail(this.emailData).subscribe(
+      resp => {
+        this.otp = resp["data"];
+        this.notify.showSuccess("Successful", "OTP Sent");
+        this.sessionModel.setSession(Keys.id, this.id);
+        this.sessionModel.setSession(Keys.email, this.email);
+        this.sessionModel.setSession(Keys.otp, this.otp);
+        window.location.href = (UI_URL + "/otp-verification");
+        catchError((err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            try {
+              this.notify.showError(err.error.message, err.status.toString());
+            } catch (e) {
+              this.notify.showError('An error occurred', '');
+            }
+            //log error 
+          }
+          return of(err);
+        });
+      });
   }
 
   //check the form validation
