@@ -49,7 +49,6 @@ export class MyAccountComponent implements OnInit {
           this.shopName = lender.shopName;
           this.phone = lender.phone;
           this.name = lender.name;
-          this.lenderId = lender.lenderId;
           this.email = lender.email;
           break;
         }

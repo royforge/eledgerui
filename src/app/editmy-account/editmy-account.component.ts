@@ -89,7 +89,6 @@ export class EditmyAccountComponent implements OnInit {
           this.newlenderName = this.name;
           this.newlenderShopName = this.shopName;
           this.newlenderPhone = this.phone;
-          this.newlenderId = this.lenderId;
           this.newpassword = this.password;
           this.newlenderEmail = this.email;
 

@@ -2,6 +2,7 @@ import { HeaderData } from './../model/headerData';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   headerData = new HeaderData();
 
   subscription: any;
-  constructor(private _location: Location, private service: EledgerApiService) { }
+  constructor(private _location: Location, public router: Router, private service: EledgerApiService) { }
 
   ngOnInit(): void {
     this.headerData.title = 'Eledger';
@@ -33,5 +34,9 @@ export class HeaderComponent implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  homeComponent() {
+    return (this.router.url === '/home') || (this.router.url ==='/home/reports') || (this.router.url ==='/home/customers');
   }
 }

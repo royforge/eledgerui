@@ -1,69 +1,59 @@
 <div class="container">
     <div style="height: 50px;"></div>
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-7">
-                <div class="row box">
-                    <div class="col-sm-2 col-1"></div>
-                    <div class="col-sm-3 col-4 data">
-                        <span class="info">Name</span>
-                    </div>
-                    <div class="col-2 data">:</div>
-                    <div class="col-5 data">
-                        <span>{{name}}</span>
-                    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-7">
+            <div class="row box">
+                <div class="col-sm-2 col-1"></div>
+                <div class="col-sm-3 col-4 data">
+                    <span class="info">Name</span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-1"></div>
-                    <div class="col-sm-3 col-4 data">
-                        <span class="info">Phone</span>
-                    </div>
-                    <div class="col-2 data">:</div>
-                    <div class="col-5 data">
-                        <span>{{phone}}</span>
-                    </div>
+                <div class="col-2 data">:</div>
+                <div class="col-5 data">
+                    <span>{{name}}</span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-1"></div>
-                    <div class="col-sm-3 col-4 data">
-                        <span class="info">Shop-Name</span>
-                    </div>
-                    <div class="col-2 data">:</div>
-                    <div class="col-5 data">
-                        <span>{{shopName}}</span>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-1"></div>
+                <div class="col-sm-3 col-4 data">
+                    <span class="info">Phone</span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-1"></div>
-                    <div class="col-sm-3 col-4 data">
-                        <span class="info">Email</span>
-                    </div>
-                    <div class="col-2 data">:</div>
-                    <div class="col-5 data">
-                        <span>{{email}}</span>
-                    </div>
+                <div class="col-2 data">:</div>
+                <div class="col-5 data">
+                    <span>{{phone}}</span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-1"></div>
-                    <div class="col-sm-3 col-4 data">
-                        <span class="info">Lender-Id</span>
-                    </div>
-                    <div class="col-2 data">:</div>
-                    <div class="col-5 data">
-                        <span>{{lenderId}}</span>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-1"></div>
+                <div class="col-sm-3 col-4 data">
+                    <span class="info">Shop-Name</span>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-5 text-center pt-2 data"  style="left: 25px;">
-                        <a class="cancel" [routerLink]='["/home"]'  >
-                            Cancel </a>
-                    </div>
-                    <div class="col-sm-5 col-6 data text-center">
-                        <button [routerLink]="['/editAccount']" class="btn confirmBtn border border-dark"><a> Edit
-                            </a></button>
-                    </div>
+                <div class="col-2 data">:</div>
+                <div class="col-5 data">
+                    <span>{{shopName}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-1"></div>
+                <div class="col-sm-3 col-4 data">
+                    <span class="info">Email</span>
+                </div>
+                <div class="col-2 data">:</div>
+                <div class="col-5 data">
+                    <span>{{email}}</span>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-5 text-center pt-2 data" style="left: 25px;">
+                    <a class="cancel" [routerLink]='["/home"]'>
+                        Cancel </a>
+                </div>
+                <div class="col-5 col-sm-6 data text-right">
+                    <button [routerLink]="['/editAccount']" class="btn confirmBtn border border-dark"><a> Edit
+                        </a></button>
                 </div>
             </div>
         </div>
     </div>
+</div>
