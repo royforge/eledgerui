@@ -50,7 +50,8 @@ export class OtpverficationComponent implements OnInit {
     placeholder: '',
     inputStyles: {
       'width': '40px',
-      'height': '40px'
+      'height': '40px',
+      'font-size': '20px'
     }
   };
 

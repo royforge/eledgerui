@@ -3,29 +3,25 @@
     width: 65px;
 }
 
-h6{
+h6 {
     text-align: center;
     color: #46afec;
 }
 
-h2{
+h2 {
     margin: auto;
     margin-right: 1vw;
 }
 
-.resend{
+.resend {
     cursor: pointer;
     color: #46afec;
     margin-top: 6px;
 }
+
 .resend:hover {
     color: #155f8a;
     text-decoration: underline;
-}
-
-.text-line {
-    text-align: center;
-    letter-spacing: 26px;
 }
 
 @media screen and (max-width: 570px) {
@@ -38,25 +34,21 @@ h2{
     h6 {
         font-size: 14px;
     }
-    h2{
+    h2 {
         font-size: 26px;
         margin: auto;
         margin-right: 3vw;
     }
 }
-@media screen and (max-width: 768px) {
 
+@media screen and (max-width: 768px) {
     h6 {
         font-size: 14px;
     }
     .cancel {
         font-size: 16px;
     }
-    .text-line {
-        text-align: center;
-        letter-spacing: 22px;
-    }
-    .resend{
+    .resend {
         padding-bottom: 20px;
     }
 }
