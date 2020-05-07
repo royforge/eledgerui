@@ -12,6 +12,10 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { UI_URL } from '../static/properties';
 import { AlertService } from '../services/alert.service';
+import { EmailData } from '../model/EmailData';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -42,6 +46,11 @@ export class AddCustomerComponent implements OnInit {
   relation: RelationData = {
     borrowId: undefined,
     lenderId: undefined,
+  }
+  emailData: EmailData = {
+    email: undefined,
+    name: undefined,
+    customerName: undefined
   }
   response: any;
   headerData = new HeaderData();
@@ -121,14 +130,23 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.phone = this.mobile.toString();
       this.borrower.isDeleted = false;
 
-      //posting the borrower's data to borrower.json 
+      //Updating values for Email
+      this.emailData.email = this.sessionModel.getSession(Keys.email);
+      this.emailData.name = this.sessionModel.getSession(Keys.name);
+      this.emailData.customerName = this.borrowerName;
+
+      //posting the borrower's data to borrower database 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          //this.response = resp;
           this.response = resp["data"];
           this.notify.showSuccess("Customer Added", "Successful");
+          // Send Mail to the User about new customer additon
+          this.eledgerUser.postAddCustomerEmail(this.emailData).subscribe()
+
           window.location.href = (UI_URL + "/home/customers");
         });
+
+
     });
   }
 

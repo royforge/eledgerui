@@ -30,7 +30,8 @@ export class OtpverficationComponent implements OnInit {
 
   emailData: EmailData = {
     email: undefined,
-    name: undefined
+    name: undefined,
+    customerName: undefined
   }
 
   constructor(private notify: AlertService, private eledgerUser: EledgerUser) { }
