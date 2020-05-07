@@ -82,7 +82,8 @@
                     <td data-label="Amount Pending" class="txn" *ngIf='customer.amount>=0'>
                         <p class="green tx">{{customer.amount}}</p>
                     </td>
-                    <td data-label="Transaction Date" class="date">{{customer.date | date:'medium' }}</td>
+                    <td data-label="Transaction Date" class="date">{{customer.date | date:'mediumDate'}},
+                        {{customer.date | date:'HH:mm'}}</td>
                     <td data-label="Edit/Delete" class="edit">
 
                         <div class="row">

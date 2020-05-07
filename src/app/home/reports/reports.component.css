@@ -1,3 +1,15 @@
+.red {
+	color: rgb(243, 71, 71);
+}
+
+.green {
+	color: green;
+}
+
+.tx {
+	margin: auto;
+}
+
 tr:nth-child(even) {
 	background-color: #f0ebeb;
 }

@@ -79,8 +79,9 @@
                 <td scope="row" data-label="Name">{{customer.name}}</td>
                 <td data-label="Mobile Number">{{customer.phone}}</td>
                 <td data-label="Amount">{{customer.amount}}</td>
-                <td data-label="Transaction Type">{{customer.txnType}}</td>
-                <td data-label="Transaction Date">{{customer.date | date:'medium' }}</td>
+                <td data-label="Transaction Type" *ngIf="customer.txnType == 'DEBIT'"><p class="red tx">{{customer.txnType}}</p></td>
+                <td data-label="Transaction Type" *ngIf="customer.txnType == 'CREDIT'"><p class="green tx">{{customer.txnType}}</p></td>
+                <td data-label="Transaction Date">{{customer.date | date:'mediumDate'}}, {{customer.date | date:'HH:mm'}}</td>
             </tr>
         </tbody>
         <tbody>
@@ -106,9 +107,8 @@
                             <input type="date" id="startDate" name="startDate" value="2012-10-08"
                                 placeholder="2012-10-08" class="date inp mobile-margin" [(ngModel)]="startDate"
                                 aria-label="Search" autofocus />
-                            to <input type="date" id="endDate" name="endDate" value="2012-10-08"
-                                placeholder="2012-10-09" class="date inp mobile-margin" [(ngModel)]="endDate"
-                                aria-label="Search" autofocus />
+                            - <input type="date" id="endDate" name="endDate" value="2012-10-08" placeholder="2012-10-09"
+                                class="date inp mobile-margin" [(ngModel)]="endDate" aria-label="Search" autofocus />
                         </div>
                         <br>
                         <div class="text-center">
