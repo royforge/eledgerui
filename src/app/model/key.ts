@@ -7,7 +7,8 @@ export enum Keys {
   amount = 'amount',
   borrowerId = 'borrowerId',
   id = 'id',
-  password = "password"
-
-  }
+  password = "password",
+  email = "email",
+  otp = "otp"
+}
 

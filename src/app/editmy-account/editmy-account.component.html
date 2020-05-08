@@ -5,11 +5,13 @@
         <div class="col-sm-8">
             <form [formGroup]='customerForm' (ngSubmit)="update()">
                 <div class="row">
+                    <div class="col-lg-1">
+                    </div>
                     <div class="col-sm-5">
                         <label for=name class="info">Name :</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-7 col-lg-6">
                         <input id="name field-size" [ngClass]="{'invalid' : isValid('newlenderName')}"
                             formControlName="newlenderName" [(ngModel)]="newlenderName" required>
                         <div class="feedback" *ngIf="isValid('newlenderName')">
@@ -20,11 +22,13 @@
                 </div>
                 <br>
                 <div class="row">
+                    <div class="col-lg-1">
+                    </div>
                     <div class="col-sm-5">
                         <label for=shopName class="info">Shop-Name :</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-7 col-lg-6">
                         <input id="shopName" [ngClass]="{'invalid' : isValid('newlenderShopName')}"
                             formControlName="newlenderShopName" [(ngModel)]="newlenderShopName" required>
                         <div class="feedback" *ngIf="isValid('newlenderShopName')">
@@ -35,11 +39,13 @@
                 </div>
                 <br>
                 <div class="row">
+                    <div class="col-lg-1">
+                    </div>
                     <div class="col-sm-5">
                         <label for=phone class="info">Phone-No :</label>
                         <p class="mandatory d-inline"> *</p>
                     </div>
-                    <div class="col-sm-7" (click)="isPresentPhone = false">
+                    <div class="col-sm-7 col-lg-6" (click)="isPresentPhone = false">
                         <input id="phone" type="number"
                             [ngClass]="{'invalid' : isValid('newlenderPhone') || isPresentPhone}"
                             formControlName="newlenderPhone" [(ngModel)]="newlenderPhone" pattern="[+0-9]{10}" required>
@@ -57,24 +63,33 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-5">
-                        <label for=lenderid class="info">Lender-Id :</label>
+                    <div class="col-lg-1">
                     </div>
-                    <div class="col-sm-7">
-                        <input id="lenderid" [(ngModel)]="newlenderId" [ngClass]="{'invalid' : isValid('newlenderId')}"
-                            formControlName="newlenderId" disabled>
-                        <div class="feedback" *ngIf="isValid('newlenderId')">
-                            <span *ngIf="customerForm.controls.newlenderId.errors.required">Field cannot be
+                    <div class="col-sm-5">
+                        <label for=email class="info">Email :</label>
+                        <p class="mandatory d-inline"> *</p>
+                    </div>
+                    <div class="col-sm-7 col-lg-6">
+                        <input id="email" [ngClass]="{'invalid' : isValid('newlenderEmail')}"
+                            formControlName="newlenderEmail" type="email"
+                            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="newlenderEmail"
+                            required disabled>
+                        <div class="feedback" *ngIf="isValid('newlenderEmail')">
+                            <span *ngIf="customerForm.controls.newlenderEmail.errors.required">Field cannot be
                                 Empty!!!</span>
+                            <span *ngIf="customerForm.controls.newlenderEmail.errors.pattern">Enter a Valid Email
+                                ID</span>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="row">
+                    <div class="col-lg-1">
+                    </div>
                     <div class="col-sm-5">
                         <label for=lenderid class="info">Password :</label>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-7 col-lg-6">
                         <input type="password" id="lenderid" [ngClass]="{'invalid' : isValid('newpassword')}"
                             formControlName="newpassword" [(ngModel)]="newpassword" disabled>
                         <div class="feedback" *ngIf="isValid('newpassword')">
@@ -90,7 +105,7 @@
                         <a class="cancel" [routerLink]="['/myaccount']">
                             Cancel </a>
                     </div>
-                    <div class="col-4 btn-right text-right">
+                    <div class="col-4 col-md-5 btn-right text-right">
                         <button [disabled]="!customerForm.valid" class="btn confirmBtn border border-dark"><a> Update
                             </a></button>
                     </div>

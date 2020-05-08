@@ -1,7 +1,7 @@
 import { WalletData } from './walletdata';
 export class Data {
     date: Date;
-    data: WalletData[];
+    data: any;
     message: string;
     responseCode: string;
 }

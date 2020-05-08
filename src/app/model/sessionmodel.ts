@@ -27,11 +27,15 @@ export class SessionModel {
             case Keys.walletId:
                 sessionStorage.setItem(key, value);
                 break;
-            
             case Keys.id:
-                sessionStorage.setItem(key,value);
-                break;  
-
+                sessionStorage.setItem(key, value);
+                break;
+            case Keys.email:
+                sessionStorage.setItem(key, value);
+                break;
+            case Keys.otp:
+                sessionStorage.setItem(key, value);
+                break;
         }
     }
 }

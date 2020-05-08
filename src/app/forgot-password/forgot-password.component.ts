@@ -1,5 +1,15 @@
+import { Data } from './../model/data';
+import { EmailData } from './../model/EmailData';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { EledgerUser } from '../classes/EledgerUser';
+import { UI_URL } from '../static/properties';
+import { Keys } from '../model/key';
+import { SessionModel } from '../model/sessionmodel';
+import { AlertService } from '../services/alert.service';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,8 +17,23 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
+  response: any;
+  email: String;
+  isEmailExist = false;
+  isPresentEmail = false;
+  url: string;
+  sessionModel = new SessionModel();
+  id: any;
+  dataOtp: Data;
+  name: string;
+  otp: any;
 
-  constructor(private fb: FormBuilder) { }
+  emailData: EmailData = {
+    email: undefined,
+    name: undefined
+  }
+
+  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
   //form Validation
   resetForm = this.fb.group({
@@ -18,7 +43,60 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() { }
+  onSubmit() {
+    this.email = this.resetForm.value.emailId;
+    this.url = "/lenders";
+
+    //User Management Get API to get data 
+    this.eledgerUser.getEledgerLenders(this.url).subscribe(
+      data => {
+        this.response = data["data"]
+        for (let customer of this.response) {
+          if (customer.email == this.email) {
+            this.isEmailExist = true;
+            this.id = customer.id;
+            this.emailData.email = customer.email;
+            this.emailData.name = customer.name;
+            this.name = customer.name;
+            break;
+          }
+        }
+
+        if (!this.isEmailExist) {
+          this.isPresentEmail = true;
+        }
+
+        if (this.isEmailExist) {
+          this.reset();
+        }
+      });
+  }
+
+  reset() {
+    //post api to send email and name and return encrypted OTP
+    this.eledgerUser.postResetPasswordEmail(this.emailData).subscribe(
+      resp => {
+        this.otp = resp["data"];
+        this.notify.showSuccess("Successful", "OTP Sent");
+        this.sessionModel.setSession(Keys.id, this.id);
+        this.sessionModel.setSession(Keys.email, this.email);
+        this.sessionModel.setSession(Keys.otp, this.otp);
+        this.sessionModel.setSession(Keys.name, this.name);
+
+        window.location.href = (UI_URL + "/otp-verification");
+        catchError((err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            try {
+              this.notify.showError(err.error.message, err.status.toString());
+            } catch (e) {
+              this.notify.showError('An error occurred', '');
+            }
+            //log error 
+          }
+          return of(err);
+        });
+      });
+  }
 
   //check the form validation
   isValid(control) {

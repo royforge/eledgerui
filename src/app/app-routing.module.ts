@@ -1,3 +1,5 @@
+import { OtpverficationComponent } from './otpverfication/otpverfication.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { SignupComponent } from './signup/signup.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'header', component:HeaderComponent },
   { path: 'editAccount', component: EditmyAccountComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetpasswordComponent },
+  { path: 'otp-verification', component: OtpverficationComponent },
   { path: '**', component: EledgerLoginComponent }
 ];
 

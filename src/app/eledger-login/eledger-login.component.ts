@@ -4,7 +4,6 @@ import { SessionModel } from './../model/sessionmodel';
 import { UserData } from './../model/UserData';
 import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
-import { USERDATA } from './userDataList';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { AlertService } from '../services/alert.service';
@@ -38,7 +37,6 @@ export class EledgerLoginComponent implements OnInit {
   }
   userID: string;
   password: string;
-  userList = USERDATA;
   isValid: boolean;
   name: string;
 
@@ -59,13 +57,13 @@ export class EledgerLoginComponent implements OnInit {
   checkValidUser(userID, password): boolean {
 
     for (let user of this.userData) {
-      if (user.phone == userID && user.password == password) {
+      if ((user.phone == userID || user.email == userID) && user.password == password) {
         this.sessionModel.setSession(Keys.id, user.id);
         this.sessionModel.setSession(Keys.lenderId, user.lenderId);
         this.sessionModel.setSession(Keys.shopName, user.shopName);
         this.sessionModel.setSession(Keys.name, user.name);
+        this.sessionModel.setSession(Keys.email, user.email);
         this.sessionModel.setSession(Keys.phone, user.phone);
-
         return true;
       }
     }
