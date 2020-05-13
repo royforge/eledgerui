@@ -1,3 +1,4 @@
+import { EmailData } from './../model/EmailData';
 import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Component, OnInit } from '@angular/core';
@@ -27,7 +28,9 @@ export class SignupComponent implements OnInit {
   confirm_password: string;
   lenderId: string;
   response: any;
-
+  sessionModel = new SessionModel();
+  headerData = new HeaderData();
+  url: string;
   merchant: UserData = {
     id: undefined,
     name: undefined,
@@ -37,10 +40,10 @@ export class SignupComponent implements OnInit {
     shopName: undefined,
     password: undefined
   }
-
-  sessionModel = new SessionModel();
-  headerData = new HeaderData();
-  url: string;
+  emailData: EmailData = {
+    email: undefined,
+    name: undefined
+  }
 
   constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
@@ -70,6 +73,10 @@ export class SignupComponent implements OnInit {
     this.merchant.password = this.password;
     this.merchant.lenderId = this.lenderId;
 
+    //data for Signup Email API
+    this.emailData.email = this.email;
+    this.emailData.name = this.name;
+
     //User Management Post api to post data to the user database
     this.eledgerUser.postEledgerLenders(this.merchant)
       .subscribe(respLender => {
@@ -81,12 +88,18 @@ export class SignupComponent implements OnInit {
         window.location.href = (UI_URL + "/home");
         this.notify.showSuccess("Welcome to Eledger", "Registration Successful");
       });
+
+    //User Management SignUp POST API to send Welcome Email to new user on SignUp
+    this.eledgerUser.postSignUpEmail(this.emailData)
+      .subscribe(respEmail => {
+        this.response = respEmail;
+      });
   }
 
   onSubmit() {
     this.isPresentPhone = false;
     this.isPresentEmail = false;
-    this.isMatch = false; 
+    this.isMatch = false;
 
     // TODO: Use EventEmitter with form value
     this.name = this.customerForm.value.name;
