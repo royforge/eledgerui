@@ -54,6 +54,7 @@ export class AddCustomerComponent implements OnInit {
   }
   response: any;
   headerData = new HeaderData();
+  url: string;
 
   constructor(private notify: AlertService, private fb: FormBuilder,
     private eledgerApi: EledgerApi,
@@ -119,6 +120,23 @@ export class AddCustomerComponent implements OnInit {
 
   //Method to add customer details to all the required databases
   addCustomer() {
+    this.url = "/lenders";
+    //User Management Get API to get data 
+    this.eledgerUser.getEledgerLenders(this.url).subscribe(
+      data => {
+        this.response = data["data"]
+        for (let lender of this.response) {
+          if (lender.lenderId == this.wallet.lenderId) {
+            this.emailData.name = lender.name;
+            this.emailData.email = lender.email;
+            this.emailData.customerName = this.borrowerName;
+
+            // Send Mail to the User about new customer additon
+            this.eledgerUser.postAddCustomerEmail(this.emailData).subscribe()
+            break;
+          }
+        }
+      });
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
       this.response = resp;
@@ -130,23 +148,13 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.phone = this.mobile.toString();
       this.borrower.isDeleted = false;
 
-      //Updating values for Email
-      this.emailData.email = this.sessionModel.getSession(Keys.email);
-      this.emailData.name = this.sessionModel.getSession(Keys.name);
-      this.emailData.customerName = this.borrowerName;
-
       //posting the borrower's data to borrower database 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
           this.response = resp["data"];
           this.notify.showSuccess("Customer Added", "Successful");
-          // Send Mail to the User about new customer additon
-          this.eledgerUser.postAddCustomerEmail(this.emailData).subscribe()
-
           window.location.href = (UI_URL + "/home/customers");
         });
-
-
     });
   }
 

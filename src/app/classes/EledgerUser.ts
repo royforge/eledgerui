@@ -1,7 +1,7 @@
 import { EmailData } from './../model/EmailData';
 import { BorrowerData } from 'src/app/model/borrowerData';
 import { UserData } from './../model/UserData';
-import { LENDER_URL, CUSTOMER_URL, RESETPASSWORD_URL, NEW_CUSTOMER_MAIL_URL } from './../static/properties';
+import { LENDER_URL, CUSTOMER_URL, RESETPASSWORD_URL, NEW_CUSTOMER_MAIL_URL, SIGNUP_URL } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -24,6 +24,10 @@ export class EledgerUser extends EledgerApiService {
 
     postAddCustomerEmail(emailData: EmailData): Observable<any> {
         return this.postUser(NEW_CUSTOMER_MAIL_URL, emailData);
+    }
+
+    postSignUpEmail(emailData: EmailData): Observable<any> {
+        return this.postUser(SIGNUP_URL, emailData);
     }
 
     getAllEledgerCustomers(customUrl: string): Observable<any> {
