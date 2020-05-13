@@ -18,18 +18,8 @@ import { AlertService } from '../services/alert.service';
 })
 export class AddCreditComponent implements OnInit {
   headerData = new HeaderData();
-  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
-
-  }
   wallet = new WalletData();
-
   response: any;
-
-  //form values and validation
-  creditForm = this.fb.group({
-    txnType: ['', Validators.required],
-    amount: ['', Validators.required]
-  });
   //set values we need to use
   lenderId = sessionStorage.getItem('lenderId');
   borrowerId: string
@@ -45,7 +35,16 @@ export class AddCreditComponent implements OnInit {
   isNaN = false
   sessionModel = new SessionModel();
 
-  
+  //form values and validation
+  creditForm = this.fb.group({
+    txnType: ['', Validators.required],
+    amount: ['', Validators.required]
+  });
+  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
+
+  }
+
+
   ngOnInit(): void {
     this.borrowerName = this.sessionModel.getSession(Keys.name);
     this.borrowerPhone = this.sessionModel.getSession(Keys.phone);
