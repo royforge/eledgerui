@@ -8,9 +8,6 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-edit-customer',

@@ -4,9 +4,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Keys } from '../model/key';
 import { EledgerUser } from '../classes/EledgerUser';
 import { HeaderData } from '../model/headerData';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 import { AlertService } from '../services/alert.service';
 
 @Component({

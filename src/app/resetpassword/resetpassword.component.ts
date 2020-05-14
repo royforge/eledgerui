@@ -8,7 +8,6 @@ import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
-import { UserData } from '../model/UserData';
 
 @Component({
   selector: 'app-resetpassword',

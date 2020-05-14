@@ -58,7 +58,6 @@ export class EditmyAccountComponent implements OnInit {
     newlenderName: ['', Validators.required],
     newlenderPhone: ['', Validators.required],
     newlenderShopName: ['', Validators.required],
-    newlenderId: ['', Validators.required],
     newpassword: ['', Validators.required],
     newlenderEmail: ['', Validators.required]
   });

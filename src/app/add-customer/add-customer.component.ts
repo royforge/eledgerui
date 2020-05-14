@@ -13,9 +13,6 @@ import { HeaderData } from '../model/headerData';
 import { UI_URL } from '../static/properties';
 import { AlertService } from '../services/alert.service';
 import { EmailData } from '../model/EmailData';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
