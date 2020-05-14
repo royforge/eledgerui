@@ -90,6 +90,7 @@ export class EditmyAccountComponent implements OnInit {
           this.newlenderPhone = this.phone;
           this.newpassword = this.password;
           this.newlenderEmail = this.email;
+          this.newlenderId = this.lenderId;
 
           break;
         }
@@ -109,7 +110,7 @@ export class EditmyAccountComponent implements OnInit {
             break;
           }
         }
-        if (!this.isPresentPhone && this.newlenderPhone == this.phone) {
+        if (!this.isPresentPhone) {
           this.updateLender();
         }
       });

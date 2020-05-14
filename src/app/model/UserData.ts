@@ -6,5 +6,4 @@ export class UserData{
     phone: string;
     email: string;
     password: string;
-    static id: number;
 }
