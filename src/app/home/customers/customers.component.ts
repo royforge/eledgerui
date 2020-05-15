@@ -5,7 +5,6 @@ import { EledgerApi } from './../../classes/EledgerApi';
 import { EledgerUser } from './../../classes/EledgerUser';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { WalletData } from 'src/app/model/walletdata';
-import { WALLET } from 'src/app/static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Keys } from 'src/app/model/key';
 import { FormBuilder } from '@angular/forms';
@@ -18,13 +17,12 @@ import { AlertService } from 'src/app/services/alert.service';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  walletData: WalletData[];
-  borrowerList: BorrowerData[];
   deleteData: Customers;
-  userData: UserData[];
   url: string;
   lenderId: string;
-  customers: Customers[] = [];
+  customers: Customers[];
+  allCustomers: Customers[];
+
   public customer = new Customers();
   sessionModel = new SessionModel();
   p: number = 1;
@@ -51,7 +49,7 @@ export class CustomersComponent implements OnInit {
   ngOnInit(): void {
     //this.myFunction();
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
-    this.url = WALLET + "/lenderId/" + this.lenderId;
+    this.url = "/relation/users/lenderId/" + this.lenderId;
     this.getListAtStart();
 
     if (window.innerWidth <= 768) {
@@ -61,40 +59,12 @@ export class CustomersComponent implements OnInit {
 
   getListAtStart() {
     this.customers = [];
-
-    //Backend api to get data using lenderId and borrowerId
+    //Backend api to get customers data using lenderId and borrowerId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
-        this.walletData = respTrans["data"];
-
-        //User Management API to get the borrower data
-        this._eledgerUser.getBorrowers().subscribe(
-          respBorrower => {
-            this.borrowerList = respBorrower["data"];
-
-            this.walletData.map(wallet => {
-              for (let borrorowerData of this.borrowerList) {
-                if (borrorowerData.borrowId == wallet.borrowId) {
-                  this.setCustomerData(wallet, borrorowerData);
-                }
-              }
-            })
-          })
+        this.customers = respTrans["data"];
+        this.isReset = false;
       })
-    this.isReset = false;
-  }
-
-  private setCustomerData(wallet: WalletData, borrorowerData: BorrowerData) {
-    this.customer = new Customers();
-    this.customer.walletId = wallet.walletId;
-    this.customer.date = wallet.updatedDate;
-    this.customer.amount = wallet.balance;
-    this.customer.name = borrorowerData.name;
-    this.customer.phone = borrorowerData.phone;
-    this.customer.lenderId = borrorowerData.lenderId;
-    this.customer.borrowerId = borrorowerData.borrowId;
-    this.customer.id = borrorowerData.id;
-    this.customers.push(this.customer);
   }
 
   onSubmit() {
@@ -105,35 +75,42 @@ export class CustomersComponent implements OnInit {
     var byPhone = (<HTMLInputElement>document.getElementById("phone")).value;
     var byDebt = (<HTMLInputElement>document.getElementById("txn")).value;
 
+    //Backend api to get customers data using lenderId and borrowerId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       resp => {
-        this.walletData = resp["data"];
-        //Mock API to get the borrower data
-        this._eledgerUser.getBorrowers().subscribe(
-          respBorrower => {
-            this.borrowerList = respBorrower["data"];
-            this.walletData.map(wallet => {
+        this.allCustomers = resp["data"];
 
-              for (let borrorowerData of this.borrowerList) {
-                if (wallet.borrowId == borrorowerData.borrowId) {
-
-                  if ((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
-                    || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) {
-                    this.setCustomerData(wallet, borrorowerData);
-                  } else if (byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) {
-                    this.setCustomerData(wallet, borrorowerData);
-                  } else if (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0) {
-                    this.setCustomerData(wallet, borrorowerData);
-                  } else if (((borrorowerData.name.toLowerCase() == byName.toLowerCase() && borrorowerData.lenderId == this.lenderId)
-                    || (borrorowerData.phone.toString() == byPhone && borrorowerData.lenderId == this.lenderId)) && ((byDebt === "Credit" && borrorowerData.lenderId == this.lenderId && wallet.balance >= 0) || (byDebt === "Due" && borrorowerData.lenderId == this.lenderId && wallet.balance < 0))) {
-                    this.setCustomerData(wallet, borrorowerData);
-                  }
-                }
-              }
-            })
-          })
+        this.allCustomers.map(wallet => {
+          //Search by name or phone
+          if ((wallet.name.toLowerCase() == byName.toLowerCase() && wallet.lenderId == this.lenderId)
+            || (wallet.phone.toString() == byPhone && wallet.lenderId == this.lenderId)) {
+            this.setCustomerData(wallet);
+          } else if (byDebt === "Credit" && wallet.lenderId == this.lenderId && wallet.amount >= 0) {
+            this.setCustomerData(wallet);
+            //Search by txnType
+          } else if (byDebt === "Due" && wallet.lenderId == this.lenderId && wallet.amount < 0) {
+            this.setCustomerData(wallet);
+          } else if (((wallet.name.toLowerCase() == byName.toLowerCase() && wallet.lenderId == this.lenderId)
+            || (wallet.phone.toString() == byPhone && wallet.lenderId == this.lenderId)) && ((byDebt === "Credit" && wallet.lenderId == this.lenderId && wallet.amount >= 0) || (byDebt === "Due" && wallet.lenderId == this.lenderId && wallet.amount < 0))) {
+            this.setCustomerData(wallet);
+            //Search by multiple fields
+          }
+        })
         this.isSearch = true;
       })
+  }
+
+  private setCustomerData(wallet: Customers) {
+    this.customer = new Customers();
+    this.customer.walletId = wallet.walletId;
+    this.customer.date = wallet.date;
+    this.customer.amount = wallet.amount;
+    this.customer.name = wallet.name;
+    this.customer.phone = wallet.phone;
+    this.customer.lenderId = wallet.lenderId;
+    this.customer.borrowerId = wallet.borrowerId;
+    this.customer.id = wallet.id;
+    this.customers.push(this.customer);
   }
 
   //set data using session when click on name of the customer

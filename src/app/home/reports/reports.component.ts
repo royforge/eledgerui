@@ -1,13 +1,11 @@
-import { Transaction } from './../../model/transaction';
-import { TRANSACTION } from './../../static/properties';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Customers } from 'src/app/model/customers';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { EledgerUser } from 'src/app/classes/EledgerUser';
 import { EledgerApi } from 'src/app/classes/EledgerApi';
 import { Keys } from 'src/app/model/key';
-import { BorrowerData } from 'src/app/model/borrowerData';
 import { Router } from '@angular/router';
+import { ReportsData } from 'src/app/model/ReportsData';
 
 @Component({
   selector: 'app-reports',
@@ -18,10 +16,9 @@ export class ReportsComponent implements OnInit {
 
   url: string;
   lenderId: string;
-  transactions: Transaction[];
-  customers: Customers[] = [];
+  customers: Customers[];
+  allCustomers: Customers[];
   customer = new Customers();
-  borrowerData: BorrowerData[];
   sessionModel = new SessionModel();
   customerName: string = "";
   customerPhone: string = "";
@@ -57,91 +54,66 @@ export class ReportsComponent implements OnInit {
 
   getListAtStart() {
     this.customers = [];
-    this.url = TRANSACTION + "/lenderId/" + this.lenderId;
+    this.url = "/relation/allusers/lenderId/" + this.lenderId;
 
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
-        this.transactions = respTrans["data"];
-        this.url = "/allcustomers";
-
-        //Mock api to get data from borrorer
-        this._eledgerUser.getAllEledgerCustomers(this.url).subscribe(
-          respCustomer => {
-            this.borrowerData = respCustomer["data"];
-
-            this.transactions.map(transaction => {
-              // this.customerData(transaction);
-              for (let borrower of this.borrowerData) {
-                if (borrower.borrowId == transaction.borrowerId) {
-                  this.setCustomerData(transaction, borrower);
-                }
-              }
-            })
-          })
+        this.customers = respTrans["data"];
+        this.isReset = false;
       })
-    this.isReset = false;
   }
 
   search() {
     this.customers = [];
     this.txnType = (<HTMLInputElement>document.getElementById("txnType")).value;
-    this.url = TRANSACTION + "/lenderId/" + this.lenderId;
+    this.url = "/relation/allusers/lenderId/" + this.lenderId;
     this.p = 1;
     //Backend api to get data using lenderId
     this._eledgerApi.getEledgerApi(this.url).subscribe(
       respTrans => {
-        this.transactions = respTrans["data"];
-        this.url = "/allcustomers";
+        this.allCustomers = respTrans["data"];
 
-        //Mock api to get data from borrorer
-        this._eledgerUser.getAllEledgerCustomers(this.url).subscribe(
-          respCustomer => {
-            this.borrowerData = respCustomer["data"];
-            // this.endDate.setDate(this.endDate.getDate() + (86400000));
-            // console.log(this.endDate);
 
-            this.transactions.map(transaction => {
-              for (let customer of this.borrowerData) {
-                if (transaction.borrowerId == customer.borrowId) {
-                  if (this.txnType != undefined && this.customerName != undefined && this.customerPhone == undefined && this.startDate == undefined && this.endDate == undefined) {
-                    if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == transaction.txnType || (new Date(transaction.date) >= new Date(this.startDate) && new Date(transaction.date) <= new Date(this.endDate)))) {
-                      this.setCustomerData(transaction, customer);
-                    }
+        this.allCustomers.map(report => {
+          if (this.txnType != undefined && this.customerName != undefined && this.customerPhone == undefined && this.startDate == undefined && this.endDate == undefined) {
+            if ((report.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == report.phone) && (this.txnType == report.txnType || (new Date(report.date) >= new Date(this.startDate) && new Date(report.date) <= new Date(this.endDate)))) {
+              this.setCustomerData(report);
+            }
 
-                  } else {
-                    if (customer.name.toLowerCase() == this.customerName.toLowerCase()) {
-                      this.setCustomerData(transaction, customer);
-                    }
-                    else if (this.customerPhone == customer.phone) {
-                      this.setCustomerData(transaction, customer);
-                    }
-                    else if (this.txnType == transaction.txnType) {
-                      this.setCustomerData(transaction, customer);
-                    }
-                    else if (new Date(transaction.date) >= new Date(this.startDate) && new Date(transaction.date) <= new Date(this.endDate)) {
-                      this.setCustomerData(transaction, customer);
-                    }
-                    else if ((customer.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == customer.phone) && (this.txnType == transaction.txnType || (new Date(transaction.date) >= new Date(this.startDate) && new Date(transaction.date) <= new Date(this.endDate)))) {
-                      this.setCustomerData(transaction, customer);
-                    }
-                  }
-                }
-              }
-            })
-          })
-        this.isSearch = true;
+          } else {
+            if (report.name.toLowerCase() == this.customerName.toLowerCase()) {
+              this.setCustomerData(report);
+            }
+            else if (this.customerPhone == report.phone) {
+              this.setCustomerData(report);
+            }
+            else if (this.txnType == report.txnType) {
+              this.setCustomerData(report);
+            }
+            else if (new Date(report.date) >= new Date(this.startDate) && new Date(report.date) <= new Date(this.endDate)) {
+              this.setCustomerData(report);
+            }
+            else if ((report.name.toLowerCase() == this.customerName.toLowerCase() || this.customerPhone == report.phone) && (this.txnType == report.txnType || (new Date(report.date) >= new Date(this.startDate) && new Date(report.date) <= new Date(this.endDate)))) {
+              this.setCustomerData(report);
+            }
+
+          }
+
+        })
       })
+    this.isSearch = true;
   }
 
+
   //Set data from transaction api and borrower api into a single object
-  setCustomerData(transaction: Transaction, borrorower: BorrowerData) {
+  setCustomerData(report: ReportsData) {
     this.customer = new Customers();
-    this.customer.name = borrorower.name;
-    this.customer.phone = borrorower.phone;
-    this.customer.amount = transaction.amount;
-    this.customer.txnType = transaction.txnType;
-    this.customer.date = transaction.date;
+    this.customer.name = report.name;
+    this.customer.phone = report.phone;
+    this.customer.amount = report.amount;
+    this.customer.txnType = report.txnType;
+    this.customer.date = report.date;
     this.customers.push(this.customer);
   }
 }
