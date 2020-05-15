@@ -67,7 +67,7 @@ export class CustomersComponent implements OnInit {
       respTrans => {
         this.walletData = respTrans["data"];
 
-        //Mock API to get the borrower data
+        //User Management API to get the borrower data
         this._eledgerUser.getBorrowers().subscribe(
           respBorrower => {
             this.borrowerList = respBorrower["data"];

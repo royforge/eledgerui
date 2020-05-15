@@ -30,7 +30,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   emailData: EmailData = {
     email: undefined,
-    name: undefined
+    name: undefined,
+    customerName: undefined
   }
 
   constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }

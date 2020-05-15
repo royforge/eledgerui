@@ -12,6 +12,7 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { UI_URL } from '../static/properties';
 import { AlertService } from '../services/alert.service';
+import { EmailData } from '../model/EmailData';
 
 @Component({
   selector: 'app-add-customer',
@@ -43,8 +44,14 @@ export class AddCustomerComponent implements OnInit {
     borrowId: undefined,
     lenderId: undefined,
   }
+  emailData: EmailData = {
+    email: undefined,
+    name: undefined,
+    customerName: undefined
+  }
   response: any;
   headerData = new HeaderData();
+  url: string;
 
   constructor(private notify: AlertService, private fb: FormBuilder,
     private eledgerApi: EledgerApi,
@@ -110,6 +117,23 @@ export class AddCustomerComponent implements OnInit {
 
   //Method to add customer details to all the required databases
   addCustomer() {
+    this.url = "/lenders";
+    //User Management Get API to get data 
+    this.eledgerUser.getEledgerLenders(this.url).subscribe(
+      data => {
+        this.response = data["data"]
+        for (let lender of this.response) {
+          if (lender.lenderId == this.wallet.lenderId) {
+            this.emailData.name = lender.name;
+            this.emailData.email = lender.email;
+            this.emailData.customerName = this.borrowerName;
+
+            // Send Mail to the User about new customer additon
+            this.eledgerUser.postAddCustomerEmail(this.emailData).subscribe()
+            break;
+          }
+        }
+      });
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
       this.response = resp;
@@ -121,10 +145,9 @@ export class AddCustomerComponent implements OnInit {
       this.borrower.phone = this.mobile.toString();
       this.borrower.isDeleted = false;
 
-      //posting the borrower's data to borrower.json 
+      //posting the borrower's data to borrower database 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          //this.response = resp;
           this.response = resp["data"];
           this.notify.showSuccess("Customer Added", "Successful");
           window.location.href = (UI_URL + "/home/customers");
