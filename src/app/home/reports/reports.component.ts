@@ -35,10 +35,10 @@ export class ReportsComponent implements OnInit {
   //onresize event to show or hide filters
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 767) {
       this.visible = true;
     } else {
-      // whenever the window is greater than 768
+      // whenever the window is greater than 767
       this.visible = false;
     }
   }
@@ -46,7 +46,7 @@ export class ReportsComponent implements OnInit {
   ngOnInit(): void {
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
     this.getListAtStart();
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 767) {
       this.visible = true;
     }
 

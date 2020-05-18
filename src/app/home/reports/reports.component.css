@@ -60,7 +60,7 @@ div.space {
 
 /* Responsive Table CSS	 */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.mobile-sm {
 		text-align: center;
 		font-size: 12px;

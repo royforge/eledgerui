@@ -38,10 +38,10 @@ export class CustomersComponent implements OnInit {
   //onresize event to show or hide filters
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 767) {
       this.visible = true;
     } else {
-      // whenever the window is greater than 768
+      // whenever the window is greater than 767
       this.visible = false;
     }
   }
@@ -52,7 +52,7 @@ export class CustomersComponent implements OnInit {
     this.url = "/relation/users/lenderId/" + this.lenderId;
     this.getListAtStart();
 
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 767) {
       this.visible = true;
     }
   }
