@@ -114,14 +114,14 @@ export class CustomersComponent implements OnInit {
   }
 
   //set data using session when click on name of the customer
-  sendData(data: Customers) {
+  sendData(data: any) {
     this.sessionModel.setSession(Keys.id, data.id);
     this.sessionModel.setSession(Keys.lenderId, this.lenderId);
     this.sessionModel.setSession(Keys.name, data.name);
     this.sessionModel.setSession(Keys.phone, data.phone);
+    this.sessionModel.setSession(Keys.borrowerId, data.borrowId);
     this.sessionModel.setSession(Keys.amount, data.amount);
     this.sessionModel.setSession(Keys.walletId, data.walletId);
-    this.sessionModel.setSession(Keys.borrowerId, data.borrowerId);
   }
 
   deleteCustomer(customerData: Customers) {
