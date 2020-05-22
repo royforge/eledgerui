@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { LOGIN_URL } from '../static/properties';
 
 
 export class User {
@@ -26,11 +27,11 @@ export class AuthenticationService {
   ) { }
 
   authenticate(username, password) {
-    return this.httpClient.post<any>('http://localhost:8100/login', { username, password }).pipe(
+    return this.httpClient.post<any>(LOGIN_URL, { username, password }).pipe(
       map(
         user => {
           sessionStorage.setItem('username', username);
-          let tokenStr = 'Bearer ' + user.data;
+          let tokenStr = 'Bearer ' + user.token;
           sessionStorage.setItem('token', tokenStr);
           return user;
         }

@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-sm-7">
                         <input class=" w-100" [(ngModel)]="userID"
-                            [className]="isValid? 'form-control': 'form-control invalid'" type="text" name="uname"
-                            placeholder=" Enter Mobile Number/Email" required>
+                            [className]="isValid? 'form-control': 'form-control invalid'" (click)="isValid = true"
+                            type="text" name="uname" placeholder=" Enter Mobile Number/Email" required>
                     </div>
                 </div>
                 <br>
@@ -32,11 +32,9 @@
                     </div>
                     <div class="col-sm-7">
                         <input class="w-100" [(ngModel)]="password" id="password"
-                            [className]="isValid? 'form-control': 'form-control invalid'" type="password"
-                            name="password" placeholder=" Enter Password" required>
-
+                            [className]="isValid? 'form-control': 'form-control invalid'" (click)="isValid = true"
+                            type="password" name="password" placeholder=" Enter Password" required>
                     </div>
-
                 </div>
                 <div class="row" [className]="isValid? 'valid': 'invalidEntry'"><span style="margin: auto;">Invalid
                         input Id / Password !</span></div>
@@ -44,7 +42,8 @@
                 <div class="row">
                     <div class="col-9">
                         <span class=""><a class="logo-color" [routerLink]="['/forgot-password']">Forgot
-                                Password?</a></span>
+                                Password?</a>
+                        </span>
                     </div>
                     <div class="col-3 text-right">
                         <button (click)="login()" type="submit" class=" btn confirmBtn border border-dark">
