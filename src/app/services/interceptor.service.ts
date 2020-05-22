@@ -13,24 +13,34 @@ export class InterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    return next.handle(req)
-    
-      // .pipe(tap(event => {
-      //   if (event instanceof HttpResponse && event.status === 201) {
-      //     this.notify.showSuccess("Updated changes" , "Successful");
-      //   }
-      // }),
+      if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
+        req = req.clone({
+          setHeaders: {
+            Authorization: sessionStorage.getItem('token'),
+            'Access-Control-Allow-Origin' : '*'
+          }
+        })
+      }
 
-      //   catchError((err: any) => {
-      //     if (err instanceof HttpErrorResponse) {
-      //       try {
-      //         this.notify.showError(err.error.message, err.status.toString());
-      //       } catch (e) {
-      //         this.notify.showError('An error occurred', '');
-      //       }
-      //       //log error 
-      //     }
-      //     return of(err);
-      //   }));
+      
+    return next.handle(req)
+
+    // .pipe(tap(event => {
+    //   if (event instanceof HttpResponse && event.status === 201) {
+    //     this.notify.showSuccess("Updated changes" , "Successful");
+    //   }
+    // }),
+
+    //   catchError((err: any) => {
+    //     if (err instanceof HttpErrorResponse) {
+    //       try {
+    //         this.notify.showError(err.error.message, err.status.toString());
+    //       } catch (e) {
+    //         this.notify.showError('An error occurred', '');
+    //       }
+    //       //log error 
+    //     }
+    //     return of(err);
+    //   }));
   };
 }
