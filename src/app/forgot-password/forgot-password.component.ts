@@ -3,13 +3,13 @@ import { EmailData } from './../model/EmailData';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EledgerUser } from '../classes/EledgerUser';
-import { UI_URL } from '../static/properties';
 import { Keys } from '../model/key';
 import { SessionModel } from '../model/sessionmodel';
 import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -34,7 +34,7 @@ export class ForgotPasswordComponent implements OnInit {
     customerName: undefined
   }
 
-  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
+  constructor(private notify: AlertService, private router: Router, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
   //form Validation
   resetForm = this.fb.group({
@@ -84,7 +84,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.sessionModel.setSession(Keys.otp, this.otp);
         this.sessionModel.setSession(Keys.name, this.name);
 
-        window.location.href = (UI_URL + "/otp-verification");
+        this.router.navigateByUrl("/otp-verification");
         catchError((err: any) => {
           if (err instanceof HttpErrorResponse) {
             try {

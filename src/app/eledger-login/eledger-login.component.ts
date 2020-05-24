@@ -1,4 +1,3 @@
-import { UI_URL } from './../static/properties';
 import { Keys } from './../model/key';
 import { SessionModel } from './../model/sessionmodel';
 import { UserData } from './../model/UserData';
@@ -7,7 +6,6 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,8 +27,6 @@ export class EledgerLoginComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.headerData);
     this.isValid = true;
     this.validated = false;
-    this.url = "/lenders";
-    sessionStorage.clear();
   }
 
   userID: string;
@@ -40,7 +36,7 @@ export class EledgerLoginComponent implements OnInit {
   validated: boolean;
 
   login() {
-    this.auth.authenticate(this.userID, this.password).pipe(first()).subscribe(
+    this.auth.authenticate(this.userID, this.password).pipe().subscribe(
       resp => {
         this.user = resp["data"];
         this.sessionModel.setSession(Keys.id, this.user.id);

@@ -142,6 +142,6 @@ export class CustomersComponent implements OnInit {
         this.respDeleteEledgerUser = resp["data"];
       });
     this.notify.showWarning('Customer Removed', 'Deleted');
-    window.location.href = (UI_URL + "/home/customers");
+    this.router.navigateByUrl("/home/customers");
   }
 }

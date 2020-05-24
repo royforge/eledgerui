@@ -3,21 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { LOGIN_URL } from '../static/properties';
 
-
-export class User {
-  constructor(
-    public status: string,
-  ) { }
-
-}
-
-export class JwtResponse {
-  constructor(
-    public jwttoken: string,
-  ) { }
-
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +12,7 @@ export class AuthenticationService {
   ) { }
 
   authenticate(username, password) {
+
     return this.httpClient.post<any>(LOGIN_URL, { username, password }).pipe(
       map(
         user => {
@@ -37,12 +23,6 @@ export class AuthenticationService {
         }
       )
     );
-  }
-
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
-    //console.log(!(user === null))
-    return !(user === null)
   }
 
   logOut() {

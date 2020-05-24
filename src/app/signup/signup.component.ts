@@ -1,14 +1,14 @@
 import { EmailData } from './../model/EmailData';
-import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EledgerUser } from '../classes/EledgerUser';
 import { SessionModel } from '../model/sessionmodel';
-import { Keys } from '../model/key';
 import { HeaderData } from '../model/headerData';
 import { EledgerApiService } from '../services/eledgerapi.service';
 import { AlertService } from '../services/alert.service';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +27,6 @@ export class SignupComponent implements OnInit {
   password: string;
   confirm_password: string;
   lenderId: string;
-  response: any;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
   url: string;
@@ -46,7 +45,7 @@ export class SignupComponent implements OnInit {
     customerName: undefined
   }
 
-  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService, private router: Router, private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -63,7 +62,31 @@ export class SignupComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.headerData);
   }
 
-  addMerchant() {
+  onSubmit() {
+    this.isPresentPhone = false;
+    this.isPresentEmail = false;
+    this.isMatch = false;
+
+    //Assigning form values
+    this.name = this.customerForm.value.name;
+    this.mobile = this.customerForm.value.mobile;
+    this.email = this.customerForm.value.email;
+    this.shopName = this.customerForm.value.shopName;
+    this.password = this.customerForm.value.password;
+    this.confirm_password = this.customerForm.value.confirm_password;
+
+    // validate Password matches the confirm password field
+    if (this.password != null && this.confirm_password != null) {
+      if (this.password != this.confirm_password) {
+        this.isMatch = true;
+      } else {
+        this.registerNewLender();
+      }
+    }
+  }
+
+  //Method to register new User on Sign Up
+  private registerNewLender() {
     this.lenderId = this.name.slice(0, 3) + this.mobile.toString();
     // adding data to the object
     this.shopName[0].toUpperCase();
@@ -73,77 +96,28 @@ export class SignupComponent implements OnInit {
     this.merchant.shopName = this.shopName;
     this.merchant.password = this.password;
     this.merchant.lenderId = this.lenderId;
-
-    //data for Signup Email API
-    this.emailData.email = this.email;
-    this.emailData.name = this.name;
-
-    //User Management Post api to post data to the user database
-    this.eledgerUser.postEledgerLenders(this.merchant)
-      .subscribe(respLender => {
-        this.response = respLender;
-        this.sessionModel.setSession(Keys.lenderId, this.lenderId);
-        this.sessionModel.setSession(Keys.shopName, this.shopName);
-        this.sessionModel.setSession(Keys.name, this.name);
-        this.sessionModel.setSession(Keys.phone, this.mobile);
-        window.location.href = (UI_URL + "/login");
+    //User Management SignUp Post api to post data to the user database and Register User
+    this.eledgerUser.postEledgerSignUp(this.merchant).pipe(first())
+      .subscribe(data => {
+        this.router.navigateByUrl("/login");
         this.notify.showSuccess("Welcome to Eledger", "Registration Successful");
-      });
 
-    //User Management SignUp POST API to send Welcome Email to new user on SignUp
-    this.eledgerUser.postSignUpEmail(this.emailData)
-      .subscribe(respEmail => {
-        this.response = respEmail;
-      });
-  }
+        //data for Signup Email API
+        this.emailData.email = this.email;
+        this.emailData.name = this.name;
 
-  onSubmit() {
-    this.isPresentPhone = false;
-    this.isPresentEmail = false;
-    this.isMatch = false;
-
-    // TODO: Use EventEmitter with form value
-    this.name = this.customerForm.value.name;
-    this.mobile = this.customerForm.value.mobile;
-    this.email = this.customerForm.value.email;
-    this.shopName = this.customerForm.value.shopName;
-    this.password = this.customerForm.value.password;
-    this.confirm_password = this.customerForm.value.confirm_password;
-    this.url = "/lenders";
-
-    //User Management Get API to get data 
-    this.eledgerUser.getEledgerLenders(this.url).subscribe(
-      data => {
-        this.response = data["data"]
-        for (let customer of this.response) {
-          if (customer.email == this.email && customer.phone == this.mobile) {
+        //User Management SignUp POST API to send Welcome Email to new user on SignUp
+        this.eledgerUser.postSignUpEmail(this.emailData).subscribe();
+      },
+      //Catch Conflict Error to check If Phone/ EMail is already present
+        err => {
+          if (err.error.message == "Phone Already Present") {
             this.isPresentPhone = true;
+          }
+          else if (err.error.message == "EMail Already Present") {
             this.isPresentEmail = true;
-            break;
           }
-          else if (customer.email == this.email || customer.phone == this.mobile) {
-            if (customer.phone == this.mobile) {
-              this.isPresentPhone = true;
-              break;
-            }
-            this.isPresentEmail = true;
-            break;
-          }
-        }
-
-        // validate Password matches the confirm password field
-        if (this.password != null && this.confirm_password != null) {
-          if (this.password != this.confirm_password) {
-            this.isMatch = true;
-          }
-          else {
-            if (!this.isPresentPhone && !this.isPresentEmail) {
-              //If mobile is not already present, then add the merchant
-              this.addMerchant();
-            }
-          }
-        }
-      });
+        });
   }
 
   //check the form validation
