@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
-import { UI_URL } from '../static/properties';
 import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,6 +8,7 @@ import { of } from 'rxjs';
 import { Md5 } from 'ts-md5/dist/md5';
 import { EledgerUser } from '../classes/EledgerUser';
 import { EmailData } from '../model/EmailData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-otpverfication',
@@ -34,7 +34,7 @@ export class OtpverficationComponent implements OnInit {
     customerName: undefined
   }
 
-  constructor(private notify: AlertService, private eledgerUser: EledgerUser) { }
+  constructor(private notify: AlertService, private router: Router, private eledgerUser: EledgerUser) { }
 
   ngOnInit(): void {
     this.email = this.sessionModel.getSession(Keys.email);
@@ -77,7 +77,7 @@ export class OtpverficationComponent implements OnInit {
   verify() {
     this.sessionModel.setSession(Keys.id, this.id);
     this.notify.showSuccess("OTP Verified", "Successful");
-    window.location.href = (UI_URL + "/reset-password");
+    this.router.navigateByUrl("/reset-password");
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         try {
