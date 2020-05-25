@@ -70,30 +70,6 @@ export class ForgotPasswordComponent implements OnInit {
           this.reset();
         }
       });
-
-    // //User Management Get API to get data 
-    // this.eledgerUser.getEledgerLenders(this.url).subscribe(
-    //   data => {
-    //     this.response = data["data"]
-    //     for (let customer of this.response) {
-    //       if (customer.email == this.email) {
-    //         this.isEmailExist = true;
-    //         this.id = customer.id;
-    //         this.emailData.email = customer.email;
-    //         this.emailData.name = customer.name;
-    //         this.name = customer.name;
-    //         break;
-    //       }
-    //     }
-
-    //     if (!this.isEmailExist) {
-    //       this.isPresentEmail = true;
-    //     }
-
-    //     if (this.isEmailExist) {
-    //       this.reset();
-    //     }
-    //   });
   }
 
   reset() {

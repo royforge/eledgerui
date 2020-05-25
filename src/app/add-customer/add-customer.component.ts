@@ -79,7 +79,6 @@ export class AddCustomerComponent implements OnInit {
     this.headerData.isHeader = true;
     this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
-
   }
 
   onSubmit() {
@@ -98,8 +97,6 @@ export class AddCustomerComponent implements OnInit {
 
     //checking if mobile number is already present
     this.eledgerUser.getBorrowers().subscribe(response => {
-      // this.response = response
-      this.response = response["data"]
       for (let customer of response["data"]) {
         if (customer.lenderId == this.wallet.lenderId)
           if (customer.phone == this.mobile) {
@@ -133,8 +130,6 @@ export class AddCustomerComponent implements OnInit {
 
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
-      this.response = resp;
-
       //updating values for the borrower data
       this.borrower.borrowId = resp.data.borrowId;
       this.borrower.name = this.borrowerName;
@@ -145,7 +140,6 @@ export class AddCustomerComponent implements OnInit {
       //posting the borrower's data to borrower database 
       this.eledgerUser.postBorrower(this.borrower)
         .subscribe(resp => {
-          this.response = resp["data"];
           this.notify.showSuccess("Customer Added", "Successful");
           window.location.href = (UI_URL + "/home/customers");
         });

@@ -1,4 +1,3 @@
-import { UI_URL } from './../static/properties';
 import { Component, OnInit } from '@angular/core';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
@@ -8,6 +7,7 @@ import { AlertService } from '../services/alert.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resetpassword',
@@ -26,7 +26,7 @@ export class ResetpasswordComponent implements OnInit {
   lender: any;
   responseLender: any;
 
-  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
+  constructor(private notify: AlertService, private router: Router, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -67,7 +67,7 @@ export class ResetpasswordComponent implements OnInit {
           this.responseLender = respLender["data"];
         });
         this.notify.showSuccess("Successful", "Password Reset");
-        window.location.href = (UI_URL + "/login");
+        this.router.navigateByUrl("/login");
         catchError((err: any) => {
           if (err instanceof HttpErrorResponse) {
             try {
@@ -75,6 +75,7 @@ export class ResetpasswordComponent implements OnInit {
             } catch (e) {
               this.notify.showError('An error occurred', '');
             }
+            //log error 
           }
           return of(err);
         });

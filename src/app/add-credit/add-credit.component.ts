@@ -1,4 +1,3 @@
-import { UI_URL } from './../static/properties';
 import { EledgerApiService } from './../services/eledgerapi.service';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +9,7 @@ import { WalletData } from '../model/walletdata';
 import { Keys } from '../model/key';
 import { HeaderData } from '../model/headerData';
 import { AlertService } from '../services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-credit',
@@ -40,10 +40,9 @@ export class AddCreditComponent implements OnInit {
     txnType: ['', Validators.required],
     amount: ['', Validators.required]
   });
-  constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
+  constructor(private notify: AlertService, private router: Router, private fb: FormBuilder, private eledgerUser: EledgerUser, private eledgerApi: EledgerApi, private service: EledgerApiService) {
 
   }
-
 
   ngOnInit(): void {
     this.borrowerName = this.sessionModel.getSession(Keys.name);
@@ -92,9 +91,8 @@ export class AddCreditComponent implements OnInit {
     if ((this.wallet.txnType == "DEBIT" || this.wallet.txnType == "CREDIT") && !isNaN(this.wallet.amount)) {
       //updating the Wallet's data to Wallet database
       this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
-        this.response = resp;
         this.notify.showSuccess("Transaction Updated", "Successful");
-        window.location.href = (UI_URL + "/home/customers");
+        this.router.navigateByUrl("/home/customers");
       });
     } else {
       this.selectTxn = true;

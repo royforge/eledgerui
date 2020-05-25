@@ -14,8 +14,8 @@
                         <p class="mandatory d-inline"> *</p>
                     </div>
                     <div class="col-sm-5 inputDiv">
-                        <input class="rounded w-100" [ngClass]="{'invalid' : isValid('name')}"
-                            formControlName="name" type="text" id="name" placeholder="Name" required>
+                        <input class="rounded w-100" [ngClass]="{'invalid' : isValid('name')}" formControlName="name"
+                            type="text" id="name" placeholder="Name" required>
                         <div class="feedback" *ngIf="isValid('name')">
                             <span *ngIf="customerForm.controls.name.errors.required">Field cannot be Empty!!!</span>
                         </div>
