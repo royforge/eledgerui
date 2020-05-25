@@ -13,15 +13,14 @@ import { AlertService } from '../services/alert.service';
 })
 export class MyAccountComponent implements OnInit {
   headerData = new HeaderData();
+  sessionModel = new SessionModel();
   response: any;
-  lenderID: string;
   lenderId: string;
   shopName: string;
   phone: string;
   name: string;
   email: string;
   id: string;
-  sessionModel = new SessionModel();
   url: string;
   constructor(private notify: AlertService, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
@@ -32,27 +31,18 @@ export class MyAccountComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.sessionModel.setSession(Keys.id, this.id);
-    this.name = this.sessionModel.getSession(Keys.name);
-    this.phone= this.sessionModel.getSession(Keys.phone);
-    this.shopName = this.sessionModel.getSession(Keys.shopName);
-    this.lenderID = this.sessionModel.getSession(Keys.lenderId);
-    this.email = this.sessionModel.getSession(Keys.email);
+    this.lenderId = this.sessionModel.getSession(Keys.lenderId);
+    this.url = "/lenderId/" + this.lenderId;
 
-    this.url = "/lenders";
-
-    //User Management Api to get data of lender.
+    //User Management Api to get data of lender using lenderId
     this.eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
       this.response = resp["data"]
-      for (let lender of this.response) {
-        if (lender.lenderId == this.lenderID) {
-          this.shopName = lender.shopName;
-          this.phone = lender.phone;
-          this.name = lender.name;
-          this.email = lender.email;
-          break;
-        }
+      if (this.response.lenderId == this.lenderId) {
+        this.shopName = this.response.shopName;
+        this.phone = this.response.phone;
+        this.name = this.response.name;
+        this.email = this.response.email;
       }
     });
   }
 }
-

@@ -23,7 +23,7 @@ export class ResetpasswordComponent implements OnInit {
   confirm_password: string;
   id: string;
   url: string;
-  response: any;
+  lender: any;
   responseLender: any;
 
   constructor(private notify: AlertService, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
@@ -54,34 +54,30 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   reset() {
-    this.url = "/lenders";
+    this.url = "/userId/" + this.id;
 
-    //User Management Api to get data of lender.
+    //User Management Api to get data of lender using userId
     this.eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
-      this.response = resp["data"]
-      for (let lender of this.response) {
-        if (lender.id == this.id) {
-          lender.password = this.password;
+      this.lender = resp["data"]
+      if (this.lender.id == this.id) {
+        this.lender.password = this.password;
 
-          //post API to post new data with new password
-          this.eledgerUser.postEledgerLenders(lender).subscribe(respLender => {
-            this.responseLender = respLender["data"];
-          });
-          this.notify.showSuccess("Successful", "Password Reset");
-          window.location.href = (UI_URL + "/login");
-          catchError((err: any) => {
-            if (err instanceof HttpErrorResponse) {
-              try {
-                this.notify.showError(err.error.message, err.status.toString());
-              } catch (e) {
-                this.notify.showError('An error occurred', '');
-              }
-              //log error 
+        //post API to post new data with new password
+        this.eledgerUser.postEledgerLenders(this.lender).subscribe(respLender => {
+          this.responseLender = respLender["data"];
+        });
+        this.notify.showSuccess("Successful", "Password Reset");
+        window.location.href = (UI_URL + "/login");
+        catchError((err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            try {
+              this.notify.showError(err.error.message, err.status.toString());
+            } catch (e) {
+              this.notify.showError('An error occurred', '');
             }
-            return of(err);
-          });
-          break;
-        }
+          }
+          return of(err);
+        });
       }
     });
   }

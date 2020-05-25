@@ -46,20 +46,19 @@ export class ForgotPasswordComponent implements OnInit {
 
   onSubmit() {
     this.email = this.resetForm.value.emailId;
-    this.url = "/lenders";
+    this.url = "/validatePhoneOrEmail/" + this.email;
 
     //User Management Get API to get data 
     this.eledgerUser.getEledgerLenders(this.url).subscribe(
       data => {
         this.response = data["data"]
-        for (let customer of this.response) {
-          if (customer.email == this.email) {
+        if (this.response != null) {
+          if (this.response.email == this.email) {
             this.isEmailExist = true;
-            this.id = customer.id;
-            this.emailData.email = customer.email;
-            this.emailData.name = customer.name;
-            this.name = customer.name;
-            break;
+            this.id = this.response.id;
+            this.emailData.email = this.response.email;
+            this.emailData.name = this.response.name;
+            this.name = this.response.name;
           }
         }
 
@@ -71,6 +70,30 @@ export class ForgotPasswordComponent implements OnInit {
           this.reset();
         }
       });
+
+    // //User Management Get API to get data 
+    // this.eledgerUser.getEledgerLenders(this.url).subscribe(
+    //   data => {
+    //     this.response = data["data"]
+    //     for (let customer of this.response) {
+    //       if (customer.email == this.email) {
+    //         this.isEmailExist = true;
+    //         this.id = customer.id;
+    //         this.emailData.email = customer.email;
+    //         this.emailData.name = customer.name;
+    //         this.name = customer.name;
+    //         break;
+    //       }
+    //     }
+
+    //     if (!this.isEmailExist) {
+    //       this.isPresentEmail = true;
+    //     }
+
+    //     if (this.isEmailExist) {
+    //       this.reset();
+    //     }
+    //   });
   }
 
   reset() {

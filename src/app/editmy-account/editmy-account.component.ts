@@ -20,7 +20,6 @@ import { catchError } from 'rxjs/operators';
 export class EditmyAccountComponent implements OnInit {
   response: any;
   checkResponse: any;
-  lenderID: string;
   lenderId: string;
   shopName: string;
   phone: string;
@@ -30,7 +29,8 @@ export class EditmyAccountComponent implements OnInit {
   email: string;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
-
+  url: string;
+  isPresentPhone = false;
   newlenderName: string;
   newlenderPhone: string;
   newlenderShopName: string;
@@ -47,8 +47,6 @@ export class EditmyAccountComponent implements OnInit {
     password: undefined,
     email: undefined
   }
-  url: string;
-  isPresentPhone = false;
 
   constructor(private notify: AlertService,
     private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
@@ -68,46 +66,43 @@ export class EditmyAccountComponent implements OnInit {
     this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
-    this.lenderID = this.sessionModel.getSession(Keys.lenderId);
+    this.lenderId = this.sessionModel.getSession(Keys.lenderId);
 
-    this.url = "/lenders";
+    this.url = "/lenderId/" + this.lenderId;
 
     //User Management Api to get data of lender.
     this.eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
       this.response = resp["data"]
-      for (let lender of this.response) {
-        if (lender.lenderId == this.lenderID) {
-          this.id = lender.id;
-          this.shopName = lender.shopName;
-          this.phone = lender.phone;
-          this.name = lender.name;
-          this.lenderId = lender.lenderId;
-          this.password = lender.password;
-          this.email = lender.email;
+      if (this.response.lenderId == this.lenderId) {
+        this.id = this.response.id;
+        this.shopName = this.response.shopName;
+        this.phone = this.response.phone;
+        this.name = this.response.name;
+        this.lenderId = this.response.lenderId;
+        this.password = this.response.password;
+        this.email = this.response.email;
 
-          this.newlenderName = this.name;
-          this.newlenderShopName = this.shopName;
-          this.newlenderPhone = this.phone;
-          this.newpassword = this.password;
-          this.newlenderEmail = this.email;
-          this.newlenderId = this.lenderId;
-
-          break;
-        }
+        this.newlenderName = this.name;
+        this.newlenderShopName = this.shopName;
+        this.newlenderPhone = this.phone;
+        this.newpassword = this.password;
+        this.newlenderEmail = this.email;
+        this.newlenderId = this.lenderId;
       }
     });
   }
 
   update() {
-    this.url = "/lenders";
+    this.url = "/validatePhoneOrEmail/" + this.newlenderPhone;
+
     //User Management Get API to get data 
     this.eledgerUser.getEledgerLenders(this.url).subscribe(
       data => {
+
         this.checkResponse = data["data"]
-        for (let customer of this.checkResponse) {
-          if (customer.phone == this.newlenderPhone && this.newlenderPhone != this.phone) {
+        if (this.checkResponse != null) {
+          if (this.checkResponse.phone == this.newlenderPhone && this.newlenderPhone != this.phone) {
             this.isPresentPhone = true;
-            break;
           }
         }
         if (!this.isPresentPhone) {
@@ -125,18 +120,13 @@ export class EditmyAccountComponent implements OnInit {
     this.lender.password = this.newpassword;
     this.lender.email = this.email;
 
+    //POST API to update the lender details
     this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
       this.response = resp["data"];
     });
 
-    this.sessionModel.setSession(Keys.name, this.newlenderName);
-    this.sessionModel.setSession(Keys.phone, this.newlenderPhone);
-    this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
     this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
-    this.sessionModel.setSession(Keys.password, this.newpassword);
     this.notify.showSuccess("Changes Updated", "Successful");
-    window.location.href = (UI_URL + "/myaccount");
-
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         try {
@@ -148,6 +138,7 @@ export class EditmyAccountComponent implements OnInit {
       }
       return of(err);
     });
+    window.location.href = (UI_URL + "/myaccount");
   }
 
   //check the form validation
