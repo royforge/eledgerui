@@ -127,7 +127,7 @@ export class EditmyAccountComponent implements OnInit {
     this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
       this.response = resp["data"];
       this.sessionModel.setSession(Keys.shopName, this.response.shopName);
-      this.sessionModel.setSession(Keys.lenderId, this.response.lenderId);
+      this.sessionModel.setSession(Keys.name, this.response.name);
       if (this.phone != this.newlenderPhone) {
         sessionStorage.setItem('username', "");
         sessionStorage.setItem('token', "");
@@ -146,8 +146,6 @@ export class EditmyAccountComponent implements OnInit {
             this.router.navigateByUrl("/myaccount");
           });
       }
-      this.notify.showSuccess("Changes Updated", "Successful");
-      window.location.href = (UI_URL + "/myaccount");
     });
   }
 
