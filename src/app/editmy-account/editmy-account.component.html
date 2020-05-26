@@ -90,12 +90,9 @@
                         <label for=newpassword class="info">Password :</label>
                     </div>
                     <div class="col-sm-7 col-lg-6">
-                        <input type="password" id="newpassword" [ngClass]="{'invalid' : isValid('newpassword')}"
-                            formControlName="newpassword" [(ngModel)]="newpassword" disabled>
-                        <div class="feedback" *ngIf="isValid('newpassword')">
-                            <span *ngIf="customerForm.controls.newpassword.errors.required">Field cannot be
-                                Empty!!!</span>
-                        </div>
+                        <button class="btn confirmBtn border border-dark password-size" (click)="editPassword()"
+                            [routerLink]="['/editpassword']"><a> Edit Password
+                            </a></button>
                     </div>
                 </div>
                 <br>

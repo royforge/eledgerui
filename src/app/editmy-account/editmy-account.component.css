@@ -7,6 +7,11 @@
     margin-top: 8px;
 }
 
+.password-size {
+    height: 35px;
+    width: 240px;
+}
+
 @media screen and (max-width: 840px) {
     .cancel {
         font-size: 14px;
@@ -20,5 +25,9 @@
     .btn-right {
         margin-left: 90px;
         margin-bottom: 10px;
+    }
+    .password-size {
+        height: 35px;
+        width: 330px;
     }
 }

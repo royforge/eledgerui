@@ -60,7 +60,6 @@ export class EditmyAccountComponent implements OnInit {
     newlenderName: ['', Validators.required],
     newlenderPhone: ['', Validators.required],
     newlenderShopName: ['', Validators.required],
-    newpassword: ['', Validators.required],
     newlenderEmail: ['', Validators.required]
   });
 
@@ -96,6 +95,11 @@ export class EditmyAccountComponent implements OnInit {
     });
   }
 
+  editPassword(){
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.password, this.password);
+    this.sessionModel.setSession(Keys.id, this.id);
+  }
   update() {
     this.url = "/validatePhoneOrEmail/" + this.newlenderPhone;
 
