@@ -36,7 +36,6 @@ export class EditmyAccountComponent implements OnInit {
   newlenderPhone: string;
   newlenderShopName: string;
   newlenderId: string;
-  newpassword: string;
   newlenderEmail: string;
 
   lender: UserData = {
@@ -88,18 +87,12 @@ export class EditmyAccountComponent implements OnInit {
         this.newlenderName = this.name;
         this.newlenderShopName = this.shopName;
         this.newlenderPhone = this.phone;
-        this.newpassword = this.password;
         this.newlenderEmail = this.email;
         this.newlenderId = this.lenderId;
       }
     });
   }
 
-  editPassword(){
-    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
-    this.sessionModel.setSession(Keys.password, this.password);
-    this.sessionModel.setSession(Keys.id, this.id);
-  }
   update() {
     this.url = "/validatePhoneOrEmail/" + this.newlenderPhone;
 
@@ -124,7 +117,7 @@ export class EditmyAccountComponent implements OnInit {
     this.lender.phone = this.newlenderPhone;
     this.lender.shopName = this.newlenderShopName;
     this.lender.lenderId = this.newlenderId;
-    this.lender.password = this.newpassword;
+    this.lender.password = this.password;
     this.lender.email = this.email;
 
     //Update lender Details post request

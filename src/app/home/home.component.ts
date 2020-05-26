@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   response: any;
   url: string;
   currentUser: UserData;
+  password: string;
 
   constructor(private _eledgerUser: EledgerUser, private router: Router, private service: EledgerApiService, private auth: AuthenticationService) {
   }
@@ -47,8 +48,15 @@ export class HomeComponent implements OnInit {
       if (this.response.lenderId == this.lenderId) {
         this.id = this.response.id;
         this.sessionModel.setSession(Keys.id, this.id);
+        this.password = this.response.password;
       }
     });
+  }
+
+  editPassword() {
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.password, this.password);
+    this.sessionModel.setSession(Keys.id, this.id);
   }
 
   //clear the session when user click on yes during logout
