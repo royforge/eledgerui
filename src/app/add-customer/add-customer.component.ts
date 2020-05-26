@@ -95,14 +95,14 @@ export class AddCustomerComponent implements OnInit {
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"
 
+    this.url = "/lenderId/" + this.wallet.lenderId;
     //checking if mobile number is already present
-    this.eledgerUser.getBorrowers().subscribe(response => {
+    this.eledgerUser.getBorrowerById(this.url).subscribe(response => {
       for (let customer of response["data"]) {
-        if (customer.lenderId == this.wallet.lenderId)
-          if (customer.phone == this.mobile) {
-            this.isPresent = true;
-            break;
-          }
+        if (customer.phone == this.mobile) {
+          this.isPresent = true;
+          break;
+        }
       }
       if (!this.isPresent) {
         //If mobile is not already present, then add the customer

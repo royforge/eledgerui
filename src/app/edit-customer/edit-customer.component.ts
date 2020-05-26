@@ -18,7 +18,6 @@ export class EditCustomerComponent implements OnInit {
   headerData = new HeaderData();
   id: string;
   response: any;
-  checkResponse: any;
   sessionModel = new SessionModel();
   borrowerData: BorrowerData;
   borrowerName: string
@@ -28,7 +27,7 @@ export class EditCustomerComponent implements OnInit {
   customerName: string;
   customerMobile: string;
   isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
-
+  url: string;
 
   borrower: BorrowerData = {
     id: undefined,
@@ -57,21 +56,18 @@ export class EditCustomerComponent implements OnInit {
     this.borrowerPhone = this.sessionModel.getSession(Keys.phone);
     this.borrowerId = this.sessionModel.getSession(Keys.borrowerId);
     this.lenderId = this.sessionModel.getSession(Keys.lenderId);
-
     this.customerName = this.borrowerName;
     this.customerMobile = this.borrowerPhone;
   }
 
   onSubmit() {
+    this.url = "/lenderId/" + this.lenderId;
     //checking if mobile number is already present
-    this._eledgerUser.getBorrowers().subscribe(response => {
-      this.checkResponse = response["data"]
-      for (let customer of this.checkResponse) {
-        if (customer.lenderId == this.lenderId) {
-          if (customer.phone == this.customerMobile && this.customerMobile != this.borrowerPhone) {
-            this.isPresent = true;
-            break;
-          }
+    this._eledgerUser.getBorrowerById(this.url).subscribe(response => {
+      for (let customer of response["data"]) {
+        if (customer.phone == this.customerMobile && this.customerMobile != this.borrowerPhone) {
+          this.isPresent = true;
+          break;
         }
       }
       if (!this.isPresent) {
@@ -79,6 +75,7 @@ export class EditCustomerComponent implements OnInit {
       }
     });
   }
+
   update() {
     this.isPresent = false;
     this.borrower.id = this.id;
