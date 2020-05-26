@@ -130,8 +130,6 @@ export class EditmyAccountComponent implements OnInit {
     //Update lender Details post request
     this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
       this.response = resp["data"];
-      this.sessionModel.setSession(Keys.shopName, this.response.shopName);
-      this.sessionModel.setSession(Keys.name, this.response.name);
       if (this.phone != this.newlenderPhone) {
         sessionStorage.setItem('username', "");
         sessionStorage.setItem('token', "");
@@ -140,8 +138,6 @@ export class EditmyAccountComponent implements OnInit {
           resp => {
             this.user = resp["data"];
             //Session updates
-            this.sessionModel.setSession(Keys.id, this.user.id);
-            this.sessionModel.setSession(Keys.lenderId, this.user.lenderId);
             this.sessionModel.setSession(Keys.shopName, this.user.shopName);
             this.sessionModel.setSession(Keys.name, this.user.name);
             this.sessionModel.setSession(Keys.email, this.user.email);
@@ -149,6 +145,11 @@ export class EditmyAccountComponent implements OnInit {
             this.notify.showSuccess("Changes Updated", "Successful");
             this.router.navigateByUrl("/myaccount");
           });
+      } else {
+        this.sessionModel.setSession(Keys.shopName, this.response.shopName);
+        this.sessionModel.setSession(Keys.name, this.response.name);
+        this.notify.showSuccess("Changes Updated", "Successful");
+        this.router.navigateByUrl("/myaccount");
       }
     });
   }
