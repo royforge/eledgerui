@@ -1,4 +1,3 @@
-import { UI_URL } from './../static/properties';
 import { SessionModel } from 'src/app/model/sessionmodel';
 import { EledgerUser } from './../classes/EledgerUser';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +7,7 @@ import { EledgerApiService } from '../services/eledgerapi.service';
 import { HeaderData } from '../model/headerData';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-customer',
@@ -39,7 +39,7 @@ export class EditCustomerComponent implements OnInit {
     isDeleted: undefined
   }
 
-  constructor(private notify: AlertService, private fb: FormBuilder, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
+  constructor(private notify: AlertService, private router: Router, private fb: FormBuilder, private _eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
   customerForm = this.fb.group({
@@ -65,7 +65,6 @@ export class EditCustomerComponent implements OnInit {
   onSubmit() {
     //checking if mobile number is already present
     this._eledgerUser.getBorrowers().subscribe(response => {
-      // this.response = response
       this.checkResponse = response["data"]
       for (let customer of this.checkResponse) {
         if (customer.lenderId == this.lenderId) {
@@ -88,14 +87,11 @@ export class EditCustomerComponent implements OnInit {
     this.borrower.name = this.customerName;
     this.borrower.phone = this.customerMobile;
     this.borrower.isDeleted = false;
-    this._eledgerUser.postBorrower(this.borrower)
-      .subscribe(resp => {
-        this.response = resp["data"];
-      });
+    this._eledgerUser.postBorrower(this.borrower).subscribe();
     this.sessionModel.setSession(Keys.name, this.customerName);
     this.sessionModel.setSession(Keys.phone, this.customerMobile);
     this.notify.showSuccess("Info Updated", "Successful");
-    window.location.href = (UI_URL + "/home/customers");
+    this.router.navigateByUrl("/home/customers");
   }
 
   //check the form validation

@@ -10,12 +10,12 @@
                         {{borrowerPhone}}</span>
                 </div>
                 <div class="col-md-1 col-2"></div>
-                <div class="col-md-2  col-lg-3 col-7 text-center logoColor border fix border-dark rounded" *ngIf="balance>='0'"
-                    style="background-color: rgb(24, 170, 24); right: 16px;"> <span class="val">
+                <div class="col-md-2  col-lg-3 col-7 text-center logoColor border fix border-dark rounded"
+                    *ngIf="balance>='0'" style="background-color: rgb(24, 170, 24); right: 16px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>
-                <div class="col-md-2 col-lg-3 col-7 text-center logoColor border fix border-dark rounded" *ngIf="balance<'0'"
-                    style="background-color: #F44336; right: 16px;"> <span class="val">
+                <div class="col-md-2 col-lg-3 col-7 text-center logoColor border fix border-dark rounded"
+                    *ngIf="balance<'0'" style="background-color: #F44336; right: 16px;"> <span class="val">
                         <i class='fas fa-rupee-sign icon mt-1'></i>&nbsp; {{balance}}</span>
                 </div>
             </div>
@@ -36,8 +36,9 @@
                                     :</label>
                             </div>
                             <div class="col-sm-5 col-lg-3">
-                                <select href="#" id="txnType" [ngClass]="{'invalid' : isValid('txnType')}" class="dropdown-toggle inp selectField btn w-100"
-                                    data-toggle="dropdown" role="button" formControlName="txnType" required>
+                                <select href="#" id="txnType" [ngClass]="{'invalid' : isValid('txnType')}"
+                                    class="dropdown-toggle inp selectField btn w-100" data-toggle="dropdown"
+                                    role="button" formControlName="txnType" required>
                                     <option value="" disabled selected>
                                         Select an Option
                                     </option>

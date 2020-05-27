@@ -32,6 +32,8 @@ export class MyAccountComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.headerData);
     this.id = this.sessionModel.getSession(Keys.id);
     this.sessionModel.setSession(Keys.id, this.id);
+    this.name = this.sessionModel.getSession(Keys.name);
+    this.phone= this.sessionModel.getSession(Keys.phone);
     this.shopName = this.sessionModel.getSession(Keys.shopName);
     this.lenderID = this.sessionModel.getSession(Keys.lenderId);
     this.email = this.sessionModel.getSession(Keys.email);

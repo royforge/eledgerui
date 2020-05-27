@@ -1,14 +1,14 @@
 export enum Keys {
-  lenderId = 'lenderId',
-  shopName = 'shopName',
-  name = 'name',
-  phone = 'phone',
-  walletId = 'walletId',
-  amount = 'amount',
-  borrowerId = 'borrowerId',
-  id = 'id',
-  password = "password",
-  email = "email",
-  otp = "otp"
+    lenderId = 'lenderId',
+    shopName = 'shopName',
+    name = 'name',
+    phone = 'phone',
+    walletId = 'walletId',
+    amount = 'amount',
+    borrowerId = 'borrowerId',
+    id = 'id',
+    password = "password",
+    email = "email",
+    otp = "otp"
 }
 

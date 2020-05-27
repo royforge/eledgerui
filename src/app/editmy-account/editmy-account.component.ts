@@ -1,4 +1,3 @@
-import { UI_URL } from './../static/properties';
 import { UserData } from 'src/app/model/UserData';
 import { Keys } from 'src/app/model/key';
 import { SessionModel } from 'src/app/model/sessionmodel';
@@ -11,6 +10,8 @@ import { AlertService } from '../services/alert.service';
 import { of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-editmy-account',
@@ -49,8 +50,9 @@ export class EditmyAccountComponent implements OnInit {
   }
   url: string;
   isPresentPhone = false;
+  user: UserData;
 
-  constructor(private notify: AlertService,
+  constructor(private auth: AuthenticationService, private notify: AlertService, private router: Router,
     private fb: FormBuilder, private eledgerUser: EledgerUser, private service: EledgerApiService) { }
 
   //validation the form
@@ -125,18 +127,32 @@ export class EditmyAccountComponent implements OnInit {
     this.lender.password = this.newpassword;
     this.lender.email = this.email;
 
-    this.eledgerUser.postEledgerLenders(this.lender).subscribe(resp => {
-      this.response = resp["data"];
-    });
+    //Update lender Details post request
+    this.eledgerUser.postEledgerLenders(this.lender).subscribe();
 
-    this.sessionModel.setSession(Keys.name, this.newlenderName);
-    this.sessionModel.setSession(Keys.phone, this.newlenderPhone);
-    this.sessionModel.setSession(Keys.shopName, this.newlenderShopName);
-    this.sessionModel.setSession(Keys.lenderId, this.newlenderId);
-    this.sessionModel.setSession(Keys.password, this.newpassword);
-    this.notify.showSuccess("Changes Updated", "Successful");
-    window.location.href = (UI_URL + "/myaccount");
+    if (this.phone != this.newlenderPhone) {
+      sessionStorage.setItem('username', "");
+      sessionStorage.setItem('token', "");
+      //Again authenticating as mobile no(userId for authentication gets changed in updating mobile no.) gets changed.
+      this.auth.authenticate(this.newlenderPhone, this.password).pipe().subscribe(
+        resp => {
+          this.user = resp["data"];
+          //Session updates
+          this.sessionModel.setSession(Keys.id, this.user.id);
+          this.sessionModel.setSession(Keys.lenderId, this.user.lenderId);
+          this.sessionModel.setSession(Keys.shopName, this.user.shopName);
+          this.sessionModel.setSession(Keys.name, this.user.name);
+          this.sessionModel.setSession(Keys.email, this.user.email);
+          this.sessionModel.setSession(Keys.phone, this.user.phone);
 
+          this.notify.showSuccess("Changes Updated", "Successful");
+          this.router.navigateByUrl("/myaccount");
+        }
+      )
+    }
+
+
+    //Catch any error
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         try {
