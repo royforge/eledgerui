@@ -55,7 +55,7 @@ div.space {
 }
 
 .edit-margin {
-	margin-left: 70px;
+	margin-left: 25%;
 }
 
 .delete-margin {
@@ -70,19 +70,10 @@ div.space {
 
 /* Responsive Table CSS	 */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.mobile-sm {
 		text-align: center;
 		font-size: 12px;
-	}
-	.edit-margin {
-		margin-left: 140px;
-		margin-right: 0px;
-	}
-	.delete-margin {
-		margin-left: 0px;
-		margin-right: 0px;
-		text-align: right;
 	}
 	table {
 		border: 0;
