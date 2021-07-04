@@ -20,6 +20,16 @@ import { EmailData } from '../model/EmailData';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
+  borrowerName: string;
+  mobile: number;
+  txn: string;
+  balance: number;
+  walletData = [];
+  sessionModel = new SessionModel();
+  isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
+  response: any;
+  headerData = new HeaderData();
+  url: string;
 
   wallet: WalletData = {
     walletId: undefined,
@@ -49,9 +59,6 @@ export class AddCustomerComponent implements OnInit {
     name: undefined,
     customerName: undefined
   }
-  response: any;
-  headerData = new HeaderData();
-  url: string;
 
   constructor(private notify: AlertService, private fb: FormBuilder,
     private eledgerApi: EledgerApi,
@@ -74,14 +81,6 @@ export class AddCustomerComponent implements OnInit {
     this.service.emitHeaderChangeEvent(this.headerData);
   }
 
-  borrowerName: string;
-  mobile: number;
-  txn: string;
-  balance: number;
-  walletData = [];
-  sessionModel = new SessionModel();
-  isPresent = false;    //to check is the mobile number (this.mobile) is already added in the cutomer Database 
-
   onSubmit() {
     this.isPresent = false;
     // TODO: Use EventEmitter with form value
@@ -96,14 +95,14 @@ export class AddCustomerComponent implements OnInit {
     this.wallet.txnType = this.txn
     this.wallet.comment = "Add New Customer"
 
+    this.url = "/lenderId/" + this.wallet.lenderId;
     //checking if mobile number is already present
-    this.eledgerUser.getBorrowers().subscribe(response => {
+    this.eledgerUser.getBorrowerById(this.url).subscribe(response => {
       for (let customer of response["data"]) {
-        if (customer.lenderId == this.wallet.lenderId)
-          if (customer.phone == this.mobile) {
-            this.isPresent = true;
-            break;
-          }
+        if (customer.phone == this.mobile) {
+          this.isPresent = true;
+          break;
+        }
       }
       if (!this.isPresent) {
         //If mobile is not already present, then add the customer
@@ -114,23 +113,21 @@ export class AddCustomerComponent implements OnInit {
 
   //Method to add customer details to all the required databases
   addCustomer() {
-    this.url = "/lenders";
-    //User Management Get API to get data 
+    this.url = "/lenderId/" + this.wallet.lenderId;
+    //User Management Get API to get lender data using lenderId 
     this.eledgerUser.getEledgerLenders(this.url).subscribe(
       data => {
         this.response = data["data"]
-        for (let lender of this.response) {
-          if (lender.lenderId == this.wallet.lenderId) {
-            this.emailData.name = lender.name;
-            this.emailData.email = lender.email;
-            this.emailData.customerName = this.borrowerName;
+        if (this.response.lenderId == this.wallet.lenderId) {
+          this.emailData.name = this.response.name;
+          this.emailData.email = this.response.email;
+          this.emailData.customerName = this.borrowerName;
 
-            // Send Mail to the User about new customer additon
-            this.eledgerUser.postAddCustomerEmail(this.emailData).subscribe()
-            break;
-          }
+          // Send Mail to the User about new customer additon
+          this.eledgerUser.postAddCustomerEmail(this.emailData).subscribe()
         }
       });
+
     //posting the Wallet's data to Wallet database
     this.eledgerApi.postEledgerApi(this.wallet).subscribe(resp => {
       //updating values for the borrower data
@@ -156,5 +153,4 @@ export class AddCustomerComponent implements OnInit {
   isValid(control) {
     return this.customerForm.controls[control].invalid && this.customerForm.controls[control].touched;
   }
-
 }

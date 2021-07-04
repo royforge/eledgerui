@@ -1,7 +1,7 @@
 import { EledgerUser } from 'src/app/classes/EledgerUser';
 import { HeaderData } from './../model/headerData';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SessionModel } from '../model/sessionmodel';
 import { Keys } from '../model/key';
 import { EledgerApiService } from '../services/eledgerapi.service';
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   response: any;
   url: string;
   currentUser: UserData;
-
+  password: string;
 
   constructor(private _eledgerUser: EledgerUser, private router: Router, private service: EledgerApiService, private auth: AuthenticationService) {
   }
@@ -40,25 +40,28 @@ export class HomeComponent implements OnInit {
     this.headerData.isHeader = true;
     this.headerData.isIcon = false;
     this.service.emitHeaderChangeEvent(this.headerData);
+    this.url = "/lenderId/" + this.lenderId;
 
-    this.url = "/lenders";
-
-    //User Management get API to get data of lenders
+    //User Management get API to get data of lender using lenderId
     this._eledgerUser.getEledgerLenders(this.url).subscribe(resp => {
       this.response = resp["data"]
-      for (let lender of this.response) {
-        if (lender.lenderId == this.lenderId) {
-          this.id = lender.id;
-          this.sessionModel.setSession(Keys.id, this.id);
-          break;
-        }
+      if (this.response.lenderId == this.lenderId) {
+        this.id = this.response.id;
+        this.sessionModel.setSession(Keys.id, this.id);
+        this.password = this.response.password;
       }
     });
   }
 
+  editPassword() {
+    this.sessionModel.setSession(Keys.lenderId, this.lenderId);
+    this.sessionModel.setSession(Keys.password, this.password);
+    this.sessionModel.setSession(Keys.id, this.id);
+  }
+
   //clear the session when user click on yes during logout
   clearData() {
-   // this.auth.logOut();
+    // this.auth.logOut();
     sessionStorage.clear();
     this.router.navigateByUrl('/login');
   }

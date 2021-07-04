@@ -28,6 +28,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { OtpverficationComponent } from './otpverfication/otpverfication.component';
 import { NgOtpInputModule } from 'ng-otp-input';
+import { UpdatepasswordComponent } from './updatepassword/updatepassword.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
     HeaderComponent,
     ForgotPasswordComponent,
     ResetpasswordComponent,
-    OtpverficationComponent
+    OtpverficationComponent,
+    UpdatepasswordComponent
   ],
   imports: [
     BrowserModule,

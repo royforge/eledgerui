@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -33,8 +34,9 @@ export class ForgotPasswordComponent implements OnInit {
     name: undefined,
     customerName: undefined
   }
+  user: any;
 
-  constructor(private notify: AlertService, private router: Router, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
+  constructor(private auth: AuthenticationService, private notify: AlertService, private router: Router, private fb: FormBuilder, private eledgerUser: EledgerUser) { }
 
   //form Validation
   resetForm = this.fb.group({
@@ -42,24 +44,34 @@ export class ForgotPasswordComponent implements OnInit {
   })
 
   ngOnInit(): void {
+    this.auth.authenticate("eledgerDafault@gmail.com", "Default@12356").pipe().subscribe(
+      resp => {
+        this.user = resp["data"];
+        //Session updates
+        this.sessionModel.setSession(Keys.id, this.user.id);
+        this.sessionModel.setSession(Keys.lenderId, this.user.lenderId);
+        this.sessionModel.setSession(Keys.shopName, this.user.shopName);
+        this.sessionModel.setSession(Keys.name, this.user.name);
+        this.sessionModel.setSession(Keys.email, this.user.email);
+        this.sessionModel.setSession(Keys.phone, this.user.phone);
+      });
   }
 
   onSubmit() {
     this.email = this.resetForm.value.emailId;
-    this.url = "/lenders";
+    this.url = "/validatePhoneOrEmail/" + this.email;
 
     //User Management Get API to get data 
     this.eledgerUser.getEledgerLenders(this.url).subscribe(
       data => {
         this.response = data["data"]
-        for (let customer of this.response) {
-          if (customer.email == this.email) {
+        if (this.response != null) {
+          if (this.response.email == this.email) {
             this.isEmailExist = true;
-            this.id = customer.id;
-            this.emailData.email = customer.email;
-            this.emailData.name = customer.name;
-            this.name = customer.name;
-            break;
+            this.id = this.response.id;
+            this.emailData.email = this.response.email;
+            this.emailData.name = this.response.name;
+            this.name = this.response.name;
           }
         }
 

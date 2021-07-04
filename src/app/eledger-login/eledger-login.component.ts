@@ -14,11 +14,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./eledger-login.component.css']
 })
 export class EledgerLoginComponent implements OnInit {
-
   user: UserData;
   sessionModel = new SessionModel();
   headerData = new HeaderData();
   url: string;
+  userID: string;
+  password: string;
+  isValid: boolean;
+  name: string;
+  validated: boolean;
 
   constructor(private notify: AlertService, private router: Router, private service: EledgerApiService, private auth: AuthenticationService) { }
 
@@ -28,12 +32,6 @@ export class EledgerLoginComponent implements OnInit {
     this.isValid = true;
     this.validated = false;
   }
-
-  userID: string;
-  password: string;
-  isValid: boolean;
-  name: string;
-  validated: boolean;
 
   login() {
     this.auth.authenticate(this.userID, this.password).pipe().subscribe(

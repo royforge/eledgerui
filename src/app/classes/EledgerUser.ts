@@ -42,8 +42,9 @@ export class EledgerUser extends EledgerApiService {
         return this.postUser(CUSTOMER_URL, borrowerData);
     }
 
-    getBorrowers(): Observable<any> {
-        return this.get(CUSTOMER_URL + "/customers");
+    getBorrowerById(customUrl: string): Observable<any> {
+        let url = CUSTOMER_URL + customUrl;
+        return this.get(url);
     }
 
     deleteBorrower(id) {

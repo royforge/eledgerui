@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./otpverfication.component.css']
 })
 export class OtpverficationComponent implements OnInit {
-
   sessionModel = new SessionModel();
   email: string;
   otp: any;

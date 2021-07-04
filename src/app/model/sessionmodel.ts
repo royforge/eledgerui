@@ -36,6 +36,9 @@ export class SessionModel {
             case Keys.otp:
                 sessionStorage.setItem(key, value);
                 break;
+            case Keys.password:
+                sessionStorage.setItem(key, value);
+                break;
         }
     }
 }

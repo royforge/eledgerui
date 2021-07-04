@@ -83,22 +83,6 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-sm-5">
-                        <label for=newpassword class="info">Password :</label>
-                    </div>
-                    <div class="col-sm-7 col-lg-6">
-                        <input type="password" id="newpassword" [ngClass]="{'invalid' : isValid('newpassword')}"
-                            formControlName="newpassword" [(ngModel)]="newpassword" disabled>
-                        <div class="feedback" *ngIf="isValid('newpassword')">
-                            <span *ngIf="customerForm.controls.newpassword.errors.required">Field cannot be
-                                Empty!!!</span>
-                        </div>
-                    </div>
-                </div>
-                <br>
                 <br>
                 <div class="row">
                     <div class="col-4 text-center md">
